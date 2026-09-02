@@ -606,9 +606,24 @@
             <tr><td>i18n</td><td>next-intl v4</td><td>Vier Locales, Fallback auf Deutsch per Deep-Merge</td></tr>
             <tr><td>Icons</td><td>lucide-react</td><td>Kuratierte Icon-Registry (<code>src/components/icon.tsx</code>)</td></tr>
             <tr><td>Bilder</td><td>next/image + Unsplash</td><td>Lizenzfreie Platzhalter, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
-            <tr><td>Persistenz</td><td>keine (Prototyp)</td><td>Nur <code>localStorage</code> f&uuml;r Theme und Demo-Rolle</td></tr>
+            <tr><td>Datenbank</td><td>Supabase (PostgreSQL, RLS), lokal via Docker</td><td>39 Tabellen, Migrationen in <code>supabase/migrations/</code>. UI nutzt noch Mock-Daten.</td></tr>
+            <tr><td>UI-State</td><td><code>localStorage</code></td><td>Theme und Demo-Rolle, nur lokal im Browser</td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Datenbankschema</div>
+        <p>
+          Das vollst&auml;ndige Schema (Standort-Hierarchie, Ernte, Kühlkette, Finanzen, Compliance,
+          Integrationen) liegt als zwei Supabase-Migrationen vor: <code>..._initial_schema.sql</code>
+          (39 Tabellen, Enums, Trigger) und <code>..._rls_policies.sql</code> (RLS auf allen Tabellen).
+          Seed-Daten in <code>supabase/seed.sql</code>. Die 1&Ccedil;at&#305;-Muster sind erhalten:
+          der <code>reihenbloecke</code>-Zustandsautomat (<code>blocked</code> &rarr; <code>wartezeitgesperrt</code>),
+          die Unveraenderlichkeit von <code>finance_ledger_entries</code> (append-only Trigger) und die
+          <code>integration_outbox</code> als Bruecke zu ЭСФ / ЕСУТД. Die Prototyp-Oberfl&auml;chen
+          lesen noch aus <code>src/lib/domain/</code>; die Anbindung an die DB folgt mit Meilenstein B
+          (echte Auth, rollenabhaengige Schreib-Policies).
+        </p>
       </div>
       <div class="info-box">
         <div class="info-box-title">Design-Token-Umstellung</div>
