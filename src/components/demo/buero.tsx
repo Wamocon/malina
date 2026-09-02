@@ -69,7 +69,7 @@ export function RollenDemo() {
       </Section>
 
       <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">
-        {t("catiNote")}
+        {t("note")}
       </Card>
     </div>
   );
@@ -110,7 +110,7 @@ export function FinanzenDemo() {
         </DataTable>
       </Section>
       <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">
-        {t("catiNote")}
+        {t("note")}
       </Card>
     </div>
   );
@@ -156,7 +156,7 @@ export function PersonalDemo() {
           ))}
         </DataTable>
       </Section>
-      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("catiNote")}</Card>
+      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("note")}</Card>
     </div>
   );
 }
@@ -181,7 +181,7 @@ export function DokumenteDemo() {
           ))}
         </DataTable>
       </Section>
-      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("catiNote")}</Card>
+      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("note")}</Card>
     </div>
   );
 }
@@ -227,7 +227,7 @@ export function ComplianceDemo() {
           ))}
         </DataTable>
       </Section>
-      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("catiNote")}</Card>
+      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("note")}</Card>
     </div>
   );
 }

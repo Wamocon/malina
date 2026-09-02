@@ -17,20 +17,20 @@ export default async function ImpressumPage({
       <p>
         Mergenthalerallee 79 - 81
         <br />
-        65760 Eschborn, Deutschland
+        65760 Eschborn, {t("country")}
       </p>
       <p>
-        <strong>Telefon:</strong> +49 6196 5838311
+        <strong>{t("phone")}:</strong> +49 6196 5838311
         <br />
-        <strong>E-Mail:</strong> info@wamocon.com
+        <strong>{t("email")}:</strong> info@wamocon.com
       </p>
       <h2>{t("managingDirector")}</h2>
       <p>Dipl.-Ing. Waleri Moretz</p>
       <h2>{t("registration")}</h2>
       <p>
-        Handelsregister: Eschborn HRB 123666
+        {t("commercialRegister")}: Eschborn HRB 123666
         <br />
-        USt-IdNr.: DE344930486
+        {t("vatId")}: DE344930486
       </p>
     </LegalShell>
   );

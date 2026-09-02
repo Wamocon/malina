@@ -3,10 +3,12 @@ import { SiteNavbar } from "@/components/site/navbar";
 import { SiteFooter } from "@/components/site/footer";
 import { Hero } from "@/components/site/hero";
 import {
+  BerryReality,
   ComplianceBlock,
   KpiPreview,
   LandingCta,
   Levers,
+  PriceSpread,
   ProofChain,
   ZonesOverview,
 } from "@/components/site/landing";
@@ -24,9 +26,11 @@ export default async function LandingPage({
       <SiteNavbar />
       <main id="main" className="pt-16">
         <Hero />
-        <ZonesOverview />
+        <BerryReality />
+        <PriceSpread />
         <ProofChain />
         <Levers />
+        <ZonesOverview />
         <KpiPreview />
         <ComplianceBlock />
         <LandingCta />

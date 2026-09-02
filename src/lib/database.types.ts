@@ -1,0 +1,1918 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+  public: {
+    Tables: {
+      audit_events: {
+        Row: {
+          actor: string | null
+          aktion: string
+          created_at: string
+          id: string
+          metadata: Json
+          ressource: string
+          ressource_id: string | null
+        }
+        Insert: {
+          actor?: string | null
+          aktion: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          ressource: string
+          ressource_id?: string | null
+        }
+        Update: {
+          actor?: string | null
+          aktion?: string
+          created_at?: string
+          id?: string
+          metadata?: Json
+          ressource?: string
+          ressource_id?: string | null
+        }
+        Relationships: []
+      }
+      b2b_kunden: {
+        Row: {
+          created_at: string
+          id: string
+          identitaets_digest: string | null
+          kontakt: string | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          identitaets_digest?: string | null
+          kontakt?: string | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          identitaets_digest?: string | null
+          kontakt?: string | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      betriebe: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      brigaden: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          plantage_id: string | null
+          staerke: number
+          updated_at: string
+          vorarbeiter: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          plantage_id?: string | null
+          staerke?: number
+          updated_at?: string
+          vorarbeiter?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          plantage_id?: string | null
+          staerke?: number
+          updated_at?: string
+          vorarbeiter?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "brigaden_plantage_id_fkey"
+            columns: ["plantage_id"]
+            isOneToOne: false
+            referencedRelation: "plantagen"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chargen: {
+        Row: {
+          code: string
+          created_at: string
+          ernte_datum: string
+          id: string
+          pflueck_zeitpunkt: string | null
+          reihenblock_id: string | null
+          sorte_id: string | null
+          status: Database["public"]["Enums"]["charge_status"]
+          updated_at: string
+          vorkuehlung_zeitpunkt: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          ernte_datum?: string
+          id?: string
+          pflueck_zeitpunkt?: string | null
+          reihenblock_id?: string | null
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["charge_status"]
+          updated_at?: string
+          vorkuehlung_zeitpunkt?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          ernte_datum?: string
+          id?: string
+          pflueck_zeitpunkt?: string | null
+          reihenblock_id?: string | null
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["charge_status"]
+          updated_at?: string
+          vorkuehlung_zeitpunkt?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chargen_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chargen_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consent_records: {
+        Row: {
+          created_at: string
+          erteilt_am: string
+          id: string
+          rechtsgrundlage: string | null
+          subjekt: string
+          widerrufen_am: string | null
+          zweck: string
+        }
+        Insert: {
+          created_at?: string
+          erteilt_am?: string
+          id?: string
+          rechtsgrundlage?: string | null
+          subjekt: string
+          widerrufen_am?: string | null
+          zweck: string
+        }
+        Update: {
+          created_at?: string
+          erteilt_am?: string
+          id?: string
+          rechtsgrundlage?: string | null
+          subjekt?: string
+          widerrufen_am?: string | null
+          zweck?: string
+        }
+        Relationships: []
+      }
+      dokumente: {
+        Row: {
+          bezug: string | null
+          charge_id: string | null
+          created_at: string
+          id: string
+          kategorie: Database["public"]["Enums"]["dokument_kategorie"]
+          name: string
+          reihenblock_id: string | null
+          stand: string | null
+          status: Database["public"]["Enums"]["dokument_status"]
+          storage_path: string | null
+          updated_at: string
+        }
+        Insert: {
+          bezug?: string | null
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          kategorie?: Database["public"]["Enums"]["dokument_kategorie"]
+          name: string
+          reihenblock_id?: string | null
+          stand?: string | null
+          status?: Database["public"]["Enums"]["dokument_status"]
+          storage_path?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bezug?: string | null
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          kategorie?: Database["public"]["Enums"]["dokument_kategorie"]
+          name?: string
+          reihenblock_id?: string | null
+          stand?: string | null
+          status?: Database["public"]["Enums"]["dokument_status"]
+          storage_path?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dokumente_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dokumente_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      esutd_vertraege: {
+        Row: {
+          created_at: string
+          erfasst_am: string | null
+          id: string
+          outbox_id: string | null
+          pfluecker_id: string
+          status: Database["public"]["Enums"]["esutd_status"]
+          vertragsnummer: string | null
+        }
+        Insert: {
+          created_at?: string
+          erfasst_am?: string | null
+          id?: string
+          outbox_id?: string | null
+          pfluecker_id: string
+          status?: Database["public"]["Enums"]["esutd_status"]
+          vertragsnummer?: string | null
+        }
+        Update: {
+          created_at?: string
+          erfasst_am?: string | null
+          id?: string
+          outbox_id?: string | null
+          pfluecker_id?: string
+          status?: Database["public"]["Enums"]["esutd_status"]
+          vertragsnummer?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esutd_vertraege_pfluecker_id_fkey"
+            columns: ["pfluecker_id"]
+            isOneToOne: false
+            referencedRelation: "pfluecker"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_esutd_outbox"
+            columns: ["outbox_id"]
+            isOneToOne: false
+            referencedRelation: "integration_outbox"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      feldparzellen: {
+        Row: {
+          created_at: string
+          flaeche_ha: number | null
+          id: string
+          name: string
+          plantage_id: string
+          sorte_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          flaeche_ha?: number | null
+          id?: string
+          name: string
+          plantage_id: string
+          sorte_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          flaeche_ha?: number | null
+          id?: string
+          name?: string
+          plantage_id?: string
+          sorte_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feldparzellen_plantage_id_fkey"
+            columns: ["plantage_id"]
+            isOneToOne: false
+            referencedRelation: "plantagen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "feldparzellen_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_ledger_entries: {
+        Row: {
+          beschreibung: string | null
+          betrag_tenge: number
+          buchungsdatum: string
+          charge_id: string | null
+          created_at: string
+          id: string
+          kategorie: string
+          kostentraeger_id: string | null
+          typ: Database["public"]["Enums"]["ledger_typ"]
+        }
+        Insert: {
+          beschreibung?: string | null
+          betrag_tenge: number
+          buchungsdatum?: string
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          kategorie: string
+          kostentraeger_id?: string | null
+          typ: Database["public"]["Enums"]["ledger_typ"]
+        }
+        Update: {
+          beschreibung?: string | null
+          betrag_tenge?: number
+          buchungsdatum?: string
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          kategorie?: string
+          kostentraeger_id?: string | null
+          typ?: Database["public"]["Enums"]["ledger_typ"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_ledger_entries_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_entries_kostentraeger_id_fkey"
+            columns: ["kostentraeger_id"]
+            isOneToOne: false
+            referencedRelation: "kostentraeger"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foerderdossiers: {
+        Row: {
+          antragsnummer: string | null
+          created_at: string
+          eingereicht_am: string | null
+          id: string
+          portal: string
+          status: string
+          titel: string
+          updated_at: string
+        }
+        Insert: {
+          antragsnummer?: string | null
+          created_at?: string
+          eingereicht_am?: string | null
+          id?: string
+          portal: string
+          status?: string
+          titel: string
+          updated_at?: string
+        }
+        Update: {
+          antragsnummer?: string | null
+          created_at?: string
+          eingereicht_am?: string | null
+          id?: string
+          portal?: string
+          status?: string
+          titel?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      integration_outbox: {
+        Row: {
+          created_at: string
+          id: string
+          letzter_fehler: string | null
+          payload: Json
+          richtung: string
+          status: Database["public"]["Enums"]["outbox_status"]
+          updated_at: string
+          verarbeitet_am: string | null
+          versuche: number
+          ziel_system: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          letzter_fehler?: string | null
+          payload?: Json
+          richtung?: string
+          status?: Database["public"]["Enums"]["outbox_status"]
+          updated_at?: string
+          verarbeitet_am?: string | null
+          versuche?: number
+          ziel_system: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          letzter_fehler?: string | null
+          payload?: Json
+          richtung?: string
+          status?: Database["public"]["Enums"]["outbox_status"]
+          updated_at?: string
+          verarbeitet_am?: string | null
+          versuche?: number
+          ziel_system?: string
+        }
+        Relationships: []
+      }
+      integrationen: {
+        Row: {
+          created_at: string
+          id: string
+          key: string
+          name: string
+          status: Database["public"]["Enums"]["integration_status"]
+          system: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          key: string
+          name: string
+          status?: Database["public"]["Enums"]["integration_status"]
+          system: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          key?: string
+          name?: string
+          status?: Database["public"]["Enums"]["integration_status"]
+          system?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      kontingente: {
+        Row: {
+          b2b_kunde_id: string | null
+          created_at: string
+          id: string
+          menge_kg: number
+          reserviert_kg: number
+          saison: string | null
+          sorte_id: string
+          updated_at: string
+        }
+        Insert: {
+          b2b_kunde_id?: string | null
+          created_at?: string
+          id?: string
+          menge_kg?: number
+          reserviert_kg?: number
+          saison?: string | null
+          sorte_id: string
+          updated_at?: string
+        }
+        Update: {
+          b2b_kunde_id?: string | null
+          created_at?: string
+          id?: string
+          menge_kg?: number
+          reserviert_kg?: number
+          saison?: string | null
+          sorte_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kontingente_b2b_kunde_id_fkey"
+            columns: ["b2b_kunde_id"]
+            isOneToOne: false
+            referencedRelation: "b2b_kunden"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "kontingente_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      kostentraeger: {
+        Row: {
+          bezeichnung: string
+          created_at: string
+          erntetag: string | null
+          id: string
+          reihenblock_id: string | null
+          sorte_id: string | null
+        }
+        Insert: {
+          bezeichnung: string
+          created_at?: string
+          erntetag?: string | null
+          id?: string
+          reihenblock_id?: string | null
+          sorte_id?: string | null
+        }
+        Update: {
+          bezeichnung?: string
+          created_at?: string
+          erntetag?: string | null
+          id?: string
+          reihenblock_id?: string | null
+          sorte_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kostentraeger_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "kostentraeger_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      kpi_baseline: {
+        Row: {
+          baseline_wert: string | null
+          created_at: string
+          gut_richtung: string
+          id: string
+          key: string
+          name: string
+          unterschrieben_am: string | null
+          updated_at: string
+          ziel: string | null
+          zone: string
+        }
+        Insert: {
+          baseline_wert?: string | null
+          created_at?: string
+          gut_richtung?: string
+          id?: string
+          key: string
+          name: string
+          unterschrieben_am?: string | null
+          updated_at?: string
+          ziel?: string | null
+          zone: string
+        }
+        Update: {
+          baseline_wert?: string | null
+          created_at?: string
+          gut_richtung?: string
+          id?: string
+          key?: string
+          name?: string
+          unterschrieben_am?: string | null
+          updated_at?: string
+          ziel?: string | null
+          zone?: string
+        }
+        Relationships: []
+      }
+      kuehlketten_messungen: {
+        Row: {
+          charge_id: string
+          created_at: string
+          ergebnis: Database["public"]["Enums"]["kuehlkette_ergebnis"]
+          gemessen_am: string
+          id: string
+          minuten_seit_pfluecken: number | null
+          temperatur_c: number
+        }
+        Insert: {
+          charge_id: string
+          created_at?: string
+          ergebnis?: Database["public"]["Enums"]["kuehlkette_ergebnis"]
+          gemessen_am?: string
+          id?: string
+          minuten_seit_pfluecken?: number | null
+          temperatur_c: number
+        }
+        Update: {
+          charge_id?: string
+          created_at?: string
+          ergebnis?: Database["public"]["Enums"]["kuehlkette_ergebnis"]
+          gemessen_am?: string
+          id?: string
+          minuten_seit_pfluecken?: number | null
+          temperatur_c?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kuehlketten_messungen_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lieferungen: {
+        Row: {
+          b2b_kunde_id: string
+          charge_id: string | null
+          created_at: string
+          geliefert_am: string | null
+          id: string
+          lieferschein_outbox_id: string | null
+          menge_kg: number
+          vorbestellung_id: string | null
+        }
+        Insert: {
+          b2b_kunde_id: string
+          charge_id?: string | null
+          created_at?: string
+          geliefert_am?: string | null
+          id?: string
+          lieferschein_outbox_id?: string | null
+          menge_kg?: number
+          vorbestellung_id?: string | null
+        }
+        Update: {
+          b2b_kunde_id?: string
+          charge_id?: string | null
+          created_at?: string
+          geliefert_am?: string | null
+          id?: string
+          lieferschein_outbox_id?: string | null
+          menge_kg?: number
+          vorbestellung_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_lieferung_outbox"
+            columns: ["lieferschein_outbox_id"]
+            isOneToOne: false
+            referencedRelation: "integration_outbox"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lieferungen_b2b_kunde_id_fkey"
+            columns: ["b2b_kunde_id"]
+            isOneToOne: false
+            referencedRelation: "b2b_kunden"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lieferungen_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lieferungen_vorbestellung_id_fkey"
+            columns: ["vorbestellung_id"]
+            isOneToOne: false
+            referencedRelation: "vorbestellungen"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lohn_abrechnungen: {
+        Row: {
+          created_at: string
+          gesamt_tenge: number
+          grundlohn_tenge: number
+          id: string
+          mengen_komponente_tenge: number
+          periode_ende: string
+          periode_start: string
+          pfluecker_id: string
+          qualitaetsfaktor: number
+          status: Database["public"]["Enums"]["lohn_status"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          gesamt_tenge?: number
+          grundlohn_tenge?: number
+          id?: string
+          mengen_komponente_tenge?: number
+          periode_ende: string
+          periode_start: string
+          pfluecker_id: string
+          qualitaetsfaktor?: number
+          status?: Database["public"]["Enums"]["lohn_status"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          gesamt_tenge?: number
+          grundlohn_tenge?: number
+          id?: string
+          mengen_komponente_tenge?: number
+          periode_ende?: string
+          periode_start?: string
+          pfluecker_id?: string
+          qualitaetsfaktor?: number
+          status?: Database["public"]["Enums"]["lohn_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lohn_abrechnungen_pfluecker_id_fkey"
+            columns: ["pfluecker_id"]
+            isOneToOne: false
+            referencedRelation: "pfluecker"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lohn_positionen: {
+        Row: {
+          betrag_tenge: number
+          created_at: string
+          id: string
+          lohn_abrechnung_id: string
+          menge_kg: number
+          pflueckaufgabe_id: string | null
+          qualitaetsfaktor: number
+        }
+        Insert: {
+          betrag_tenge?: number
+          created_at?: string
+          id?: string
+          lohn_abrechnung_id: string
+          menge_kg?: number
+          pflueckaufgabe_id?: string | null
+          qualitaetsfaktor?: number
+        }
+        Update: {
+          betrag_tenge?: number
+          created_at?: string
+          id?: string
+          lohn_abrechnung_id?: string
+          menge_kg?: number
+          pflueckaufgabe_id?: string | null
+          qualitaetsfaktor?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lohn_positionen_lohn_abrechnung_id_fkey"
+            columns: ["lohn_abrechnung_id"]
+            isOneToOne: false
+            referencedRelation: "lohn_abrechnungen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lohn_positionen_pflueckaufgabe_id_fkey"
+            columns: ["pflueckaufgabe_id"]
+            isOneToOne: false
+            referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      media_belege: {
+        Row: {
+          art: Database["public"]["Enums"]["beleg_art"]
+          aufgenommen_am: string
+          created_at: string
+          digest: string | null
+          hinweis: string | null
+          id: string
+          pflueckaufgabe_id: string
+          storage_path: string | null
+        }
+        Insert: {
+          art: Database["public"]["Enums"]["beleg_art"]
+          aufgenommen_am?: string
+          created_at?: string
+          digest?: string | null
+          hinweis?: string | null
+          id?: string
+          pflueckaufgabe_id: string
+          storage_path?: string | null
+        }
+        Update: {
+          art?: Database["public"]["Enums"]["beleg_art"]
+          aufgenommen_am?: string
+          created_at?: string
+          digest?: string | null
+          hinweis?: string | null
+          id?: string
+          pflueckaufgabe_id?: string
+          storage_path?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_belege_pflueckaufgabe_id_fkey"
+            columns: ["pflueckaufgabe_id"]
+            isOneToOne: false
+            referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      nachbarbetriebe: {
+        Row: {
+          created_at: string
+          id: string
+          identitaets_digest: string | null
+          kontakt: string | null
+          name: string
+          ort: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          identitaets_digest?: string | null
+          kontakt?: string | null
+          name: string
+          ort?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          identitaets_digest?: string | null
+          kontakt?: string | null
+          name?: string
+          ort?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pflanzenschutz_behandlungen: {
+        Row: {
+          behandelt_am: string
+          created_at: string
+          dokument_id: string | null
+          freigabe_am: string | null
+          freigegeben: boolean
+          id: string
+          psm_mittel_id: string
+          reihenblock_id: string
+          wartezeit_tage: number
+        }
+        Insert: {
+          behandelt_am: string
+          created_at?: string
+          dokument_id?: string | null
+          freigabe_am?: string | null
+          freigegeben?: boolean
+          id?: string
+          psm_mittel_id: string
+          reihenblock_id: string
+          wartezeit_tage: number
+        }
+        Update: {
+          behandelt_am?: string
+          created_at?: string
+          dokument_id?: string | null
+          freigabe_am?: string | null
+          freigegeben?: boolean
+          id?: string
+          psm_mittel_id?: string
+          reihenblock_id?: string
+          wartezeit_tage?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_behandlung_dokument"
+            columns: ["dokument_id"]
+            isOneToOne: false
+            referencedRelation: "dokumente"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pflanzenschutz_behandlungen_psm_mittel_id_fkey"
+            columns: ["psm_mittel_id"]
+            isOneToOne: false
+            referencedRelation: "psm_mittel"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pflanzenschutz_behandlungen_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pflueckaufgaben: {
+        Row: {
+          brigade_id: string | null
+          charge_id: string | null
+          code: string
+          created_at: string
+          faelligkeit: string | null
+          id: string
+          ist_menge_kg: number
+          pfluecker_anzahl: number
+          qualitaetsfaktor: number | null
+          reihenblock_id: string
+          sorte_id: string | null
+          status: Database["public"]["Enums"]["pflueckaufgabe_status"]
+          updated_at: string
+          zielmenge_kg: number
+        }
+        Insert: {
+          brigade_id?: string | null
+          charge_id?: string | null
+          code: string
+          created_at?: string
+          faelligkeit?: string | null
+          id?: string
+          ist_menge_kg?: number
+          pfluecker_anzahl?: number
+          qualitaetsfaktor?: number | null
+          reihenblock_id: string
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["pflueckaufgabe_status"]
+          updated_at?: string
+          zielmenge_kg?: number
+        }
+        Update: {
+          brigade_id?: string | null
+          charge_id?: string | null
+          code?: string
+          created_at?: string
+          faelligkeit?: string | null
+          id?: string
+          ist_menge_kg?: number
+          pfluecker_anzahl?: number
+          qualitaetsfaktor?: number | null
+          reihenblock_id?: string
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["pflueckaufgabe_status"]
+          updated_at?: string
+          zielmenge_kg?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pflueckaufgaben_brigade_id_fkey"
+            columns: ["brigade_id"]
+            isOneToOne: false
+            referencedRelation: "brigaden"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pflueckaufgaben_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pflueckaufgaben_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pflueckaufgaben_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pfluecker: {
+        Row: {
+          ausweis: string
+          brigade_id: string | null
+          created_at: string
+          esutd: Database["public"]["Enums"]["esutd_status"]
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          ausweis: string
+          brigade_id?: string | null
+          created_at?: string
+          esutd?: Database["public"]["Enums"]["esutd_status"]
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          ausweis?: string
+          brigade_id?: string | null
+          created_at?: string
+          esutd?: Database["public"]["Enums"]["esutd_status"]
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pfluecker_brigade_id_fkey"
+            columns: ["brigade_id"]
+            isOneToOne: false
+            referencedRelation: "brigaden"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plantagen: {
+        Row: {
+          betrieb_id: string
+          created_at: string
+          id: string
+          nachbarbetrieb_id: string | null
+          name: string
+          ort: string | null
+          typ: Database["public"]["Enums"]["plantage_typ"]
+          updated_at: string
+        }
+        Insert: {
+          betrieb_id: string
+          created_at?: string
+          id?: string
+          nachbarbetrieb_id?: string | null
+          name: string
+          ort?: string | null
+          typ?: Database["public"]["Enums"]["plantage_typ"]
+          updated_at?: string
+        }
+        Update: {
+          betrieb_id?: string
+          created_at?: string
+          id?: string
+          nachbarbetrieb_id?: string | null
+          name?: string
+          ort?: string | null
+          typ?: Database["public"]["Enums"]["plantage_typ"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plantagen_betrieb_id_fkey"
+            columns: ["betrieb_id"]
+            isOneToOne: false
+            referencedRelation: "betriebe"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plantagen_nachbarbetrieb_id_fkey"
+            columns: ["nachbarbetrieb_id"]
+            isOneToOne: false
+            referencedRelation: "nachbarbetriebe"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      preislisten: {
+        Row: {
+          aktiv: boolean
+          created_at: string
+          gueltig_ab: string
+          gueltig_bis: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          aktiv?: boolean
+          created_at?: string
+          gueltig_ab?: string
+          gueltig_bis?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          aktiv?: boolean
+          created_at?: string
+          gueltig_ab?: string
+          gueltig_bis?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      preislisten_positionen: {
+        Row: {
+          created_at: string
+          id: string
+          min_menge_kg: number
+          preis_tenge_kg: number
+          preisliste_id: string
+          sorte_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          min_menge_kg?: number
+          preis_tenge_kg: number
+          preisliste_id: string
+          sorte_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          min_menge_kg?: number
+          preis_tenge_kg?: number
+          preisliste_id?: string
+          sorte_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "preislisten_positionen_preisliste_id_fkey"
+            columns: ["preisliste_id"]
+            isOneToOne: false
+            referencedRelation: "preislisten"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "preislisten_positionen_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          auth_user_id: string | null
+          brigade_id: string | null
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          updated_at: string
+        }
+        Insert: {
+          auth_user_id?: string | null
+          brigade_id?: string | null
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Update: {
+          auth_user_id?: string | null
+          brigade_id?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_profiles_brigade"
+            columns: ["brigade_id"]
+            isOneToOne: false
+            referencedRelation: "brigaden"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      psm_mittel: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          wartezeit_tage: number
+          wirkstoff: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          wartezeit_tage?: number
+          wirkstoff?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          wartezeit_tage?: number
+          wirkstoff?: string | null
+        }
+        Relationships: []
+      }
+      reihenbloecke: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          laenge_m: number | null
+          letzte_ernte: string | null
+          reihengruppe_id: string
+          sorte_id: string | null
+          status: Database["public"]["Enums"]["reihenblock_status"]
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          laenge_m?: number | null
+          letzte_ernte?: string | null
+          reihengruppe_id: string
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["reihenblock_status"]
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          laenge_m?: number | null
+          letzte_ernte?: string | null
+          reihengruppe_id?: string
+          sorte_id?: string | null
+          status?: Database["public"]["Enums"]["reihenblock_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reihenbloecke_reihengruppe_id_fkey"
+            columns: ["reihengruppe_id"]
+            isOneToOne: false
+            referencedRelation: "reihengruppen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reihenbloecke_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reihengruppen: {
+        Row: {
+          anzahl_reihenbloecke: number
+          created_at: string
+          feldparzelle_id: string
+          id: string
+          name: string
+          spalierrichtung: Database["public"]["Enums"]["spalierrichtung"]
+          updated_at: string
+        }
+        Insert: {
+          anzahl_reihenbloecke?: number
+          created_at?: string
+          feldparzelle_id: string
+          id?: string
+          name: string
+          spalierrichtung?: Database["public"]["Enums"]["spalierrichtung"]
+          updated_at?: string
+        }
+        Update: {
+          anzahl_reihenbloecke?: number
+          created_at?: string
+          feldparzelle_id?: string
+          id?: string
+          name?: string
+          spalierrichtung?: Database["public"]["Enums"]["spalierrichtung"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reihengruppen_feldparzelle_id_fkey"
+            columns: ["feldparzelle_id"]
+            isOneToOne: false
+            referencedRelation: "feldparzellen"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rotationsplan_eintraege: {
+        Row: {
+          brigade_id: string | null
+          created_at: string
+          geplant_fuer: string
+          id: string
+          intervall_tage: number
+          reihenblock_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          brigade_id?: string | null
+          created_at?: string
+          geplant_fuer: string
+          id?: string
+          intervall_tage?: number
+          reihenblock_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          brigade_id?: string | null
+          created_at?: string
+          geplant_fuer?: string
+          id?: string
+          intervall_tage?: number
+          reihenblock_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rotationsplan_eintraege_brigade_id_fkey"
+            columns: ["brigade_id"]
+            isOneToOne: false
+            referencedRelation: "brigaden"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rotationsplan_eintraege_reihenblock_id_fkey"
+            columns: ["reihenblock_id"]
+            isOneToOne: false
+            referencedRelation: "reihenbloecke"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      schulungsvideos: {
+        Row: {
+          created_at: string
+          dauer_sekunden: number | null
+          id: string
+          sprachen: string[]
+          storage_path: string | null
+          thema: string | null
+          titel: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          dauer_sekunden?: number | null
+          id?: string
+          sprachen?: string[]
+          storage_path?: string | null
+          thema?: string | null
+          titel: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          dauer_sekunden?: number | null
+          id?: string
+          sprachen?: string[]
+          storage_path?: string | null
+          thema?: string | null
+          titel?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      sorten: {
+        Row: {
+          created_at: string
+          erntefenster: string | null
+          id: string
+          name: string
+          schale_g: number | null
+          typ: Database["public"]["Enums"]["sorte_typ"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          erntefenster?: string | null
+          id?: string
+          name: string
+          schale_g?: number | null
+          typ: Database["public"]["Enums"]["sorte_typ"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          erntefenster?: string | null
+          id?: string
+          name?: string
+          schale_g?: number | null
+          typ?: Database["public"]["Enums"]["sorte_typ"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      steigen: {
+        Row: {
+          charge_id: string | null
+          code: string
+          created_at: string
+          gewicht_kg: number | null
+          id: string
+          pflueckaufgabe_id: string | null
+          qr_token: string
+          scan_zeitpunkt: string | null
+        }
+        Insert: {
+          charge_id?: string | null
+          code: string
+          created_at?: string
+          gewicht_kg?: number | null
+          id?: string
+          pflueckaufgabe_id?: string | null
+          qr_token: string
+          scan_zeitpunkt?: string | null
+        }
+        Update: {
+          charge_id?: string | null
+          code?: string
+          created_at?: string
+          gewicht_kg?: number | null
+          id?: string
+          pflueckaufgabe_id?: string | null
+          qr_token?: string
+          scan_zeitpunkt?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "steigen_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "steigen_pflueckaufgabe_id_fkey"
+            columns: ["pflueckaufgabe_id"]
+            isOneToOne: false
+            referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vorbestellungen: {
+        Row: {
+          b2b_kunde_id: string
+          created_at: string
+          id: string
+          liefertermin: string | null
+          menge_kg: number
+          sorte_id: string
+          status: Database["public"]["Enums"]["vorbestellung_status"]
+          updated_at: string
+        }
+        Insert: {
+          b2b_kunde_id: string
+          created_at?: string
+          id?: string
+          liefertermin?: string | null
+          menge_kg: number
+          sorte_id: string
+          status?: Database["public"]["Enums"]["vorbestellung_status"]
+          updated_at?: string
+        }
+        Update: {
+          b2b_kunde_id?: string
+          created_at?: string
+          id?: string
+          liefertermin?: string | null
+          menge_kg?: number
+          sorte_id?: string
+          status?: Database["public"]["Enums"]["vorbestellung_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vorbestellungen_b2b_kunde_id_fkey"
+            columns: ["b2b_kunde_id"]
+            isOneToOne: false
+            referencedRelation: "b2b_kunden"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vorbestellungen_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      wetter_messungen: {
+        Row: {
+          created_at: string
+          feldparzelle_id: string | null
+          gemessen_am: string
+          id: string
+          niederschlag_mm: number | null
+          temp_max_c: number | null
+          temp_min_c: number | null
+          temperatursumme: number | null
+        }
+        Insert: {
+          created_at?: string
+          feldparzelle_id?: string | null
+          gemessen_am: string
+          id?: string
+          niederschlag_mm?: number | null
+          temp_max_c?: number | null
+          temp_min_c?: number | null
+          temperatursumme?: number | null
+        }
+        Update: {
+          created_at?: string
+          feldparzelle_id?: string | null
+          gemessen_am?: string
+          id?: string
+          niederschlag_mm?: number | null
+          temp_max_c?: number | null
+          temp_min_c?: number | null
+          temperatursumme?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wetter_messungen_feldparzelle_id_fkey"
+            columns: ["feldparzelle_id"]
+            isOneToOne: false
+            referencedRelation: "feldparzellen"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      zukauf_positionen: {
+        Row: {
+          charge_id: string | null
+          created_at: string
+          id: string
+          menge_kg: number
+          nachbarbetrieb_id: string
+          preis_tenge_kg: number
+          rechnungsdatum: string | null
+          sorte_id: string | null
+        }
+        Insert: {
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          menge_kg: number
+          nachbarbetrieb_id: string
+          preis_tenge_kg: number
+          rechnungsdatum?: string | null
+          sorte_id?: string | null
+        }
+        Update: {
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          menge_kg?: number
+          nachbarbetrieb_id?: string
+          preis_tenge_kg?: number
+          rechnungsdatum?: string | null
+          sorte_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "zukauf_positionen_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "chargen"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "zukauf_positionen_nachbarbetrieb_id_fkey"
+            columns: ["nachbarbetrieb_id"]
+            isOneToOne: false
+            referencedRelation: "nachbarbetriebe"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "zukauf_positionen_sorte_id_fkey"
+            columns: ["sorte_id"]
+            isOneToOne: false
+            referencedRelation: "sorten"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      current_app_role: {
+        Args: never
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_office_access: { Args: never; Returns: boolean }
+    }
+    Enums: {
+      app_role:
+        | "admin"
+        | "betriebsleitung"
+        | "buchhaltung"
+        | "brigade"
+        | "erzeuger"
+        | "kunde"
+      beleg_art: "schale" | "reihenblock" | "steige"
+      charge_status: "offen" | "gekuehlt" | "verladen" | "ausgeliefert"
+      dokument_kategorie:
+        | "spritzmittelprotokoll"
+        | "esutd_nachweis"
+        | "liefervertrag"
+        | "foerderdossier"
+        | "zertifikat"
+        | "sonstiges"
+      dokument_status: "gueltig" | "prueflauf" | "abgelaufen"
+      esutd_status: "erfasst" | "offen"
+      integration_status: "verbunden" | "sandbox" | "geplant"
+      kuehlkette_ergebnis: "ok" | "warnung" | "verstoss"
+      ledger_typ: "erloes" | "kosten"
+      lohn_status: "entwurf" | "freigegeben" | "ausgezahlt"
+      outbox_status: "pending" | "sent" | "acked" | "failed"
+      pflueckaufgabe_status:
+        | "offen"
+        | "angenommen"
+        | "in_arbeit"
+        | "beleg_pruefung"
+        | "abgeschlossen"
+      plantage_typ: "eigen" | "nachbarbetrieb"
+      reihenblock_status:
+        | "bepflanzt"
+        | "erntereif"
+        | "ruhend"
+        | "rueckschnitt"
+        | "wartezeitgesperrt"
+      sorte_typ: "remontierend" | "sommertragend"
+      spalierrichtung: "n_s" | "o_w"
+      vorbestellung_status:
+        | "angefragt"
+        | "bestaetigt"
+        | "geliefert"
+        | "storniert"
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}
+
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
+  public: {
+    Enums: {
+      app_role: [
+        "admin",
+        "betriebsleitung",
+        "buchhaltung",
+        "brigade",
+        "erzeuger",
+        "kunde",
+      ],
+      beleg_art: ["schale", "reihenblock", "steige"],
+      charge_status: ["offen", "gekuehlt", "verladen", "ausgeliefert"],
+      dokument_kategorie: [
+        "spritzmittelprotokoll",
+        "esutd_nachweis",
+        "liefervertrag",
+        "foerderdossier",
+        "zertifikat",
+        "sonstiges",
+      ],
+      dokument_status: ["gueltig", "prueflauf", "abgelaufen"],
+      esutd_status: ["erfasst", "offen"],
+      integration_status: ["verbunden", "sandbox", "geplant"],
+      kuehlkette_ergebnis: ["ok", "warnung", "verstoss"],
+      ledger_typ: ["erloes", "kosten"],
+      lohn_status: ["entwurf", "freigegeben", "ausgezahlt"],
+      outbox_status: ["pending", "sent", "acked", "failed"],
+      pflueckaufgabe_status: [
+        "offen",
+        "angenommen",
+        "in_arbeit",
+        "beleg_pruefung",
+        "abgeschlossen",
+      ],
+      plantage_typ: ["eigen", "nachbarbetrieb"],
+      reihenblock_status: [
+        "bepflanzt",
+        "erntereif",
+        "ruhend",
+        "rueckschnitt",
+        "wartezeitgesperrt",
+      ],
+      sorte_typ: ["remontierend", "sommertragend"],
+      spalierrichtung: ["n_s", "o_w"],
+      vorbestellung_status: [
+        "angefragt",
+        "bestaetigt",
+        "geliefert",
+        "storniert",
+      ],
+    },
+  },
+} as const
+

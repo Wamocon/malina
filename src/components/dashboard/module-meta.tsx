@@ -68,12 +68,6 @@ export function ModulePlaceholder({
         </div>
         <div>
           <dt className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            {meta("catiSource")}
-          </dt>
-          <dd className="mt-1 text-sm text-foreground">{module.catiQuelle}</dd>
-        </div>
-        <div>
-          <dt className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
             {meta("classification")}
           </dt>
           <dd className="mt-1">

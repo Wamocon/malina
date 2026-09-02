@@ -1,0 +1,641 @@
+{
+  "meta": {
+    "title": "Malina - farm management for the raspberry plantation",
+    "description": "Malina is the farm-management system for a raspberry farm near Almaty: the harvest run, the cold chain with a 60-minute threshold, crate identity in the field, contribution margin per harvest day and an unbroken chain of evidence for every delivery."
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "themeLight": "Light theme",
+    "themeDark": "Dark theme",
+    "localeSwitcherLabel": "Language selection"
+  },
+  "notFound": {
+    "message": "This page does not exist.",
+    "home": "Back to home"
+  },
+  "nav": {
+    "platformSubtitle": "Raspberry plantation management",
+    "activePersona": "Active role (demo)",
+    "overview": "Overview",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "portal": "Open portal",
+    "zones": "Four zones",
+    "proof": "Traceability",
+    "kpis": "Key figures",
+    "compliance": "Compliance"
+  },
+  "hero": {
+    "badge": "Farm management for the raspberry plantation · near Almaty",
+    "headline": "Market leadership is won not through tonnage, but through verifiable traceability.",
+    "subheadline": "The raspberry has no protective shell and has to be cooled within 60 minutes. Malina runs the multi-week harvest, holds the cold chain and documents every delivery down to the row block, the cooling time and the person.",
+    "imageAlt": "Trellised rows of a raspberry plantation - placeholder image, to be replaced with real material from the farm",
+    "ctaPrimary": "Open the prototype",
+    "ctaSecondary": "Why the raspberry is different",
+    "stat1Value": "60 minutes",
+    "stat1Label": "hard limit from picking to pre-cooling",
+    "stat2Value": "every 2 – 3 days",
+    "stat2Label": "picking cycle per row block in the autumn window",
+    "stat3Value": "factor 2.3",
+    "stat3Label": "price gap between loose fresh ware and same-day premium"
+  },
+  "landing": {
+    "openZone": "Open area",
+    "berryEyebrow": "Why the raspberry is different",
+    "berryTitle": "The most delicate berry in the fresh-produce range",
+    "berryLead": "It has no protective shell, is hollow inside and highly prone to grey mould. Software alone saves no berry - but it runs exactly the hour, the rotation and the records that the price depends on.",
+    "berryPoints": {
+      "schale": { "title": "No protective shell", "text": "Unrefrigerated, the raspberry is no longer marketable after about a day. Properly pre-cooled it keeps two to three days, up to five with excellent handling." },
+      "kuehlung": { "title": "60 minutes to cooling", "text": "No more than 60 minutes may pass between picking and cooling. Break that limit and every further measure is worthless." },
+      "umpacken": { "title": "Pick straight into the retail punnet", "text": "The retail-ready punnet is made in the picker's hand. Any repacking or re-sorting destroys the goods." },
+      "feld": { "title": "Quality is decided in the field", "text": "The quality call happens at the picker. It has to be captured and measured there, not at a central sorting station." },
+      "rhythmus": { "title": "A conveyor belt, not a peak", "text": "Everbearing varieties bear from August to the first frost. Every row block is picked every two to three days, over three to eight weeks." },
+      "schaden": { "title": "One berry devalues the punnet", "text": "A single leaking or damaged berry makes the whole punnet unsellable. A pure piece rate is therefore value-destroying." }
+    },
+    "berryQuote": "A peak you survive with many hands. A conveyor belt over six weeks you survive only with a plan.",
+    "spreadEyebrow": "The price spread is the business case",
+    "spreadTitle": "Between loose ware and premium lies a factor of 2.3",
+    "spreadLead": "The Almaty market pays about 1,500 tenge per kilogram for loose fresh ware off the field, and up to 3,500 tenge for ware picked and marketed on the same day. The difference is not made in the field.",
+    "spreadTiers": {
+      "lose": { "label": "Loose fresh ware off the field", "price": "1,500 – 1,600 ₸/kg", "note": "Sold from the field and via classifieds. Impossible to undercut on price." },
+      "schale": { "label": "Punnet ware, tunnel / greenhouse", "price": "≈ 2,000 ₸/kg", "note": "Polka and Babje leto varieties. The punnet creates the premium, not the berry." },
+      "premium": { "label": "Premium, picked the same day", "price": "up to 3,500 ₸/kg", "note": "Marketed directly. Freshness, consistency and verifiability are the entire added value." }
+    },
+    "spreadFactor": "≈ 4 – 5 M ₸",
+    "spreadFactorText": "That much extra revenue per season comes from every 10-percentage-point shift of volume into the upper price segment - at three hectares. The lever is cooling time, punnet quality, delivery reliability and verifiability.",
+    "proofEyebrow": "Traceability",
+    "proofTitle": "An unbroken chain of evidence for every delivery",
+    "proofLead": "The farm that is the only one able to trace every delivery back to the row block, the cooling time and the person becomes the standard against which trade measures the others.",
+    "proofSteps": {
+      "kuehlkurve": { "title": "Cooling curve", "text": "Time and temperature from picking to pre-cooling, a hard 60-minute limit, temperature logger all the way to the client." },
+      "charge": { "title": "Batch", "text": "Every crate carries an identifier assigned in the field and belongs to exactly one batch - from the crate to the invoice." },
+      "herkunftsblock": { "title": "Source block", "text": "Row block, variety and harvest day as cost object and origin declaration per batch." },
+      "pfluecker": { "title": "Picker", "text": "Volume, row block, time and person are captured in one scan when the crate is handed over." },
+      "behandlung": { "title": "Treatment record", "text": "Every plant-protection treatment locks the row block automatically until the pre-harvest interval expires. Residue proof per batch at the press of a button." }
+    },
+    "proofClosing": "On a complaint it can be established within seconds which block, which person and which cooling time the ware came from.",
+    "leversEyebrow": "The path to market leadership",
+    "leversTitle": "Four levers that Malina feeds",
+    "leversLead": "Each lever stands on its own, but they build on each other. Without the first, the other three are worthless.",
+    "leverItems": {
+      "stunde": { "title": "The hour after picking", "text": "Fixed collection rounds, pre-cooling to 0 – 1 degree, timing with a 60-minute threshold. The price difference collapses in the first hour on the field, not in the sales conversation." },
+      "herbstfenster": { "title": "The autumn window", "text": "With everbearing varieties the autumn yield is the main yield, and regional supply is thin. The rotation plan holds picking discipline over six weeks - one missed round destroys the block for that cycle." },
+      "zugang": { "title": "Traceability as an access advantage", "text": "Large retail chains only take on verifiable suppliers. Anyone who can show the chain from crate to invoice becomes reachable for these buyers in the first place. The regulatory burden turns into an advantage." },
+      "aggregation": { "title": "Aggregation instead of buying land", "text": "Own harvest and buy-in from neighbouring farms under one brand, one quality class and continuous traceability - with separate batch tracking per farm. Growth without buying land." }
+    },
+    "zonesEyebrow": "Four areas, one farm",
+    "zonesTitle": "Field, Yard, Office, Market",
+    "zonesLead": "From the row-block map to the B2B portal, from the cold-chain clock to the contribution margin per harvest day. All areas share the same batch and the same role management.",
+    "kpiEyebrow": "Baseline 01 Oct 2026",
+    "kpiTitle": "14 key figures the client signs off",
+    "kpiLead": "Measured during the analysis week and signed off together as the starting value. Without signed starting values there is no proof of success later.",
+    "kpiFootnote": "Prototype: placeholder values. The real calculation follows with the harvest data of the first fully measured season.",
+    "complianceEyebrow": "Kazakhstan 2026",
+    "complianceTitle": "The regulatory burden turns into an access advantage",
+    "complianceLead": "In 2026 Kazakhstan reset the legal framework for digital matters in a series of laws. For a farm that fully meets these obligations, the burden becomes the entry ticket to organised trade.",
+    "complianceItems": {
+      "steuer": { "title": "Tax Code 2026", "text": "VAT 16 %, registration threshold at 43.25 million tenge. A growing farm slips into the tax obligation - without a clean chain of records that is a risk." },
+      "warenbegleit": { "title": "Electronic goods-accompanying document", "text": "Since 01 Jan 2026 every delivery is documented electronically via the ЭСФ system. The accompanying document is the central goods and accounting record, paper only on failure." },
+      "ki": { "title": "AI Act No. 230-VIII", "text": "The AI chat needs a visible transparency notice, purpose-bound consent, logging and escalation to a human. Emotion analysis is prohibited." },
+      "digitalkodex": { "title": "Digital Code No. 255-VIII", "text": "Restricts the storage of certain data products outside Kazakhstan. The hosting location is reviewed legally before going live." },
+      "datenschutz": { "title": "Tightened data-protection law", "text": "Since 24 Aug 2026: purpose-bound consent, retention periods, named controllers, encryption, multi-factor authentication, annual mandatory training." },
+      "esutd": { "title": "ЕСУТД employment-contract registration", "text": "The start, change and end of every seasonal contract is recorded in the unified system. Often not done for seasonal workers today - a risk of up to 2,000 MRP." }
+    },
+    "complianceClosing": "Large chains with their own supply chain only take on suppliers who can produce evidence. Compliance here is not a formality but the admission ticket.",
+    "ctaTitle": "A tangible system instead of concept slides",
+    "ctaLead": "The prototype shows the structure and look of the first release: row-block control with the pre-harvest-interval lock, picking tasks with photo evidence, the cold-chain clock and contribution margin per harvest day.",
+    "ctaButton": "Go to the dashboard"
+  },
+  "zones": {
+    "feld": {
+      "name": "Field",
+      "tagline": "Growing, harvest, plant protection",
+      "description": "Location model, row-block status including the pre-harvest-interval lock, picking tasks with photo evidence, rotation plan and weather link."
+    },
+    "hof": {
+      "name": "Yard",
+      "tagline": "Cold chain, logistics",
+      "description": "Pre-cooling with a 60-minute KPI, temperature logger, collection rounds, QR crate identification and electronic delivery note."
+    },
+    "buero": {
+      "name": "Office",
+      "tagline": "Finance, staff, compliance",
+      "description": "Roles and permissions, contribution margin per row block and harvest day, quality-factor pay, document management, compliance cockpit and the state integrations."
+    },
+    "markt": {
+      "name": "Market",
+      "tagline": "Sales, AI, public",
+      "description": "Variety and quota catalogue, B2B portal with pre-order, AI chat on a secured data basis, aggregator platform for neighbouring farms and multilingual training."
+    }
+  },
+  "footer": {
+    "blurb": "Malina, Russian for raspberry. Farm management for a raspberry farm near Almaty - from the harvest run through the cold chain to the evidence for every delivery.",
+    "prototypeNote": "Internal proof of concept. Not a contractually committed scope. All imagery is placeholder material from royalty-free sources.",
+    "productHeading": "Product",
+    "legalHeading": "Legal",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "copyright": "© {year} WAMOCON GmbH",
+    "madeBy": "Built in Germany"
+  },
+  "dashboard": {
+    "searchPlaceholder": "Search row block, batch, picker, document ...",
+    "notifications": "Notifications",
+    "open": "Open",
+    "zoneEmpty": "No module in this zone is enabled for the active role.",
+    "rbacHintLabel": "Roles",
+    "rbacHint": "Which modules are visible depends on the demo role selected above. Six core roles, from administration to the brigade in the field.",
+    "home": {
+      "eyebrow": "Farm management",
+      "title": "Malina operations overview",
+      "description": "Aggregator, Almaty region. The prototype shows the structure and look of the first release - main functions as an operable demo, sub-functions as visible menu entries with a status.",
+      "kpiTitle": "14 baseline key figures",
+      "kpiDescription": "To be signed off with the client as the baseline on 01 Oct 2026.",
+      "placeholderBadge": "Placeholder values",
+      "target": "Target",
+      "zonesTitle": "The four zones",
+      "zonesDescription": "The dashboard's navigation structure, organised like the target architecture.",
+      "demoCount": "{count} demo",
+      "wipCount": "{count} in development",
+      "openZone": "Open zone",
+      "milestoneTitle": "Milestones of the internal preparation",
+      "milestoneDescription": "Both before the on-site analysis week from 24 Sep to 01 Oct 2026.",
+      "milestoneAName": "Milestone A - prototype with look and feature scope",
+      "milestoneADue": "by 06 Sep 2026",
+      "milestoneAItems": {
+        "tokens": "Design-token switch to the raspberry palette",
+        "landing": "Landing page with placeholder texts and images, language switcher for five languages",
+        "zones": "Dashboard skeleton with the four zones as navigation structure",
+        "workflows": "Core workflows by example: row-block overview and picking task with photo evidence"
+      },
+      "milestoneBName": "Milestone B - foundation build with real main functions",
+      "milestoneBDue": "by 19 Sep 2026 at the latest",
+      "milestoneBItems": {
+        "rbac": "Roles and permissions with six core roles and a permission matrix",
+        "hierarchy": "Location hierarchy - farm, plantation, field plot, row group, row block - including administration",
+        "status": "Row-block status management including the lock state after a plant-protection treatment",
+        "tasks": "Picking tasks with a photo of the retail punnet, per brigade and row block",
+        "docs": "Document management for spray records, contracts and ЕСУТД evidence",
+        "i18n": "Multilingual interface in five languages",
+        "kpi": "Dashboard skeleton with the 14 baseline key figures as tiles"
+      }
+    }
+  },
+  "roles": {
+    "switcherHint": "Switch demo role - controls the visible navigation",
+    "admin": "Administration",
+    "betriebsleitung": "Farm management",
+    "buchhaltung": "Accounting",
+    "brigade": "Brigade / field",
+    "erzeuger": "Grower / neighbouring farm",
+    "kunde": "B2B client",
+    "descriptions": {
+      "admin": "Full configuration, user and role management, oversight of sensitive finance, access and integration matters.",
+      "betriebsleitung": "Daily plantation operations, tasks, rotation, staff and approvals. Can view finance but not post entries.",
+      "buchhaltung": "Contribution margin, pay, payments, state filings. No user management, no field sign-offs.",
+      "brigade": "Accepts picking tasks, records volume and photo evidence in the field, sees rotation and pre-harvest-interval locks.",
+      "erzeuger": "Neighbouring farm supplying produce. Sees its own row blocks, batches, settlement and contracts.",
+      "kunde": "Quotas, pre-orders, price lists, AI chat and released documents."
+    }
+  },
+  "klassifikation": {
+    "uebernehmen": "Adopt",
+    "anpassen": "Adapt",
+    "neu-bauen": "Build new"
+  },
+  "reifegrad": {
+    "demo": "Demo operable",
+    "in-entwicklung": "In development"
+  },
+  "moduleMeta": {
+    "inDevelopmentTitle": "Sub-function - in development",
+    "plannedScope": "Planned scope",
+    "classification": "Rating",
+    "milestone": "Milestone",
+    "milestoneB": "Milestone B and later releases"
+  },
+  "accessDenied": {
+    "title": "The role {role} has no access to this module.",
+    "hint": "Switch the demo role at the top right to see the access.",
+    "back": "Back to overview"
+  },
+  "resourceLabels": {
+    "dashboard": "Dashboard",
+    "reihenbloecke": "Row blocks",
+    "pflueckaufgaben": "Picking tasks",
+    "pflanzenschutz": "Plant protection",
+    "kuehlkette": "Cold chain",
+    "lohn": "Pay",
+    "finanzen": "Finance",
+    "dokumente": "Documents",
+    "compliance": "Compliance",
+    "b2b_portal": "B2B portal"
+  },
+  "reihenblockStatus": {
+    "bepflanzt": "planted",
+    "erntereif": "ready to harvest",
+    "ruhend": "dormant",
+    "rueckschnitt": "pruning",
+    "wartezeitgesperrt": "harvest-locked"
+  },
+  "aufgabenStatus": {
+    "offen": "open",
+    "angenommen": "accepted",
+    "in_arbeit": "in progress",
+    "beleg_pruefung": "evidence review",
+    "abgeschlossen": "completed"
+  },
+  "kpis": {
+    "verlustquote": { "label": "Loss rate from picking to the client" },
+    "vermarktungsfaehig": { "label": "Share of marketable punnets" },
+    "zeitBisVorkuehlung": { "label": "Time from picking to pre-cooling" },
+    "zeitBisKunde": { "label": "Time from picking to the client" },
+    "pflueckleistung": { "label": "Picking output per person and hour" },
+    "pflueckStreuung": { "label": "Spread of picking output (best to weakest)" },
+    "pflueckintervall": { "label": "Picking interval kept per row block" },
+    "behandlungenWartezeit": { "label": "Treatments with the pre-harvest interval kept" },
+    "reklamationsquote": { "label": "Complaint rate" },
+    "liefertreue": { "label": "Delivery reliability (on time and complete)" },
+    "belegteVerkaeufe": { "label": "Share of documented sales (ЭСФ and accompanying document)" },
+    "deckungsbeitrag": { "label": "Contribution margin per kg" },
+    "esutdAbdeckung": { "label": "Seasonal-worker coverage in ЕСУТД" },
+    "websiteAnfragen": { "label": "Enquiries via the website per month" }
+  },
+  "modules": {
+    "standort": {
+      "title": "Location hierarchy",
+      "description": "Farm, plantation, field plot, row group, row block - a digital field map with a unique row and block identifier along the trellises.",
+      "summary": "Field map with row blocks on the trellis, variety, planting year, cane type and trellis orientation per block.",
+      "todo": "Admin interface to create and move plots and row groups, field-geometry editor."
+    },
+    "reihenbloecke": {
+      "title": "Row blocks and status",
+      "description": "Every row block has one status: planted, ready to harvest, dormant, pruning or harvest-locked. A locked block simply must not appear in the picking schedule.",
+      "summary": "State machine per row block. A condition locks the harvest until it is met - here: until the pre-harvest interval expires.",
+      "todo": "Status changes with a mandatory reason, fine-grained access rules per resource, history per row block."
+    },
+    "pflueckaufgaben": {
+      "title": "Picking tasks with photo evidence",
+      "description": "A picking task per brigade and row block with target and actual volume, quality factor and a photo of the retail punnet right on the task.",
+      "summary": "Task per brigade and row block, photo of the retail punnet, volume and quality factor on the task.",
+      "todo": "Offline capture in the field, evidence review with release and rework, link to quality-factor pay."
+    },
+    "pflanzenschutz": {
+      "title": "Plant protection and pre-harvest interval",
+      "description": "Every treatment is recorded with product, quantity, block, date and the person applying it, and locks the row block automatically until the statutory pre-harvest interval expires.",
+      "summary": "Block-level treatment records with an automatic harvest lock. A breach is a legal and food-safety risk.",
+      "todo": "Pesticide database with pre-harvest intervals, automatic release on deadline, mandatory record upload, residue proof per batch."
+    },
+    "rotationsplan": {
+      "title": "Rotation plan / picking schedule",
+      "description": "A rolling picking schedule with an interval of two to three days per row block across the whole autumn harvest. One missed round destroys the block for that cycle.",
+      "summary": "The first function to be built. The planning problem is not the forecast but the rotation over six weeks.",
+      "todo": "Interval engine per row block, brigade assignment, conflict check against pre-harvest-interval locks, calendar export (.ics)."
+    },
+    "wetter": {
+      "title": "Weather and growing degree days",
+      "description": "A weather API link with growing-degree-days calculation for the volume forecast. Deliberately no machine learning in phase 1 - an explainable heuristic is enough.",
+      "summary": "A simple weather interface with growing degree days per plot. Explainable, verifiable and validatable within a season.",
+      "todo": "Weather-station or API link, growing degree days per plot, alert on shifted ripening windows."
+    },
+    "kuehlkette": {
+      "title": "Cold-chain clock",
+      "description": "Timing from picking to pre-cooling with a hard 60-minute threshold, temperature logger, target temperature 0 to 1 degree. Highest priority in the whole farm.",
+      "summary": "The building block the entire price spread hangs on. Over 60 minutes the ware is only industrial ware the next day.",
+      "todo": "Temperature-logger integration, batch clock from the picking time, alarm on threshold breach, KPI calculation."
+    },
+    "logistik": {
+      "title": "Collection rounds and route planning",
+      "description": "Fixed collection rounds in the field so filled crates do not sit in the sun, plus route planning by the clients' delivery windows.",
+      "summary": "Collection rounds in the field, route list per vehicle, handover receipt with temperature and volume reconciliation.",
+      "todo": "Route list per vehicle, time windows, handover receipt with temperature and volume reconciliation."
+    },
+    "qr_steigen": {
+      "title": "QR crate identification",
+      "description": "A QR label on the crate, issued at the brigade's dispatch point. When handed over, the picker ID is scanned - volume, row block, time and person in one step. A UI mock in the prototype.",
+      "summary": "The identity is assigned in the field, not at the weighing point. One scan captures volume, block, time and person.",
+      "todo": "Label printing per crate, scan at the dispatch point with server reconciliation, mapping crate to batch and task."
+    },
+    "esf": {
+      "title": "Electronic delivery note (ЭСФ)",
+      "description": "An electronic delivery note in line with the goods-accompanying-document obligation. Connected to the state ЭСФ system, no accounting of its own.",
+      "summary": "Evidence chain from the batch to the delivery note, status feedback from the state system. Mandatory integration.",
+      "todo": "Connection to ИС ЭСФ, evidence chain batch to delivery note, status feedback and retry."
+    },
+    "rollen": {
+      "title": "Roles and permissions",
+      "description": "Six core roles, from administration through farm management and accounting to the brigade in the field, the grower and the B2B client - with a permission matrix over resources and actions.",
+      "summary": "Roles as a clear data structure over resources by actions. New roles without touching the logic.",
+      "todo": "User management, role assignment, fine-grained access rules per resource."
+    },
+    "finanzen": {
+      "title": "Contribution margin and finance",
+      "description": "Cost centres per row block, cost objects per variety and per client. Contribution margin per kilogram, per row block, per variety and per harvest day - immutable postings.",
+      "summary": "Contribution margin per row block, variety and harvest day. Postings are immutable (append only).",
+      "todo": "Cost types per harvest day, B2B payment reconciliation, contribution-margin projection per variety."
+    },
+    "personal": {
+      "title": "Picker register and brigades",
+      "description": "A person register with a picker ID badge, brigade assignment, output and quality factor per person across the season - the basis for bonuses, retraining and selection the following year.",
+      "summary": "Person register, brigade and picker ID badge, output and quality profile per person across the season.",
+      "todo": "ЕСУТД registration per contract, brigade planning, output history as the basis for pay calculation."
+    },
+    "lohn": {
+      "title": "Quality-factor pay",
+      "description": "A combined model of base pay, a volume component and a quality factor. A pure piece rate pushes for volume, squeezes berries and is value-destroying for the raspberry.",
+      "summary": "Base pay plus volume plus a quality factor. The quality factor is not optional but a precondition.",
+      "todo": "Pay-formula editor, quality factor from the evidence review, settlement run per period, advance account."
+    },
+    "dokumente": {
+      "title": "Document management",
+      "description": "A secure store for spray records, ЕСУТД evidence, supply and framework contracts, grant dossiers and certificates - linked to the row block and the batch.",
+      "summary": "A categorised, secure document store linked to the row block and the batch.",
+      "todo": "Versioning, expiry and reminder logic, link to row block and batch."
+    },
+    "compliance": {
+      "title": "Compliance cockpit",
+      "description": "An overview of consents, retention periods, the audit log and data residency - with the legal references of the 2026 Kazakh framework.",
+      "summary": "Consents, retention, the audit log and data residency in one place, under Kazakh law.",
+      "todo": "Legal references for Tax Code, AI Act, Digital Code, retention rules per data product, hosting-location review."
+    },
+    "integrationen": {
+      "title": "State integrations",
+      "description": "Connectors to ЭСФ, virtual stock, ЕСУТД and the subsidy portals gosagro.kz and qoldau.kz. Accounting stays with a solution established in the country.",
+      "summary": "One connector per target system with status feedback and retry. No in-house accounting build.",
+      "todo": "Connectors per system, sandbox access, error and retry logic, queue monitoring."
+    },
+    "foerdermittel": {
+      "title": "Grant application dossier",
+      "description": "Application templates, evidence lists and a deadline monitor for the Kazakh subsidy portals - eligibility as a by-product of ongoing bookkeeping.",
+      "summary": "Application templates and evidence checklists per grant programme, deadline monitor and decision-letter filing.",
+      "todo": "Application templates, evidence checklists, deadline monitor, decision-letter filing."
+    },
+    "sortenkatalog": {
+      "title": "Variety and quota catalogue",
+      "description": "A catalogue of variety, harvest window (summer-bearing or everbearing), punnet weight, quota and price list - the basis for pre-order and the B2B portal.",
+      "summary": "Variety, harvest window, punnet weight, quota and price in one place.",
+      "todo": "Quota booking with reservation logic, price-list versions, client assignment."
+    },
+    "b2b_portal": {
+      "title": "B2B portal",
+      "description": "A regular-client portal with quotas, pre-order with lead time, a price list by client group, delivery status, invoice history and complaint reporting.",
+      "summary": "Quotas, pre-order, price list by client group, delivery status and invoice history for regular clients.",
+      "todo": "Client accounts, quota pre-order, delivery-date booking, invoice and payment status."
+    },
+    "preislisten": {
+      "title": "Price lists",
+      "description": "Versioned price lists with tiered prices by client group and validity period.",
+      "summary": "Price tiers per client and period, versioned and with a validity date.",
+      "todo": "Versioned price lists, tiered prices, validity periods, client assignment."
+    },
+    "ki_assistent": {
+      "title": "AI assistant",
+      "description": "A chat that answers standard enquiries and pulls availability from the system - exclusively from released sources, every answer logged, handed over to a human on uncertainty. A placeholder chat window in the prototype.",
+      "summary": "Answers only from released sources, logs every answer, escalates to a human on uncertainty.",
+      "todo": "Knowledge base of variety catalogue and client FAQ, per-role access gate, transparency notice under the AI Act, escalation path."
+    },
+    "aggregator": {
+      "title": "Aggregator / neighbouring farms",
+      "description": "Connecting neighbouring farms: the purchased volume becomes an invoice line, every buy-in batch is tracked separately and remains traceable to the supplying farm.",
+      "summary": "Neighbouring-farm onboarding, buy-in capture with its own batch, separate origin tracking, settlement.",
+      "todo": "Neighbouring-farm onboarding, buy-in capture with its own batch, settlement and payout."
+    },
+    "schulungen": {
+      "title": "Training videos",
+      "description": "Multilingual, image-based short onboarding of seasonal workers on the phone - videos per core process, with pictures instead of text.",
+      "summary": "Short image-based videos per core process, multilingual, with progress tracking per person.",
+      "todo": "Video content per core process, Kazakh and Russian language versions, progress tracking per person."
+    }
+  },
+  "reihenblockStatusHint": {
+    "bepflanzt": "bearing, in normal care",
+    "erntereif": "planned for the next rotation",
+    "ruhend": "picked out, winter rest",
+    "rueckschnitt": "cane and shape pruning under way",
+    "wartezeitgesperrt": "harvest locked until the pre-harvest interval expires"
+  },
+  "reihenbloeckeDemo": {
+    "distributionTitle": "Status distribution",
+    "distributionLead": "Every row block has exactly one status. Clicking filters the table below.",
+    "lockTitle": "Lock state harvest-locked",
+    "lockLead": "After a plant-protection treatment, harvest per row block is locked by law until the pre-harvest interval expires. No picking, no task, no crate from this block - the picking schedule does not even show it.",
+    "tableTitle": "Row blocks",
+    "tableLeadAll": "All row blocks across all plantations.",
+    "tableLeadFiltered": "Filtered by the selected status.",
+    "col": {
+      "id": "Row block",
+      "parzelle": "Plot / group",
+      "sorte": "Variety",
+      "status": "Status",
+      "letzteErnte": "Last harvest",
+      "sperre": "Lock"
+    },
+    "freeAt": "Free from",
+    "days": "days",
+    "note": "The harvest-locked block is the most easily verifiable benefit of the system: the picking schedule simply must not show it."
+  },
+  "pflueckaufgabenDemo": {
+    "listTitle": "Picking tasks today",
+    "listLead": "Per brigade and row block. Progress is actual volume against target volume.",
+    "block": "Block",
+    "qFactor": "Q factor",
+    "proofTitle": "Photo evidence",
+    "proofLead": "Sample photos of the retail punnet, the row block and the crate, right on the task.",
+    "noProof": "No evidence for this task yet.",
+    "addProof": "Capture evidence (mock)",
+    "reviewTitle": "Evidence review pending",
+    "reviewLead": "The task is waiting for release. Check the volume and the punnet evidence, then release or request rework.",
+    "approve": "Release",
+    "rework": "Rework",
+    "art": {
+      "schale": "Retail punnet",
+      "reihenblock": "Row block",
+      "steige": "Crate"
+    },
+    "note": "The retail-ready punnet is made in the picker's hand. The photo of the punnet stays on the task and feeds into the quality factor."
+  },
+  "standortDemo": {
+    "statsTitle": "Hierarchy at a glance",
+    "statsLead": "Four levels below the farm: plantation, field plot, row group, row block.",
+    "level": {
+      "plantagen": "Plantations / neighbouring farms",
+      "parzellen": "Field plots",
+      "reihengruppen": "Row groups",
+      "reihenbloecke": "Row blocks",
+      "flaeche": "Total area"
+    },
+    "treeTitle": "Location tree",
+    "treeLead": "Farm, plantation, field plot, row group. Row blocks in their own module.",
+    "typ": {
+      "eigen": "Own operation",
+      "nachbarbetrieb": "Neighbouring farm"
+    },
+    "blocksShort": "blocks",
+    "note": "The field map with a unique row and block identifier along the trellises is the basis for the rotation plan, the harvest capture and the contribution margin."
+  },
+  "pflanzenschutzDemo": {
+    "ruleTitle": "Hard legal rule",
+    "ruleLead": "After a plant-protection treatment, harvest is locked per row block until the product-specific pre-harvest interval expires. A breach is a legal risk, not a convenience matter.",
+    "activeTitle": "Active pre-harvest-interval locks",
+    "activeLead": "Row blocks with a running pre-harvest interval. Release is automatic when the deadline passes.",
+    "col": {
+      "block": "Row block",
+      "mittel": "Product",
+      "behandelt": "Treated on",
+      "wartezeit": "Interval",
+      "freigabe": "Free from",
+      "status": "Status"
+    },
+    "days": "days",
+    "locked": "locked",
+    "note": "Because every block is picked every two to three days while the crop still has to be treated, a block can be harvested inside the pre-harvest interval by mistake. That is exactly what the automatic lock prevents."
+  },
+  "rollenDemo": {
+    "rolesTitle": "Six core roles",
+    "rolesLead": "Administration, farm management, accounting, brigade in the field, grower and B2B client. Each role sees exactly the modules it needs.",
+    "scope": "Scope",
+    "matrixTitle": "Permission matrix (excerpt, view action)",
+    "matrixLead": "Roles by resources - a clear data structure that allows new roles without touching the logic.",
+    "resource": "Resource",
+    "matrixNote": "Full matrix across all resources and actions. The database-level access rules are written per resource individually.",
+    "note": "Identities and roles run across all four areas - together with logging, encryption and multi-factor authentication."
+  },
+  "finanzenDemo": {
+    "dbTitle": "Contribution margin per row block and harvest day",
+    "dbLead": "Cost object: row block, variety, harvest day. Revenue and cost are posted per batch, the postings are immutable.",
+    "col": {
+      "block": "Row block",
+      "sorte": "Variety",
+      "erntetag": "Harvest day",
+      "erloes": "Revenue",
+      "kosten": "Cost",
+      "db": "Contribution margin"
+    },
+    "note": "The contribution margin per kilogram is the central steering figure. It is formed per row block, variety and harvest day - not only at year end."
+  },
+  "personalDemo": {
+    "brigadenTitle": "Brigades",
+    "brigadenLead": "Brigade planning with shifts and a reserve list across the whole harvest run.",
+    "foreman": "Foreman",
+    "people": "People",
+    "pflueckerTitle": "Picker register",
+    "pflueckerLead": "Person register with a picker ID badge, ЕСУТД registration per contract, output and quality factor per person.",
+    "col": {
+      "name": "Name",
+      "brigade": "Brigade",
+      "ausweis": "ID badge",
+      "esutd": "ЕСУТД",
+      "leistung": "Output",
+      "qfaktor": "Q factor"
+    },
+    "esutd": {
+      "erfasst": "registered",
+      "offen": "pending"
+    },
+    "days": "days",
+    "note": "Keeping the core crew is more important than recruiting: every new onboarding in the middle of the season costs volume and quality."
+  },
+  "dokumenteDemo": {
+    "listTitle": "Documents",
+    "listLead": "Spray records, ЕСУТД evidence, contracts, grant dossiers and certificates.",
+    "col": {
+      "name": "Document",
+      "kategorie": "Category",
+      "bezug": "Reference",
+      "stand": "As of",
+      "status": "Status"
+    },
+    "status": {
+      "gueltig": "valid",
+      "prueflauf": "under review",
+      "abgelaufen": "expired"
+    },
+    "note": "Every document is linked to a row block or a batch. Residue proof per batch is therefore available at the press of a button for trade and authorities."
+  },
+  "complianceDemo": {
+    "cockpitTitle": "Compliance cockpit",
+    "cockpitLead": "Consents, retention periods, the audit log and data residency - under the 2026 Kazakh legal framework.",
+    "items": {
+      "consent": { "title": "Consents", "state": "active", "text": "Purpose-bound consent per processing, with a retention period and a named controller." },
+      "retention": { "title": "Retention", "state": "active", "text": "Retention periods per data product, then automatic deletion or anonymisation." },
+      "audit": { "title": "Audit log", "state": "active", "text": "Every security-relevant action is logged - immutable and searchable per resource." },
+      "residency": { "title": "Data residency", "state": "open", "text": "Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location must be reviewed." },
+      "ai": { "title": "AI transparency", "state": "open", "text": "Law No. 230-VIII: a visible transparency notice and consent for the AI chat, emotion analysis prohibited." }
+    },
+    "integrationTitle": "State integrations",
+    "integrationLead": "One connector per target system with status feedback. Accounting stays with a solution established in the country.",
+    "col": {
+      "name": "Integration",
+      "system": "Target system",
+      "status": "Status",
+      "queue": "Queue"
+    },
+    "intStatus": {
+      "verbunden": "connected",
+      "sandbox": "sandbox",
+      "geplant": "planned"
+    },
+    "note": "Fines run up to 2,000 MRP - about 16,200 euro. Relative to this farm's annual turnover, an existentially relevant figure."
+  },
+  "sortenkatalogDemo": {
+    "catalogTitle": "Varieties and quotas",
+    "catalogLead": "Variety, harvest window, punnet weight, reserved quota and price in one place.",
+    "typ": {
+      "remontierend": "everbearing",
+      "sommertragend": "summer-bearing"
+    },
+    "window": "Harvest window",
+    "shale": "Punnet",
+    "contingent": "Quota reserved",
+    "note": "Summer-bearing varieties deliver in July, everbearing ones from August to the first frost. The variety mix determines the entire staffing model."
+  },
+  "schulungenDemo": {
+    "libraryTitle": "Video library",
+    "libraryLead": "Multilingual, image-based short onboarding of seasonal workers on the phone.",
+    "col": {
+      "titel": "Title",
+      "thema": "Topic",
+      "dauer": "Length",
+      "sprachen": "Languages"
+    },
+    "note": "Short onboarding as a guided checklist on the phone, multilingual, with pictures instead of text - one short video per core process."
+  },
+  "kuehlketteMock": {
+    "clockTitle": "Batch clock (mock)",
+    "clockLead": "Time since picking against the 60-minute threshold, current core temperature per batch.",
+    "block": "Block",
+    "hint": "Target temperature 0 to 1 degree. Over 60 minutes the price spread collapses - no software substitute for the physical pre-cooling facility."
+  },
+  "qrSteigenMock": {
+    "scanTitle": "Scan at the dispatch point (mock)",
+    "scanLead": "A QR label per crate, scanned on handover. Volume, row block, time and person in one step - here without a real server reconciliation.",
+    "simulateScan": "Simulate scan",
+    "registered": "registered"
+  },
+  "kiAssistentMock": {
+    "chatTitle": "Retrieval chat (placeholder)",
+    "chatLead": "Later answers only from released sources, logs every answer, escalates to a human on uncertainty. Knowledge base not yet populated.",
+    "demoQuestion": "Which varieties are available from September?",
+    "demoAnswer": "Available from September: Polka and Polana (everbearing), Kweli on request. Tulameen is a summer-bearing variety and not available in September.",
+    "stubAnswer": "Placeholder answer. In the prototype no knowledge base is connected - the real assistant draws its answer from the released variety catalogue and the client FAQ.",
+    "inputPlaceholder": "Enter a question ...",
+    "send": "Send"
+  },
+  "legal": {
+    "imprintTitle": "Imprint",
+    "privacyTitle": "Privacy",
+    "prototypeDisclaimer": "Note: Malina is an internal prototype (proof of concept) of WAMOCON GmbH. No real processing of operational or personal data takes place. All data shown is placeholder data.",
+    "managingDirector": "Authorised managing director",
+    "registration": "Register entry",
+    "controller": "Controller",
+    "phone": "Phone",
+    "email": "Email",
+    "commercialRegister": "Commercial register",
+    "vatId": "VAT ID",
+    "country": "Germany",
+    "privacyScopeTitle": "Scope",
+    "privacyScopeText": "The prototype processes no personal data. No analytics cookies are set. The theme choice (light/dark) and the demo role are stored only locally in the browser.",
+    "residencyTitle": "Data residency (planned operation)",
+    "residencyText": "For later live operation, Kazakh Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location for the QR, offline-sync and AI architecture will be reviewed legally before going live."
+  }
+}

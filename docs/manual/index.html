@@ -380,7 +380,7 @@
       <div class="cover-meta">
         <div><div class="meta-label">Version</div><div class="meta-value">0.1.0</div></div>
         <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein A)</span></div></div>
-        <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; TR &middot; KK &middot; RU</div></div>
+        <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; EN &middot; TR &middot; KK &middot; RU</div></div>
         <div><div class="meta-label">Datum</div><div class="meta-value">September 2026</div></div>
       </div>
     </div>
@@ -424,7 +424,7 @@
         <div class="feature-card">
           <div class="feature-icon">&#128188;</div>
           <div class="feature-title">Zone B&uuml;ro</div>
-          <div class="feature-desc">RBAC-Rollen, Deckungsbeitrag je Reihenblock, Qualit&auml;tsfaktor-Lohn, Dokumente, Compliance-Cockpit, staatliche Integrationen.</div>
+          <div class="feature-desc">Rollen und Rechte, Deckungsbeitrag je Reihenblock und Erntetag, Qualit&auml;tsfaktor-Lohn, Dokumente, Compliance-Cockpit, staatliche Integrationen.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">&#127978;</div>
@@ -530,9 +530,9 @@
 
       <h3 id="tut-upgrade">3.3 Sprache umschalten</h3>
       <ol>
-        <li>Sprachumschalter im Kopfbereich (Globus-Symbol): DE, TR, KK, RU</li>
-        <li>Die Startsprache ist Deutsch; Englisch aus 1&Ccedil;at&#305; entf&auml;llt, Kasachisch kommt hinzu</li>
-        <li>Deutsch ist vollst&auml;ndig; TR, KK und RU sind f&uuml;r den Prototyp bewusst teil&uuml;bersetzt und fallen sonst auf Deutsch zur&uuml;ck</li>
+        <li>Sprachumschalter im Kopfbereich (Globus-Symbol): DE, EN, TR, KK, RU</li>
+        <li>Die Startsprache ist Deutsch. Kasachisch kommt gegen&uuml;ber 1&Ccedil;at&#305; hinzu; Englisch wurde auf ausdr&uuml;ckliche Anweisung wieder aufgenommen (deckt sich mit der Pitch-Dossier-Empfehlung, Dokumente in Russisch und Englisch bereitzustellen)</li>
+        <li>Deutsch und Englisch sind vollst&auml;ndig; TR, KK und RU sind f&uuml;r den Prototyp bewusst teil&uuml;bersetzt und fallen sonst per Deep-Merge auf Deutsch zur&uuml;ck</li>
       </ol>
     </section>
 
@@ -567,7 +567,7 @@
           <thead><tr><th>Route</th><th>Beschreibung</th><th>Zugriff</th></tr></thead>
           <tbody>
             <tr><td><code>/</code></td><td>Weiterleitung auf <code>/de</code> (Locale-Praefix erzwungen)</td><td>Alle</td></tr>
-            <tr><td><code>/[locale]</code></td><td>&Ouml;ffentliche Landingpage (Hero, vier Zonen, Belegbarkeit, KPIs, Compliance)</td><td>Alle</td></tr>
+            <tr><td><code>/[locale]</code></td><td>&Ouml;ffentliche Landingpage: Hero mit dynamischem Gitternetz, &bdquo;Warum die Himbeere anders ist&ldquo;, Preisspread, Nachweiskette, vier Hebel, vier Bereiche, 14 KPIs, Compliance. Rein produktbezogen, keine 1&Ccedil;at&#305;-Nennung.</td><td>Alle</td></tr>
             <tr><td><code>/[locale]/dashboard</code></td><td>Betriebs&uuml;bersicht: 14 KPI-Kacheln, vier Zonen, Meilensteine</td><td>Demo-Rolle</td></tr>
             <tr><td><code>/[locale]/dashboard/[zone]</code></td><td>Zonen&uuml;bersicht (feld, hof, buero, markt) mit den Modulen der Zone</td><td>RBAC</td></tr>
             <tr><td><code>/[locale]/dashboard/[zone]/[modul]</code></td><td>Einzelmodul &ndash; Demo-Oberfl&auml;che oder Platzhalter &bdquo;in Entwicklung&ldquo;</td><td>RBAC</td></tr>
@@ -576,7 +576,7 @@
           </tbody>
         </table>
       </div>
-      <p><code>[locale]</code> ist eines von <code>de</code>, <code>tr</code>, <code>kk</code>, <code>ru</code>. Locale-Routing &uuml;ber <code>src/proxy.ts</code> (Next.js 16) und next-intl.</p>
+      <p><code>[locale]</code> ist eines von <code>de</code>, <code>en</code>, <code>tr</code>, <code>kk</code>, <code>ru</code>. Locale-Routing &uuml;ber <code>src/proxy.ts</code> (Next.js 16) und next-intl.</p>
 
       <h3 id="api">5.2 Rollen &amp; Rechte (RBAC)</h3>
       <p>
@@ -603,12 +603,27 @@
             <tr><td>Framework</td><td>Next.js 16 (App Router, <code>src/app/</code>)</td><td>SSR, statische Locale-Seiten, <code>src/proxy.ts</code></td></tr>
             <tr><td>Sprache</td><td>TypeScript (strict)</td><td>Typsicheres Domänenmodell und RBAC</td></tr>
             <tr><td>Styling</td><td>Tailwind CSS v4</td><td>Design-Tokens in <code>src/app/globals.css</code>, Hell/Dunkel</td></tr>
-            <tr><td>i18n</td><td>next-intl v4</td><td>Vier Locales, Fallback auf Deutsch per Deep-Merge</td></tr>
+            <tr><td>i18n</td><td>next-intl v4</td><td>F&uuml;nf Locales (de/en/tr/kk/ru), Fallback auf Deutsch per Deep-Merge</td></tr>
             <tr><td>Icons</td><td>lucide-react</td><td>Kuratierte Icon-Registry (<code>src/components/icon.tsx</code>)</td></tr>
             <tr><td>Bilder</td><td>next/image + Unsplash</td><td>Lizenzfreie Platzhalter, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
-            <tr><td>Persistenz</td><td>keine (Prototyp)</td><td>Nur <code>localStorage</code> f&uuml;r Theme und Demo-Rolle</td></tr>
+            <tr><td>Datenbank</td><td>Supabase (PostgreSQL, RLS), lokal via Docker</td><td>39 Tabellen, Migrationen in <code>supabase/migrations/</code>. UI nutzt noch Mock-Daten.</td></tr>
+            <tr><td>UI-State</td><td><code>localStorage</code></td><td>Theme und Demo-Rolle, nur lokal im Browser</td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Datenbankschema</div>
+        <p>
+          Das vollst&auml;ndige Schema (Standort-Hierarchie, Ernte, Kühlkette, Finanzen, Compliance,
+          Integrationen) liegt als zwei Supabase-Migrationen vor: <code>..._initial_schema.sql</code>
+          (39 Tabellen, Enums, Trigger) und <code>..._rls_policies.sql</code> (RLS auf allen Tabellen).
+          Seed-Daten in <code>supabase/seed.sql</code>. Die 1&Ccedil;at&#305;-Muster sind erhalten:
+          der <code>reihenbloecke</code>-Zustandsautomat (<code>blocked</code> &rarr; <code>wartezeitgesperrt</code>),
+          die Unveraenderlichkeit von <code>finance_ledger_entries</code> (append-only Trigger) und die
+          <code>integration_outbox</code> als Bruecke zu ЭСФ / ЕСУТД. Die Prototyp-Oberfl&auml;chen
+          lesen noch aus <code>src/lib/domain/</code>; die Anbindung an die DB folgt mit Meilenstein B
+          (echte Auth, rollenabhaengige Schreib-Policies).
+        </p>
       </div>
       <div class="info-box">
         <div class="info-box-title">Design-Token-Umstellung</div>

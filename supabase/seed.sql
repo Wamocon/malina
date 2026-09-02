@@ -1,0 +1,380 @@
+-- =============================================================================
+-- Malina - Seed-Daten (Prototyp)
+-- =============================================================================
+-- Spiegelt die Mock-Daten aus src/lib/domain/. Alle Werte sind Platzhalter.
+-- Wird bei `supabase db reset` nach den Migrationen geladen.
+-- Idempotent: on conflict do nothing / natuerliche Schluessel.
+-- =============================================================================
+
+set search_path = public;
+
+-- --- Betrieb & Sorten -------------------------------------------------------
+insert into public.betriebe (name) values ('Malina Aggregator - Umland Almaty')
+  on conflict do nothing;
+
+insert into public.sorten (name, typ, erntefenster, schale_g) values
+  ('Polka',    'remontierend',  'Aug - erster Frost', 125),
+  ('Polana',   'remontierend',  'Aug - Okt',          125),
+  ('Tulameen', 'sommertragend', 'Jun - Jul',          170),
+  ('Kweli',    'remontierend',  'Aug - Sep',          125)
+  on conflict (name) do nothing;
+
+-- --- Nachbarbetrieb -------------------------------------------------------
+insert into public.nachbarbetriebe (name, ort, kontakt) values
+  ('Nachbarbetrieb Kaskelen', 'Kaskelen, Gebiet Almaty', 'R. Baitulin')
+  on conflict do nothing;
+
+-- --- Plantagen -------------------------------------------------------------
+insert into public.plantagen (betrieb_id, name, ort, typ, nachbarbetrieb_id)
+select b.id, v.name, v.ort, v.typ::public.plantage_typ, n.id
+from (values
+  ('Plantage Talgar',        'Talgar, Gebiet Almaty',   'eigen',         null),
+  ('Plantage Issyk',         'Yesik, Gebiet Almaty',    'eigen',         null),
+  ('Nachbarbetrieb Kaskelen','Kaskelen, Gebiet Almaty', 'nachbarbetrieb','Nachbarbetrieb Kaskelen')
+) as v(name, ort, typ, nb)
+cross join (select id from public.betriebe limit 1) b
+left join public.nachbarbetriebe n on n.name = v.nb
+on conflict do nothing;
+
+-- --- Feldparzellen -------------------------------------------------------
+insert into public.feldparzellen (plantage_id, name, flaeche_ha, sorte_id)
+select p.id, v.name, v.flaeche, s.id
+from (values
+  ('Plantage Talgar', 'Parzelle Nord',    3.2, 'Polka'),
+  ('Plantage Talgar', 'Parzelle Ost',     2.5, 'Polana'),
+  ('Plantage Issyk',  'Parzelle Sued',    4.1, 'Tulameen'),
+  ('Nachbarbetrieb Kaskelen', 'Zukauf-Parzelle', 1.8, 'Polka')
+) as v(plantage, name, flaeche, sorte)
+join public.plantagen p on p.name = v.plantage
+join public.sorten s on s.name = v.sorte
+on conflict do nothing;
+
+-- --- Reihengruppen -------------------------------------------------------
+insert into public.reihengruppen (feldparzelle_id, name, spalierrichtung, anzahl_reihenbloecke)
+select f.id, v.name, v.richtung::public.spalierrichtung, v.anzahl
+from (values
+  ('Parzelle Nord',    'Reihengruppe A', 'n_s', 8),
+  ('Parzelle Nord',    'Reihengruppe B', 'n_s', 8),
+  ('Parzelle Ost',     'Reihengruppe A', 'o_w', 6),
+  ('Parzelle Sued',    'Reihengruppe A', 'n_s', 10),
+  ('Parzelle Sued',    'Reihengruppe B', 'n_s', 9),
+  ('Zukauf-Parzelle',  'Reihengruppe A', 'o_w', 5)
+) as v(parzelle, name, richtung, anzahl)
+join public.feldparzellen f on f.name = v.parzelle
+on conflict do nothing;
+
+-- --- Reihenbloecke ------------------------------------------------------
+insert into public.reihenbloecke (reihengruppe_id, code, sorte_id, status, laenge_m, letzte_ernte)
+select rg.id, v.code, s.id, v.status::public.reihenblock_status, v.laenge, v.ernte::date
+from (values
+  ('Parzelle Nord','Reihengruppe A','T-N-A-01','Polka','erntereif',42,'2026-08-30'),
+  ('Parzelle Nord','Reihengruppe A','T-N-A-02','Polka','bepflanzt',42,'2026-08-28'),
+  ('Parzelle Nord','Reihengruppe A','T-N-A-03','Polka','bepflanzt',42,'2026-08-29'),
+  ('Parzelle Nord','Reihengruppe A','T-N-A-04','Polka','wartezeitgesperrt',42,'2026-08-27'),
+  ('Parzelle Nord','Reihengruppe B','T-N-B-01','Polka','wartezeitgesperrt',40,'2026-08-26'),
+  ('Parzelle Nord','Reihengruppe B','T-N-B-02','Polka','rueckschnitt',40,'2026-08-20'),
+  ('Parzelle Ost','Reihengruppe A','T-O-A-01','Polana','erntereif',38,'2026-08-31'),
+  ('Parzelle Ost','Reihengruppe A','T-O-A-02','Polana','bepflanzt',38,'2026-08-30'),
+  ('Parzelle Sued','Reihengruppe A','I-S-A-01','Tulameen','ruhend',45,'2026-07-18'),
+  ('Parzelle Sued','Reihengruppe A','I-S-A-02','Tulameen','ruhend',45,'2026-07-19'),
+  ('Parzelle Sued','Reihengruppe B','I-S-B-01','Tulameen','rueckschnitt',44,'2026-07-15'),
+  ('Zukauf-Parzelle','Reihengruppe A','K-A-01','Polka','erntereif',36,'2026-08-30')
+) as v(parzelle, gruppe, code, sorte, status, laenge, ernte)
+join public.feldparzellen f on f.name = v.parzelle
+join public.reihengruppen rg on rg.feldparzelle_id = f.id and rg.name = v.gruppe
+join public.sorten s on s.name = v.sorte
+on conflict (code) do nothing;
+
+-- --- Pflanzenschutzmittel + Behandlungen (Trigger sperrt Reihenblock) ---
+insert into public.psm_mittel (name, wirkstoff, wartezeit_tage) values
+  ('Signum', 'Boscalid + Pyraclostrobin', 3),
+  ('SpinTor', 'Spinosad', 3)
+  on conflict do nothing;
+
+insert into public.pflanzenschutz_behandlungen (reihenblock_id, psm_mittel_id, behandelt_am, wartezeit_tage)
+select rb.id, m.id, v.datum::date, v.wz
+from (values
+  ('T-N-A-04', 'Signum', '2026-09-01', 3),
+  ('T-N-B-01', 'SpinTor', '2026-08-31', 3)
+) as v(code, mittel, datum, wz)
+join public.reihenbloecke rb on rb.code = v.code
+join public.psm_mittel m on m.name = v.mittel
+where not exists (
+  select 1 from public.pflanzenschutz_behandlungen b
+  where b.reihenblock_id = rb.id and b.behandelt_am = v.datum::date
+);
+
+-- --- Brigaden & Pfluecker ---------------------------------------------------
+insert into public.brigaden (plantage_id, name, vorarbeiter, staerke)
+select p.id, v.name, v.vorarbeiter, v.staerke
+from (values
+  ('Plantage Talgar',        'Brigade Nord',           'A. Iskakow',   6),
+  ('Plantage Talgar',        'Brigade Ost',            'G. Nurlanowa', 4),
+  ('Plantage Issyk',         'Brigade Sued',           'S. Achmetow',  5),
+  ('Nachbarbetrieb Kaskelen','Brigade Nachbarbetrieb', 'R. Baitulin',  5)
+) as v(plantage, name, vorarbeiter, staerke)
+join public.plantagen p on p.name = v.plantage
+where not exists (select 1 from public.brigaden b where b.name = v.name);
+
+insert into public.pfluecker (brigade_id, name, ausweis, esutd)
+select b.id, v.name, v.ausweis, v.esutd::public.esutd_status
+from (values
+  ('Brigade Nord',           'D. Sarsenbaj',   'MAL-0417', 'erfasst'),
+  ('Brigade Nord',           'A. Tulegenowa',  'MAL-0418', 'erfasst'),
+  ('Brigade Ost',            'M. Qojschybaj',  'MAL-0421', 'offen'),
+  ('Brigade Sued',           'N. Erbolat',     'MAL-0430', 'erfasst'),
+  ('Brigade Nachbarbetrieb', 'L. Achmet',      'MAL-0441', 'offen')
+) as v(brigade, name, ausweis, esutd)
+join public.brigaden b on b.name = v.brigade
+on conflict (ausweis) do nothing;
+
+-- --- Chargen -------------------------------------------------------------
+insert into public.chargen (code, reihenblock_id, sorte_id, ernte_datum, status, pflueck_zeitpunkt, vorkuehlung_zeitpunkt)
+select v.code, rb.id, s.id, v.datum::date, v.status::public.charge_status,
+       v.pfluecken::timestamptz, nullif(v.kuehlung, '')::timestamptz
+from (values
+  ('CH-0902-14', 'T-N-A-01', 'Polka',  '2026-09-02', 'gekuehlt', '2026-09-02T09:40:00+06', '2026-09-02T10:21:00+06'),
+  ('CH-0902-15', 'T-O-A-01', 'Polana', '2026-09-02', 'offen',    '2026-09-02T09:15:00+06', ''),
+  ('CH-0902-12', 'T-N-A-03', 'Polka',  '2026-09-02', 'offen',    '2026-09-02T08:30:00+06', '')
+) as v(code, block, sorte, datum, status, pfluecken, kuehlung)
+join public.reihenbloecke rb on rb.code = v.block
+join public.sorten s on s.name = v.sorte
+on conflict (code) do nothing;
+
+-- --- Pflueckaufgaben ----------------------------------------------------
+insert into public.pflueckaufgaben
+  (code, reihenblock_id, charge_id, brigade_id, sorte_id, status, faelligkeit,
+   zielmenge_kg, ist_menge_kg, pfluecker_anzahl, qualitaetsfaktor)
+select v.code, rb.id, ch.id, br.id, s.id, v.status::public.pflueckaufgabe_status,
+       v.faellig::timestamptz, v.ziel, v.ist, v.anzahl, v.qf
+from (values
+  ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,6,1.08),
+  ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,4,null),
+  ('PA-2026-0912-03','K-A-01',null,'Brigade Nachbarbetrieb','Polka','angenommen','2026-09-02T14:00:00+06',26,0,5,null),
+  ('PA-2026-0912-04','T-N-A-03','CH-0902-12','Brigade Nord','Polka','abgeschlossen','2026-09-01T11:00:00+06',45,44.2,6,0.97),
+  ('PA-2026-0912-05','T-O-A-02',null,'Brigade Ost','Polana','offen','2026-09-02T15:30:00+06',28,0,4,null)
+) as v(code, block, charge, brigade, sorte, status, faellig, ziel, ist, anzahl, qf)
+join public.reihenbloecke rb on rb.code = v.block
+join public.brigaden br on br.name = v.brigade
+join public.sorten s on s.name = v.sorte
+left join public.chargen ch on ch.code = v.charge
+on conflict (code) do nothing;
+
+insert into public.media_belege (pflueckaufgabe_id, art, aufgenommen_am, hinweis)
+select pa.id, v.art::public.beleg_art, v.ts::timestamptz, v.hinweis
+from (values
+  ('PA-2026-0912-01','schale',     '2026-09-02T10:41:00+06','Verkaufsschale 125 g, geschlossene Fruchtdecke'),
+  ('PA-2026-0912-01','reihenblock','2026-09-02T09:12:00+06','Reihenblock vor Pfluecken, Tau abgetrocknet'),
+  ('PA-2026-0912-02','reihenblock','2026-09-02T08:55:00+06','Startbeleg Reihenblock'),
+  ('PA-2026-0912-04','schale',     '2026-09-01T10:30:00+06','Schale mit leichtem Ueberreifeanteil'),
+  ('PA-2026-0912-04','steige',     '2026-09-01T10:48:00+06','Steige 2 kg, QR-Etikett lesbar')
+) as v(code, art, ts, hinweis)
+join public.pflueckaufgaben pa on pa.code = v.code
+where not exists (
+  select 1 from public.media_belege m where m.pflueckaufgabe_id = pa.id and m.hinweis = v.hinweis
+);
+
+-- --- Steigen -----------------------------------------------------------
+insert into public.steigen (code, qr_token, charge_id, gewicht_kg, scan_zeitpunkt)
+select v.code, v.token, ch.id, v.gewicht, v.scan::timestamptz
+from (values
+  ('STG-2026-000480','qr-stg-480','CH-0902-14',2.0,'2026-09-02T10:44:00+06'),
+  ('STG-2026-000481','qr-stg-481','CH-0902-14',2.0,'2026-09-02T10:46:00+06')
+) as v(code, token, charge, gewicht, scan)
+left join public.chargen ch on ch.code = v.charge
+on conflict (code) do nothing;
+
+-- --- Kuehlketten-Messungen -------------------------------------------------
+insert into public.kuehlketten_messungen (charge_id, gemessen_am, temperatur_c, minuten_seit_pfluecken, ergebnis)
+select ch.id, now(), v.temp, v.minuten, v.ergebnis::public.kuehlkette_ergebnis
+from (values
+  ('CH-0902-14', 3.8, 41, 'ok'),
+  ('CH-0902-15', 6.1, 58, 'warnung'),
+  ('CH-0902-12', 8.4, 72, 'verstoss')
+) as v(charge, temp, minuten, ergebnis)
+join public.chargen ch on ch.code = v.charge
+where not exists (
+  select 1 from public.kuehlketten_messungen k where k.charge_id = ch.id and k.minuten_seit_pfluecken = v.minuten
+);
+
+-- --- Rotationsplan -------------------------------------------------------
+insert into public.rotationsplan_eintraege (reihenblock_id, brigade_id, geplant_fuer, intervall_tage)
+select rb.id, br.id, v.datum::date, v.intervall
+from (values
+  ('T-N-A-01', 'Brigade Nord', '2026-09-04', 3),
+  ('T-N-A-02', 'Brigade Nord', '2026-09-03', 2),
+  ('T-O-A-01', 'Brigade Ost',  '2026-09-04', 3)
+) as v(block, brigade, datum, intervall)
+join public.reihenbloecke rb on rb.code = v.block
+join public.brigaden br on br.name = v.brigade
+where not exists (
+  select 1 from public.rotationsplan_eintraege r where r.reihenblock_id = rb.id and r.geplant_fuer = v.datum::date
+);
+
+-- --- Markt: B2B, Kontingente, Preislisten ---------------------------------
+insert into public.b2b_kunden (name, kontakt) values
+  ('Handelskette A', 'Einkauf Frischeobst'),
+  ('Gastro-Distributor Almaty', 'Beschaffung')
+  on conflict do nothing;
+
+insert into public.kontingente (sorte_id, b2b_kunde_id, menge_kg, reserviert_kg, saison)
+select s.id, k.id, v.menge, v.reserviert, '2026'
+from (values
+  ('Polka',  'Handelskette A',              4200, 3100),
+  ('Polana', 'Gastro-Distributor Almaty',   2600, 1450),
+  ('Kweli',  'Handelskette A',              1400, 900)
+) as v(sorte, kunde, menge, reserviert)
+join public.sorten s on s.name = v.sorte
+join public.b2b_kunden k on k.name = v.kunde
+where not exists (
+  select 1 from public.kontingente c where c.sorte_id = s.id and c.b2b_kunde_id = k.id and c.saison = '2026'
+);
+
+insert into public.preislisten (name, gueltig_ab, aktiv) values
+  ('Preisliste Herbst 2026', '2026-08-01', true)
+  on conflict do nothing;
+
+insert into public.preislisten_positionen (preisliste_id, sorte_id, preis_tenge_kg, min_menge_kg)
+select pl.id, s.id, v.preis, 0
+from (values
+  ('Polka', 2100), ('Polana', 2050), ('Tulameen', 1850), ('Kweli', 2000)
+) as v(sorte, preis)
+join public.sorten s on s.name = v.sorte
+cross join (select id from public.preislisten where name = 'Preisliste Herbst 2026') pl
+where not exists (
+  select 1 from public.preislisten_positionen p where p.preisliste_id = pl.id and p.sorte_id = s.id
+);
+
+insert into public.vorbestellungen (b2b_kunde_id, sorte_id, menge_kg, liefertermin, status)
+select k.id, s.id, v.menge, v.termin::date, v.status::public.vorbestellung_status
+from (values
+  ('Handelskette A', 'Polka', 320, '2026-09-04', 'bestaetigt'),
+  ('Gastro-Distributor Almaty', 'Polana', 180, '2026-09-05', 'angefragt')
+) as v(kunde, sorte, menge, termin, status)
+join public.b2b_kunden k on k.name = v.kunde
+join public.sorten s on s.name = v.sorte
+where not exists (
+  select 1 from public.vorbestellungen vb where vb.b2b_kunde_id = k.id and vb.sorte_id = s.id and vb.liefertermin = v.termin::date
+);
+
+-- --- Aggregator: Zukauf --------------------------------------------------
+insert into public.zukauf_positionen (nachbarbetrieb_id, charge_id, sorte_id, menge_kg, preis_tenge_kg, rechnungsdatum)
+select n.id, null, s.id, 210, 1400, '2026-09-01'::date
+from public.nachbarbetriebe n, public.sorten s
+where n.name = 'Nachbarbetrieb Kaskelen' and s.name = 'Polka'
+and not exists (select 1 from public.zukauf_positionen z where z.nachbarbetrieb_id = n.id);
+
+-- --- Schulungsvideos --------------------------------------------------------
+insert into public.schulungsvideos (titel, thema, dauer_sekunden, sprachen) values
+  ('Richtig pfluecken - reife Frucht erkennen', 'Ernte',      252, array['kk','ru','tr']),
+  ('Steige befuellen und QR-Etikett scannen',   'Feld',       185, array['kk','ru']),
+  ('Die Stunde nach dem Pfluecken - Kuehlkette','Hof',        340, array['kk','ru','tr','de']),
+  ('Hygiene und Handschuhe',                    'Qualitaet',  168, array['kk','ru'])
+  on conflict do nothing;
+
+-- --- Finanzen: Kostentraeger + Ledger ------------------------------------
+insert into public.kostentraeger (reihenblock_id, sorte_id, erntetag, bezeichnung)
+select rb.id, s.id, v.tag::date, v.code || ' / ' || v.tag
+from (values
+  ('T-N-A-01','Polka','2026-08-30'),
+  ('T-N-A-03','Polka','2026-08-29'),
+  ('T-O-A-01','Polana','2026-08-31'),
+  ('K-A-01','Polka','2026-08-30')
+) as v(code, sorte, tag)
+join public.reihenbloecke rb on rb.code = v.code
+join public.sorten s on s.name = v.sorte
+on conflict (reihenblock_id, sorte_id, erntetag) do nothing;
+
+insert into public.finance_ledger_entries (kostentraeger_id, typ, kategorie, betrag_tenge, buchungsdatum, beschreibung)
+select kt.id, v.typ::public.ledger_typ, v.kategorie, v.betrag::numeric, v.tag::date, v.beschreibung
+from (values
+  ('T-N-A-01','2026-08-30','erloes','B2B-Verkauf','108780','Lieferung Handelskette A'),
+  ('T-N-A-01','2026-08-30','kosten','Ernte + Kuehlung','41200','Brigade Nord, Vorkuehlung'),
+  ('T-N-A-03','2026-08-29','erloes','B2B-Verkauf','92820','Lieferung Handelskette A'),
+  ('T-N-A-03','2026-08-29','kosten','Ernte + Kuehlung','38900','Brigade Nord'),
+  ('T-O-A-01','2026-08-31','erloes','B2B-Verkauf','61500','Lieferung Gastro-Distributor'),
+  ('T-O-A-01','2026-08-31','kosten','Ernte + Kuehlung','27300','Brigade Ost'),
+  ('K-A-01','2026-08-30','erloes','B2B-Verkauf','54600','Zukauf-Charge'),
+  ('K-A-01','2026-08-30','kosten','Zukauf + Handling','44100','Nachbarbetrieb Kaskelen')
+) as v(block, tag, typ, kategorie, betrag, beschreibung)
+join public.reihenbloecke rb on rb.code = v.block
+join public.kostentraeger kt on kt.reihenblock_id = rb.id and kt.erntetag = v.tag::date
+where not exists (
+  select 1 from public.finance_ledger_entries fle
+  where fle.kostentraeger_id = kt.id and fle.typ = v.typ::public.ledger_typ and fle.betrag_tenge = v.betrag::numeric
+);
+
+-- --- Lohn ---------------------------------------------------------------
+insert into public.lohn_abrechnungen
+  (pfluecker_id, periode_start, periode_ende, grundlohn_tenge, mengen_komponente_tenge, qualitaetsfaktor, gesamt_tenge, status)
+select p.id, '2026-08-25'::date, '2026-08-31'::date, 35000, v.menge, v.qf, v.gesamt, 'entwurf'
+from (values
+  ('MAL-0417', 22000, 1.06, 60420),
+  ('MAL-0418', 24500, 1.11, 65895)
+) as v(ausweis, menge, qf, gesamt)
+join public.pfluecker p on p.ausweis = v.ausweis
+where not exists (
+  select 1 from public.lohn_abrechnungen la where la.pfluecker_id = p.id and la.periode_start = '2026-08-25'::date
+);
+
+-- --- Dokumente --------------------------------------------------------------
+insert into public.dokumente (name, kategorie, bezug, stand, status)
+select v.name, v.kat::public.dokument_kategorie, v.bezug, v.stand::date, v.status::public.dokument_status
+from (values
+  ('Spritzprotokoll KW 36 - Parzelle Nord','spritzmittelprotokoll','T-N-A-04, T-N-B-01','2026-09-01','gueltig'),
+  ('ESUTD-Sammelnachweis Saisonkraefte','esutd_nachweis','42 Vertraege','2026-08-28','prueflauf'),
+  ('Rahmenliefervertrag Handelskette A','liefervertrag','Kontingent Polka 3100 kg','2026-08-15','gueltig'),
+  ('Foerderdossier gosagro.kz - Kuehlhaus','foerderdossier','Antrag 2026-114','2026-08-30','prueflauf'),
+  ('GlobalG.A.P.-Zertifikat','zertifikat','Betrieb','2025-11-02','gueltig'),
+  ('Spritzprotokoll KW 30 - Parzelle Sued','spritzmittelprotokoll','I-S-B-01','2026-07-20','abgelaufen')
+) as v(name, kat, bezug, stand, status)
+where not exists (select 1 from public.dokumente d where d.name = v.name);
+
+insert into public.foerderdossiers (portal, antragsnummer, titel, status, eingereicht_am) values
+  ('gosagro.kz', '2026-114', 'Foerderung Vorkuehlanlage', 'eingereicht', '2026-08-30')
+  on conflict do nothing;
+
+-- --- Compliance: Consent, Audit, Integrationen ---------------------------
+insert into public.consent_records (subjekt, zweck, rechtsgrundlage, erteilt_am) values
+  ('Saisonkraefte 2026', 'Personaleinsatz und Lohnabrechnung', 'Vertragserfuellung', '2026-08-20T08:00:00+06'),
+  ('B2B-Kunden',         'Auftragsabwicklung und Lieferung',   'Vertragserfuellung', '2026-08-15T08:00:00+06')
+  on conflict do nothing;
+
+insert into public.audit_events (actor, aktion, ressource, metadata) values
+  ('system', 'behandlung.erfasst', 'pflanzenschutz_behandlungen', '{"block":"T-N-A-04","mittel":"Signum"}'),
+  ('system', 'reihenblock.gesperrt', 'reihenbloecke', '{"block":"T-N-A-04","grund":"wartezeit"}'),
+  ('system', 'kuehlkette.verstoss', 'kuehlketten_messungen', '{"charge":"CH-0902-12","minuten":72}')
+  on conflict do nothing;
+
+insert into public.integrationen (key, name, system, status) values
+  ('esf',       'Elektronische Rechnung / Warenbegleitschein', 'ISESF',                   'sandbox'),
+  ('esutd',     'Arbeitsvertragserfassung',                    'ESUTD (enbek.kz)',        'sandbox'),
+  ('virt_lager','Virtueller Lagerbestand',                      'Gosdohody / virt. Lager', 'geplant'),
+  ('gosagro',   'Foerdermittelportal',                          'gosagro.kz',              'geplant'),
+  ('qoldau',    'Subventionsportal',                            'qoldau.kz',               'geplant')
+  on conflict (key) do nothing;
+
+insert into public.integration_outbox (ziel_system, payload, status) values
+  ('ISESF', '{"typ":"lieferschein","charge":"CH-0902-14"}', 'pending'),
+  ('ISESF', '{"typ":"lieferschein","charge":"CH-0902-15"}', 'pending'),
+  ('ISESF', '{"typ":"lieferschein","charge":"CH-0902-12"}', 'pending'),
+  ('ESUTD', '{"typ":"vertrag","batch":"saison-2026"}',       'pending')
+  on conflict do nothing;
+
+-- --- KPI-Baseline: die 14 Kennzahlen aus der Marktanalyse Kapitel 4.10 -------
+insert into public.kpi_baseline (key, name, zone, ziel, baseline_wert, gut_richtung, unterschrieben_am) values
+  ('verlustquote',          'Verlustquote vom Pfluecken bis zum Kunden',            'hof',   '< 6 %',      '8,4 %',    'down', null),
+  ('vermarktungsfaehig',    'Anteil vermarktungsfaehiger Schalen',                  'hof',   '> 90 %',     '82 %',     'up',   null),
+  ('zeitBisVorkuehlung',    'Zeit vom Pfluecken bis zur Vorkuehlung',               'hof',   '< 60 min',   '47 min',   'down', null),
+  ('zeitBisKunde',          'Zeit vom Pfluecken bis zum Kunden',                    'hof',   '< 24 h',     '19 h',     'down', null),
+  ('pflueckleistung',       'Pflueckleistung je Person und Stunde',                 'feld',  '> 7 kg/h',   '6,1 kg/h', 'up',   null),
+  ('pflueckStreuung',       'Streuung der Pflueckleistung (beste zu schwaechste)',  'feld',  '< 1,8x',     '2,3x',     'down', null),
+  ('pflueckintervall',      'Eingehaltenes Pflueckintervall je Reihenblock',        'feld',  '> 95 %',     '84 %',     'up',   null),
+  ('behandlungenWartezeit', 'Behandlungen mit eingehaltener Wartezeit',             'feld',  '100 %',      '96 %',     'up',   null),
+  ('reklamationsquote',     'Reklamationsquote',                                    'markt', '< 2 %',      '3,2 %',    'down', null),
+  ('liefertreue',           'Liefertreue (puenktlich und vollstaendig)',            'markt', '> 97 %',     '91 %',     'up',   null),
+  ('belegteVerkaeufe',      'Anteil belegter Verkaeufe (ESF und Warenbegleitschein)','buero','100 %',      '71 %',     'up',   null),
+  ('deckungsbeitrag',       'Deckungsbeitrag je kg',                                'buero', '> 700 T/kg', '640 T/kg', 'up',   null),
+  ('esutdAbdeckung',        'Abdeckung der Saisonkraefte in ESUTD',                 'buero', '100 %',      '64 %',     'up',   null),
+  ('websiteAnfragen',       'Anfragen ueber die Website je Monat',                  'markt', 'Ausgangswert','12',      'up',   null)
+  on conflict (key) do nothing;

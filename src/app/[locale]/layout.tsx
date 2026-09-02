@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { themeInitScript } from "@/components/theme-toggle";
+import { ThemeScript } from "@/components/theme-toggle";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -39,11 +39,13 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: "common" });
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <ThemeScript />
         <NextIntlClientProvider>
           <a href="#main" className="skip-link">
             {t("skipToContent")}

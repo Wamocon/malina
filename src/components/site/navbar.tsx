@@ -36,13 +36,13 @@ export function SiteNavbar() {
 
         <nav className="hidden items-center gap-1 rounded-full border border-border/60 bg-muted/40 px-1 py-1 lg:flex">
           {links.map((link) => (
-            <a
+            <Link
               key={link.key}
               href={link.href}
               className="rounded-full px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {t(link.key)}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -76,14 +76,14 @@ export function SiteNavbar() {
         <div className="border-t border-border/60 bg-background/95 px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.key}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-base font-semibold text-foreground hover:bg-muted"
               >
                 {t(link.key)}
-              </a>
+              </Link>
             ))}
             <Link
               href="/dashboard"
