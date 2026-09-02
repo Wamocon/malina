@@ -1,0 +1,94 @@
+// Reihenblock-Zustandsautomat. 1Cati `units`: occupied, vacant, reserved,
+// maintenance, blocked. Uebersetzt sich laut Analyse Kapitel 4 "nahezu satzweise"
+// auf den Reihenblock - inklusive `blocked`, das im Himbeerbetrieb woertlich der
+// gesetzlich verlangte Sperrzustand nach Pflanzenschutzbehandlung ist.
+
+export type ReihenblockStatus =
+  | "bepflanzt" // occupied  - trägt, in normaler Pflege
+  | "erntereif" // reserved  - für die nächste Rotation eingeplant
+  | "ruhend" // vacant     - abgetragen / Winterruhe
+  | "rueckschnitt" // maintenance - Ruten-/Formschnitt läuft
+  | "wartezeitgesperrt"; // blocked - PSM-Wartezeit läuft, Ernte gesperrt
+
+export interface Reihenblock {
+  id: string;
+  parzelle: string;
+  reihengruppe: string;
+  sorte: string;
+  status: ReihenblockStatus;
+  laengeM: number;
+  letzteErnte: string | null;
+  // nur bei wartezeitgesperrt gesetzt
+  sperre?: {
+    mittel: string;
+    behandeltAm: string;
+    wartezeitTage: number;
+    freigabeAm: string;
+  };
+}
+
+export const statusMeta: Record<
+  ReihenblockStatus,
+  { catiStatus: string; tone: "success" | "info" | "neutral" | "warning" | "danger" }
+> = {
+  bepflanzt: { catiStatus: "occupied", tone: "success" },
+  erntereif: { catiStatus: "reserved", tone: "info" },
+  ruhend: { catiStatus: "vacant", tone: "neutral" },
+  rueckschnitt: { catiStatus: "maintenance", tone: "warning" },
+  wartezeitgesperrt: { catiStatus: "blocked", tone: "danger" },
+};
+
+export const reihenbloecke: Reihenblock[] = [
+  { id: "T-N-A-01", parzelle: "Parzelle Nord", reihengruppe: "Reihengruppe A", sorte: "Polka", status: "erntereif", laengeM: 42, letzteErnte: "2026-08-30" },
+  { id: "T-N-A-02", parzelle: "Parzelle Nord", reihengruppe: "Reihengruppe A", sorte: "Polka", status: "bepflanzt", laengeM: 42, letzteErnte: "2026-08-28" },
+  { id: "T-N-A-03", parzelle: "Parzelle Nord", reihengruppe: "Reihengruppe A", sorte: "Polka", status: "bepflanzt", laengeM: 42, letzteErnte: "2026-08-29" },
+  {
+    id: "T-N-A-04",
+    parzelle: "Parzelle Nord",
+    reihengruppe: "Reihengruppe A",
+    sorte: "Polka",
+    status: "wartezeitgesperrt",
+    laengeM: 42,
+    letzteErnte: "2026-08-27",
+    sperre: {
+      mittel: "Signum (Boscalid + Pyraclostrobin)",
+      behandeltAm: "2026-09-01",
+      wartezeitTage: 3,
+      freigabeAm: "2026-09-04",
+    },
+  },
+  {
+    id: "T-N-B-01",
+    parzelle: "Parzelle Nord",
+    reihengruppe: "Reihengruppe B",
+    sorte: "Polka",
+    status: "wartezeitgesperrt",
+    laengeM: 40,
+    letzteErnte: "2026-08-26",
+    sperre: {
+      mittel: "SpinTor (Spinosad)",
+      behandeltAm: "2026-08-31",
+      wartezeitTage: 3,
+      freigabeAm: "2026-09-03",
+    },
+  },
+  { id: "T-N-B-02", parzelle: "Parzelle Nord", reihengruppe: "Reihengruppe B", sorte: "Polka", status: "rueckschnitt", laengeM: 40, letzteErnte: "2026-08-20" },
+  { id: "T-O-A-01", parzelle: "Parzelle Ost", reihengruppe: "Reihengruppe A", sorte: "Polana", status: "erntereif", laengeM: 38, letzteErnte: "2026-08-31" },
+  { id: "T-O-A-02", parzelle: "Parzelle Ost", reihengruppe: "Reihengruppe A", sorte: "Polana", status: "bepflanzt", laengeM: 38, letzteErnte: "2026-08-30" },
+  { id: "I-S-A-01", parzelle: "Parzelle Sued", reihengruppe: "Reihengruppe A", sorte: "Tulameen", status: "ruhend", laengeM: 45, letzteErnte: "2026-07-18" },
+  { id: "I-S-A-02", parzelle: "Parzelle Sued", reihengruppe: "Reihengruppe A", sorte: "Tulameen", status: "ruhend", laengeM: 45, letzteErnte: "2026-07-19" },
+  { id: "I-S-B-01", parzelle: "Parzelle Sued", reihengruppe: "Reihengruppe B", sorte: "Tulameen", status: "rueckschnitt", laengeM: 44, letzteErnte: "2026-07-15" },
+  { id: "K-A-01", parzelle: "Zukauf-Parzelle", reihengruppe: "Reihengruppe A", sorte: "Polka", status: "erntereif", laengeM: 36, letzteErnte: "2026-08-30" },
+];
+
+export function statusCounts() {
+  const counts = {
+    bepflanzt: 0,
+    erntereif: 0,
+    ruhend: 0,
+    rueckschnitt: 0,
+    wartezeitgesperrt: 0,
+  } satisfies Record<ReihenblockStatus, number>;
+  for (const block of reihenbloecke) counts[block.status] += 1;
+  return counts;
+}

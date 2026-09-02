@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--
     HANDBOOK META - updated by Copilot on every relevant change
-    APP_NAME        : [APP_NAME]
+    APP_NAME        : Malina
     APP_VERSION     : 0.1.0
-    LAST_UPDATED    : [LAST_UPDATED]
-    PRIMARY_COLOR   : [PRIMARY_COLOR]   e.g. #3b82f6
-    PRIMARY_DARK    : [PRIMARY_DARK]    e.g. #2563eb
-    LOGO_EMOJI      : [LOGO_EMOJI]      e.g. &#128230;
+    LAST_UPDATED    : September 2026
+    PRIMARY_COLOR   : #b11742
+    PRIMARY_DARK    : #8c1236
+    LOGO_EMOJI      : &#127827;
   -->
-  <title>[APP_NAME] &ndash; Produkthandbuch | WAMOCON</title>
+  <title>Malina &ndash; Produkthandbuch | WAMOCON</title>
   <style>
     /* ── Reset & Base ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       /* Brand colors - Copilot updates these to match the app */
-      --primary:      #3b82f6;
-      --primary-dark: #2563eb;
-      --primary-glow: rgba(59,130,246,0.18);
+      --primary:      #d6336c;
+      --primary-dark: #b11742;
+      --primary-glow: rgba(214,51,108,0.18);
       --success:      #10b981;
       --warning:      #f59e0b;
       --danger:       #ef4444;
@@ -299,10 +299,10 @@
 <header class="page-header no-print">
   <div class="brand">
     <!-- LOGO: Copilot updates the emoji/letter and gradient to match the app -->
-    <div class="logo-mark" aria-label="App logo">&#128230;</div>
+    <div class="logo-mark" aria-label="App logo">&#127827;</div>
     <div>
-      <div class="brand-name">[APP_NAME]</div>
-      <div class="brand-sub">WAMOCON &middot; Produkthandbuch</div>
+      <div class="brand-name">Malina</div>
+      <div class="brand-sub">WAMOCON &middot; Produkthandbuch (interner Prototyp)</div>
     </div>
   </div>
 
@@ -348,24 +348,24 @@
   <nav id="toc-sidebar" class="no-print" aria-label="Inhaltsverzeichnis">
     <div class="toc-title">Inhalt</div>
     <a class="toc-link l1" href="#uebersicht">01 &Uuml;bersicht</a>
-    <a class="toc-link l1" href="#features">02 Funktionen</a>
-    <a class="toc-link l2" href="#feature-list">2.1 Feature-Liste</a>
-    <a class="toc-link l2" href="#plaene">2.2 Pl&auml;ne &amp; Preise</a>
+    <a class="toc-link l1" href="#features">02 Zonen &amp; Module</a>
+    <a class="toc-link l2" href="#feature-list">2.1 Modul&uuml;bersicht</a>
+    <a class="toc-link l2" href="#plaene">2.2 Reifegrad &amp; Klassifikation</a>
     <a class="toc-link l1" href="#tutorials">03 Erste Schritte</a>
-    <a class="toc-link l2" href="#tut-konto">3.1 Konto erstellen</a>
-    <a class="toc-link l2" href="#tut-start">3.2 Loslegen</a>
-    <a class="toc-link l2" href="#tut-upgrade">3.3 Upgrade</a>
+    <a class="toc-link l2" href="#tut-konto">3.1 Prototyp starten</a>
+    <a class="toc-link l2" href="#tut-start">3.2 Demo-Rolle wechseln</a>
+    <a class="toc-link l2" href="#tut-upgrade">3.3 Sprache umschalten</a>
     <a class="toc-link l1" href="#howto">04 How-to Guides</a>
-    <a class="toc-link l2" href="#ht-profil">4.1 Profil verwalten</a>
-    <a class="toc-link l2" href="#ht-loeschen">4.2 Konto l&ouml;schen</a>
+    <a class="toc-link l2" href="#ht-profil">4.1 Reihenblock-Status pr&uuml;fen</a>
+    <a class="toc-link l2" href="#ht-loeschen">4.2 Pfl&uuml;ckaufgabe mit Fotobeleg</a>
     <a class="toc-link l1" href="#referenz">05 Funktionsreferenz</a>
     <a class="toc-link l2" href="#routen">5.1 Routen</a>
-    <a class="toc-link l2" href="#api">5.2 API &amp; Hooks</a>
+    <a class="toc-link l2" href="#api">5.2 Rollen &amp; Rechte</a>
     <a class="toc-link l1" href="#tech">06 Technische Architektur</a>
     <a class="toc-link l2" href="#tech-stack">6.1 Stack</a>
-    <a class="toc-link l2" href="#tech-schema">6.2 Datenbank-Schema</a>
-    <a class="toc-link l1" href="#ci-cd">07 CI/CD &amp; Tests</a>
-    <a class="toc-link l1" href="#compliance">08 DSGVO &amp; Compliance</a>
+    <a class="toc-link l2" href="#tech-schema">6.2 Herkunft aus 1&Ccedil;at&#305;</a>
+    <a class="toc-link l1" href="#ci-cd">07 Meilensteine</a>
+    <a class="toc-link l1" href="#compliance">08 Compliance &amp; Datenresidenz</a>
     <a class="toc-link l1" href="#glossar">09 Glossar</a>
   </nav>
 
@@ -374,14 +374,14 @@
 
     <!-- ── Cover ─────────────────────────────────────────────────── -->
     <div class="cover">
-      <div class="doc-type">Offizielles Produkthandbuch &middot; WAMOCON GmbH</div>
-      <h1>[APP_NAME]</h1>
-      <div class="cover-sub">[APP_TAGLINE]</div>
+      <div class="doc-type">Internes Produkthandbuch &middot; WAMOCON GmbH</div>
+      <h1>Malina</h1>
+      <div class="cover-sub">Betriebssteuerung f&uuml;r einen Himbeerbetrieb im Umland Almaty &ndash; Blaupause auf Basis des 1&Ccedil;at&#305;-ERP-&Ouml;kosystems</div>
       <div class="cover-meta">
-        <div><div class="meta-label">Version</div><div class="meta-value">[APP_VERSION]</div></div>
-        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-success">Produktiv</span></div></div>
-        <div><div class="meta-label">Pl&auml;ne</div><div class="meta-value">[PLAN_NAMES]</div></div>
-        <div><div class="meta-label">Datum</div><div class="meta-value">[LAST_UPDATED]</div></div>
+        <div><div class="meta-label">Version</div><div class="meta-value">0.1.0</div></div>
+        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein A)</span></div></div>
+        <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; TR &middot; KK &middot; RU</div></div>
+        <div><div class="meta-label">Datum</div><div class="meta-value">September 2026</div></div>
       </div>
     </div>
 
@@ -389,102 +389,150 @@
     <section id="uebersicht">
       <h2><span class="num">01</span> &Uuml;bersicht</h2>
       <p>
-        [APP_NAME] ist eine webbasierte SaaS-Plattform, die [APP_DESCRIPTION].
+        Malina (russisch f&uuml;r Himbeere) &uuml;bertr&auml;gt das bestehende 1&Ccedil;at&#305;-ERP-&Ouml;kosystem
+        aus der Immobilienbranche identisch, nur mit anderem fachlichen Fokus, auf einen
+        Himbeerbetrieb. Die fachneutrale Mechanik von 1&Ccedil;at&#305; &ndash; Standort-Hierarchie,
+        Sperrlogik, Beleg-Ketten, Rollenrechte, Offline-Warteschlangen &ndash; wird
+        &uuml;bernommen, das Domänenvokabular von Immobilie auf Agrar umgestellt.
       </p>
       <div class="card">
-        <strong>Was [APP_NAME] l&ouml;st:</strong> [PROBLEM_STATEMENT]
+        <strong>Was Malina l&ouml;st:</strong> Marktf&uuml;hrerschaft entsteht nicht &uuml;ber Tonnen,
+        sondern &uuml;ber Belegbarkeit. K&uuml;hlkurve, Charge, Herkunftsblock, Pfl&uuml;cker und
+        Behandlungsnachweis m&uuml;ssen f&uuml;r jede Lieferung l&uuml;ckenlos stehen. Ein ERP, das
+        Nachweisketten kann, ist hier kein Komfortmerkmal, sondern der ganze Business Case.
+      </div>
+      <div class="warn-box">
+        <div class="warn-box-title">Prototyp-Hinweis</div>
+        <p>
+          Dieser Stand ist ein interner Proof-of-Concept. Hauptfunktionen sind als bedienbare
+          Demo-Oberfl&auml;che gebaut, Unterfunktionen als sichtbare Men&uuml;punkte mit Status
+          &bdquo;in Entwicklung&ldquo;. Es gibt keine Datenbank, keine Auth und keine echte
+          Datenverarbeitung. Alle angezeigten Werte sind Platzhalter.
+        </p>
       </div>
       <div class="feature-grid">
-        <!-- Copilot fills these cards based on actual implemented features -->
         <div class="feature-card">
-          <div class="feature-icon">&#128269;</div>
-          <div class="feature-title">[FEATURE_1_TITLE]</div>
-          <div class="feature-desc">[FEATURE_1_DESC]</div>
+          <div class="feature-icon">&#127793;</div>
+          <div class="feature-title">Zone Feld</div>
+          <div class="feature-desc">Standort-Hierarchie, Reihenblock-Status inkl. Wartezeitsperre, Pfl&uuml;ckaufgaben mit Fotobeleg, Rotationsplan.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#9889;</div>
-          <div class="feature-title">[FEATURE_2_TITLE]</div>
-          <div class="feature-desc">[FEATURE_2_DESC]</div>
+          <div class="feature-icon">&#10052;&#65039;</div>
+          <div class="feature-title">Zone Hof</div>
+          <div class="feature-desc">K&uuml;hlketten-Uhr mit 60-Minuten-Grenzwert, Temperaturlogger, Abholrunden, QR-Steigenkennung, elektronischer Lieferschein.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#128202;</div>
-          <div class="feature-title">[FEATURE_3_TITLE]</div>
-          <div class="feature-desc">[FEATURE_3_DESC]</div>
+          <div class="feature-icon">&#128188;</div>
+          <div class="feature-title">Zone B&uuml;ro</div>
+          <div class="feature-desc">RBAC-Rollen, Deckungsbeitrag je Reihenblock, Qualit&auml;tsfaktor-Lohn, Dokumente, Compliance-Cockpit, staatliche Integrationen.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#128276;</div>
-          <div class="feature-title">[FEATURE_4_TITLE]</div>
-          <div class="feature-desc">[FEATURE_4_DESC]</div>
+          <div class="feature-icon">&#127978;</div>
+          <div class="feature-title">Zone Markt</div>
+          <div class="feature-desc">Sorten- und Kontingentkatalog, B2B-Portal, Retrieval-KI-Chat, Aggregator f&uuml;r Nachbarbetriebe, Schulungsvideos.</div>
         </div>
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Nutzerrolle</th><th>Beschreibung</th></tr></thead>
+          <thead><tr><th>Rolle</th><th>1&Ccedil;at&#305;-Vorbild</th><th>Beschreibung</th></tr></thead>
           <tbody>
-            <!-- Copilot updates rows to reflect actual roles -->
-            <tr><td><strong>Free-Nutzer</strong></td><td>[FREE_ROLE_DESC]</td></tr>
-            <tr><td><strong>Pro-Nutzer</strong></td><td>[PRO_ROLE_DESC]</td></tr>
-            <tr><td><strong>Admin (WAMOCON)</strong></td><td>Nutzerverwaltung, Systemkonfiguration, Monitoring</td></tr>
+            <tr><td><strong>Administration</strong></td><td>admin</td><td>Volle Konfiguration, Nutzer- und Rollenverwaltung, sensible Finanz- und Integrationsaufsicht.</td></tr>
+            <tr><td><strong>Betriebsleitung</strong></td><td>manager</td><td>T&auml;glicher Plantagenbetrieb, Aufgaben, Rotation, Personal, Freigaben. Kann Finanzen einsehen, nicht buchen.</td></tr>
+            <tr><td><strong>Buchhaltung</strong></td><td>accountant</td><td>Deckungsbeitrag, Lohn, Zahlungen, staatliche Meldungen.</td></tr>
+            <tr><td><strong>Brigade / Feld</strong></td><td>staff</td><td>Nimmt Pfl&uuml;ckaufgaben an, erfasst Menge und Fotobeleg im Feld.</td></tr>
+            <tr><td><strong>Erzeuger / Nachbarbetrieb</strong></td><td>owner</td><td>Zukauf-Betrieb. Sieht eigene Reihenbl&ouml;cke, Chargen, Abrechnung, Vertr&auml;ge.</td></tr>
+            <tr><td><strong>B2B-Kunde</strong></td><td>tenant</td><td>Kontingente, Vorbestellung, Preislisten, KI-Chat, freigegebene Dokumente.</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ── 2. Funktionen ──────────────────────────────────────────── -->
+    <!-- ── 2. Zonen & Module ──────────────────────────────────────── -->
     <section id="features">
-      <h2><span class="num">02</span> Funktionen</h2>
+      <h2><span class="num">02</span> Zonen &amp; Module</h2>
 
-      <h3 id="feature-list">2.1 Feature-Liste</h3>
-      <p>[FEATURE_LIST_INTRO]</p>
-      <div class="info-box">
-        <div class="info-box-title">Hinweis</div>
-        <p>Diese Liste wird von Copilot automatisch aktualisiert, wenn neue Features implementiert werden.</p>
-      </div>
-
-      <h3 id="plaene">2.2 Pl&auml;ne &amp; Preise</h3>
+      <h3 id="feature-list">2.1 Modul&uuml;bersicht</h3>
+      <p>
+        Gegliedert wie die Zielarchitektur im Pitch-Dossier: Feld, Hof, B&uuml;ro, Markt.
+        Aufruf im Dashboard &uuml;ber die Seitenleiste. Sichtbarkeit je Modul richtet sich
+        nach der aktiven Demo-Rolle (RBAC).
+      </p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Feature</th><th>Free</th><th>Pro ([PRO_PRICE])</th></tr></thead>
+          <thead><tr><th>Zone</th><th>Modul</th><th>Reifegrad</th><th>Klassifikation</th></tr></thead>
           <tbody>
-            <!-- Copilot updates this table when pricing/plans change -->
-            <tr><td>[FEATURE_A]</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
-            <tr><td>[FEATURE_B]</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
-            <tr><td>[FEATURE_C_PRO]</td><td class="no">&#10007;</td><td class="yes">&#10003;</td></tr>
-            <tr><td>[FEATURE_D_PRO]</td><td class="no">&#10007;</td><td class="yes">&#10003;</td></tr>
+            <tr><td rowspan="6">Feld</td><td>Standort-Hierarchie</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Reihenbl&ouml;cke und Status</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Pfl&uuml;ckaufgaben mit Fotobeleg</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td>Pflanzenschutz und Wartezeit</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Rotationsplan / Pfl&uuml;ckplan</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
+            <tr><td>Wetter und Temperatursumme</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
+            <tr><td rowspan="4">Hof</td><td>K&uuml;hlketten-Uhr</td><td class="no">in Entwicklung (Mock)</td><td>Neu bauen</td></tr>
+            <tr><td>Abholrunden und Tourenplanung</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
+            <tr><td>QR-Steigenkennung</td><td class="no">in Entwicklung (Mock)</td><td>Anpassen</td></tr>
+            <tr><td>Elektronischer Lieferschein (&#1069;&#1057;&#1060;)</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
+            <tr><td rowspan="8">B&uuml;ro</td><td>Rollen und Rechte</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td>Deckungsbeitrag und Finanzen</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Pfl&uuml;ckerstamm und Brigaden</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Qualit&auml;tsfaktor-Lohn</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
+            <tr><td>Dokumentenverwaltung</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td>Compliance-Cockpit</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>Staatliche Integrationen</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
+            <tr><td>F&ouml;rdermitteldossier</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
+            <tr><td rowspan="6">Markt</td><td>Sorten- und Kontingentkatalog</td><td class="yes">Demo</td><td>Anpassen</td></tr>
+            <tr><td>B2B-Portal</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
+            <tr><td>Preislisten</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
+            <tr><td>KI-Assistent (Retrieval-Chat)</td><td class="no">in Entwicklung (Mock)</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td>Aggregator / Nachbarbetriebe</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
+            <tr><td>Schulungsvideos</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="plaene">2.2 Reifegrad &amp; Klassifikation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Demo</strong></td><td>Hauptfunktion, im Prototyp als bedienbare Mock-Oberfl&auml;che gebaut (ohne echte Persistenz).</td></tr>
+            <tr><td><strong>in Entwicklung</strong></td><td>Unterfunktion, sichtbarer Men&uuml;punkt mit Status-Badge, jedoch ohne vollst&auml;ndige Logik. Drei Module haben einen zus&auml;tzlichen UI-Mock (K&uuml;hlketten-Uhr, QR-Steigen, KI-Chat).</td></tr>
+            <tr><td><strong>&Uuml;bernehmen</strong></td><td>Code und Architektur aus 1&Ccedil;at&#305; bleiben, nur die Beschriftung &auml;ndert sich.</td></tr>
+            <tr><td><strong>Anpassen</strong></td><td>Das Muster bleibt, Datenmodell und Logik werden umgebaut.</td></tr>
+            <tr><td><strong>Neu bauen</strong></td><td>Es gibt kein Vorbild in 1&Ccedil;at&#305;. Genau die vier Bausteine, an denen der Business Case h&auml;ngt.</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ── 3. Erste Schritte (Tutorials) ─────────────────────────── -->
+    <!-- ── 3. Erste Schritte ─────────────────────────────────────── -->
     <section id="tutorials">
       <h2><span class="num">03</span> Erste Schritte</h2>
 
-      <h3 id="tut-konto">3.1 Konto erstellen</h3>
+      <h3 id="tut-konto">3.1 Prototyp starten</h3>
       <ol>
-        <!-- Copilot updates steps to match actual auth flow and routes -->
-        <li><code>[APP_URL]/auth/registrieren</code> aufrufen</li>
-        <li>E-Mail-Adresse und Passwort (min. 8 Zeichen) eingeben</li>
-        <li>AGB und Datenschutzerkl&auml;rung akzeptieren</li>
-        <li><strong>&bdquo;Kostenlos starten&ldquo;</strong> klicken</li>
-        <li>Best&auml;tigungslink in der E-Mail anklicken</li>
-        <li>Weiterleitung zum Dashboard</li>
+        <li><code>npm install</code> im Projektverzeichnis ausf&uuml;hren</li>
+        <li><code>npm run dev</code> &ndash; Startet den Dev-Server (Turbopack)</li>
+        <li><code>http://localhost:3000</code> &ouml;ffnen &ndash; leitet automatisch auf <code>/de</code> weiter</li>
+        <li>&Uuml;ber &bdquo;Zum Portal&ldquo; oder <code>/de/dashboard</code> ins Dashboard wechseln</li>
+      </ol>
+      <div class="info-box">
+        <div class="info-box-title">Keine Zugangsdaten n&ouml;tig</div>
+        <p>Der Prototyp hat keine Anmeldung. Statt einer echten Auth gibt es oben rechts eine Demo-Rollenauswahl.</p>
+      </div>
+
+      <h3 id="tut-start">3.2 Demo-Rolle wechseln</h3>
+      <ol>
+        <li>Im Dashboard oben rechts das Rollen-Auswahlfeld &ouml;ffnen (Symbol &bdquo;Person&ldquo;)</li>
+        <li>Eine der sechs Kernrollen w&auml;hlen, z. B. &bdquo;B2B-Kunde&ldquo;</li>
+        <li>Die Seitenleiste zeigt jetzt nur noch die f&uuml;r diese Rolle freigegebenen Module &ndash; dieselbe RBAC-Engine wie in 1&Ccedil;at&#305;</li>
+        <li>Ruft man ein gesperrtes Modul direkt auf, erscheint ein Zugriffs-Hinweis</li>
       </ol>
 
-      <h3 id="tut-start">3.2 Loslegen</h3>
+      <h3 id="tut-upgrade">3.3 Sprache umschalten</h3>
       <ol>
-        <!-- Copilot fills this section with the actual first-run workflow -->
-        <li>[STEP_1]</li>
-        <li>[STEP_2]</li>
-        <li>[STEP_3]</li>
-      </ol>
-
-      <h3 id="tut-upgrade">3.3 Auf Pro upgraden</h3>
-      <ol>
-        <li>Im Dashboard auf <strong>&bdquo;Auf Pro upgraden&ldquo;</strong> klicken</li>
-        <li>Stripe Checkout &ouml;ffnet sich im selben Fenster</li>
-        <li>Zahlungsdaten eingeben (Kreditkarte, SEPA-Lastschrift)</li>
-        <li>Nach Zahlung: automatische R&uuml;ckleitung zum Dashboard mit aktiviertem Pro-Status</li>
+        <li>Sprachumschalter im Kopfbereich (Globus-Symbol): DE, TR, KK, RU</li>
+        <li>Die Startsprache ist Deutsch; Englisch aus 1&Ccedil;at&#305; entf&auml;llt, Kasachisch kommt hinzu</li>
+        <li>Deutsch ist vollst&auml;ndig; TR, KK und RU sind f&uuml;r den Prototyp bewusst teil&uuml;bersetzt und fallen sonst auf Deutsch zur&uuml;ck</li>
       </ol>
     </section>
 
@@ -492,29 +540,21 @@
     <section id="howto">
       <h2><span class="num">04</span> How-to Guides</h2>
 
-      <h3 id="ht-profil">4.1 Profil &amp; Abonnement verwalten</h3>
+      <h3 id="ht-profil">4.1 Reihenblock-Status pr&uuml;fen (Wartezeitsperre)</h3>
       <ol>
-        <li><code>/[locale]/profil</code> aufrufen</li>
-        <li>Stammdaten (Name, E-Mail) &auml;ndern &rarr; <strong>&bdquo;Speichern&ldquo;</strong></li>
-        <li>Passwort &auml;ndern &rarr; Best&auml;tigungs-E-Mail wird versandt</li>
-        <li>Abo-Status und n&auml;chstes Abrechnungsdatum einsehen</li>
-        <li>Zahlungsmethode &auml;ndern &rarr; Weiterleitung zum Stripe Customer Portal</li>
-        <li>Pro-Abo k&uuml;ndigen &rarr; Weiterleitung zum Stripe Customer Portal (K&uuml;ndigung zum Periodenende)</li>
+        <li><code>Dashboard &rarr; Feld &rarr; Reihenbl&ouml;cke und Status</code> &ouml;ffnen</li>
+        <li>Statusverteilung oben zeigt f&uuml;r jede Kachel den entsprechenden 1&Ccedil;at&#305;-Unit-Status (occupied, vacant, reserved, maintenance, blocked)</li>
+        <li>Auf die Kachel <strong>&bdquo;wartezeitgesperrt&ldquo;</strong> klicken &ndash; filtert die Tabelle</li>
+        <li>Spalte &bdquo;Sperre&ldquo; zeigt Mittel, Behandlungsdatum, Wartezeit und Freigabedatum. Kein Pfl&uuml;cken, keine Aufgabe, keine Steige aus diesem Block bis zur Freigabe.</li>
       </ol>
 
-      <h3 id="ht-loeschen">4.2 Konto l&ouml;schen (DSGVO)</h3>
+      <h3 id="ht-loeschen">4.2 Pfl&uuml;ckaufgabe mit Fotobeleg</h3>
       <ol>
-        <li><code>/[locale]/profil</code> aufrufen &rarr; Abschnitt <strong>&bdquo;Konto l&ouml;schen&ldquo;</strong></li>
-        <li>Best&auml;tigungsdialog &ouml;ffnet sich &ndash; Vorgang ist <strong>nicht r&uuml;ckg&auml;ngig zu machen</strong></li>
-        <li>Best&auml;tigung eingeben und <strong>&bdquo;Konto unwiderruflich l&ouml;schen&ldquo;</strong> klicken</li>
-        <li>Alle personenbezogenen Daten werden gel&ouml;scht (DSGVO Art. 17)</li>
-        <li>Aktives Pro-Abo wird bei Stripe sofort gek&uuml;ndigt</li>
+        <li><code>Dashboard &rarr; Feld &rarr; Pfl&uuml;ckaufgaben mit Fotobeleg</code> &ouml;ffnen</li>
+        <li>Links eine Aufgabe je Brigade und Reihenblock w&auml;hlen; Fortschritt ist Istmenge gegen Zielmenge</li>
+        <li>Rechts erscheinen die Fotobelege (Verkaufsschale, Reihenblock, Steige) mit Zeitstempel</li>
+        <li>Steht die Aufgabe auf &bdquo;Belegpr&uuml;fung&ldquo;, erscheinen die Aktionen <strong>Freigeben</strong> oder <strong>Nacharbeit</strong> (im Prototyp ohne Persistenz)</li>
       </ol>
-
-      <div class="warn-box">
-        <div class="warn-box-title">Unumkehrbarer Vorgang</div>
-        <p>Die Konto-L&ouml;schung kann nicht r&uuml;ckg&auml;ngig gemacht werden. Alle Daten werden dauerhaft entfernt.</p>
-      </div>
     </section>
 
     <!-- ── 5. Funktionsreferenz ───────────────────────────────────── -->
@@ -526,34 +566,28 @@
         <table>
           <thead><tr><th>Route</th><th>Beschreibung</th><th>Zugriff</th></tr></thead>
           <tbody>
-            <!-- Copilot updates this table to match actual app routes from src/app/ -->
-            <tr><td><code>/[locale]</code></td><td>Startseite / Marketing</td><td>Alle</td></tr>
-            <tr><td><code>/[locale]/auth/anmelden</code></td><td>Login</td><td>&Ouml;ffentlich</td></tr>
-            <tr><td><code>/[locale]/auth/registrieren</code></td><td>Registrierung</td><td>&Ouml;ffentlich</td></tr>
-            <tr><td><code>/[locale]/dashboard</code></td><td>Nutzer-Dashboard</td><td>Eingeloggt</td></tr>
-            <tr><td><code>/[locale]/profil</code></td><td>Profil, Abo, Konto</td><td>Eingeloggt</td></tr>
-            <tr><td><code>/[locale]/admin</code></td><td>Admin-Dashboard</td><td>Admin only</td></tr>
-            <tr><td><code>/[locale]/impressum</code></td><td>Impressum</td><td>Alle</td></tr>
-            <tr><td><code>/[locale]/datenschutz</code></td><td>Datenschutzerkl&auml;rung</td><td>Alle</td></tr>
-            <tr><td><code>/[locale]/agb</code></td><td>AGB</td><td>Alle</td></tr>
+            <tr><td><code>/</code></td><td>Weiterleitung auf <code>/de</code> (Locale-Praefix erzwungen)</td><td>Alle</td></tr>
+            <tr><td><code>/[locale]</code></td><td>&Ouml;ffentliche Landingpage (Hero, vier Zonen, Belegbarkeit, KPIs, Compliance)</td><td>Alle</td></tr>
+            <tr><td><code>/[locale]/dashboard</code></td><td>Betriebs&uuml;bersicht: 14 KPI-Kacheln, vier Zonen, Meilensteine</td><td>Demo-Rolle</td></tr>
+            <tr><td><code>/[locale]/dashboard/[zone]</code></td><td>Zonen&uuml;bersicht (feld, hof, buero, markt) mit den Modulen der Zone</td><td>RBAC</td></tr>
+            <tr><td><code>/[locale]/dashboard/[zone]/[modul]</code></td><td>Einzelmodul &ndash; Demo-Oberfl&auml;che oder Platzhalter &bdquo;in Entwicklung&ldquo;</td><td>RBAC</td></tr>
+            <tr><td><code>/[locale]/impressum</code></td><td>Impressum (WAMOCON GmbH)</td><td>Alle</td></tr>
+            <tr><td><code>/[locale]/datenschutz</code></td><td>Datenschutz inkl. Hinweis zur Datenresidenz</td><td>Alle</td></tr>
           </tbody>
         </table>
       </div>
+      <p><code>[locale]</code> ist eines von <code>de</code>, <code>tr</code>, <code>kk</code>, <code>ru</code>. Locale-Routing &uuml;ber <code>src/proxy.ts</code> (Next.js 16) und next-intl.</p>
 
-      <h3 id="api">5.2 API &amp; Hooks</h3>
+      <h3 id="api">5.2 Rollen &amp; Rechte (RBAC)</h3>
+      <p>
+        &Uuml;bernommen aus <code>1&Ccedil;at&#305;/apps/web/lib/rbac.ts</code>. Sechs Kernrollen &uuml;ber
+        22 Ressourcen mal 7 Aktionen als reine Datenstruktur. Die Guardianship-/Kind-Rollen
+        aus 1&Ccedil;at&#305; (guest, service_provider, child_owner, child_tenant, child_guest)
+        sind wie in der Analyse gefordert entfernt.
+      </p>
       <div class="info-box">
-        <div class="info-box-title">Lebende Dokumentation</div>
-        <p>Copilot erg&auml;nzt diese Tabelle automatisch, wenn neue API-Routen oder Hooks hinzugef&uuml;gt werden.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Endpunkt / Hook</th><th>Methode</th><th>Beschreibung</th><th>Zugriff</th></tr></thead>
-          <tbody>
-            <!-- Copilot updates rows when API routes are added/changed -->
-            <tr><td><code>/api/health</code></td><td>GET</td><td>Health-Check</td><td>Alle</td></tr>
-            <tr><td><code>/api/stripe/webhook</code></td><td>POST</td><td>Stripe-Webhook (intern)</td><td>Stripe only</td></tr>
-          </tbody>
-        </table>
+        <div class="info-box-title">Offener Punkt</div>
+        <p>RLS-Policies sind an die heutigen 1&Ccedil;at&#305;-Rollen gebunden und m&uuml;ssen f&uuml;r jede neue Ressource neu geschrieben, nicht nur umbenannt werden (siehe Kapitel 08).</p>
       </div>
     </section>
 
@@ -566,66 +600,91 @@
         <table>
           <thead><tr><th>Schicht</th><th>Technologie</th><th>Aufgabe</th></tr></thead>
           <tbody>
-            <tr><td>Frontend &amp; Backend</td><td>Next.js 16 (App Router), TypeScript</td><td>SSR, API-Routen, Middleware</td></tr>
-            <tr><td>Styling</td><td>Tailwind CSS v4</td><td>Utility-First, Dark/Light Mode</td></tr>
-            <tr><td>Datenbank &amp; Auth</td><td>Supabase (PostgreSQL, RLS)</td><td>Schema <code>[DB_SCHEMA]</code></td></tr>
-            <tr><td>i18n</td><td>next-intl v4</td><td>Deutsch (prim&auml;r) &amp; Englisch</td></tr>
-            <tr><td>Payment</td><td>Stripe</td><td>Abonnement, Customer Portal</td></tr>
-            <tr><td>E-Mail</td><td>Resend</td><td>Transaktions-E-Mails, Benachrichtigungen</td></tr>
-            <tr><td>Tests</td><td>Vitest, Testing Library</td><td>Unit-Tests, Coverage-Threshold</td></tr>
-            <tr><td>CI/CD</td><td>GitHub Actions</td><td>Tests, Lint, Typecheck, Vercel Deploy</td></tr>
-            <tr><td>Hosting</td><td>Vercel (Frontend), Supabase EU-Frankfurt</td><td>DSGVO-konforme EU-Region</td></tr>
+            <tr><td>Framework</td><td>Next.js 16 (App Router, <code>src/app/</code>)</td><td>SSR, statische Locale-Seiten, <code>src/proxy.ts</code></td></tr>
+            <tr><td>Sprache</td><td>TypeScript (strict)</td><td>Typsicheres Domänenmodell und RBAC</td></tr>
+            <tr><td>Styling</td><td>Tailwind CSS v4</td><td>Design-Tokens in <code>src/app/globals.css</code>, Hell/Dunkel</td></tr>
+            <tr><td>i18n</td><td>next-intl v4</td><td>Vier Locales, Fallback auf Deutsch per Deep-Merge</td></tr>
+            <tr><td>Icons</td><td>lucide-react</td><td>Kuratierte Icon-Registry (<code>src/components/icon.tsx</code>)</td></tr>
+            <tr><td>Bilder</td><td>next/image + Unsplash</td><td>Lizenzfreie Platzhalter, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
+            <tr><td>Persistenz</td><td>keine (Prototyp)</td><td>Nur <code>localStorage</code> f&uuml;r Theme und Demo-Rolle</td></tr>
           </tbody>
         </table>
       </div>
+      <div class="info-box">
+        <div class="info-box-title">Design-Token-Umstellung</div>
+        <p>Statt der 1&Ccedil;at&#305;-T&uuml;rkis/Amber-Palette (<code>--primary:#066B63</code>) nutzt Malina &bdquo;Tiefes Himbeerrot + Blattgr&uuml;n&ldquo; (<code>--primary:#b11742</code>, <code>--accent:#4f7c3a</code>). Struktur und Variablennamen bleiben identisch, sodass sp&auml;ter nur Farbwerte und Bildsubjekte getauscht werden.</p>
+      </div>
 
-      <h3 id="tech-schema">6.2 Datenbank-Schema</h3>
-      <p>Supabase-Schema: <code>[DB_SCHEMA_DEV]</code> (Entwicklung) / <code>[DB_SCHEMA_PROD]</code> (Produktion). Row Level Security (RLS) ist auf allen Tabellen aktiv.</p>
+      <h3 id="tech-schema">6.2 Herkunft aus 1&Ccedil;at&#305;</h3>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Tabelle</th><th>Inhalt</th><th>RLS</th></tr></thead>
+          <thead><tr><th>Malina</th><th>1&Ccedil;at&#305;-Quelle</th><th>&Uuml;bertragbarkeit</th></tr></thead>
           <tbody>
-            <!-- Copilot updates this table when Supabase migrations are applied -->
-            <tr><td><code>profiles</code></td><td>Nutzerprofile, Plan (free/pro)</td><td>Nur eigener Datensatz</td></tr>
+            <tr><td>Standort-Hierarchie</td><td>Migration 2, <code>site-management-data.ts</code></td><td>zentrale Analogie, eine Ebene tiefer</td></tr>
+            <tr><td>Reihenblock-Zustandsautomat</td><td><code>units</code> (occupied/vacant/reserved/maintenance/blocked)</td><td>1:1, <code>blocked</code> = wartezeitgesperrt</td></tr>
+            <tr><td>Pfl&uuml;ckaufgaben + Fotobeleg</td><td>Migration 6: <code>workforce_tasks</code>, <code>media_reports</code></td><td>direkt nutzbar</td></tr>
+            <tr><td>Erntesperre</td><td><code>payment-restriction-control.tsx</code></td><td>Muster bleibt, Bedingung wechselt</td></tr>
+            <tr><td>RBAC</td><td><code>lib/rbac.ts</code></td><td>Engine bleibt, Rollen umbenannt</td></tr>
+            <tr><td>Dokumente</td><td><code>document-storage.ts</code>, Migration 9</td><td>direkt nutzbar</td></tr>
+            <tr><td>Compliance-Cockpit</td><td><code>compliance-repository.ts</code></td><td>Grundger&uuml;st 1:1, Rechtszitate neu</td></tr>
+            <tr><td>Staatliche Integrationen</td><td><code>integration_outbox</code></td><td>Muster 1:1, Konnektoren neu</td></tr>
+            <tr><td>Retrieval-KI-Chat</td><td><code>ai-retrieval.ts</code>, <code>ai-guardrails.ts</code></td><td>Architektur erf&uuml;llt das Verdikt bereits</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ── 7. CI/CD & Tests ───────────────────────────────────────── -->
+    <!-- ── 7. Meilensteine ────────────────────────────────────────── -->
     <section id="ci-cd">
-      <h2><span class="num">07</span> CI/CD &amp; Tests</h2>
-      <p>Jeder Code-Push durchl&auml;uft automatisch Qualit&auml;ts-Gates. Ein Vercel-Deployment erfolgt nur bei Pull Requests (Preview) oder Merge in <code>main</code> (Produktion).</p>
+      <h2><span class="num">07</span> Meilensteine</h2>
+      <p>Interne Vorbereitung, beide Termine <strong>vor</strong> der Vor-Ort-Analysewoche vom 24.09. bis 01.10.2026.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Workflow</th><th>Trigger</th><th>Befehl</th></tr></thead>
+          <thead><tr><th>Meilenstein</th><th>Termin</th><th>Inhalt</th></tr></thead>
           <tbody>
-            <!-- Copilot updates this table when GitHub Actions workflows change -->
-            <tr><td><code>deploy.yml</code></td><td>Manuell (workflow_dispatch)</td><td>Vercel Production/Preview Deploy</td></tr>
-            <tr><td><code>pr-pipeline.yml</code></td><td>Pull Request &rarr; main</td><td>Typecheck, Lint, Build, Tests</td></tr>
-            <tr><td><code>docs.yml</code></td><td>Push &rarr; main (docs/)</td><td>GitHub Pages (dieses Handbuch)</td></tr>
+            <tr>
+              <td><strong>A &ndash; Prototyp</strong> <span class="badge badge-primary">dieser Stand</span></td>
+              <td>bis 06.09.2026</td>
+              <td>Himbeer-Design-Tokens, Landingpage mit Platzhaltern und Sprachumschalter, Dashboard-Ger&uuml;st mit vier Zonen, Kern-Workflows (Reihenblock-&Uuml;bersicht, Pfl&uuml;ckaufgabe mit Fotobeleg).</td>
+            </tr>
+            <tr>
+              <td><strong>B &ndash; Grundger&uuml;st</strong></td>
+              <td>sp&auml;testens 19.09.2026</td>
+              <td>Hauptfunktionen echt funktionsf&auml;hig (RBAC, Standort-Hierarchie mit Verwaltung, Reihenblock-Statusverwaltung, Pfl&uuml;ckaufgaben, Dokumente, KPI-Kacheln). Unterfunktionen als Men&uuml;punkt mit Status &bdquo;in Entwicklung&ldquo;.</td>
+            </tr>
           </tbody>
         </table>
       </div>
+      <div class="warn-box">
+        <div class="warn-box-title">Abgrenzung zum Kunden-Zeitplan</div>
+        <p>Dieser interne Zeitplan ist enger als der f&uuml;r den Kunden kommunizierte Termin f&uuml;r Phase 1 &bdquo;Fundament&ldquo; (16.10. bis 20.12.2026). Der Prototyp ist ein internes Demonstrations-System und nicht der vertraglich zugesicherte Leistungsumfang.</p>
+      </div>
     </section>
 
-    <!-- ── 8. DSGVO & Compliance ──────────────────────────────────── -->
+    <!-- ── 8. Compliance & Datenresidenz ──────────────────────────── -->
     <section id="compliance">
-      <h2><span class="num">08</span> DSGVO &amp; Compliance</h2>
-      <p>[APP_NAME] verarbeitet personenbezogene Daten ausschlie&szlig;lich in der EU (Supabase, Region Frankfurt). Alle Verarbeitungen sind nach DSGVO dokumentiert.</p>
+      <h2><span class="num">08</span> Compliance &amp; Datenresidenz</h2>
+      <p>
+        Kasachstan hat 2026 in Serie neue Pflichten gesetzt. Die Sicherheitsgates aus
+        1&Ccedil;at&#305; erf&uuml;llen den Geist bereits; Transparenzhinweis- und Einwilligungstexte
+        m&uuml;ssen nach kasachstanischem Recht neu formuliert, nicht nur &uuml;bersetzt werden.
+      </p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>DSGVO-Anforderung</th><th>Umsetzung</th></tr></thead>
+          <thead><tr><th>Rechtsgrundlage 2026</th><th>Auswirkung auf Malina</th></tr></thead>
           <tbody>
-            <tr><td>Recht auf Auskunft (Art. 15)</td><td>Profil-Seite zeigt alle gespeicherten Daten</td></tr>
-            <tr><td>Recht auf L&ouml;schung (Art. 17)</td><td>Konto-L&ouml;schung im Profil, sofortige Datenlöschung inkl. Stripe-K&uuml;ndigung</td></tr>
-            <tr><td>Datenportabilit&auml;t (Art. 20)</td><td>Datenexport (JSON) im Profil</td></tr>
-            <tr><td>Cookie-Einwilligung</td><td>Cookie-Banner mit Opt-in bei erstem Besuch</td></tr>
-            <tr><td>Datensicherheit (Art. 32)</td><td>RLS auf allen Supabase-Tabellen, HTTPS, kein Client-seitiges Secret</td></tr>
-            <tr><td>Impressum &amp; Datenschutzerkl&auml;rung</td><td>Verf&uuml;gbar unter <code>/[locale]/impressum</code> und <code>/[locale]/datenschutz</code></td></tr>
-            <tr><td>AGB</td><td>Verf&uuml;gbar unter <code>/[locale]/agb</code></td></tr>
+            <tr><td>Steuergesetzbuch 2026</td><td>Wirkt auf Deckungsbeitrag und Kostentr&auml;ger.</td></tr>
+            <tr><td>Elektronischer Warenbegleitschein (&#1069;&#1057;&#1060;)</td><td>&Uuml;ber <code>integration_outbox</code>-Muster, kein Eigenbau der Buchhaltung.</td></tr>
+            <tr><td>KI-Gesetz Nr. 230-VIII</td><td>Transparenzhinweis und Einwilligung f&uuml;r den Retrieval-KI-Chat.</td></tr>
+            <tr><td>Digitalkodex Nr. 255-VIII</td><td><strong>Datenresidenz:</strong> Speicherung bestimmter Datenprodukte au&szlig;erhalb Kasachstans eingeschr&auml;nkt. Hosting-Standort f&uuml;r QR-, Offline-Sync- und KI-Architektur ist vor Produktivsetzung rechtlich zu pr&uuml;fen.</td></tr>
+            <tr><td>Versch&auml;rftes Datenschutzrecht (seit 24.08.2026)</td><td>Digest-Muster f&uuml;r Identit&auml;ten aus 1&Ccedil;at&#305; passt; Ziel wechselt zu Kunden- und Nachbarbetrieb-Onboarding.</td></tr>
+            <tr><td>&#1045;&#1057;&#1059;&#1058;&#1044;-Arbeitsvertragserfassung</td><td>Jeder Saisonvertrag wird &uuml;ber die Outbox im staatlichen System erfasst.</td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Prototyp</div>
+        <p>Der Prototyp verarbeitet keine personenbezogenen Daten und setzt keine Analyse-Cookies. Theme-Auswahl und Demo-Rolle liegen nur lokal im Browser.</p>
       </div>
     </section>
 
@@ -636,13 +695,15 @@
         <table>
           <thead><tr><th>Begriff</th><th>Erkl&auml;rung</th></tr></thead>
           <tbody>
-            <!-- Copilot extends this glossary with domain-specific terms as features are added -->
-            <tr><td><strong>RLS</strong></td><td>Row Level Security &ndash; Datenbankebenen-Zugriffsschutz in Supabase/PostgreSQL</td></tr>
-            <tr><td><strong>SSR</strong></td><td>Server-Side Rendering &ndash; Seitenrendering auf dem Server (Next.js App Router Standard)</td></tr>
-            <tr><td><strong>SaaS</strong></td><td>Software as a Service &ndash; webbasierte Software, die als Abonnement bereitgestellt wird</td></tr>
-            <tr><td><strong>WAMOCON</strong></td><td>WAMOCON GmbH &ndash; Betreiber und Entwickler von [APP_NAME]</td></tr>
-            <tr><td><strong>Feature-Gate</strong></td><td>Serverseitiger Mechanismus, der Pro-Funktionen f&uuml;r Free-Nutzer sperrt</td></tr>
-            <tr><td><strong>CAC</strong></td><td>Customer Acquisition Cost &ndash; Kosten zur Gewinnung eines neuen Kunden</td></tr>
+            <tr><td><strong>1&Ccedil;at&#305;</strong></td><td>Bestehendes ERP-&Ouml;kosystem aus der Immobilienbranche, das Malina als Blaupause dient.</td></tr>
+            <tr><td><strong>Reihenblock</strong></td><td>Kleinste Einheit der Standort-Hierarchie. Entspricht der Wohneinheit (<code>unit</code>) in 1&Ccedil;at&#305;.</td></tr>
+            <tr><td><strong>wartezeitgesperrt</strong></td><td>Reihenblock-Status: Ernte nach Pflanzenschutzbehandlung bis Ablauf der Wartezeit gesperrt. Entspricht <code>blocked</code>.</td></tr>
+            <tr><td><strong>Steige</strong></td><td>Transportgebinde f&uuml;r geerntete Himbeeren, per QR einer Charge zugeordnet.</td></tr>
+            <tr><td><strong>K&uuml;hlketten-Uhr</strong></td><td>Zeitmessung Pfl&uuml;cken bis Vork&uuml;hlung mit hartem 60-Minuten-Grenzwert.</td></tr>
+            <tr><td><strong>Qualit&auml;tsfaktor-Lohn</strong></td><td>Grundverg&uuml;tung plus Mengenkomponente plus Qualit&auml;tsfaktor. Reiner St&uuml;cklohn ist bei der Himbeere wertvernichtend.</td></tr>
+            <tr><td><strong>RBAC</strong></td><td>Role-Based Access Control &ndash; Rollen- und Ressourcen-Rechtematrix, &uuml;bernommen aus 1&Ccedil;at&#305;.</td></tr>
+            <tr><td><strong>&#1069;&#1057;&#1060; / &#1045;&#1057;&#1059;&#1058;&#1044;</strong></td><td>Kasachstanische Pflichtsysteme f&uuml;r elektronische Rechnungen bzw. Arbeitsvertragserfassung.</td></tr>
+            <tr><td><strong>WAMOCON</strong></td><td>WAMOCON GmbH &ndash; Auftraggeber und Entwickler von Malina.</td></tr>
           </tbody>
         </table>
       </div>
@@ -654,7 +715,7 @@
 <!-- ── Footer ───────────────────────────────────────────────────────── -->
 <footer class="page-footer">
   <div>&copy; 2026 WAMOCON GmbH &ndash; Alle Rechte vorbehalten</div>
-  <div>[APP_NAME] Produkthandbuch v[APP_VERSION] &middot; Vertraulich &middot; [LAST_UPDATED]</div>
+  <div>Malina Produkthandbuch v0.1.0 &middot; Vertraulich &middot; Interner Prototyp &middot; September 2026</div>
 </footer>
 
 <!-- ── Smooth active TOC highlighting ───────────────────────────────── -->

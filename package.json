@@ -1,5 +1,5 @@
 {
-  "name": "template_repo",
+  "name": "malina",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,10 +13,14 @@
     "gen:anforderungsdokument": "node scripts/generate-anforderungsdokument.mjs"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "docx": "^9.6.1",
+    "lucide-react": "^0.469.0",
     "next": "16.2.1",
+    "next-intl": "^4.14.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^2.6.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
