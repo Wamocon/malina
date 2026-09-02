@@ -361,20 +361,20 @@ insert into public.integration_outbox (ziel_system, payload, status) values
   ('ESUTD', '{"typ":"vertrag","batch":"saison-2026"}',       'pending')
   on conflict do nothing;
 
--- --- KPI-Baseline (14 Kennzahlen) -----------------------------------------
+-- --- KPI-Baseline: die 14 Kennzahlen aus der Marktanalyse Kapitel 4.10 -------
 insert into public.kpi_baseline (key, name, zone, ziel, baseline_wert, gut_richtung, unterschrieben_am) values
-  ('verlustquote',          'Verlustquote',                             'hof',   '< 6 %',        '8,4 %',       'down', null),
-  ('vermarktungsfaehig',    'Anteil vermarktungsfaehiger Schalen',      'hof',   '> 90 %',       '82 %',        'up',   null),
-  ('zeitBisKuehlung',       'Zeit bis zur Kuehlung (Durchschnitt)',     'hof',   '< 60 min',     '47 min',      'down', null),
-  ('kuehlketteEinhaltung',  'Kuehlkette unter 60 min eingehalten',      'hof',   '> 95 %',       '76 %',        'up',   null),
-  ('pflueckleistung',       'Pflueckleistung je Person',                'feld',  '> 7 kg/h',     '6,1 kg/h',    'up',   null),
-  ('erntemenge',            'Erntemenge pro Tag',                       'feld',  'Saisonkurve',  '1 240 kg',    'up',   null),
-  ('wartezeitVerstoesse',   'Wartezeit-Verstoesse',                     'feld',  '0',            '0',           'down', null),
-  ('herbstanteil',          'Anteil Herbstsorten-Ertrag',              'feld',  '> 60 %',       '58 %',        'up',   null),
-  ('liefertreue',           'Liefertreue',                              'markt', '> 97 %',       '91 %',        'up',   null),
-  ('reklamationsquote',     'Reklamationsquote B2B',                    'markt', '< 2 %',        '3,2 %',       'down', null),
-  ('durchschnittspreis',    'Durchschnittspreis je kg',                 'markt', '1 800 Tenge/kg','1 950 Tenge/kg','up', null),
-  ('deckungsbeitrag',       'Deckungsbeitrag je kg',                    'buero', '> 700 Tenge/kg','640 Tenge/kg','up',  null),
-  ('esutdAbdeckung',        'ESUTD-Abdeckung',                          'buero', '100 %',        '64 %',        'up',   null),
-  ('brigadenAuslastung',    'Brigaden-Auslastung',                      'buero', '85 - 95 %',    '88 %',        'up',   null)
+  ('verlustquote',          'Verlustquote vom Pfluecken bis zum Kunden',            'hof',   '< 6 %',      '8,4 %',    'down', null),
+  ('vermarktungsfaehig',    'Anteil vermarktungsfaehiger Schalen',                  'hof',   '> 90 %',     '82 %',     'up',   null),
+  ('zeitBisVorkuehlung',    'Zeit vom Pfluecken bis zur Vorkuehlung',               'hof',   '< 60 min',   '47 min',   'down', null),
+  ('zeitBisKunde',          'Zeit vom Pfluecken bis zum Kunden',                    'hof',   '< 24 h',     '19 h',     'down', null),
+  ('pflueckleistung',       'Pflueckleistung je Person und Stunde',                 'feld',  '> 7 kg/h',   '6,1 kg/h', 'up',   null),
+  ('pflueckStreuung',       'Streuung der Pflueckleistung (beste zu schwaechste)',  'feld',  '< 1,8x',     '2,3x',     'down', null),
+  ('pflueckintervall',      'Eingehaltenes Pflueckintervall je Reihenblock',        'feld',  '> 95 %',     '84 %',     'up',   null),
+  ('behandlungenWartezeit', 'Behandlungen mit eingehaltener Wartezeit',             'feld',  '100 %',      '96 %',     'up',   null),
+  ('reklamationsquote',     'Reklamationsquote',                                    'markt', '< 2 %',      '3,2 %',    'down', null),
+  ('liefertreue',           'Liefertreue (puenktlich und vollstaendig)',            'markt', '> 97 %',     '91 %',     'up',   null),
+  ('belegteVerkaeufe',      'Anteil belegter Verkaeufe (ESF und Warenbegleitschein)','buero','100 %',      '71 %',     'up',   null),
+  ('deckungsbeitrag',       'Deckungsbeitrag je kg',                                'buero', '> 700 T/kg', '640 T/kg', 'up',   null),
+  ('esutdAbdeckung',        'Abdeckung der Saisonkraefte in ESUTD',                 'buero', '100 %',      '64 %',     'up',   null),
+  ('websiteAnfragen',       'Anfragen ueber die Website je Monat',                  'markt', 'Ausgangswert','12',      'up',   null)
   on conflict (key) do nothing;

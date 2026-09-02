@@ -1,14 +1,13 @@
-// Reihenblock-Zustandsautomat. 1Cati `units`: occupied, vacant, reserved,
-// maintenance, blocked. Uebersetzt sich laut Analyse Kapitel 4 "nahezu satzweise"
-// auf den Reihenblock - inklusive `blocked`, das im Himbeerbetrieb woertlich der
-// gesetzlich verlangte Sperrzustand nach Pflanzenschutzbehandlung ist.
+// Reihenblock-Zustandsautomat. Jeder Reihenblock am Spalier hat genau einen
+// Status. Der Pflückplan zeigt einen wartezeitgesperrten Block schlicht nicht
+// an - das ist der am einfachsten prüfbare Nutzen des gesamten Systems.
 
 export type ReihenblockStatus =
-  | "bepflanzt" // occupied  - trägt, in normaler Pflege
-  | "erntereif" // reserved  - für die nächste Rotation eingeplant
-  | "ruhend" // vacant     - abgetragen / Winterruhe
-  | "rueckschnitt" // maintenance - Ruten-/Formschnitt läuft
-  | "wartezeitgesperrt"; // blocked - PSM-Wartezeit läuft, Ernte gesperrt
+  | "bepflanzt" // trägt, in normaler Pflege
+  | "erntereif" // für die nächste Rotation eingeplant
+  | "ruhend" // abgetragen / Winterruhe
+  | "rueckschnitt" // Ruten-/Formschnitt läuft
+  | "wartezeitgesperrt"; // Ernte gesperrt bis Ablauf der Wartezeit
 
 export interface Reihenblock {
   id: string;
@@ -29,13 +28,13 @@ export interface Reihenblock {
 
 export const statusMeta: Record<
   ReihenblockStatus,
-  { catiStatus: string; tone: "success" | "info" | "neutral" | "warning" | "danger" }
+  { hintKey: string; tone: "success" | "info" | "neutral" | "warning" | "danger" }
 > = {
-  bepflanzt: { catiStatus: "occupied", tone: "success" },
-  erntereif: { catiStatus: "reserved", tone: "info" },
-  ruhend: { catiStatus: "vacant", tone: "neutral" },
-  rueckschnitt: { catiStatus: "maintenance", tone: "warning" },
-  wartezeitgesperrt: { catiStatus: "blocked", tone: "danger" },
+  bepflanzt: { hintKey: "bepflanzt", tone: "success" },
+  erntereif: { hintKey: "erntereif", tone: "info" },
+  ruhend: { hintKey: "ruhend", tone: "neutral" },
+  rueckschnitt: { hintKey: "rueckschnitt", tone: "warning" },
+  wartezeitgesperrt: { hintKey: "wartezeitgesperrt", tone: "danger" },
 };
 
 export const reihenbloecke: Reihenblock[] = [

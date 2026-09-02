@@ -19,7 +19,6 @@ export interface ModuleDef {
   resource: Resource;
   klassifikation: Klassifikation;
   reifegrad: Reifegrad;
-  catiQuelle: string;
 }
 
 export interface ZoneDef {
@@ -46,7 +45,6 @@ export const modules: ModuleDef[] = [
     resource: "standort",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "Migration 2, site-management-data.ts",
   },
   {
     key: "reihenbloecke",
@@ -56,7 +54,6 @@ export const modules: ModuleDef[] = [
     resource: "reihenbloecke",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "units-Zustandsautomat (occupied/vacant/blocked ...)",
   },
   {
     key: "pflueckaufgaben",
@@ -66,7 +63,6 @@ export const modules: ModuleDef[] = [
     resource: "pflueckaufgaben",
     klassifikation: "uebernehmen",
     reifegrad: "demo",
-    catiQuelle: "Migration 6, workforce_tasks, media_reports",
   },
   {
     key: "pflanzenschutz",
@@ -76,7 +72,6 @@ export const modules: ModuleDef[] = [
     resource: "pflanzenschutz",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "payment-restriction-control.tsx (Sperre bis Bedingung erfuellt)",
   },
   {
     key: "rotationsplan",
@@ -86,7 +81,6 @@ export const modules: ModuleDef[] = [
     resource: "rotationsplan",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "ohne Vorbild - ics-calendar.ts nur fuer Export",
   },
   {
     key: "wetter",
@@ -96,7 +90,6 @@ export const modules: ModuleDef[] = [
     resource: "rotationsplan",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "ohne Vorbild - einfache Wetter-API in Phase 1",
   },
 
   // ----------------------------------------------------------------- Zone Hof
@@ -108,7 +101,6 @@ export const modules: ModuleDef[] = [
     resource: "kuehlkette",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "ohne Vorbild - hoechste fachliche Prioritaet (60-Minuten-KPI)",
   },
   {
     key: "logistik",
@@ -118,7 +110,6 @@ export const modules: ModuleDef[] = [
     resource: "logistik",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "booking-lifecycle-repository.ts, move-handover-repository.ts",
   },
   {
     key: "qr_steigen",
@@ -128,7 +119,6 @@ export const modules: ModuleDef[] = [
     resource: "qr_steigen",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "Migration 28, public-report-form.tsx, Paket qrcode",
   },
   {
     key: "esf",
@@ -138,7 +128,6 @@ export const modules: ModuleDef[] = [
     resource: "integrationen",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "integration_outbox als Bruecke (kein Eigenbau)",
   },
 
   // --------------------------------------------------------------- Zone Buero
@@ -150,7 +139,6 @@ export const modules: ModuleDef[] = [
     resource: "rollen",
     klassifikation: "uebernehmen",
     reifegrad: "demo",
-    catiQuelle: "lib/rbac.ts (6 Kernrollen, Guardianship entfernt)",
   },
   {
     key: "finanzen",
@@ -160,7 +148,6 @@ export const modules: ModuleDef[] = [
     resource: "finanzen",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "finance_ledger_entries, accountant-finance-repository.ts",
   },
   {
     key: "personal",
@@ -170,7 +157,6 @@ export const modules: ModuleDef[] = [
     resource: "personal",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "StaffMember, workforce_tasks",
   },
   {
     key: "lohn",
@@ -180,7 +166,6 @@ export const modules: ModuleDef[] = [
     resource: "lohn",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "ohne Vorbild - Grundlohn + Menge + Qualitaetsfaktor",
   },
   {
     key: "dokumente",
@@ -190,7 +175,6 @@ export const modules: ModuleDef[] = [
     resource: "dokumente",
     klassifikation: "uebernehmen",
     reifegrad: "demo",
-    catiQuelle: "document-storage.ts, Migration 9",
   },
   {
     key: "compliance",
@@ -200,7 +184,6 @@ export const modules: ModuleDef[] = [
     resource: "compliance",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "compliance-repository.ts, compliance-live-cockpit.tsx",
   },
   {
     key: "integrationen",
@@ -210,7 +193,6 @@ export const modules: ModuleDef[] = [
     resource: "integrationen",
     klassifikation: "neu-bauen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "integration_outbox (ESF, ESUTD, gosagro.kz, qoldau.kz)",
   },
   {
     key: "foerdermittel",
@@ -220,7 +202,6 @@ export const modules: ModuleDef[] = [
     resource: "foerdermittel",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "document-storage.ts, reporting-repository.ts (Container-Muster)",
   },
 
   // --------------------------------------------------------------- Zone Markt
@@ -232,7 +213,6 @@ export const modules: ModuleDef[] = [
     resource: "sortenkatalog",
     klassifikation: "anpassen",
     reifegrad: "demo",
-    catiQuelle: "listings -> Sorten-/Kontingentkatalog",
   },
   {
     key: "b2b_portal",
@@ -242,7 +222,6 @@ export const modules: ModuleDef[] = [
     resource: "b2b_portal",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "reservations, listings, Finanzmodule (Buchungsmuster)",
   },
   {
     key: "preislisten",
@@ -252,7 +231,6 @@ export const modules: ModuleDef[] = [
     resource: "b2b_portal",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "reservations / Finanzmodule",
   },
   {
     key: "ki_assistent",
@@ -262,7 +240,6 @@ export const modules: ModuleDef[] = [
     resource: "ki_assistent",
     klassifikation: "uebernehmen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "public-ai-chat.ts, ai-retrieval.ts, ai-guardrails.ts",
   },
   {
     key: "aggregator",
@@ -272,7 +249,6 @@ export const modules: ModuleDef[] = [
     resource: "aggregator",
     klassifikation: "anpassen",
     reifegrad: "in-entwicklung",
-    catiQuelle: "vendor-invoice-repository.ts, vendors-Tabelle",
   },
   {
     key: "schulungen",
@@ -282,7 +258,6 @@ export const modules: ModuleDef[] = [
     resource: "schulungen",
     klassifikation: "uebernehmen",
     reifegrad: "demo",
-    catiQuelle: "video-library.ts, video-library-player.tsx",
   },
 ];
 

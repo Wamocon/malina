@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ArrowRight, ShieldCheck, Timer } from "lucide-react";
+import { ArrowRight, Snowflake, Timer, Repeat } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { PlantationBackdrop } from "@/components/site/plantation-backdrop";
 
 const HERO_IMG =
   "https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=1600&q=70";
@@ -9,8 +10,14 @@ const HERO_IMG =
 export function Hero() {
   const t = useTranslations("hero");
 
+  const stats = [
+    { icon: Timer, value: "stat1Value", label: "stat1Label" },
+    { icon: Repeat, value: "stat2Value", label: "stat2Label" },
+    { icon: Snowflake, value: "stat3Value", label: "stat3Label" },
+  ] as const;
+
   return (
-    <section className="relative overflow-hidden bg-[#20060f] text-white">
+    <section className="relative isolate overflow-hidden bg-[#1a0308] text-white">
       {/* Platzhalterbild Himbeerplantage - wird laut Analyse Kapitel 8 spaeter
           1:1 durch echtes Betriebsmaterial aus Kasachstan ersetzt. */}
       <Image
@@ -19,12 +26,13 @@ export function Hero() {
         fill
         sizes="100vw"
         priority
-        className="object-cover opacity-40"
+        className="-z-10 object-cover opacity-20"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,3,9,0.92)_0%,rgba(20,3,9,0.7)_45%,rgba(20,3,9,0.35)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_55%_at_50%_38%,rgba(177,23,66,0.30)_0%,transparent_62%),radial-gradient(ellipse_45%_50%_at_82%_20%,rgba(120,10,40,0.28)_0%,transparent_55%),linear-gradient(180deg,rgba(26,3,8,0.82)_0%,rgba(26,3,8,0.94)_100%)]" />
+      <PlantationBackdrop className="absolute inset-0 -z-10" />
 
-      <div className="container relative z-10 flex min-h-[calc(100svh-4rem)] flex-col justify-center py-16">
-        <div className="mb-5 inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-white/80">
+      <div className="container relative flex min-h-[calc(100svh-4rem)] flex-col justify-center py-16">
+        <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/6 px-3 py-1.5 text-xs font-semibold tracking-wide text-white/80 backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           {t("badge")}
         </div>
@@ -38,13 +46,13 @@ export function Hero() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-black text-[#20060f] shadow-xl transition hover:-translate-y-0.5 hover:bg-white/90"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-black text-[#1a0308] shadow-xl transition hover:-translate-y-0.5 hover:bg-white/90"
           >
             {t("ctaPrimary")}
             <ArrowRight className="h-4 w-4" />
           </Link>
           <a
-            href="#zonen"
+            href="#himbeere"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20"
           >
             {t("ctaSecondary")}
@@ -52,19 +60,15 @@ export function Hero() {
         </div>
 
         <dl className="mt-12 grid max-w-3xl gap-3 sm:grid-cols-3">
-          {[
-            { icon: Timer, k: "stat1Value", v: "stat1Label" },
-            { icon: ShieldCheck, k: "stat2Value", v: "stat2Label" },
-            { icon: ArrowRight, k: "stat3Value", v: "stat3Label" },
-          ].map(({ icon: I, k, v }) => (
+          {stats.map(({ icon: I, value, label }) => (
             <div
-              key={k}
-              className="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl"
+              key={value}
+              className="rounded-2xl border border-white/15 bg-white/6 p-4 backdrop-blur-xl"
             >
               <I className="mb-2 h-4 w-4 text-primary" />
-              <dt className="text-lg font-black text-white">{t(k)}</dt>
+              <dt className="text-lg font-black text-white">{t(value)}</dt>
               <dd className="mt-0.5 text-xs leading-relaxed text-white/70">
-                {t(v)}
+                {t(label)}
               </dd>
             </div>
           ))}

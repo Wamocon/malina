@@ -91,6 +91,7 @@
   --sidebar-accent-foreground: #1a1013;
   --sidebar-border: #eadde2;
   --sidebar-ring: #c53a5f;
+  --backdrop-line: rgba(177, 23, 66, 0.06);
 }
 
 .dark {
@@ -128,6 +129,7 @@
   --sidebar-accent-foreground: #fbeef2;
   --sidebar-border: rgba(255, 255, 255, 0.09);
   --sidebar-ring: #ff7aa0;
+  --backdrop-line: rgba(255, 255, 255, 0.05);
 }
 
 @layer base {

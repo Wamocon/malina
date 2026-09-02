@@ -22,6 +22,7 @@ const order: ReihenblockStatus[] = [
 export function ReihenbloeckeDemo() {
   const t = useTranslations("reihenbloeckeDemo");
   const s = useTranslations("reihenblockStatus");
+  const hint = useTranslations("reihenblockStatusHint");
   const counts = statusCounts();
   const [filter, setFilter] = useState<ReihenblockStatus | "alle">("alle");
 
@@ -54,8 +55,8 @@ export function ReihenbloeckeDemo() {
                 <p className="mt-1 text-xs font-semibold text-card-foreground">
                   {s(status)}
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-wide text-muted-foreground">
-                  {t("catiStatus")}: {meta.catiStatus}
+                <p className="mt-1 text-[10px] leading-3 text-muted-foreground">
+                  {hint(meta.hintKey)}
                 </p>
               </button>
             );
@@ -123,7 +124,7 @@ export function ReihenbloeckeDemo() {
       </Section>
 
       <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">
-        {t("catiNote")}
+        {t("note")}
       </Card>
     </div>
   );

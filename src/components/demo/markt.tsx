@@ -55,7 +55,7 @@ export function SortenkatalogDemo() {
         </div>
       </Section>
       <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">
-        {t("catiNote")}
+        {t("note")}
       </Card>
     </div>
   );
@@ -94,7 +94,7 @@ export function SchulungenDemo() {
         </DataTable>
       </Section>
       <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">
-        {t("catiNote")}
+        {t("note")}
       </Card>
     </div>
   );

@@ -1,8 +1,4 @@
 {
-  "meta": {
-    "title": "Malina - ahududu plantasyonu için işletme yönetimi",
-    "description": "Malina, 1Çatı ERP ekosistemini Almatı çevresindeki bir ahududu işletmesine taşır: konum hiyerarşisi, RBAC, fotoğraf kanıtlı toplama görevleri, soğuk zincir ve kanıt yönetimi."
-  },
   "common": {
     "skipToContent": "İçeriğe geç",
     "themeLight": "Açık tema",
@@ -26,85 +22,38 @@
     "compliance": "Uyum"
   },
   "hero": {
-    "badge": "Malina - 1Çatı temelli taslak",
+    "badge": "Ahududu plantasyonu için işletme yönetimi · Almatı çevresi",
     "headline": "Pazar liderliği tonlarla değil, belgelenebilirlikle kazanılır.",
-    "subheadline": "Malina, 1Çatı'nın alandan bağımsız mekaniğini - konum hiyerarşisi, kilit mantığı, belge zincirleri, rol yetkileri, çevrimdışı kuyruklar - devralır ve ahududu işletmesine göre yapılandırır: her teslimat için soğutma eğrisi, parti, köken bloğu, toplayıcı ve işlem kanıtı.",
+    "subheadline": "Ahududunun koruyucu bir kabuğu yoktur ve 60 dakika içinde soğutulmalıdır. Malina, haftalarca süren hasat sürecini yönetir, soğuk zinciri korur ve her teslimatı sıra bloğuna, soğutma süresine ve kişiye kadar belgeler.",
     "imageAlt": "Ahududu plantasyonunun telli sıraları - yer tutucu görsel, sonra değiştirilir",
     "ctaPrimary": "Prototipi aç",
-    "ctaSecondary": "Dört bölgeyi gör",
+    "ctaSecondary": "Ahududu neden farklı",
     "stat1Value": "60 dakika",
     "stat1Label": "toplamadan ön soğutmaya kadar kesin sınır",
-    "stat2Value": "5 dil",
-    "stat2Label": "Almanca, İngilizce, Türkçe, Kazakça, Rusça",
-    "stat3Value": "14 KPI",
-    "stat3Label": "müşteriyle taban çizgisi 01.10.2026"
-  },
-  "landing": {
-    "zonesEyebrow": "Hedef mimari",
-    "zonesTitle": "Tarla, Avlu, Ofis, Pazar",
-    "zonesLead": "Pitch dosyasındaki gibi bölümlendi. Her bölge, 1Çatı'nın kattığı yapı taşlarını ve yeni oluşan dördünü bir araya getirir.",
-    "openZone": "Bölgeyi aç",
-    "proofEyebrow": "İş modelinin tamamı",
-    "proofTitle": "Her teslimat için kesintisiz kanıt zinciri",
-    "proofLead": "Ahududu bunu zorunlu kılar: kabuksuz, 60 dakika içinde soğutulmalı, iki üç günde bir toplanır. 1Çatı kanıt zincirleri yapabilir - yalnızca yanlış alan için.",
-    "proofSteps": {
-      "kuehlkurve": { "title": "Soğutma eğrisi", "text": "Toplamadan ön soğutmaya kadar süre ve sıcaklık, kesin 60 dakika sınırı." },
-      "charge": { "title": "Parti", "text": "Tarlada QR ile kasa kimliği, her kasa bir partiye bağlı." },
-      "herkunftsblock": { "title": "Köken bloğu", "text": "Sıra bloğu, çeşit ve hasat günü maliyet nesnesi ve köken bilgisi olarak." },
-      "pfluecker": { "title": "Toplayıcı", "text": "Görev başına ekip ve kişi, verim ve kalite faktörü kaydedilir." },
-      "behandlung": { "title": "İşlem kanıtı", "text": "Blok başına ilaçlama tutanağı, bekleme süresi dolana kadar hasat kilitli." }
-    },
-    "leversEyebrow": "Pazar liderliği planı",
-    "leversTitle": "Malina'nın beslediği dört kaldıraç",
-    "leverItems": {
-      "stunde": { "title": "Toplamadan sonraki saat", "text": "60 dakika sınırlı soğuk zincir saati ve sıcaklık kaydedici bağlantısı. Fiziksel ön soğutma tesisi olmadan tüm fiyat farkı yok olur." },
-      "herbstfenster": { "title": "Yineleyen çeşitlerin sonbahar penceresi", "text": "Ağustostan ilk dona kadar süren çok haftalık hasat için rotasyon planı motoru, sıra bloğu başına iki üç gün toplama aralığı." },
-      "zugang": { "title": "Erişim avantajı olarak belgelenebilirlik", "text": "Kesintisiz kanıt zinciri organize ticarete kapı açar. Kanıt zinciri yapabilen bir ERP burada konfor değil, iş modelinin ta kendisidir." },
-      "aggregation": { "title": "Komşu işletmelerin bir araya getirilmesi", "text": "Komşu işletme tedarikçiye, alım miktarı fatura kalemine dönüşür, ayrı parti takibi. Arazi almak yerine tek marka." }
-    },
-    "kpiEyebrow": "Taban çizgisi 01.10.2026",
-    "kpiTitle": "Müşterinin imzaladığı 14 gösterge",
-    "kpiLead": "Kayıp oranı, pazarlanabilir kase oranı, soğutmaya kadar süre, toplama verimi, teslimat güvenilirliği, katkı payı, ЕСУТД kapsamı ve diğerleri.",
-    "kpiFootnote": "Prototip: yer tutucu değerler. Gerçek hesap hasat verileriyle gelir.",
-    "complianceEyebrow": "Kazakistan 2026",
-    "complianceTitle": "Malina'nın karşılaması gereken devlet yükümlülükleri",
-    "complianceLead": "Kazakistan 2026'da art arda yeni yükümlülükler getirdi. 1Çatı'nın güvenlik kapıları ruhu zaten karşılıyor, hukuki atıflar sadece çevrilmiyor, değiştiriliyor.",
-    "complianceItems": {
-      "steuer": { "title": "Vergi Kanunu 2026", "text": "Vergi Kanunu'nun yeni metni katkı payını ve maliyet nesnelerini etkiler." },
-      "warenbegleit": { "title": "Elektronik sevk irsaliyesi", "text": "ЭСФ ve sanal stok, mevcut integration_outbox deseni üzerinden; muhasebe kendi başına kurulmaz." },
-      "ki": { "title": "Yapay Zeka Kanunu No. 230-VIII", "text": "Retrieval sohbeti için şeffaflık bildirimi ve onay, Kazakistan hukukuna göre yeniden yazılır." },
-      "digitalkodex": { "title": "Dijital Kod No. 255-VIII", "text": "Veri yerleşimi: QR, çevrimdışı senkron ve yapay zeka mimarisi için barındırma yeri hukuken kontrol edilmeli." },
-      "datenschutz": { "title": "Sıkılaştırılmış veri hukuku", "text": "24.08.2026'dan beri. 1Çatı'daki kimlik özet deseni uyar, hedef müşteri ve komşu işletme başlatmasına kayar." },
-      "esutd": { "title": "ЕСУТД iş sözleşmesi kaydı", "text": "Her mevsimlik sözleşme, outbox üzerinden devlet sisteminde kaydedilir." }
-    },
-    "ctaTitle": "Kavram slaytları yerine somut bir sistem",
-    "ctaLead": "Kilometre taşı A: görünüm ve işlev kapsamı olan gösterilebilir prototip - yerinde analiz haftasından önce iç onayın temeli.",
-    "ctaButton": "Panoya git"
+    "stat2Value": "her 2 – 3 günde bir",
+    "stat2Label": "sonbahar penceresinde sıra bloğu başına toplama ritmi",
+    "stat3Value": "2,3 kat",
+    "stat3Label": "gevşek taze ürün ile aynı gün toplanan premium arasındaki fiyat farkı"
   },
   "zones": {
     "feld": {
       "name": "Tarla",
-      "tagline": "Yetiştirme, hasat, bitki koruma",
-      "description": "Konum modeli, bekleme kilidi dahil sıra bloğu durumu, fotoğraf kanıtlı toplama görevleri, rotasyon planı ve hava durumu bağlantısı."
+      "tagline": "Yetiştirme, hasat, bitki koruma"
     },
     "hof": {
       "name": "Avlu",
-      "tagline": "Soğuk zincir, lojistik",
-      "description": "60 dakika KPI'lı ön soğutma, sıcaklık kaydedici, alım turları, QR kasa tanıma ve elektronik irsaliye."
+      "tagline": "Soğuk zincir, lojistik"
     },
     "buero": {
       "name": "Ofis",
-      "tagline": "Finans, personel, uyum",
-      "description": "RBAC rolleri, sıra bloğu başına katkı payı, kalite faktörlü ücret, belge yönetimi, uyum kokpiti ve devlet entegrasyonları."
+      "tagline": "Finans, personel, uyum"
     },
     "markt": {
       "name": "Pazar",
-      "tagline": "Satış, yapay zeka, kamu",
-      "description": "Çeşit ve kontenjan kataloğu, B2B portalı, retrieval yapay zeka sohbeti, komşu işletmeler için toplayıcı platform ve çok dilli eğitimler."
+      "tagline": "Satış, yapay zeka, kamu"
     }
   },
   "footer": {
-    "blurb": "Malina, Rusçada ahududu demek. 1Çatı ERP ekosistemi temelli, Almatı çevresindeki ahududu işletmesine göre yapılandırılmış iç taslak.",
     "prototypeNote": "İç proof-of-concept. Sözleşmeyle taahhüt edilen hizmet kapsamı değildir. Görseller serbest kaynaklardan yer tutuculardır.",
     "productHeading": "Ürün",
     "legalHeading": "Hukuki",
@@ -118,8 +67,6 @@
     "notifications": "Bildirimler",
     "open": "Aç",
     "zoneEmpty": "Etkin rol için bu bölgede yetkili modül yok.",
-    "rbacHintLabel": "RBAC",
-    "rbacHint": "Görünen modüller yukarıda seçilen demo rolüne bağlıdır - 1Çatı'daki motorun aynısı.",
     "home": {
       "eyebrow": "İşletme yönetimi",
       "title": "Malina işletme genel bakışı",
@@ -144,16 +91,7 @@
         "workflows": "Örnek ana süreçler: sıra bloğu genel bakışı ve fotoğraf kanıtlı toplama görevi"
       },
       "milestoneBName": "Kilometre taşı B - gerçek ana işlevli iskelet",
-      "milestoneBDue": "en geç 19.09.2026",
-      "milestoneBItems": {
-        "rbac": "1Çatı'dan devralınan ve yeniden adlandırılan RBAC rolleri",
-        "hierarchy": "Konum hiyerarşisi: çiftlik, tarla, sıra, sıra bloğu - yönetim dahil",
-        "status": "Bitki koruma sonrası kilit dahil sıra bloğu durum yönetimi",
-        "tasks": "workforce_tasks ve media_reports'tan fotoğraf kanıtlı toplama görevleri",
-        "docs": "document-storage.ts'ten belge yönetimi",
-        "i18n": "Beş dilde çok dilli arayüz",
-        "kpi": "Yapı olarak KPI kutucuklu pano iskeleti"
-      }
+      "milestoneBDue": "en geç 19.09.2026"
     }
   },
   "roles": {
@@ -185,7 +123,6 @@
   "moduleMeta": {
     "inDevelopmentTitle": "Alt işlev - geliştirmede",
     "plannedScope": "Planlanan kapsam",
-    "catiSource": "1Çatı kaynağı / deseni",
     "classification": "Sınıflandırma",
     "milestone": "Kilometre taşı",
     "milestoneB": "Kilometre taşı B ve sonraki aşamalar"
@@ -221,82 +158,39 @@
     "beleg_pruefung": "kanıt incelemesi",
     "abgeschlossen": "tamamlandı"
   },
-  "kpis": {
-    "verlustquote": { "label": "Kayıp oranı" },
-    "vermarktungsfaehig": { "label": "Pazarlanabilir kase oranı" },
-    "zeitBisKuehlung": { "label": "Soğutmaya kadar süre (ortalama)" },
-    "kuehlketteEinhaltung": { "label": "Soğuk zincir 60 dk altında tutuldu" },
-    "pflueckleistung": { "label": "Kişi başına toplama verimi" },
-    "erntemenge": { "label": "Günlük hasat miktarı" },
-    "wartezeitVerstoesse": { "label": "Bekleme süresi ihlalleri" },
-    "herbstanteil": { "label": "Sonbahar çeşitleri verim payı" },
-    "liefertreue": { "label": "Teslimat güvenilirliği" },
-    "reklamationsquote": { "label": "B2B şikayet oranı" },
-    "durchschnittspreis": { "label": "kg başına ortalama fiyat" },
-    "deckungsbeitrag": { "label": "kg başına katkı payı" },
-    "esutdAbdeckung": { "label": "ЕСУТД kapsamı" },
-    "brigadenAuslastung": { "label": "Ekip doluluğu" }
-  },
-  "modules": {
-    "standort": { "title": "Konum hiyerarşisi", "description": "İşletme, plantasyon, tarla parseli, sıra grubu, sıra bloğu. 1Çatı'daki dört düzeyli hiyerarşi, bir düzey daha derin ve tarımsal adlarla." },
-    "reihenbloecke": { "title": "Sıra blokları ve durum", "description": "Sıra bloğu başına durum makinesi. 1Çatı birim durumu neredeyse cümle cümle çevrilir - burada tam anlamıyla bekleme kilidi olan blocked dahil." },
-    "pflueckaufgaben": { "title": "Fotoğraf kanıtlı toplama görevleri", "description": "1Çatı Migration 6'dan workforce_tasks ve media_reports - yapısal olarak zaten bir fotoğraf kanıtlı görev makinesi, burada ekip ve sıra bloğu başına." },
-    "pflanzenschutz": { "title": "Bitki koruma ve bekleme süresi", "description": "İşlemden sonra sıra bloğu başına hasat, yasal bekleme süresi dolana kadar kilitli. Sert hukuki risk." },
-    "rotationsplan": { "title": "Rotasyon planı / toplama planı", "description": "Çok haftalık sonbahar hasadında sıra bloğu başına iki üç günlük toplama aralığı. 1Çatı'da örneği yok." },
-    "wetter": { "title": "Hava durumu ve sıcaklık toplamı", "description": "Basit hava durumu API bağlantısı ve sıcaklık toplamı sezgisi. Faz 1'de bilinçli olarak ML yok." },
-    "kuehlkette": { "title": "Soğuk zincir saati", "description": "Toplamadan ön soğutmaya kadar kesin 60 dakika sınırlı süre ölçümü, sıcaklık kaydedici, hedef sıcaklık 0-1 derece. En yüksek alan önceliği." },
-    "logistik": { "title": "Alım turları ve tur planlama", "description": "booking-lifecycle-repository ve move-handover-repository'den yaşam döngüsü durum deseni, alan nesnesi alım zamanına çevrildi." },
-    "qr_steigen": { "title": "QR kasa tanıma", "description": "1Çatı Migration 28'den tarama girişi kalır, hedef nesne QR-bölge yerine QR-kasa olur. Prototipte tam sunucu eşleşmesi olmayan UI taslağı." },
-    "esf": { "title": "Elektronik irsaliye (ЭСФ)", "description": "ЭСФ ve sanal stok, mevcut integration_outbox deseni üzerinden köprü olarak. Kendi muhasebe sistemi kurulmaz." },
-    "rollen": { "title": "Roller ve yetkiler", "description": "1Çatı lib/rbac.ts'ten RBAC motoru. Altı çekirdek rol doğrudan taşınır, vesayet rolleri kaldırıldı." },
-    "finanzen": { "title": "Katkı payı ve finans", "description": "1Çatı'dan finance_ledger_entries. Değişmezlik tetikleyicisi kalır, maliyet nesnesi sıra bloğu, çeşit ve hasat günüyle genişletilir." },
-    "personal": { "title": "Toplayıcı kütüğü ve ekipler", "description": "StaffMember'dan kişi kütüğü taşınabilir. Ekip ataması, sakin ataması yerine workforce_tasks üzerinden." },
-    "lohn": { "title": "Kalite faktörlü ücret", "description": "Taban ücret artı miktar bileşeni artı kalite faktörü. Salt parça başı ücret ahudududa değer yok eder. 1Çatı'da örneği yok." },
-    "dokumente": { "title": "Belge yönetimi", "description": "1Çatı Migration 9'dan document-storage.ts. İlaçlama tutanakları, sözleşmeler ve ЕСУТД kanıtları için doğrudan kullanılabilir." },
-    "compliance": { "title": "Uyum kokpiti", "description": "compliance-repository'den onay, saklama ve denetim iskeleti 1:1. Hukuki atıflar sadece çevrilmez, değiştirilir." },
-    "integrationen": { "title": "Devlet entegrasyonları", "description": "ЭСФ, sanal stok, ЕСУТД, teşvik portalları gosagro.kz ve qoldau.kz. integration_outbox üzerinden bağlanır, sıfırdan kurulmaz." },
-    "foerdermittel": { "title": "Teşvik dosyası", "description": "document-storage.ts ve reporting-repository'den konteyner deseni. Kazak teşvik portalları için formlar yeni." },
-    "sortenkatalog": { "title": "Çeşit ve kontenjan kataloğu", "description": "1Çatı'dan listings çeşit ve kontenjan kataloğuna dönüşür. Kontenjan ve ön sipariş için rezervasyon deseni." },
-    "b2b_portal": { "title": "B2B portalı", "description": "1Çatı'dan reservations ve finans modülleri, kontenjan, ön sipariş ve fiyat listeleri için rezervasyon deseni olarak." },
-    "preislisten": { "title": "Fiyat listeleri", "description": "Çeşit ve müşteri başına fiyat listesi sürümleri. 1Çatı'nın rezervasyon ve finans deseninden türetildi." },
-    "ki_assistent": { "title": "Yapay zeka asistanı", "description": "public-ai-chat, ai-retrieval ve ai-guardrails'ten retrieval sohbeti. Yalnızca onaylı kaynaklardan yanıt verir, kaydeder, insana yükseltir. Prototipte yer tutucu sohbet penceresi." },
-    "aggregator": { "title": "Toplayıcı / komşu işletmeler", "description": "1Çatı'dan vendor-invoice-repository ve vendors tablosu. Komşu işletme tedarikçiye, alım miktarı fatura kalemine dönüşür, ayrı parti takibi yeni." },
-    "schulungen": { "title": "Eğitim videoları", "description": "1Çatı'dan video-library. Mevsimlik işçilerin çok dilli, görsel kısa eğitimi için doğrudan kullanılabilir." }
-  },
-  "reihenbloeckeDemo": {
-    "distributionTitle": "Durum dağılımı",
-    "distributionLead": "Tıklamak tabloyu filtreler. Her kutucuktaki 1Çatı birim durumu 1:1 çeviriyi gösterir.",
-    "catiStatus": "1Çatı durumu",
-    "lockTitle": "Bekleme süresiyle kilitli durumu",
-    "tableTitle": "Sıra blokları",
-    "tableLeadAll": "Tüm plantasyonlardaki tüm sıra blokları.",
-    "tableLeadFiltered": "Seçilen duruma göre filtrelendi.",
-    "col": { "id": "Sıra bloğu", "parzelle": "Parsel / grup", "sorte": "Çeşit", "status": "Durum", "letzteErnte": "Son hasat", "sperre": "Kilit" },
-    "freeAt": "Serbest",
-    "days": "gün"
-  },
   "pflueckaufgabenDemo": {
     "listTitle": "Bugünün toplama görevleri",
     "listLead": "Ekip ve sıra bloğu başına. İlerleme, gerçek miktarın hedefe oranıdır.",
     "block": "Blok",
     "qFactor": "Q faktörü",
     "proofTitle": "Fotoğraf kanıtı",
-    "proofLead": "Göreve bağlı media_reports. Satış kasesi, sıra bloğu ve kasa örnek fotoğrafları.",
     "noProof": "Bu görev için henüz kanıt yok.",
     "addProof": "Kanıt çek (taslak)",
     "reviewTitle": "Kanıt incelemesi açık",
     "reviewLead": "Görev onay bekliyor. Miktarı ve kase kanıtını kontrol edin, ardından onaylayın veya yeniden çalışma isteyin.",
     "approve": "Onayla",
     "rework": "Yeniden çalışma",
-    "art": { "schale": "Satış kasesi", "reihenblock": "Sıra bloğu", "steige": "Kasa" }
+    "art": {
+      "schale": "Satış kasesi",
+      "reihenblock": "Sıra bloğu",
+      "steige": "Kasa"
+    }
   },
   "standortDemo": {
     "statsTitle": "Hiyerarşi genel bakışı",
-    "statsLead": "İşletmenin altında dört düzey, 1Çatı Company, Site, Block, Floor, Unit ile aynı.",
-    "level": { "plantagen": "Plantasyonlar / komşu işletmeler", "parzellen": "Tarla parselleri", "reihengruppen": "Sıra grupları", "reihenbloecke": "Sıra blokları", "flaeche": "Toplam alan" },
+    "level": {
+      "plantagen": "Plantasyonlar / komşu işletmeler",
+      "parzellen": "Tarla parselleri",
+      "reihengruppen": "Sıra grupları",
+      "reihenbloecke": "Sıra blokları",
+      "flaeche": "Toplam alan"
+    },
     "treeTitle": "Konum ağacı",
     "treeLead": "İşletme, plantasyon, tarla parseli, sıra grubu. Sıra blokları ayrı modülde.",
-    "typ": { "eigen": "Kendi işletmesi", "nachbarbetrieb": "Komşu işletme" },
+    "typ": {
+      "eigen": "Kendi işletmesi",
+      "nachbarbetrieb": "Komşu işletme"
+    },
     "blocksShort": "blok"
   },
   "pflanzenschutzDemo": {
@@ -304,68 +198,87 @@
     "ruleLead": "Bitki koruma işleminden sonra sıra bloğu başına hasat, ilaca özgü bekleme süresi dolana kadar kilitlidir. İhlal bir hukuki risktir, konfor konusu değil.",
     "activeTitle": "Etkin bekleme kilitleri",
     "activeLead": "Bekleme süresi devam eden sıra blokları. Süre dolunca otomatik serbest.",
-    "col": { "block": "Sıra bloğu", "mittel": "İlaç", "behandelt": "İşlem tarihi", "wartezeit": "Bekleme süresi", "freigabe": "Serbest", "status": "Durum" },
+    "col": {
+      "block": "Sıra bloğu",
+      "mittel": "İlaç",
+      "behandelt": "İşlem tarihi",
+      "wartezeit": "Bekleme süresi",
+      "freigabe": "Serbest",
+      "status": "Durum"
+    },
     "days": "gün",
     "locked": "kilitli"
   },
   "rollenDemo": {
     "rolesTitle": "Altı çekirdek rol",
-    "rolesLead": "1Çatı rollerinin yeniden eşlenmesi: admin, manager, accountant, staff, owner, tenant. Vesayet ve çocuk rolleri kaldırıldı.",
     "scope": "Alan",
     "matrixTitle": "Yetki matrisi (kesit, görüntüleme eylemi)",
-    "matrixLead": "Roller çarpı kaynaklar. 1Çatı lib/rbac.ts ile aynı veri yapısı.",
-    "resource": "Kaynak",
-    "matrixNote": "Tam matris: 22 kaynak çarpı 7 eylem. RLS politikaları her kaynak için yeniden yazılır, sadece adı değişmez."
+    "resource": "Kaynak"
   },
   "finanzenDemo": {
     "dbTitle": "Sıra bloğu ve hasat günü başına katkı payı",
-    "dbLead": "Yeni maliyet nesnesi: sıra bloğu, çeşit, hasat günü. Kayıt mantığı ve değişmezlik tetikleyicisi 1Çatı'dan kalır.",
-    "col": { "block": "Sıra bloğu", "sorte": "Çeşit", "erntetag": "Hasat günü", "erloes": "Gelir", "kosten": "Maliyet", "db": "Katkı payı" }
+    "col": {
+      "block": "Sıra bloğu",
+      "sorte": "Çeşit",
+      "erntetag": "Hasat günü",
+      "erloes": "Gelir",
+      "kosten": "Maliyet",
+      "db": "Katkı payı"
+    }
   },
   "personalDemo": {
     "brigadenTitle": "Ekipler",
-    "brigadenLead": "Sakin ataması yerine workforce_tasks üzerinden atama.",
     "foreman": "Ekip başı",
     "people": "kişi",
     "pflueckerTitle": "Toplayıcı kütüğü",
-    "pflueckerLead": "StaffMember'dan kişi kütüğü. Sözleşme başına ЕСУТД kaydı, kişi başına verim ve kalite faktörü.",
-    "col": { "name": "Ad", "brigade": "Ekip", "ausweis": "Kimlik", "esutd": "ЕСУТД", "leistung": "Verim", "qfaktor": "K faktörü" },
-    "esutd": { "erfasst": "kaydedildi", "offen": "açık" },
+    "col": {
+      "name": "Ad",
+      "brigade": "Ekip",
+      "ausweis": "Kimlik",
+      "esutd": "ЕСУТД",
+      "leistung": "Verim",
+      "qfaktor": "K faktörü"
+    },
+    "esutd": {
+      "erfasst": "kaydedildi",
+      "offen": "açık"
+    },
     "days": "gün"
   },
   "dokumenteDemo": {
     "listTitle": "Belgeler",
     "listLead": "İlaçlama tutanakları, ЕСУТД kanıtları, sözleşmeler, teşvik dosyaları ve sertifikalar.",
-    "col": { "name": "Belge", "kategorie": "Kategori", "bezug": "İlgi", "stand": "Güncel tarih", "status": "Durum" },
-    "status": { "gueltig": "geçerli", "prueflauf": "incelemede", "abgelaufen": "süresi dolmuş" }
-  },
-  "complianceDemo": {
-    "cockpitTitle": "Uyum kokpiti",
-    "cockpitLead": "1Çatı'dan onay, saklama ve denetim iskeleti. Hukuki ilişki Kazakistan hukukuna kayar.",
-    "items": {
-      "consent": { "title": "Onaylar", "state": "etkin", "text": "1Çatı'dan onay defteri. Metinler Kazakistan veri hukukuna göre yeniden yazılmalı." },
-      "retention": { "title": "Saklama", "state": "etkin", "text": "Her veri ürünü için saklama kuralları. Özet tabanlı saklama Migration 28'den devralındı." },
-      "audit": { "title": "Denetim günlüğü", "state": "etkin", "text": "ai_action_logs, audit_events, access_events 1:1 - yalnızca hukuki ilişki değişir." },
-      "residency": { "title": "Veri yerleşimi", "state": "açık", "text": "Dijital Kod No. 255-VIII bazı veri ürünlerinin Kazakistan dışında saklanmasını sınırlar. Barındırma yeri kontrol edilmeli." },
-      "ai": { "title": "Yapay zeka şeffaflığı", "state": "açık", "text": "Kanun No. 230-VIII. Yapay zeka sohbeti için şeffaflık bildirimi ve onay yeniden yazılmalı." }
+    "col": {
+      "name": "Belge",
+      "kategorie": "Kategori",
+      "bezug": "İlgi",
+      "stand": "Güncel tarih",
+      "status": "Durum"
     },
-    "integrationTitle": "Devlet entegrasyonları (outbox)",
-    "integrationLead": "integration_outbox üzerinden bağlanır. Kendi muhasebesi kurulmaz.",
-    "col": { "name": "Entegrasyon", "system": "Hedef sistem", "status": "Durum", "queue": "Kuyruk" },
-    "intStatus": { "verbunden": "bağlı", "sandbox": "sanal alan", "geplant": "planlandı" }
+    "status": {
+      "gueltig": "geçerli",
+      "prueflauf": "incelemede",
+      "abgelaufen": "süresi dolmuş"
+    }
   },
   "sortenkatalogDemo": {
     "catalogTitle": "Çeşitler ve kontenjanlar",
-    "catalogLead": "1Çatı'dan listings, çeşit, hasat penceresi, kase ağırlığı, kontenjan ve fiyata dönüştürüldü.",
-    "typ": { "remontierend": "yineleyen", "sommertragend": "yaz veren" },
+    "typ": {
+      "remontierend": "yineleyen",
+      "sommertragend": "yaz veren"
+    },
     "window": "Hasat penceresi",
     "shale": "Kase",
     "contingent": "Kontenjan ayrıldı"
   },
   "schulungenDemo": {
     "libraryTitle": "Video kütüphanesi",
-    "libraryLead": "1Çatı'dan video-library. Mevsimlik işçilerin çok dilli görsel kısa eğitimi.",
-    "col": { "titel": "Başlık", "thema": "Konu", "dauer": "Süre", "sprachen": "Diller" }
+    "col": {
+      "titel": "Başlık",
+      "thema": "Konu",
+      "dauer": "Süre",
+      "sprachen": "Diller"
+    }
   },
   "kuehlketteMock": {
     "clockTitle": "Parti saati (taslak)",
@@ -375,7 +288,6 @@
   },
   "qrSteigenMock": {
     "scanTitle": "Çıkış noktasında tarama (taslak)",
-    "scanLead": "QR-kasa. Tarama girişi ve kötüye kullanım parmak izi 1Çatı Migration 28'den hazır, burada gerçek sunucu eşleşmesi olmadan.",
     "simulateScan": "Taramayı benzet",
     "registered": "kaydedildi"
   },
