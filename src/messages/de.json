@@ -1,0 +1,604 @@
+{
+  "meta": {
+    "title": "Malina - Betriebssteuerung für die Himbeerplantage",
+    "description": "Malina überträgt das 1Çatı-ERP-Ökosystem auf einen Himbeerbetrieb im Umland Almaty: Standort-Hierarchie, RBAC, Pflückaufgaben mit Fotobeleg, Kühlkette und Nachweisführung."
+  },
+  "common": {
+    "skipToContent": "Zum Inhalt springen",
+    "themeLight": "Helles Design",
+    "themeDark": "Dunkles Design"
+  },
+  "notFound": {
+    "message": "Diese Seite gibt es nicht.",
+    "home": "Zur Startseite"
+  },
+  "nav": {
+    "platformSubtitle": "Betriebssteuerung Himbeerplantage",
+    "activePersona": "Aktive Rolle (Demo)",
+    "overview": "Übersicht",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "portal": "Zum Portal",
+    "zones": "Vier Zonen",
+    "proof": "Belegbarkeit",
+    "kpis": "Kennzahlen",
+    "compliance": "Compliance"
+  },
+  "hero": {
+    "badge": "Malina - Blaupause auf Basis von 1Çatı",
+    "headline": "Marktführerschaft entsteht nicht über Tonnen, sondern über Belegbarkeit.",
+    "subheadline": "Malina übernimmt die fachneutrale Mechanik von 1Çatı - Standort-Hierarchie, Sperrlogik, Beleg-Ketten, Rollenrechte, Offline-Warteschlangen - und richtet sie auf den Himbeerbetrieb aus: Kühlkurve, Charge, Herkunftsblock, Pflücker und Behandlungsnachweis für jede Lieferung.",
+    "imageAlt": "Spalierreihen einer Himbeerplantage - Platzhalterbild, wird durch echtes Betriebsmaterial ersetzt",
+    "ctaPrimary": "Prototyp öffnen",
+    "ctaSecondary": "Die vier Zonen ansehen",
+    "stat1Value": "60 Minuten",
+    "stat1Label": "harte Grenze von Pflücken bis Vorkühlung",
+    "stat2Value": "4 Sprachen",
+    "stat2Label": "Deutsch, Türkisch, Kasachisch, Russisch",
+    "stat3Value": "14 KPIs",
+    "stat3Label": "Baseline mit dem Kunden am 01.10.2026"
+  },
+  "landing": {
+    "zonesEyebrow": "Zielarchitektur",
+    "zonesTitle": "Feld, Hof, Büro, Markt",
+    "zonesLead": "Wie im Pitch-Dossier gegliedert. Jede Zone bündelt die Bausteine, die 1Çatı beisteuert, plus die vier, die neu entstehen.",
+    "openZone": "Zone öffnen",
+    "proofEyebrow": "Der ganze Business Case",
+    "proofTitle": "Eine lückenlose Nachweiskette je Lieferung",
+    "proofLead": "Die Himbeere erzwingt das: ohne Schale, innerhalb von 60 Minuten gekühlt, im Zwei- bis Drei-Tage-Rhythmus geerntet. 1Çatı kann Nachweisketten - nur eben für die falsche Domäne.",
+    "proofSteps": {
+      "kuehlkurve": { "title": "Kühlkurve", "text": "Zeit und Temperatur von Pflücken bis Vorkühlung, harte 60-Minuten-Grenze." },
+      "charge": { "title": "Charge", "text": "Steigen-Identität im Feld über QR, jede Steige einer Charge zugeordnet." },
+      "herkunftsblock": { "title": "Herkunftsblock", "text": "Reihenblock, Sorte und Erntetag als Kostenträger und Herkunftsangabe." },
+      "pfluecker": { "title": "Pflücker", "text": "Brigade und Person je Aufgabe, Leistungs- und Qualitätsfaktor erfasst." },
+      "behandlung": { "title": "Behandlungsnachweis", "text": "Spritzmittelprotokoll je Block, Ernte bis Ablauf der Wartezeit gesperrt." }
+    },
+    "leversEyebrow": "Marktführerschaftsplan",
+    "leversTitle": "Vier Hebel, auf die Malina einzahlt",
+    "leverItems": {
+      "stunde": { "title": "Die Stunde nach dem Pflücken", "text": "Kühlketten-Uhr mit 60-Minuten-Grenzwert und Temperaturlogger-Anbindung. Ohne physische Vorkühlanlage verfällt der gesamte Preisspread." },
+      "herbstfenster": { "title": "Das Herbstfenster der remontierenden Sorten", "text": "Rotationsplan-Engine für die mehrwöchige Erntestrecke von August bis zum ersten Frost, Pflückintervall zwei bis drei Tage je Reihenblock." },
+      "zugang": { "title": "Belegbarkeit als Zugangsvorteil", "text": "Lückenlose Nachweiskette öffnet den organisierten Handel. Ein ERP, das Nachweisketten kann, ist hier kein Komfortmerkmal." },
+      "aggregation": { "title": "Aggregation von Nachbarbetrieben", "text": "Nachbarbetrieb wird zu Vendor, Zukaufmenge zu Rechnungsposition, getrennte Chargenführung. Eine Marke statt Landkauf." }
+    },
+    "kpiEyebrow": "Baseline 01.10.2026",
+    "kpiTitle": "14 Kennzahlen, die der Kunde unterschreibt",
+    "kpiLead": "Verlustquote, Anteil vermarktungsfähiger Schalen, Zeit bis zur Kühlung, Pflückleistung, Liefertreue, Deckungsbeitrag, ЕСУТД-Abdeckung und weitere.",
+    "kpiFootnote": "Prototyp: Platzhalterwerte. Die echte Berechnung folgt mit den Erntedaten.",
+    "complianceEyebrow": "Kasachstan 2026",
+    "complianceTitle": "Staatliche Pflichten, die Malina abbilden muss",
+    "complianceLead": "Kasachstan hat 2026 in Serie neue Pflichten gesetzt. Die Sicherheitsgates aus 1Çatı erfüllen den Geist bereits, die Rechtszitate werden ausgetauscht statt nur übersetzt.",
+    "complianceItems": {
+      "steuer": { "title": "Steuergesetzbuch 2026", "text": "Neue Fassung des Steuergesetzbuchs, wirkt auf Deckungsbeitrag und Kostenträger." },
+      "warenbegleit": { "title": "Elektronischer Warenbegleitschein", "text": "ЭСФ und virtueller Lagerbestand über das bestehende integration_outbox-Muster, kein Eigenbau der Buchhaltung." },
+      "ki": { "title": "KI-Gesetz Nr. 230-VIII", "text": "Transparenzhinweis und Einwilligung für den Retrieval-KI-Chat, nach kasachstanischem Recht neu formuliert." },
+      "digitalkodex": { "title": "Digitalkodex Nr. 255-VIII", "text": "Datenresidenz: Hosting-Standort für QR-, Offline-Sync- und KI-Architektur muss rechtlich geprüft werden." },
+      "datenschutz": { "title": "Verschärftes Datenschutzrecht", "text": "Seit 24.08.2026. Digest-Muster für Identitäten aus 1Çatı passt, Ziel wechselt zu Kunden- und Nachbarbetrieb-Onboarding." },
+      "esutd": { "title": "ЕСУТД-Arbeitsvertragserfassung", "text": "Jeder Saisonvertrag wird im staatlichen System erfasst, angebunden über die Outbox." }
+    },
+    "ctaTitle": "Ein greifbares System statt Konzeptfolien",
+    "ctaLead": "Meilenstein A: anschaubarer Prototyp mit Optik und Funktionsumfang - Grundlage für die interne Freigabe vor der Vor-Ort-Analysewoche.",
+    "ctaButton": "Zum Dashboard"
+  },
+  "zones": {
+    "feld": {
+      "name": "Feld",
+      "tagline": "Anbau, Ernte, Pflanzenschutz",
+      "description": "Standortmodell, Reihenblock-Status inklusive Wartezeitsperre, Pflückaufgaben mit Fotobeleg, Rotationsplan und Wetteranbindung."
+    },
+    "hof": {
+      "name": "Hof",
+      "tagline": "Kühlkette, Logistik",
+      "description": "Vorkühlung mit 60-Minuten-KPI, Temperaturlogger, Abholrunden, QR-Steigenkennung und elektronischer Lieferschein."
+    },
+    "buero": {
+      "name": "Büro",
+      "tagline": "Finanzen, Personal, Compliance",
+      "description": "RBAC-Rollen, Deckungsbeitrag je Reihenblock, Qualitätsfaktor-Lohn, Dokumentenverwaltung, Compliance-Cockpit und staatliche Integrationen."
+    },
+    "markt": {
+      "name": "Markt",
+      "tagline": "Vertrieb, KI, Öffentlichkeit",
+      "description": "Sorten- und Kontingentkatalog, B2B-Portal, Retrieval-KI-Chat, Aggregator-Plattform für Nachbarbetriebe und mehrsprachige Schulungen."
+    }
+  },
+  "footer": {
+    "blurb": "Malina, russisch für Himbeere. Interne Blaupause auf Basis des 1Çatı-ERP-Ökosystems, ausgerichtet auf den Himbeerbetrieb im Umland Almaty.",
+    "prototypeNote": "Interner Proof-of-Concept. Kein vertraglich zugesicherter Leistungsumfang. Bildmaterial sind Platzhalter aus lizenzfreien Quellen.",
+    "productHeading": "Produkt",
+    "legalHeading": "Rechtliches",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "copyright": "© {year} WAMOCON GmbH",
+    "madeBy": "Entwickelt in Deutschland"
+  },
+  "dashboard": {
+    "searchPlaceholder": "Reihenblock, Charge, Pflücker, Dokument suchen ...",
+    "notifications": "Benachrichtigungen",
+    "open": "Öffnen",
+    "zoneEmpty": "Für die aktive Rolle ist in dieser Zone kein Modul freigegeben.",
+    "rbacHintLabel": "RBAC",
+    "rbacHint": "Sichtbare Module hängen von der oben gewählten Demo-Rolle ab - dieselbe Engine wie in 1Çatı.",
+    "home": {
+      "eyebrow": "Betriebssteuerung",
+      "title": "Betriebsübersicht Malina",
+      "description": "Aggregator Umland Almaty. Der Prototyp zeigt Struktur und Optik der ersten Ausbaustufe - Hauptfunktionen als bedienbare Demo, Unterfunktionen als sichtbare Menüpunkte mit Status.",
+      "kpiTitle": "14 Baseline-Kennzahlen",
+      "kpiDescription": "Werden am 01.10.2026 mit dem Kunden als Baseline unterschrieben.",
+      "placeholderBadge": "Platzhalterwerte",
+      "target": "Ziel",
+      "zonesTitle": "Die vier Zonen",
+      "zonesDescription": "Navigationsstruktur des Dashboards, gegliedert wie die Zielarchitektur.",
+      "demoCount": "{count} Demo",
+      "wipCount": "{count} in Entwicklung",
+      "openZone": "Zone öffnen",
+      "milestoneTitle": "Meilensteine der internen Vorbereitung",
+      "milestoneDescription": "Beide vor der Vor-Ort-Analysewoche vom 24.09. bis 01.10.2026.",
+      "milestoneAName": "Meilenstein A - Prototyp mit Optik und Funktionsumfang",
+      "milestoneADue": "bis 06.09.2026",
+      "milestoneAItems": {
+        "tokens": "Design-Token-Umstellung auf die Himbeer-Palette",
+        "landing": "Landingpage mit Platzhaltertexten und -bildern, Sprachumschalter für vier Sprachen",
+        "zones": "Dashboard-Gerüst mit den vier Zonen als Navigationsstruktur",
+        "workflows": "Kern-Workflows beispielhaft: Reihenblock-Übersicht und Pflückaufgabe mit Fotobeleg"
+      },
+      "milestoneBName": "Meilenstein B - Grundgerüst mit echten Hauptfunktionen",
+      "milestoneBDue": "spätestens 19.09.2026",
+      "milestoneBItems": {
+        "rbac": "RBAC-Rollen, übernommen und umbenannt aus 1Çatı",
+        "hierarchy": "Standort-Hierarchie Farm, Feld, Reihe, Reihenblock inklusive Verwaltung",
+        "status": "Reihenblock-Statusverwaltung inklusive Sperrzustand nach Pflanzenschutz",
+        "tasks": "Pflückaufgaben mit Fotobeleg aus workforce_tasks und media_reports",
+        "docs": "Dokumentenverwaltung aus document-storage.ts",
+        "i18n": "Mehrsprachige Oberfläche in vier Sprachen",
+        "kpi": "Dashboard-Grundgerüst mit KPI-Kacheln als Struktur"
+      }
+    }
+  },
+  "roles": {
+    "switcherHint": "Demo-Rolle wechseln - steuert die sichtbare Navigation",
+    "admin": "Administration",
+    "betriebsleitung": "Betriebsleitung",
+    "buchhaltung": "Buchhaltung",
+    "brigade": "Brigade / Feld",
+    "erzeuger": "Erzeuger / Nachbarbetrieb",
+    "kunde": "B2B-Kunde",
+    "descriptions": {
+      "admin": "Volle Konfiguration, Nutzer- und Rollenverwaltung, sensible Finanz-, Zugriffs- und Integrationsaufsicht.",
+      "betriebsleitung": "Täglicher Plantagenbetrieb, Aufgaben, Rotation, Personal und Freigaben. Kann Finanzen einsehen, aber nicht buchen.",
+      "buchhaltung": "Deckungsbeitrag, Lohn, Zahlungen, staatliche Meldungen. Keine Nutzerverwaltung, keine Feldabschlüsse.",
+      "brigade": "Nimmt Pflückaufgaben an, erfasst Menge und Fotobeleg im Feld, sieht Rotation und Wartezeitsperren.",
+      "erzeuger": "Nachbarbetrieb im Zukauf. Sieht eigene Reihenblöcke, Chargen, Abrechnung und Verträge.",
+      "kunde": "Kontingente, Vorbestellung, Preislisten, KI-Chat und freigegebene Dokumente."
+    }
+  },
+  "klassifikation": {
+    "uebernehmen": "Übernehmen",
+    "anpassen": "Anpassen",
+    "neu-bauen": "Neu bauen"
+  },
+  "reifegrad": {
+    "demo": "Demo bedienbar",
+    "in-entwicklung": "In Entwicklung"
+  },
+  "moduleMeta": {
+    "inDevelopmentTitle": "Unterfunktion - in Entwicklung",
+    "plannedScope": "Geplanter Umfang",
+    "catiSource": "1Çatı-Quelle / Muster",
+    "classification": "Klassifikation",
+    "milestone": "Meilenstein",
+    "milestoneB": "Meilenstein B und folgende Ausbaustufen"
+  },
+  "accessDenied": {
+    "title": "Die Rolle {role} hat auf dieses Modul keinen Zugriff.",
+    "hint": "Wechsle oben rechts die Demo-Rolle, um den Zugriff zu sehen.",
+    "back": "Zur Übersicht"
+  },
+  "resourceLabels": {
+    "dashboard": "Dashboard",
+    "reihenbloecke": "Reihenblöcke",
+    "pflueckaufgaben": "Pflückaufgaben",
+    "pflanzenschutz": "Pflanzenschutz",
+    "kuehlkette": "Kühlkette",
+    "lohn": "Lohn",
+    "finanzen": "Finanzen",
+    "dokumente": "Dokumente",
+    "compliance": "Compliance",
+    "b2b_portal": "B2B-Portal"
+  },
+  "reihenblockStatus": {
+    "bepflanzt": "bepflanzt",
+    "erntereif": "erntereif",
+    "ruhend": "ruhend",
+    "rueckschnitt": "Rückschnitt",
+    "wartezeitgesperrt": "wartezeitgesperrt"
+  },
+  "aufgabenStatus": {
+    "offen": "offen",
+    "angenommen": "angenommen",
+    "in_arbeit": "in Arbeit",
+    "beleg_pruefung": "Belegprüfung",
+    "abgeschlossen": "abgeschlossen"
+  },
+  "kpis": {
+    "verlustquote": { "label": "Verlustquote" },
+    "vermarktungsfaehig": { "label": "Anteil vermarktungsfähiger Schalen" },
+    "zeitBisKuehlung": { "label": "Zeit bis zur Kühlung (Durchschnitt)" },
+    "kuehlketteEinhaltung": { "label": "Kühlkette unter 60 min eingehalten" },
+    "pflueckleistung": { "label": "Pflückleistung je Person" },
+    "erntemenge": { "label": "Erntemenge pro Tag" },
+    "wartezeitVerstoesse": { "label": "Wartezeit-Verstöße" },
+    "herbstanteil": { "label": "Anteil Herbstsorten-Ertrag" },
+    "liefertreue": { "label": "Liefertreue" },
+    "reklamationsquote": { "label": "Reklamationsquote B2B" },
+    "durchschnittspreis": { "label": "Durchschnittspreis je kg" },
+    "deckungsbeitrag": { "label": "Deckungsbeitrag je kg" },
+    "esutdAbdeckung": { "label": "ЕСУТД-Abdeckung" },
+    "brigadenAuslastung": { "label": "Brigaden-Auslastung" }
+  },
+  "modules": {
+    "standort": {
+      "title": "Standort-Hierarchie",
+      "description": "Betrieb, Plantage, Feldparzelle, Reihengruppe, Reihenblock. Die vierstufige Hierarchie aus 1Çatı, eine Ebene tiefer und agrarisch benannt.",
+      "summary": "Vier Ebenen und Statuswerte umbenannt, Feldgeometrie und Spalierrichtung als neue Attribute ergänzt.",
+      "todo": "Verwaltungsoberfläche zum Anlegen und Verschieben von Parzellen und Reihengruppen, Feldgeometrie-Editor."
+    },
+    "reihenbloecke": {
+      "title": "Reihenblöcke und Status",
+      "description": "Zustandsautomat je Reihenblock. Der 1Çatı-Unit-Status übersetzt sich nahezu satzweise - inklusive blocked, das hier wörtlich die Wartezeitsperre ist.",
+      "summary": "Strukturmuster Bedingung sperrt Aktion bis erfüllt wiederverwendet, Bedingung von Zahlungsrückstand auf Wartezeit-Ablauf umgestellt.",
+      "todo": "Statuswechsel mit Begründungspflicht, RLS-Policies je neuer Ressource, Verlauf je Reihenblock."
+    },
+    "pflueckaufgaben": {
+      "title": "Pflückaufgaben mit Fotobeleg",
+      "description": "workforce_tasks plus media_reports aus 1Çatı Migration 6 - strukturell bereits eine Aufgabe-mit-Fotobeleg-Maschine, hier je Brigade und Reihenblock.",
+      "summary": "Direkt als Pflückaufgabe je Brigade und Reihenblock genutzt, Fotobeleg der Verkaufsschale an der Aufgabe.",
+      "todo": "Offline-Erfassung im Feld, Belegprüfung mit Freigabe und Nacharbeit, Verknüpfung mit Qualitätsfaktor-Lohn."
+    },
+    "pflanzenschutz": {
+      "title": "Pflanzenschutz und Wartezeit",
+      "description": "Erntesperre nach Behandlung je Reihenblock bis Ablauf der gesetzlichen Wartezeit. Hartes Rechtsrisiko, quer zu allen Kernprozessen.",
+      "summary": "Sperre bis Bedingung erfüllt aus payment-restriction-control, Bedingung ist der Wartezeit-Ablauf.",
+      "todo": "Spritzmitteldatenbank mit Wartezeiten, automatische Freigabe bei Fristablauf, Protokoll-Upload-Pflicht."
+    },
+    "rotationsplan": {
+      "title": "Rotationsplan / Pflückplan",
+      "description": "Pflückintervall von zwei bis drei Tagen je Reihenblock über die mehrwöchige Herbsternte. Kein Vorbild in 1Çatı.",
+      "summary": "Neu zu bauende Engine. Die fertige Rotation wird über ics-calendar.ts als Kalender exportiert.",
+      "todo": "Intervall-Engine je Reihenblock, Brigadenzuteilung, Konfliktprüfung mit Wartezeitsperren, Kalender-Export."
+    },
+    "wetter": {
+      "title": "Wetter und Temperatursumme",
+      "description": "Einfache Wetter-API-Anbindung und Temperatursummen-Heuristik. Bewusst kein ML in Phase 1 laut Marktanalyse.",
+      "summary": "Neu. Eine einfache Wetter-API-Anbindung reicht für die erste Ausbaustufe.",
+      "todo": "Wetterstation- oder API-Anbindung, Temperatursumme je Parzelle, Hinweis auf verschobene Reifefenster."
+    },
+    "kuehlkette": {
+      "title": "Kühlketten-Uhr",
+      "description": "Zeitmessung von Pflücken bis Vorkühlung mit hartem 60-Minuten-Grenzwert, Temperaturlogger, Zieltemperatur 0 bis 1 Grad. Höchste fachliche Priorität.",
+      "summary": "Kein Analog in 1Çatı. Der Baustein, an dem laut Pitch-Dossier der gesamte Preisspread hängt.",
+      "todo": "Logger-Integration, Charge-Uhr ab Pflückzeitpunkt, Alarm bei Grenzwertüberschreitung, KPI-Berechnung."
+    },
+    "logistik": {
+      "title": "Abholrunden und Tourenplanung",
+      "description": "Lifecycle-Zustandsmuster aus booking-lifecycle-repository und move-handover-repository, Domänenobjekt auf Abholtermin umgestellt.",
+      "summary": "Lifecycle-Zustandsmuster übernehmen, Domänenobjekt von Zimmerbuchung auf Abhol- und Liefertermin umstellen.",
+      "todo": "Tourenliste je Fahrzeug, Zeitfenster, Übergabequittung mit Temperatur- und Mengenabgleich."
+    },
+    "qr_steigen": {
+      "title": "QR-Steigenkennung",
+      "description": "Scan-Intake aus 1Çatı Migration 28 bleibt, Zielobjekt wechselt von QR-pro-Zone zu QR-pro-Steige. Im Prototyp UI-Mock ohne vollständigen Server-Abgleich.",
+      "summary": "QR-Platzierung, Scan-Intake und Missbrauchs-Fingerprinting sind fertig gebaut, nur das Zielobjekt wechselt.",
+      "todo": "Etikettendruck je Steige, Scan am Ausgabepunkt mit Server-Abgleich, Zuordnung Steige zu Charge und Aufgabe."
+    },
+    "esf": {
+      "title": "Elektronischer Lieferschein (ЭСФ)",
+      "description": "ЭСФ und virtueller Lagerbestand über das bestehende integration_outbox-Muster als Brücke. Kein Eigenbau eines Buchhaltungssystems.",
+      "summary": "Outbox-Muster als Brücke nutzen. Pflichtintegration, kein Eigenbau der Buchhaltung.",
+      "todo": "Anbindung ans ИС ЭСФ, Belegkette Charge zu Lieferschein, Statusrückmeldung in die Outbox."
+    },
+    "rollen": {
+      "title": "Rollen und Rechte",
+      "description": "RBAC-Engine aus 1Çatı lib/rbac.ts. Sechs Kernrollen direkt übertragbar, die Guardianship-Rollen entfernt.",
+      "summary": "Rollen als reine Datenstruktur über Ressourcen mal Aktionen, synchron zu SQL-Helfern. Austauschbar ohne Engine-Eingriff.",
+      "todo": "Nutzerverwaltung, Rollenzuweisung, RLS-Policies je Ressource neu geschrieben statt nur umbenannt."
+    },
+    "finanzen": {
+      "title": "Deckungsbeitrag und Finanzen",
+      "description": "finance_ledger_entries aus 1Çatı. Unveränderlichkeits-Trigger bleibt, Kostenträger um Reihenblock, Sorte und Erntetag erweitert.",
+      "summary": "Buchungslogik bleibt, Kostenträger neu: Deckungsbeitrag je Reihenblock, Sorte und Erntetag.",
+      "todo": "Kostenarten je Erntetag, B2B-Zahlungsabgleich, Deckungsbeitragsprojektion je Sorte."
+    },
+    "personal": {
+      "title": "Pflückerstamm und Brigaden",
+      "description": "Personenstamm aus StaffMember übernehmbar. Brigaden-Zuordnung über workforce_tasks statt Bewohnerzuordnung.",
+      "summary": "Personenstamm übernommen, Brigade und Pflückerausweis, Leistungs- und Qualitätsfaktor je Person.",
+      "todo": "ЕСУТД-Erfassung je Vertrag, Brigadenplanung, Leistungshistorie als Grundlage der Lohnberechnung."
+    },
+    "lohn": {
+      "title": "Qualitätsfaktor-Lohn",
+      "description": "Grundvergütung plus Mengenkomponente plus Qualitätsfaktor. Reiner Stücklohn ist bei der Himbeere wertvernichtend. Kein Vorbild in 1Çatı.",
+      "summary": "Berechnungslogik neu, Datenhaltung wird aus der Erntetagserfassung übernommen.",
+      "todo": "Lohnformel-Editor, Qualitätsfaktor aus Belegprüfung, Abrechnungslauf je Periode, Vorschusskonto."
+    },
+    "dokumente": {
+      "title": "Dokumentenverwaltung",
+      "description": "document-storage.ts aus 1Çatı Migration 9. Direkt nutzbar für Spritzmittelprotokolle, Verträge und ЕСУТД-Nachweise.",
+      "summary": "Container-Muster übernommen, Kategorien auf Agrar-Dokumente umgestellt.",
+      "todo": "Versionierung, Ablauf- und Erinnerungslogik, Verknüpfung mit Reihenblock und Charge."
+    },
+    "compliance": {
+      "title": "Compliance-Cockpit",
+      "description": "Consent-, Retention- und Audit-Grundgerüst aus compliance-repository 1:1. Rechtszitate werden ausgetauscht statt nur übersetzt.",
+      "summary": "Grundgerüst 1:1, kasachstanische Rechtszitate neu formuliert, Datenresidenz als offener Punkt markiert.",
+      "todo": "Rechtszitate Steuergesetzbuch, KI-Gesetz, Digitalkodex, Retention-Regeln je Datenprodukt, Hosting-Standort-Prüfung."
+    },
+    "integrationen": {
+      "title": "Staatliche Integrationen",
+      "description": "ЭСФ, virtueller Lagerbestand, ЕСУТД, Fördermittelportale gosagro.kz und qoldau.kz. Angebunden über integration_outbox, nicht selbst gebaut.",
+      "summary": "Outbox-Muster 1:1, ein Konnektor je Zielsystem, Statusrückmeldung und Wiederholung.",
+      "todo": "Konnektoren je System, Sandbox-Zugänge, Fehler- und Wiederholungslogik, Monitoring der Warteschlange."
+    },
+    "foerdermittel": {
+      "title": "Fördermitteldossier",
+      "description": "Container-Muster aus document-storage.ts und reporting-repository. Formulare für die kasachstanischen Förderportale neu.",
+      "summary": "Container-Muster übernehmen, Antragsformulare und Nachweislisten neu.",
+      "todo": "Antragsvorlagen, Nachweis-Checklisten, Fristenmonitor, Bescheid-Ablage."
+    },
+    "sortenkatalog": {
+      "title": "Sorten- und Kontingentkatalog",
+      "description": "listings aus 1Çatı wird zum Sorten- und Kontingentkatalog. Buchungsmuster für Kontingente und Vorbestellung.",
+      "summary": "listings umgebaut zu Sorte, Erntefenster, Schalengewicht, Kontingent und Preisliste.",
+      "todo": "Kontingentbuchung mit Reservierungslogik, Preislistenversionen, Kundenzuordnung."
+    },
+    "b2b_portal": {
+      "title": "B2B-Portal",
+      "description": "reservations und Finanzmodule aus 1Çatı als Buchungsmuster für Kontingente, Vorbestellung und Preislisten.",
+      "summary": "Buchungsmuster 1:1 für Kontingente. listings wird Sorten- und Kontingentkatalog.",
+      "todo": "Kundenkonten, Kontingent-Vorbestellung, Lieferterminbuchung, Rechnungs- und Zahlungsstatus."
+    },
+    "preislisten": {
+      "title": "Preislisten",
+      "description": "Preislistenversionen je Sorte und Kunde. Aus dem Buchungs- und Finanzmuster von 1Çatı abgeleitet.",
+      "summary": "Aus reservations und Finanzmodulen abgeleitet, Preisstaffeln je Kunde und Zeitraum.",
+      "todo": "Versionierte Preislisten, Staffelpreise, Gültigkeitszeiträume, Kundenzuordnung."
+    },
+    "ki_assistent": {
+      "title": "KI-Assistent",
+      "description": "Retrieval-only-Chat aus public-ai-chat, ai-retrieval und ai-guardrails. Antwortet nur aus freigegebenen Quellen, protokolliert, eskaliert an Menschen. Im Prototyp Platzhalter-Chatfenster.",
+      "summary": "Architektur erfüllt bereits das Verdikt nur freigegebene Quellen, protokolliert, Eskalation. Nur die Wissensbasis wird ausgetauscht.",
+      "todo": "Wissensbasis Sortenkatalog und Kunden-FAQ, RBAC-Gate, Transparenzhinweis nach KI-Gesetz, Eskalationspfad."
+    },
+    "aggregator": {
+      "title": "Aggregator / Nachbarbetriebe",
+      "description": "vendor-invoice-repository und vendors-Tabelle aus 1Çatı. Nachbarbetrieb wird Vendor, Zukaufmenge wird Rechnungsposition, getrennte Chargenführung neu.",
+      "summary": "Vendor-Muster übernehmen, getrennte Chargenführung je Nachbarbetrieb neu.",
+      "todo": "Nachbarbetrieb-Onboarding, Zukauf-Erfassung mit eigener Charge, Abrechnung und Auszahlung."
+    },
+    "schulungen": {
+      "title": "Schulungsvideos",
+      "description": "video-library aus 1Çatı. Direkt nutzbar für mehrsprachige, bildbasierte Kurzeinarbeitung der Saisonkräfte.",
+      "summary": "Direkt übernommen für mehrsprachige, bildbasierte Kurzeinarbeitung.",
+      "todo": "Videoinhalte je Kernprozess, Sprachfassungen Kasachisch und Russisch, Fortschrittsverfolgung je Person."
+    }
+  },
+  "reihenbloeckeDemo": {
+    "distributionTitle": "Statusverteilung",
+    "distributionLead": "Klicken filtert die Tabelle. Der 1Çatı-Unit-Status je Kachel zeigt die 1:1-Übersetzung.",
+    "catiStatus": "1Çatı-Status",
+    "lockTitle": "Sperrzustand wartezeitgesperrt",
+    "lockLead": "Was in 1Çatı blocked heißt, ist hier wörtlich die gesetzlich verlangte Erntesperre nach Pflanzenschutzbehandlung bis Ablauf der Wartezeit. Kein Pflücken, keine Aufgabe, keine Steige aus diesem Block.",
+    "tableTitle": "Reihenblöcke",
+    "tableLeadAll": "Alle Reihenblöcke über alle Plantagen.",
+    "tableLeadFiltered": "Gefiltert nach dem gewählten Status.",
+    "col": {
+      "id": "Reihenblock",
+      "parzelle": "Parzelle / Gruppe",
+      "sorte": "Sorte",
+      "status": "Status",
+      "letzteErnte": "Letzte Ernte",
+      "sperre": "Sperre"
+    },
+    "freeAt": "Frei ab",
+    "days": "Tage",
+    "catiNote": "Übernahme aus 1Çatı: units-Zustandsautomat (occupied, vacant, reserved, maintenance, blocked). Klassifikation Anpassen - Muster bleibt, Datenmodell und Statuswerte werden umbenannt."
+  },
+  "pflueckaufgabenDemo": {
+    "listTitle": "Pflückaufgaben heute",
+    "listLead": "Je Brigade und Reihenblock. Fortschritt ist Istmenge gegen Zielmenge.",
+    "block": "Block",
+    "proofTitle": "Fotobeleg",
+    "proofLead": "media_reports an der Aufgabe. Beispielfotos der Verkaufsschale, des Reihenblocks und der Steige.",
+    "noProof": "Noch kein Beleg zu dieser Aufgabe.",
+    "addProof": "Beleg aufnehmen (Mock)",
+    "reviewTitle": "Belegprüfung offen",
+    "reviewLead": "Die Aufgabe wartet auf Freigabe. Menge und Schalenbeleg prüfen, dann freigeben oder Nacharbeit anfordern.",
+    "approve": "Freigeben",
+    "rework": "Nacharbeit",
+    "art": {
+      "schale": "Verkaufsschale",
+      "reihenblock": "Reihenblock",
+      "steige": "Steige"
+    },
+    "catiNote": "Übernahme aus 1Çatı Migration 6: service_orders, workforce_tasks, media_reports. Klassifikation Übernehmen - Code und Architektur bleiben, nur die Beschriftung ändert sich."
+  },
+  "standortDemo": {
+    "statsTitle": "Hierarchie im Überblick",
+    "statsLead": "Vier Ebenen unter dem Betrieb, analog zu 1Çatı Company, Site, Block, Floor, Unit.",
+    "level": {
+      "plantagen": "Plantagen / Nachbarbetriebe",
+      "parzellen": "Feldparzellen",
+      "reihengruppen": "Reihengruppen",
+      "reihenbloecke": "Reihenblöcke",
+      "flaeche": "Fläche gesamt"
+    },
+    "treeTitle": "Standortbaum",
+    "treeLead": "Betrieb, Plantage, Feldparzelle, Reihengruppe. Reihenblöcke im eigenen Modul.",
+    "typ": {
+      "eigen": "Eigenbetrieb",
+      "nachbarbetrieb": "Nachbarbetrieb"
+    },
+    "blocksShort": "Blöcke",
+    "catiNote": "Übernahme aus 1Çatı Migration 2 und site-management-data.ts. Klassifikation Anpassen - vier Ebenen und Statuswerte umbenannt, Feldgeometrie und Spalierrichtung neu."
+  },
+  "pflanzenschutzDemo": {
+    "ruleTitle": "Harte Rechtsregel",
+    "ruleLead": "Nach einer Pflanzenschutzbehandlung ist die Ernte je Reihenblock bis Ablauf der mittelspezifischen Wartezeit gesperrt. Ein Verstoß ist ein Rechtsrisiko, kein Komfortthema.",
+    "activeTitle": "Aktive Wartezeitsperren",
+    "activeLead": "Reihenblöcke mit laufender Wartezeit. Freigabe automatisch bei Fristablauf.",
+    "col": {
+      "block": "Reihenblock",
+      "mittel": "Mittel",
+      "behandelt": "Behandelt am",
+      "wartezeit": "Wartezeit",
+      "freigabe": "Frei ab",
+      "status": "Status"
+    },
+    "days": "Tage",
+    "locked": "gesperrt",
+    "catiNote": "Muster aus payment-restriction-control.tsx (Phase-7-Schuldnerlogik). Klassifikation Anpassen - Bedingung sperrt Aktion bis erfüllt, Bedingung von Zahlungsrückstand auf Wartezeit-Ablauf umgestellt."
+  },
+  "rollenDemo": {
+    "rolesTitle": "Sechs Kernrollen",
+    "rolesLead": "Remapping der 1Çatı-Rollen admin, manager, accountant, staff, owner, tenant. Guardianship- und Kind-Rollen entfernt.",
+    "scope": "Bereich",
+    "matrixTitle": "Rechtematrix (Auszug, Aktion ansehen)",
+    "matrixLead": "Rollen mal Ressourcen. Dieselbe Datenstruktur wie in 1Çatı lib/rbac.ts.",
+    "resource": "Ressource",
+    "matrixNote": "Vollständige Matrix: 22 Ressourcen mal 7 Aktionen. RLS-Policies werden je Ressource neu geschrieben, nicht nur umbenannt (Analyse Kapitel 10).",
+    "catiNote": "Übernahme aus 1Çatı lib/rbac.ts. Klassifikation Übernehmen - Engine bleibt, sechs Kernrollen direkt übertragbar, Guardianship-Rollen entfernt."
+  },
+  "finanzenDemo": {
+    "dbTitle": "Deckungsbeitrag je Reihenblock und Erntetag",
+    "dbLead": "Kostenträger neu: Reihenblock, Sorte, Erntetag. Buchungslogik und Unveränderlichkeits-Trigger bleiben aus 1Çatı.",
+    "col": {
+      "block": "Reihenblock",
+      "sorte": "Sorte",
+      "erntetag": "Erntetag",
+      "erloes": "Erlös",
+      "kosten": "Kosten",
+      "db": "Deckungsbeitrag"
+    },
+    "catiNote": "Übernahme aus finance_ledger_entries und accountant-finance-repository.ts. Klassifikation Anpassen - Unveränderlichkeits-Trigger bleibt, Kostenträger um Reihenblock, Sorte, Erntetag erweitert."
+  },
+  "personalDemo": {
+    "brigadenTitle": "Brigaden",
+    "brigadenLead": "Zuordnung über workforce_tasks statt Bewohnerzuordnung.",
+    "foreman": "Vorarbeiter",
+    "people": "Personen",
+    "pflueckerTitle": "Pflückerstamm",
+    "pflueckerLead": "Personenstamm aus StaffMember. ЕСУТД-Erfassung je Vertrag, Leistungs- und Qualitätsfaktor je Person.",
+    "col": {
+      "name": "Name",
+      "brigade": "Brigade",
+      "ausweis": "Ausweis",
+      "esutd": "ЕСУТД",
+      "leistung": "Leistung",
+      "qfaktor": "Q-Faktor"
+    },
+    "esutd": {
+      "erfasst": "erfasst",
+      "offen": "offen"
+    },
+    "days": "Tage",
+    "catiNote": "Übernahme aus StaffMember und workforce_tasks. Klassifikation Anpassen - Personenstamm übernehmbar, Lohnformel ist neue Geschäftslogik."
+  },
+  "dokumenteDemo": {
+    "listTitle": "Dokumente",
+    "listLead": "Spritzmittelprotokolle, ЕСУТД-Nachweise, Verträge, Förderdossiers und Zertifikate.",
+    "col": {
+      "name": "Dokument",
+      "kategorie": "Kategorie",
+      "bezug": "Bezug",
+      "stand": "Stand",
+      "status": "Status"
+    },
+    "status": {
+      "gueltig": "gültig",
+      "prueflauf": "im Prüflauf",
+      "abgelaufen": "abgelaufen"
+    },
+    "catiNote": "Übernahme aus document-storage.ts und 1Çatı Migration 9. Klassifikation Übernehmen - für Spritzmittelprotokolle, Verträge und ЕСУТД-Nachweise nutzbar."
+  },
+  "complianceDemo": {
+    "cockpitTitle": "Compliance-Cockpit",
+    "cockpitLead": "Consent-, Retention- und Audit-Grundgerüst aus 1Çatı. Rechtsbezug wechselt zu kasachstanischem Recht.",
+    "items": {
+      "consent": { "title": "Einwilligungen", "state": "aktiv", "text": "Consent-Ledger aus 1Çatı. Texte nach kasachstanischem Datenschutzrecht neu zu formulieren." },
+      "retention": { "title": "Aufbewahrung", "state": "aktiv", "text": "Retention-Regeln je Datenprodukt. Digest-basierte Aufbewahrung aus Migration 28 übernommen." },
+      "audit": { "title": "Audit-Log", "state": "aktiv", "text": "ai_action_logs, audit_events, access_events 1:1 - nur der Rechtsbezug ändert sich." },
+      "residency": { "title": "Datenresidenz", "state": "offen", "text": "Digitalkodex Nr. 255-VIII schränkt Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Hosting-Standort ist zu prüfen." },
+      "ai": { "title": "KI-Transparenz", "state": "offen", "text": "Gesetz Nr. 230-VIII. Transparenzhinweis und Einwilligung für den KI-Chat neu zu formulieren." }
+    },
+    "integrationTitle": "Staatliche Integrationen (Outbox)",
+    "integrationLead": "Angebunden über integration_outbox. Kein Eigenbau der Buchhaltung.",
+    "col": {
+      "name": "Integration",
+      "system": "Zielsystem",
+      "status": "Status",
+      "queue": "Warteschlange"
+    },
+    "intStatus": {
+      "verbunden": "verbunden",
+      "sandbox": "Sandbox",
+      "geplant": "geplant"
+    },
+    "catiNote": "Übernahme aus compliance-repository.ts und compliance-live-cockpit.tsx. Klassifikation Anpassen - Grundgerüst 1:1, Rechtszitate austauschen."
+  },
+  "sortenkatalogDemo": {
+    "catalogTitle": "Sorten und Kontingente",
+    "catalogLead": "listings aus 1Çatı, umgebaut zu Sorte, Erntefenster, Schalengewicht, Kontingent und Preis.",
+    "typ": {
+      "remontierend": "remontierend",
+      "sommertragend": "sommertragend"
+    },
+    "window": "Erntefenster",
+    "shale": "Schale",
+    "contingent": "Kontingent reserviert",
+    "catiNote": "Übernahme aus listings. Klassifikation Anpassen - listings wird Sorten- und Kontingentkatalog, Buchungsmuster für Kontingente 1:1."
+  },
+  "schulungenDemo": {
+    "libraryTitle": "Videobibliothek",
+    "libraryLead": "video-library aus 1Çatı. Mehrsprachige, bildbasierte Kurzeinarbeitung der Saisonkräfte.",
+    "col": {
+      "titel": "Titel",
+      "thema": "Thema",
+      "dauer": "Dauer",
+      "sprachen": "Sprachen"
+    },
+    "catiNote": "Übernahme aus video-library.ts und video-library-player.tsx. Klassifikation Übernehmen - direkt nutzbar."
+  },
+  "kuehlketteMock": {
+    "clockTitle": "Charge-Uhr (Mock)",
+    "clockLead": "Zeit seit Pflücken gegen den 60-Minuten-Grenzwert, aktuelle Kerntemperatur je Charge.",
+    "block": "Block",
+    "hint": "Zieltemperatur 0 bis 1 Grad. Über 60 Minuten fällt der Preisspread - kein Software-Ersatz für die physische Vorkühlanlage."
+  },
+  "qrSteigenMock": {
+    "scanTitle": "Scan am Ausgabepunkt (Mock)",
+    "scanLead": "QR-pro-Steige. Scan-Intake und Missbrauchs-Fingerprinting sind aus 1Çatı Migration 28 fertig, hier ohne echten Server-Abgleich.",
+    "simulateScan": "Scan simulieren",
+    "registered": "erfasst"
+  },
+  "kiAssistentMock": {
+    "chatTitle": "Retrieval-Chat (Platzhalter)",
+    "chatLead": "Antwortet später nur aus freigegebenen Quellen, protokolliert jede Antwort, eskaliert bei Unsicherheit an einen Menschen. Wissensbasis noch nicht befüllt.",
+    "demoQuestion": "Welche Sorten sind ab September lieferbar?",
+    "demoAnswer": "Ab September lieferbar: Polka und Polana (remontierend), auf Anfrage Kweli. Tulameen ist ein Sommerträger und im September nicht verfügbar.",
+    "stubAnswer": "Platzhalter-Antwort. Im Prototyp ist keine Wissensbasis angebunden - der echte Assistent zieht die Antwort aus dem freigegebenen Sortenkatalog und der Kunden-FAQ.",
+    "inputPlaceholder": "Frage eingeben ...",
+    "send": "Senden"
+  },
+  "legal": {
+    "imprintTitle": "Impressum",
+    "privacyTitle": "Datenschutz",
+    "prototypeDisclaimer": "Hinweis: Malina ist ein interner Prototyp (Proof-of-Concept) der WAMOCON GmbH. Es findet keine echte Datenverarbeitung von Betriebs- oder Personendaten statt. Alle angezeigten Daten sind Platzhalter.",
+    "managingDirector": "Vertretungsberechtigter Geschäftsführer",
+    "registration": "Registereintrag",
+    "controller": "Verantwortlicher",
+    "privacyScopeTitle": "Umfang",
+    "privacyScopeText": "Der Prototyp verarbeitet keine personenbezogenen Daten. Es werden keine Cookies zu Analysezwecken gesetzt. Die Design-Auswahl (hell/dunkel) und die Demo-Rolle werden nur lokal im Browser gespeichert.",
+    "residencyTitle": "Datenresidenz (geplanter Betrieb)",
+    "residencyText": "Für den späteren Realbetrieb schränkt der kasachstanische Digitalkodex Nr. 255-VIII die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Der Hosting-Standort für QR-, Offline-Sync- und KI-Architektur wird vor Produktivsetzung rechtlich geprüft."
+  }
+}
