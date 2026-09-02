@@ -380,7 +380,7 @@
       <div class="cover-meta">
         <div><div class="meta-label">Version</div><div class="meta-value">0.1.0</div></div>
         <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein A)</span></div></div>
-        <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; TR &middot; KK &middot; RU</div></div>
+        <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; EN &middot; TR &middot; KK &middot; RU</div></div>
         <div><div class="meta-label">Datum</div><div class="meta-value">September 2026</div></div>
       </div>
     </div>
@@ -530,9 +530,9 @@
 
       <h3 id="tut-upgrade">3.3 Sprache umschalten</h3>
       <ol>
-        <li>Sprachumschalter im Kopfbereich (Globus-Symbol): DE, TR, KK, RU</li>
-        <li>Die Startsprache ist Deutsch; Englisch aus 1&Ccedil;at&#305; entf&auml;llt, Kasachisch kommt hinzu</li>
-        <li>Deutsch ist vollst&auml;ndig; TR, KK und RU sind f&uuml;r den Prototyp bewusst teil&uuml;bersetzt und fallen sonst auf Deutsch zur&uuml;ck</li>
+        <li>Sprachumschalter im Kopfbereich (Globus-Symbol): DE, EN, TR, KK, RU</li>
+        <li>Die Startsprache ist Deutsch. Kasachisch kommt gegen&uuml;ber 1&Ccedil;at&#305; hinzu; Englisch wurde auf ausdr&uuml;ckliche Anweisung wieder aufgenommen (deckt sich mit der Pitch-Dossier-Empfehlung, Dokumente in Russisch und Englisch bereitzustellen)</li>
+        <li>Deutsch und Englisch sind vollst&auml;ndig; TR, KK und RU sind f&uuml;r den Prototyp bewusst teil&uuml;bersetzt und fallen sonst per Deep-Merge auf Deutsch zur&uuml;ck</li>
       </ol>
     </section>
 
@@ -576,7 +576,7 @@
           </tbody>
         </table>
       </div>
-      <p><code>[locale]</code> ist eines von <code>de</code>, <code>tr</code>, <code>kk</code>, <code>ru</code>. Locale-Routing &uuml;ber <code>src/proxy.ts</code> (Next.js 16) und next-intl.</p>
+      <p><code>[locale]</code> ist eines von <code>de</code>, <code>en</code>, <code>tr</code>, <code>kk</code>, <code>ru</code>. Locale-Routing &uuml;ber <code>src/proxy.ts</code> (Next.js 16) und next-intl.</p>
 
       <h3 id="api">5.2 Rollen &amp; Rechte (RBAC)</h3>
       <p>
@@ -603,7 +603,7 @@
             <tr><td>Framework</td><td>Next.js 16 (App Router, <code>src/app/</code>)</td><td>SSR, statische Locale-Seiten, <code>src/proxy.ts</code></td></tr>
             <tr><td>Sprache</td><td>TypeScript (strict)</td><td>Typsicheres Domänenmodell und RBAC</td></tr>
             <tr><td>Styling</td><td>Tailwind CSS v4</td><td>Design-Tokens in <code>src/app/globals.css</code>, Hell/Dunkel</td></tr>
-            <tr><td>i18n</td><td>next-intl v4</td><td>Vier Locales, Fallback auf Deutsch per Deep-Merge</td></tr>
+            <tr><td>i18n</td><td>next-intl v4</td><td>F&uuml;nf Locales (de/en/tr/kk/ru), Fallback auf Deutsch per Deep-Merge</td></tr>
             <tr><td>Icons</td><td>lucide-react</td><td>Kuratierte Icon-Registry (<code>src/components/icon.tsx</code>)</td></tr>
             <tr><td>Bilder</td><td>next/image + Unsplash</td><td>Lizenzfreie Platzhalter, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
             <tr><td>Datenbank</td><td>Supabase (PostgreSQL, RLS), lokal via Docker</td><td>39 Tabellen, Migrationen in <code>supabase/migrations/</code>. UI nutzt noch Mock-Daten.</td></tr>

@@ -6,7 +6,8 @@
   "common": {
     "skipToContent": "İçeriğe geç",
     "themeLight": "Açık tema",
-    "themeDark": "Koyu tema"
+    "themeDark": "Koyu tema",
+    "localeSwitcherLabel": "Dil seçimi"
   },
   "notFound": {
     "message": "Böyle bir sayfa yok.",
@@ -33,8 +34,8 @@
     "ctaSecondary": "Dört bölgeyi gör",
     "stat1Value": "60 dakika",
     "stat1Label": "toplamadan ön soğutmaya kadar kesin sınır",
-    "stat2Value": "4 dil",
-    "stat2Label": "Almanca, Türkçe, Kazakça, Rusça",
+    "stat2Value": "5 dil",
+    "stat2Label": "Almanca, İngilizce, Türkçe, Kazakça, Rusça",
     "stat3Value": "14 KPI",
     "stat3Label": "müşteriyle taban çizgisi 01.10.2026"
   },
@@ -138,7 +139,7 @@
       "milestoneADue": "06.09.2026'ya kadar",
       "milestoneAItems": {
         "tokens": "Tasarım token'larının ahududu paletine geçişi",
-        "landing": "Yer tutucu metin ve görsellerle açılış sayfası, dört dil için dil değiştirici",
+        "landing": "Yer tutucu metin ve görsellerle açılış sayfası, beş dil için dil değiştirici",
         "zones": "Navigasyon yapısı olarak dört bölgeli pano iskeleti",
         "workflows": "Örnek ana süreçler: sıra bloğu genel bakışı ve fotoğraf kanıtlı toplama görevi"
       },
@@ -150,7 +151,7 @@
         "status": "Bitki koruma sonrası kilit dahil sıra bloğu durum yönetimi",
         "tasks": "workforce_tasks ve media_reports'tan fotoğraf kanıtlı toplama görevleri",
         "docs": "document-storage.ts'ten belge yönetimi",
-        "i18n": "Dört dilde çok dilli arayüz",
+        "i18n": "Beş dilde çok dilli arayüz",
         "kpi": "Yapı olarak KPI kutucuklu pano iskeleti"
       }
     }
@@ -278,6 +279,7 @@
     "listTitle": "Bugünün toplama görevleri",
     "listLead": "Ekip ve sıra bloğu başına. İlerleme, gerçek miktarın hedefe oranıdır.",
     "block": "Blok",
+    "qFactor": "Q faktörü",
     "proofTitle": "Fotoğraf kanıtı",
     "proofLead": "Göreve bağlı media_reports. Satış kasesi, sıra bloğu ve kasa örnek fotoğrafları.",
     "noProof": "Bu görev için henüz kanıt yok.",
@@ -393,6 +395,11 @@
     "managingDirector": "Yetkili genel müdür",
     "registration": "Sicil kaydı",
     "controller": "Sorumlu",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "commercialRegister": "Ticaret sicili",
+    "vatId": "KDV kimlik no.",
+    "country": "Almanya",
     "privacyScopeTitle": "Kapsam",
     "privacyScopeText": "Prototip kişisel veri işlemez. Analiz amaçlı çerez konmaz. Tema seçimi (açık/koyu) ve demo rolü yalnızca tarayıcıda yerel olarak saklanır.",
     "residencyTitle": "Veri yerleşimi (planlanan işletim)",

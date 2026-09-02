@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { Camera, Check } from "lucide-react";
 import { Card, Section, StatusPill, type Tone } from "@/components/ui/kit";
 import {
@@ -14,6 +14,7 @@ import {
 export function PflueckaufgabenDemo() {
   const t = useTranslations("pflueckaufgabenDemo");
   const st = useTranslations("aufgabenStatus");
+  const format = useFormatter();
   const [selected, setSelected] = useState<Pflueckaufgabe>(
     pflueckaufgaben.find((a) => a.belege.length > 0) ?? pflueckaufgaben[0],
   );
@@ -61,7 +62,9 @@ export function PflueckaufgabenDemo() {
                     {task.belege.length}
                   </span>
                   {task.qualitaetsfaktor ? (
-                    <span>Q-Faktor {task.qualitaetsfaktor.toFixed(2)}</span>
+                    <span>
+                      {t("qFactor")} {task.qualitaetsfaktor.toFixed(2)}
+                    </span>
                   ) : null}
                 </div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
@@ -108,7 +111,7 @@ export function PflueckaufgabenDemo() {
                     <div className="flex items-center justify-between">
                       <StatusPill tone="info">{t(`art.${beleg.art}`)}</StatusPill>
                       <span className="text-[11px] text-muted-foreground">
-                        {new Date(beleg.aufgenommen).toLocaleString("de-DE", {
+                        {format.dateTime(new Date(beleg.aufgenommen), {
                           day: "2-digit",
                           month: "2-digit",
                           hour: "2-digit",

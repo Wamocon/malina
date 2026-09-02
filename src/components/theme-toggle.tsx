@@ -6,10 +6,29 @@ import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Kein next-themes - der Prototyp haelt es schlank: eine Klasse `.dark` auf
-// <html>, in localStorage gespiegelt. Der Anti-Flash-Setter (themeInitScript
-// unten) wird im Locale-Layout ueber `next/script` mit strategy
-// "beforeInteractive" eingebunden und laeuft vor der Hydration.
+// <html>, in localStorage gespiegelt. Der Anti-Flash-Setter <ThemeScript />
+// (unten) rendert das Inline-Script nur im SSR-HTML; auf dem Client rendert er
+// nie ein <script>-Element und loest damit auch beim Sprachwechsel (der das
+// Locale-Layout neu rendert) keine React-Warnung aus.
 const listeners = new Set<() => void>();
+
+const neverSubscribe = () => () => {};
+
+/**
+ * Rendert das Anti-Flash-Theme-Script ausschliesslich serverseitig in das
+ * initiale HTML - dort laeuft es synchron vor dem ersten Paint. Auf dem Client
+ * gibt der Store immer `false` zurueck, also rendert React hier nie ein
+ * <script>-Element (weder bei Hydration noch bei Re-Renders).
+ */
+export function ThemeScript() {
+  const renderOnServerOnly = useSyncExternalStore(
+    neverSubscribe,
+    () => false,
+    () => true,
+  );
+  if (!renderOnServerOnly) return null;
+  return <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />;
+}
 
 function subscribe(callback: () => void) {
   listeners.add(callback);

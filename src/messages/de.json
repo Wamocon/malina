@@ -6,7 +6,8 @@
   "common": {
     "skipToContent": "Zum Inhalt springen",
     "themeLight": "Helles Design",
-    "themeDark": "Dunkles Design"
+    "themeDark": "Dunkles Design",
+    "localeSwitcherLabel": "Sprachauswahl"
   },
   "notFound": {
     "message": "Diese Seite gibt es nicht.",
@@ -33,8 +34,8 @@
     "ctaSecondary": "Die vier Zonen ansehen",
     "stat1Value": "60 Minuten",
     "stat1Label": "harte Grenze von Pflücken bis Vorkühlung",
-    "stat2Value": "4 Sprachen",
-    "stat2Label": "Deutsch, Türkisch, Kasachisch, Russisch",
+    "stat2Value": "5 Sprachen",
+    "stat2Label": "Deutsch, Englisch, Türkisch, Kasachisch, Russisch",
     "stat3Value": "14 KPIs",
     "stat3Label": "Baseline mit dem Kunden am 01.10.2026"
   },
@@ -138,7 +139,7 @@
       "milestoneADue": "bis 06.09.2026",
       "milestoneAItems": {
         "tokens": "Design-Token-Umstellung auf die Himbeer-Palette",
-        "landing": "Landingpage mit Platzhaltertexten und -bildern, Sprachumschalter für vier Sprachen",
+        "landing": "Landingpage mit Platzhaltertexten und -bildern, Sprachumschalter für fünf Sprachen",
         "zones": "Dashboard-Gerüst mit den vier Zonen als Navigationsstruktur",
         "workflows": "Kern-Workflows beispielhaft: Reihenblock-Übersicht und Pflückaufgabe mit Fotobeleg"
       },
@@ -150,7 +151,7 @@
         "status": "Reihenblock-Statusverwaltung inklusive Sperrzustand nach Pflanzenschutz",
         "tasks": "Pflückaufgaben mit Fotobeleg aus workforce_tasks und media_reports",
         "docs": "Dokumentenverwaltung aus document-storage.ts",
-        "i18n": "Mehrsprachige Oberfläche in vier Sprachen",
+        "i18n": "Mehrsprachige Oberfläche in fünf Sprachen",
         "kpi": "Dashboard-Grundgerüst mit KPI-Kacheln als Struktur"
       }
     }
@@ -407,6 +408,7 @@
     "listTitle": "Pflückaufgaben heute",
     "listLead": "Je Brigade und Reihenblock. Fortschritt ist Istmenge gegen Zielmenge.",
     "block": "Block",
+    "qFactor": "Q-Faktor",
     "proofTitle": "Fotobeleg",
     "proofLead": "media_reports an der Aufgabe. Beispielfotos der Verkaufsschale, des Reihenblocks und der Steige.",
     "noProof": "Noch kein Beleg zu dieser Aufgabe.",
@@ -596,6 +598,11 @@
     "managingDirector": "Vertretungsberechtigter Geschäftsführer",
     "registration": "Registereintrag",
     "controller": "Verantwortlicher",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "commercialRegister": "Handelsregister",
+    "vatId": "USt-IdNr.",
+    "country": "Deutschland",
     "privacyScopeTitle": "Umfang",
     "privacyScopeText": "Der Prototyp verarbeitet keine personenbezogenen Daten. Es werden keine Cookies zu Analysezwecken gesetzt. Die Design-Auswahl (hell/dunkel) und die Demo-Rolle werden nur lokal im Browser gespeichert.",
     "residencyTitle": "Datenresidenz (geplanter Betrieb)",

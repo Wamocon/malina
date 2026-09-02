@@ -1,0 +1,611 @@
+{
+  "meta": {
+    "title": "Malina - farm management for the raspberry plantation",
+    "description": "Malina ports the 1Çatı ERP ecosystem to a raspberry farm near Almaty: location hierarchy, RBAC, picking tasks with photo evidence, cold chain and chain-of-evidence record keeping."
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "themeLight": "Light theme",
+    "themeDark": "Dark theme",
+    "localeSwitcherLabel": "Language selection"
+  },
+  "notFound": {
+    "message": "This page does not exist.",
+    "home": "Back to home"
+  },
+  "nav": {
+    "platformSubtitle": "Raspberry plantation management",
+    "activePersona": "Active role (demo)",
+    "overview": "Overview",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "portal": "Open portal",
+    "zones": "Four zones",
+    "proof": "Traceability",
+    "kpis": "Key figures",
+    "compliance": "Compliance"
+  },
+  "hero": {
+    "badge": "Malina - a blueprint built on 1Çatı",
+    "headline": "Market leadership is won not through tonnage, but through verifiable traceability.",
+    "subheadline": "Malina takes the domain-neutral mechanics of 1Çatı - location hierarchy, lock logic, evidence chains, role permissions, offline queues - and points them at the raspberry farm: cooling curve, batch, source block, picker and treatment record for every delivery.",
+    "imageAlt": "Trellised rows of a raspberry plantation - placeholder image, to be replaced with real material from the farm",
+    "ctaPrimary": "Open the prototype",
+    "ctaSecondary": "See the four zones",
+    "stat1Value": "60 minutes",
+    "stat1Label": "hard limit from picking to pre-cooling",
+    "stat2Value": "5 languages",
+    "stat2Label": "German, English, Turkish, Kazakh, Russian",
+    "stat3Value": "14 KPIs",
+    "stat3Label": "baseline signed with the client on 01 Oct 2026"
+  },
+  "landing": {
+    "zonesEyebrow": "Target architecture",
+    "zonesTitle": "Field, Yard, Office, Market",
+    "zonesLead": "Structured as in the pitch dossier. Each zone bundles the building blocks 1Çatı contributes, plus the four that are built from scratch.",
+    "openZone": "Open zone",
+    "proofEyebrow": "The entire business case",
+    "proofTitle": "An unbroken chain of evidence for every delivery",
+    "proofLead": "The raspberry forces it: no protective shell, cooled within 60 minutes, harvested on a two-to-three-day cycle. 1Çatı can do chains of evidence - just for the wrong domain.",
+    "proofSteps": {
+      "kuehlkurve": { "title": "Cooling curve", "text": "Time and temperature from picking to pre-cooling, a hard 60-minute limit." },
+      "charge": { "title": "Batch", "text": "Crate identity in the field via QR, every crate assigned to a batch." },
+      "herkunftsblock": { "title": "Source block", "text": "Row block, variety and harvest day as cost object and origin declaration." },
+      "pfluecker": { "title": "Picker", "text": "Brigade and person per task, output and quality factor recorded." },
+      "behandlung": { "title": "Treatment record", "text": "Spray record per block, harvest locked until the pre-harvest interval expires." }
+    },
+    "leversEyebrow": "Market-leadership plan",
+    "leversTitle": "Four levers that Malina feeds",
+    "leverItems": {
+      "stunde": { "title": "The hour after picking", "text": "Cold-chain clock with a 60-minute threshold and temperature-logger link. Without a physical pre-cooling facility the entire price spread collapses." },
+      "herbstfenster": { "title": "The autumn window of the everbearing varieties", "text": "Rotation-plan engine for the multi-week harvest run from August to the first frost, picking interval two to three days per row block." },
+      "zugang": { "title": "Traceability as an access advantage", "text": "An unbroken chain of evidence opens the door to organised trade. An ERP that can do chains of evidence is not a nice-to-have here." },
+      "aggregation": { "title": "Aggregating neighbouring farms", "text": "The neighbouring farm becomes a vendor, the purchased volume an invoice line, with separate batch tracking. One brand instead of buying land." }
+    },
+    "kpiEyebrow": "Baseline 01 Oct 2026",
+    "kpiTitle": "14 key figures the client signs off",
+    "kpiLead": "Loss rate, share of marketable punnets, time to cooling, picking output, delivery reliability, contribution margin, ЕСУТД coverage and more.",
+    "kpiFootnote": "Prototype: placeholder values. The real calculation follows with the harvest data.",
+    "complianceEyebrow": "Kazakhstan 2026",
+    "complianceTitle": "State obligations Malina has to reflect",
+    "complianceLead": "In 2026 Kazakhstan introduced a run of new obligations. The security gates from 1Çatı already meet the spirit of them; the legal references are swapped out rather than merely translated.",
+    "complianceItems": {
+      "steuer": { "title": "Tax Code 2026", "text": "New version of the Tax Code, affects contribution margin and cost objects." },
+      "warenbegleit": { "title": "Electronic goods-accompanying document", "text": "ЭСФ and virtual stock via the existing integration_outbox pattern, not a home-built accounting system." },
+      "ki": { "title": "AI Act No. 230-VIII", "text": "Transparency notice and consent for the retrieval AI chat, re-drafted under Kazakh law." },
+      "digitalkodex": { "title": "Digital Code No. 255-VIII", "text": "Data residency: the hosting location for the QR, offline-sync and AI architecture must be reviewed legally." },
+      "datenschutz": { "title": "Tightened data-protection law", "text": "In force since 24 Aug 2026. The digest pattern for identities from 1Çatı fits; the target shifts to onboarding of clients and neighbouring farms." },
+      "esutd": { "title": "ЕСУТД employment-contract registration", "text": "Every seasonal contract is registered in the state system, connected via the outbox." }
+    },
+    "ctaTitle": "A tangible system instead of concept slides",
+    "ctaLead": "Milestone A: a viewable prototype with look and feature scope - the basis for internal sign-off before the on-site analysis week.",
+    "ctaButton": "Go to the dashboard"
+  },
+  "zones": {
+    "feld": {
+      "name": "Field",
+      "tagline": "Growing, harvest, plant protection",
+      "description": "Location model, row-block status including the pre-harvest-interval lock, picking tasks with photo evidence, rotation plan and weather link."
+    },
+    "hof": {
+      "name": "Yard",
+      "tagline": "Cold chain, logistics",
+      "description": "Pre-cooling with a 60-minute KPI, temperature logger, collection rounds, QR crate identification and electronic delivery note."
+    },
+    "buero": {
+      "name": "Office",
+      "tagline": "Finance, staff, compliance",
+      "description": "RBAC roles, contribution margin per row block, quality-factor pay, document management, compliance cockpit and state integrations."
+    },
+    "markt": {
+      "name": "Market",
+      "tagline": "Sales, AI, public",
+      "description": "Variety and quota catalogue, B2B portal, retrieval AI chat, aggregator platform for neighbouring farms and multilingual training."
+    }
+  },
+  "footer": {
+    "blurb": "Malina, Russian for raspberry. An internal blueprint built on the 1Çatı ERP ecosystem, aimed at the raspberry farm near Almaty.",
+    "prototypeNote": "Internal proof of concept. Not a contractually committed scope. All imagery is placeholder material from royalty-free sources.",
+    "productHeading": "Product",
+    "legalHeading": "Legal",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "copyright": "© {year} WAMOCON GmbH",
+    "madeBy": "Built in Germany"
+  },
+  "dashboard": {
+    "searchPlaceholder": "Search row block, batch, picker, document ...",
+    "notifications": "Notifications",
+    "open": "Open",
+    "zoneEmpty": "No module in this zone is enabled for the active role.",
+    "rbacHintLabel": "RBAC",
+    "rbacHint": "The visible modules depend on the demo role selected above - the same engine as in 1Çatı.",
+    "home": {
+      "eyebrow": "Farm management",
+      "title": "Malina operations overview",
+      "description": "Aggregator, Almaty region. The prototype shows the structure and look of the first release - main functions as an operable demo, sub-functions as visible menu entries with a status.",
+      "kpiTitle": "14 baseline key figures",
+      "kpiDescription": "To be signed off with the client as the baseline on 01 Oct 2026.",
+      "placeholderBadge": "Placeholder values",
+      "target": "Target",
+      "zonesTitle": "The four zones",
+      "zonesDescription": "The dashboard's navigation structure, organised like the target architecture.",
+      "demoCount": "{count} demo",
+      "wipCount": "{count} in development",
+      "openZone": "Open zone",
+      "milestoneTitle": "Milestones of the internal preparation",
+      "milestoneDescription": "Both before the on-site analysis week from 24 Sep to 01 Oct 2026.",
+      "milestoneAName": "Milestone A - prototype with look and feature scope",
+      "milestoneADue": "by 06 Sep 2026",
+      "milestoneAItems": {
+        "tokens": "Design-token switch to the raspberry palette",
+        "landing": "Landing page with placeholder texts and images, language switcher for five languages",
+        "zones": "Dashboard skeleton with the four zones as navigation structure",
+        "workflows": "Core workflows by example: row-block overview and picking task with photo evidence"
+      },
+      "milestoneBName": "Milestone B - foundation build with real main functions",
+      "milestoneBDue": "by 19 Sep 2026 at the latest",
+      "milestoneBItems": {
+        "rbac": "RBAC roles, adopted and renamed from 1Çatı",
+        "hierarchy": "Location hierarchy - farm, field, row, row block - including administration",
+        "status": "Row-block status management including the lock state after plant protection",
+        "tasks": "Picking tasks with photo evidence from workforce_tasks and media_reports",
+        "docs": "Document management from document-storage.ts",
+        "i18n": "Multilingual interface in five languages",
+        "kpi": "Dashboard skeleton with KPI tiles as structure"
+      }
+    }
+  },
+  "roles": {
+    "switcherHint": "Switch demo role - controls the visible navigation",
+    "admin": "Administration",
+    "betriebsleitung": "Farm management",
+    "buchhaltung": "Accounting",
+    "brigade": "Brigade / field",
+    "erzeuger": "Grower / neighbouring farm",
+    "kunde": "B2B client",
+    "descriptions": {
+      "admin": "Full configuration, user and role management, oversight of sensitive finance, access and integration matters.",
+      "betriebsleitung": "Daily plantation operations, tasks, rotation, staff and approvals. Can view finance but not post entries.",
+      "buchhaltung": "Contribution margin, pay, payments, state filings. No user management, no field sign-offs.",
+      "brigade": "Accepts picking tasks, records volume and photo evidence in the field, sees rotation and pre-harvest-interval locks.",
+      "erzeuger": "Neighbouring farm supplying produce. Sees its own row blocks, batches, settlement and contracts.",
+      "kunde": "Quotas, pre-orders, price lists, AI chat and released documents."
+    }
+  },
+  "klassifikation": {
+    "uebernehmen": "Adopt",
+    "anpassen": "Adapt",
+    "neu-bauen": "Build new"
+  },
+  "reifegrad": {
+    "demo": "Demo operable",
+    "in-entwicklung": "In development"
+  },
+  "moduleMeta": {
+    "inDevelopmentTitle": "Sub-function - in development",
+    "plannedScope": "Planned scope",
+    "catiSource": "1Çatı source / pattern",
+    "classification": "Classification",
+    "milestone": "Milestone",
+    "milestoneB": "Milestone B and later releases"
+  },
+  "accessDenied": {
+    "title": "The role {role} has no access to this module.",
+    "hint": "Switch the demo role at the top right to see the access.",
+    "back": "Back to overview"
+  },
+  "resourceLabels": {
+    "dashboard": "Dashboard",
+    "reihenbloecke": "Row blocks",
+    "pflueckaufgaben": "Picking tasks",
+    "pflanzenschutz": "Plant protection",
+    "kuehlkette": "Cold chain",
+    "lohn": "Pay",
+    "finanzen": "Finance",
+    "dokumente": "Documents",
+    "compliance": "Compliance",
+    "b2b_portal": "B2B portal"
+  },
+  "reihenblockStatus": {
+    "bepflanzt": "planted",
+    "erntereif": "ready to harvest",
+    "ruhend": "dormant",
+    "rueckschnitt": "pruning",
+    "wartezeitgesperrt": "harvest-locked"
+  },
+  "aufgabenStatus": {
+    "offen": "open",
+    "angenommen": "accepted",
+    "in_arbeit": "in progress",
+    "beleg_pruefung": "evidence review",
+    "abgeschlossen": "completed"
+  },
+  "kpis": {
+    "verlustquote": { "label": "Loss rate" },
+    "vermarktungsfaehig": { "label": "Share of marketable punnets" },
+    "zeitBisKuehlung": { "label": "Time to cooling (average)" },
+    "kuehlketteEinhaltung": { "label": "Cold chain kept under 60 min" },
+    "pflueckleistung": { "label": "Picking output per person" },
+    "erntemenge": { "label": "Harvest volume per day" },
+    "wartezeitVerstoesse": { "label": "Pre-harvest-interval breaches" },
+    "herbstanteil": { "label": "Share of autumn-variety yield" },
+    "liefertreue": { "label": "Delivery reliability" },
+    "reklamationsquote": { "label": "B2B complaint rate" },
+    "durchschnittspreis": { "label": "Average price per kg" },
+    "deckungsbeitrag": { "label": "Contribution margin per kg" },
+    "esutdAbdeckung": { "label": "ЕСУТД coverage" },
+    "brigadenAuslastung": { "label": "Brigade utilisation" }
+  },
+  "modules": {
+    "standort": {
+      "title": "Location hierarchy",
+      "description": "Farm, plantation, field plot, row group, row block. The four-level hierarchy from 1Çatı, one level deeper and named for agriculture.",
+      "summary": "Four levels and status values renamed, field geometry and trellis orientation added as new attributes.",
+      "todo": "Admin interface to create and move plots and row groups, field-geometry editor."
+    },
+    "reihenbloecke": {
+      "title": "Row blocks and status",
+      "description": "State machine per row block. The 1Çatı unit status translates almost sentence for sentence - including blocked, which here is literally the pre-harvest-interval lock.",
+      "summary": "Structural pattern 'condition locks action until satisfied' reused, condition switched from payment arrears to expiry of the pre-harvest interval.",
+      "todo": "Status changes with mandatory reason, RLS policies per new resource, history per row block."
+    },
+    "pflueckaufgaben": {
+      "title": "Picking tasks with photo evidence",
+      "description": "workforce_tasks plus media_reports from 1Çatı migration 6 - already a task-with-photo-evidence machine structurally, here per brigade and row block.",
+      "summary": "Used directly as a picking task per brigade and row block, photo evidence of the retail punnet on the task.",
+      "todo": "Offline capture in the field, evidence review with release and rework, link to quality-factor pay."
+    },
+    "pflanzenschutz": {
+      "title": "Plant protection and pre-harvest interval",
+      "description": "Harvest lock after treatment per row block until the statutory pre-harvest interval expires. A hard legal risk, cutting across all core processes.",
+      "summary": "'Lock until condition met' from payment-restriction-control, the condition being expiry of the pre-harvest interval.",
+      "todo": "Pesticide database with pre-harvest intervals, automatic release on deadline, mandatory record upload."
+    },
+    "rotationsplan": {
+      "title": "Rotation plan / picking schedule",
+      "description": "Picking interval of two to three days per row block across the multi-week autumn harvest. No precedent in 1Çatı.",
+      "summary": "An engine to be built. The finished rotation is exported as a calendar via ics-calendar.ts.",
+      "todo": "Interval engine per row block, brigade assignment, conflict check against pre-harvest-interval locks, calendar export."
+    },
+    "wetter": {
+      "title": "Weather and growing degree days",
+      "description": "A simple weather API link and a growing-degree-days heuristic. Deliberately no ML in phase 1 per the market analysis.",
+      "summary": "New. A simple weather API link is enough for the first release.",
+      "todo": "Weather-station or API link, growing degree days per plot, alert on shifted ripening windows."
+    },
+    "kuehlkette": {
+      "title": "Cold-chain clock",
+      "description": "Timing from picking to pre-cooling with a hard 60-minute threshold, temperature logger, target temperature 0 to 1 degree. Highest domain priority.",
+      "summary": "No analogue in 1Çatı. The building block on which the entire price spread hangs per the pitch dossier.",
+      "todo": "Logger integration, batch clock from the picking time, alarm on threshold breach, KPI calculation."
+    },
+    "logistik": {
+      "title": "Collection rounds and route planning",
+      "description": "Lifecycle state pattern from booking-lifecycle-repository and move-handover-repository, the domain object switched to a collection appointment.",
+      "summary": "Adopt the lifecycle state pattern, switch the domain object from room booking to collection and delivery appointment.",
+      "todo": "Route list per vehicle, time windows, handover receipt with temperature and volume reconciliation."
+    },
+    "qr_steigen": {
+      "title": "QR crate identification",
+      "description": "Scan intake from 1Çatı migration 28 stays, the target object switches from QR-per-zone to QR-per-crate. In the prototype a UI mock without a full server reconciliation.",
+      "summary": "QR placement, scan intake and abuse fingerprinting are already built, only the target object changes.",
+      "todo": "Label printing per crate, scan at the dispatch point with server reconciliation, mapping crate to batch and task."
+    },
+    "esf": {
+      "title": "Electronic delivery note (ЭСФ)",
+      "description": "ЭСФ and virtual stock via the existing integration_outbox pattern as a bridge. Not a home-built accounting system.",
+      "summary": "Use the outbox pattern as a bridge. Mandatory integration, no in-house accounting build.",
+      "todo": "Connection to ИС ЭСФ, evidence chain batch to delivery note, status feedback into the outbox."
+    },
+    "rollen": {
+      "title": "Roles and permissions",
+      "description": "RBAC engine from 1Çatı lib/rbac.ts. Six core roles directly transferable, the guardianship roles removed.",
+      "summary": "Roles as pure data over resources by actions, in sync with SQL helpers. Swappable without touching the engine.",
+      "todo": "User management, role assignment, RLS policies rewritten per resource rather than merely renamed."
+    },
+    "finanzen": {
+      "title": "Contribution margin and finance",
+      "description": "finance_ledger_entries from 1Çatı. The immutability trigger stays, the cost object is extended by row block, variety and harvest day.",
+      "summary": "The posting logic stays, cost object is new: contribution margin per row block, variety and harvest day.",
+      "todo": "Cost types per harvest day, B2B payment reconciliation, contribution-margin projection per variety."
+    },
+    "personal": {
+      "title": "Picker register and brigades",
+      "description": "Person register transferable from StaffMember. Brigade assignment via workforce_tasks instead of resident assignment.",
+      "summary": "Person register adopted, brigade and picker ID badge, output and quality factor per person.",
+      "todo": "ЕСУТД registration per contract, brigade planning, output history as the basis for pay calculation."
+    },
+    "lohn": {
+      "title": "Quality-factor pay",
+      "description": "Base pay plus a volume component plus a quality factor. A pure piece rate is value-destroying for the raspberry. No precedent in 1Çatı.",
+      "summary": "The calculation logic is new, the data model is taken from the harvest-day capture.",
+      "todo": "Pay-formula editor, quality factor from the evidence review, settlement run per period, advance account."
+    },
+    "dokumente": {
+      "title": "Document management",
+      "description": "document-storage.ts from 1Çatı migration 9. Usable directly for spray records, contracts and ЕСУТД evidence.",
+      "summary": "Container pattern adopted, categories switched to agricultural documents.",
+      "todo": "Versioning, expiry and reminder logic, link to row block and batch."
+    },
+    "compliance": {
+      "title": "Compliance cockpit",
+      "description": "Consent, retention and audit skeleton from compliance-repository, 1:1. Legal references are swapped out rather than merely translated.",
+      "summary": "Skeleton 1:1, Kazakh legal references re-drafted, data residency flagged as an open item.",
+      "todo": "Legal references for Tax Code, AI Act, Digital Code, retention rules per data product, hosting-location review."
+    },
+    "integrationen": {
+      "title": "State integrations",
+      "description": "ЭСФ, virtual stock, ЕСУТД, subsidy portals gosagro.kz and qoldau.kz. Connected via integration_outbox, not built in-house.",
+      "summary": "Outbox pattern 1:1, one connector per target system, status feedback and retry.",
+      "todo": "Connectors per system, sandbox access, error and retry logic, queue monitoring."
+    },
+    "foerdermittel": {
+      "title": "Grant application dossier",
+      "description": "Container pattern from document-storage.ts and reporting-repository. Forms for the Kazakh subsidy portals are new.",
+      "summary": "Adopt the container pattern, application forms and evidence lists are new.",
+      "todo": "Application templates, evidence checklists, deadline monitor, decision-letter filing."
+    },
+    "sortenkatalog": {
+      "title": "Variety and quota catalogue",
+      "description": "listings from 1Çatı becomes the variety and quota catalogue. Booking pattern for quotas and pre-orders.",
+      "summary": "listings rebuilt into variety, harvest window, punnet weight, quota and price list.",
+      "todo": "Quota booking with reservation logic, price-list versions, client assignment."
+    },
+    "b2b_portal": {
+      "title": "B2B portal",
+      "description": "reservations and finance modules from 1Çatı as a booking pattern for quotas, pre-orders and price lists.",
+      "summary": "Booking pattern 1:1 for quotas. listings becomes the variety and quota catalogue.",
+      "todo": "Client accounts, quota pre-order, delivery-date booking, invoice and payment status."
+    },
+    "preislisten": {
+      "title": "Price lists",
+      "description": "Price-list versions per variety and client. Derived from the booking and finance pattern of 1Çatı.",
+      "summary": "Derived from reservations and finance modules, price tiers per client and period.",
+      "todo": "Versioned price lists, tiered prices, validity periods, client assignment."
+    },
+    "ki_assistent": {
+      "title": "AI assistant",
+      "description": "Retrieval-only chat from public-ai-chat, ai-retrieval and ai-guardrails. Answers only from released sources, logs everything, escalates to a human. In the prototype a placeholder chat window.",
+      "summary": "The architecture already meets the verdict 'released sources only, logged, escalation'. Only the knowledge base is swapped.",
+      "todo": "Knowledge base of variety catalogue and client FAQ, RBAC gate, transparency notice under the AI Act, escalation path."
+    },
+    "aggregator": {
+      "title": "Aggregator / neighbouring farms",
+      "description": "vendor-invoice-repository and the vendors table from 1Çatı. The neighbouring farm becomes a vendor, the purchased volume an invoice line, separate batch tracking is new.",
+      "summary": "Adopt the vendor pattern, separate batch tracking per neighbouring farm is new.",
+      "todo": "Neighbouring-farm onboarding, buy-in capture with its own batch, settlement and payout."
+    },
+    "schulungen": {
+      "title": "Training videos",
+      "description": "video-library from 1Çatı. Usable directly for multilingual, image-based short onboarding of seasonal workers.",
+      "summary": "Adopted directly for multilingual, image-based short onboarding.",
+      "todo": "Video content per core process, Kazakh and Russian language versions, progress tracking per person."
+    }
+  },
+  "reihenbloeckeDemo": {
+    "distributionTitle": "Status distribution",
+    "distributionLead": "Clicking filters the table. The 1Çatı unit status on each tile shows the 1:1 translation.",
+    "catiStatus": "1Çatı status",
+    "lockTitle": "Lock state harvest-locked",
+    "lockLead": "What 1Çatı calls blocked is here literally the statutory harvest lock after plant protection until the pre-harvest interval expires. No picking, no task, no crate from this block.",
+    "tableTitle": "Row blocks",
+    "tableLeadAll": "All row blocks across all plantations.",
+    "tableLeadFiltered": "Filtered by the selected status.",
+    "col": {
+      "id": "Row block",
+      "parzelle": "Plot / group",
+      "sorte": "Variety",
+      "status": "Status",
+      "letzteErnte": "Last harvest",
+      "sperre": "Lock"
+    },
+    "freeAt": "Free from",
+    "days": "days",
+    "catiNote": "Adopted from 1Çatı: the units state machine (occupied, vacant, reserved, maintenance, blocked). Classification Adapt - the pattern stays, the data model and status values are renamed."
+  },
+  "pflueckaufgabenDemo": {
+    "listTitle": "Picking tasks today",
+    "listLead": "Per brigade and row block. Progress is actual volume against target volume.",
+    "block": "Block",
+    "qFactor": "Q factor",
+    "proofTitle": "Photo evidence",
+    "proofLead": "media_reports on the task. Sample photos of the retail punnet, the row block and the crate.",
+    "noProof": "No evidence for this task yet.",
+    "addProof": "Capture evidence (mock)",
+    "reviewTitle": "Evidence review pending",
+    "reviewLead": "The task is waiting for release. Check the volume and the punnet evidence, then release or request rework.",
+    "approve": "Release",
+    "rework": "Rework",
+    "art": {
+      "schale": "Retail punnet",
+      "reihenblock": "Row block",
+      "steige": "Crate"
+    },
+    "catiNote": "Adopted from 1Çatı migration 6: service_orders, workforce_tasks, media_reports. Classification Adopt - code and architecture stay, only the labelling changes."
+  },
+  "standortDemo": {
+    "statsTitle": "Hierarchy at a glance",
+    "statsLead": "Four levels below the farm, analogous to 1Çatı Company, Site, Block, Floor, Unit.",
+    "level": {
+      "plantagen": "Plantations / neighbouring farms",
+      "parzellen": "Field plots",
+      "reihengruppen": "Row groups",
+      "reihenbloecke": "Row blocks",
+      "flaeche": "Total area"
+    },
+    "treeTitle": "Location tree",
+    "treeLead": "Farm, plantation, field plot, row group. Row blocks in their own module.",
+    "typ": {
+      "eigen": "Own operation",
+      "nachbarbetrieb": "Neighbouring farm"
+    },
+    "blocksShort": "blocks",
+    "catiNote": "Adopted from 1Çatı migration 2 and site-management-data.ts. Classification Adapt - four levels and status values renamed, field geometry and trellis orientation are new."
+  },
+  "pflanzenschutzDemo": {
+    "ruleTitle": "Hard legal rule",
+    "ruleLead": "After a plant-protection treatment, harvest is locked per row block until the product-specific pre-harvest interval expires. A breach is a legal risk, not a convenience matter.",
+    "activeTitle": "Active pre-harvest-interval locks",
+    "activeLead": "Row blocks with a running pre-harvest interval. Release is automatic when the deadline passes.",
+    "col": {
+      "block": "Row block",
+      "mittel": "Product",
+      "behandelt": "Treated on",
+      "wartezeit": "Interval",
+      "freigabe": "Free from",
+      "status": "Status"
+    },
+    "days": "days",
+    "locked": "locked",
+    "catiNote": "Pattern from payment-restriction-control.tsx (phase-7 debtor logic). Classification Adapt - condition locks action until met, condition switched from payment arrears to expiry of the pre-harvest interval."
+  },
+  "rollenDemo": {
+    "rolesTitle": "Six core roles",
+    "rolesLead": "Remapping of the 1Çatı roles admin, manager, accountant, staff, owner, tenant. Guardianship and child roles removed.",
+    "scope": "Scope",
+    "matrixTitle": "Permission matrix (excerpt, view action)",
+    "matrixLead": "Roles by resources. The same data structure as in 1Çatı lib/rbac.ts.",
+    "resource": "Resource",
+    "matrixNote": "Full matrix: 22 resources by 7 actions. RLS policies are rewritten per resource, not merely renamed (analysis chapter 10).",
+    "catiNote": "Adopted from 1Çatı lib/rbac.ts. Classification Adopt - the engine stays, six core roles directly transferable, guardianship roles removed."
+  },
+  "finanzenDemo": {
+    "dbTitle": "Contribution margin per row block and harvest day",
+    "dbLead": "New cost object: row block, variety, harvest day. Posting logic and the immutability trigger stay from 1Çatı.",
+    "col": {
+      "block": "Row block",
+      "sorte": "Variety",
+      "erntetag": "Harvest day",
+      "erloes": "Revenue",
+      "kosten": "Cost",
+      "db": "Contribution margin"
+    },
+    "catiNote": "Adopted from finance_ledger_entries and accountant-finance-repository.ts. Classification Adapt - the immutability trigger stays, cost object extended by row block, variety, harvest day."
+  },
+  "personalDemo": {
+    "brigadenTitle": "Brigades",
+    "brigadenLead": "Assignment via workforce_tasks instead of resident assignment.",
+    "foreman": "Foreman",
+    "people": "People",
+    "pflueckerTitle": "Picker register",
+    "pflueckerLead": "Person register from StaffMember. ЕСУТД registration per contract, output and quality factor per person.",
+    "col": {
+      "name": "Name",
+      "brigade": "Brigade",
+      "ausweis": "ID badge",
+      "esutd": "ЕСУТД",
+      "leistung": "Output",
+      "qfaktor": "Q factor"
+    },
+    "esutd": {
+      "erfasst": "registered",
+      "offen": "pending"
+    },
+    "days": "days",
+    "catiNote": "Adopted from StaffMember and workforce_tasks. Classification Adapt - person register transferable, the pay formula is new business logic."
+  },
+  "dokumenteDemo": {
+    "listTitle": "Documents",
+    "listLead": "Spray records, ЕСУТД evidence, contracts, grant dossiers and certificates.",
+    "col": {
+      "name": "Document",
+      "kategorie": "Category",
+      "bezug": "Reference",
+      "stand": "As of",
+      "status": "Status"
+    },
+    "status": {
+      "gueltig": "valid",
+      "prueflauf": "under review",
+      "abgelaufen": "expired"
+    },
+    "catiNote": "Adopted from document-storage.ts and 1Çatı migration 9. Classification Adopt - usable for spray records, contracts and ЕСУТД evidence."
+  },
+  "complianceDemo": {
+    "cockpitTitle": "Compliance cockpit",
+    "cockpitLead": "Consent, retention and audit skeleton from 1Çatı. The legal basis switches to Kazakh law.",
+    "items": {
+      "consent": { "title": "Consents", "state": "active", "text": "Consent ledger from 1Çatı. Texts to be re-drafted under Kazakh data-protection law." },
+      "retention": { "title": "Retention", "state": "active", "text": "Retention rules per data product. Digest-based retention adopted from migration 28." },
+      "audit": { "title": "Audit log", "state": "active", "text": "ai_action_logs, audit_events, access_events 1:1 - only the legal basis changes." },
+      "residency": { "title": "Data residency", "state": "open", "text": "Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location must be reviewed." },
+      "ai": { "title": "AI transparency", "state": "open", "text": "Law No. 230-VIII. Transparency notice and consent for the AI chat to be re-drafted." }
+    },
+    "integrationTitle": "State integrations (outbox)",
+    "integrationLead": "Connected via integration_outbox. No in-house accounting build.",
+    "col": {
+      "name": "Integration",
+      "system": "Target system",
+      "status": "Status",
+      "queue": "Queue"
+    },
+    "intStatus": {
+      "verbunden": "connected",
+      "sandbox": "sandbox",
+      "geplant": "planned"
+    },
+    "catiNote": "Adopted from compliance-repository.ts and compliance-live-cockpit.tsx. Classification Adapt - skeleton 1:1, legal references swapped out."
+  },
+  "sortenkatalogDemo": {
+    "catalogTitle": "Varieties and quotas",
+    "catalogLead": "listings from 1Çatı, rebuilt into variety, harvest window, punnet weight, quota and price.",
+    "typ": {
+      "remontierend": "everbearing",
+      "sommertragend": "summer-bearing"
+    },
+    "window": "Harvest window",
+    "shale": "Punnet",
+    "contingent": "Quota reserved",
+    "catiNote": "Adopted from listings. Classification Adapt - listings becomes the variety and quota catalogue, booking pattern for quotas 1:1."
+  },
+  "schulungenDemo": {
+    "libraryTitle": "Video library",
+    "libraryLead": "video-library from 1Çatı. Multilingual, image-based short onboarding of seasonal workers.",
+    "col": {
+      "titel": "Title",
+      "thema": "Topic",
+      "dauer": "Length",
+      "sprachen": "Languages"
+    },
+    "catiNote": "Adopted from video-library.ts and video-library-player.tsx. Classification Adopt - usable directly."
+  },
+  "kuehlketteMock": {
+    "clockTitle": "Batch clock (mock)",
+    "clockLead": "Time since picking against the 60-minute threshold, current core temperature per batch.",
+    "block": "Block",
+    "hint": "Target temperature 0 to 1 degree. Over 60 minutes the price spread collapses - no software substitute for the physical pre-cooling facility."
+  },
+  "qrSteigenMock": {
+    "scanTitle": "Scan at the dispatch point (mock)",
+    "scanLead": "QR per crate. Scan intake and abuse fingerprinting are finished in 1Çatı migration 28, here without a real server reconciliation.",
+    "simulateScan": "Simulate scan",
+    "registered": "registered"
+  },
+  "kiAssistentMock": {
+    "chatTitle": "Retrieval chat (placeholder)",
+    "chatLead": "Later answers only from released sources, logs every answer, escalates to a human on uncertainty. Knowledge base not yet populated.",
+    "demoQuestion": "Which varieties are available from September?",
+    "demoAnswer": "Available from September: Polka and Polana (everbearing), Kweli on request. Tulameen is a summer-bearing variety and not available in September.",
+    "stubAnswer": "Placeholder answer. In the prototype no knowledge base is connected - the real assistant draws its answer from the released variety catalogue and the client FAQ.",
+    "inputPlaceholder": "Enter a question ...",
+    "send": "Send"
+  },
+  "legal": {
+    "imprintTitle": "Imprint",
+    "privacyTitle": "Privacy",
+    "prototypeDisclaimer": "Note: Malina is an internal prototype (proof of concept) of WAMOCON GmbH. No real processing of operational or personal data takes place. All data shown is placeholder data.",
+    "managingDirector": "Authorised managing director",
+    "registration": "Register entry",
+    "controller": "Controller",
+    "phone": "Phone",
+    "email": "Email",
+    "commercialRegister": "Commercial register",
+    "vatId": "VAT ID",
+    "country": "Germany",
+    "privacyScopeTitle": "Scope",
+    "privacyScopeText": "The prototype processes no personal data. No analytics cookies are set. The theme choice (light/dark) and the demo role are stored only locally in the browser.",
+    "residencyTitle": "Data residency (planned operation)",
+    "residencyText": "For later live operation, Kazakh Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location for the QR, offline-sync and AI architecture will be reviewed legally before going live."
+  }
+}
