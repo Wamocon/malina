@@ -89,18 +89,21 @@ export function PflueckaufgabenDemo() {
                 {t("noProof")}
               </p>
             ) : (
-              selected.belege.map((beleg) => (
+              selected.belege.map((beleg, index) => (
                 <figure
                   key={beleg.id}
                   className="overflow-hidden rounded-xl border border-border bg-muted/30"
                 >
-                  <Image
-                    src={beleg.bildUrl}
-                    alt={beleg.hinweis}
-                    width={640}
-                    height={160}
-                    className="h-40 w-full object-cover"
-                  />
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src={beleg.bildUrl}
+                      alt={beleg.hinweis}
+                      fill
+                      sizes="(min-width: 1024px) 360px, 100vw"
+                      priority={index === 0}
+                      className="object-cover"
+                    />
+                  </div>
                   <figcaption className="p-3">
                     <div className="flex items-center justify-between">
                       <StatusPill tone="info">{t(`art.${beleg.art}`)}</StatusPill>

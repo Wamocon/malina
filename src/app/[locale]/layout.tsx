@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -39,11 +40,18 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: "common" });
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        {/* Anti-Flash-Theme-Setter: laeuft vor dem ersten Paint, noch bevor
+            React hydratisiert. Als erstes <body>-Kind (nicht im <head>, das
+            der App Router selbst verwaltet). */}
+        <Script id="malina-theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <NextIntlClientProvider>
           <a href="#main" className="skip-link">
             {t("skipToContent")}

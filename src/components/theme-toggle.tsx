@@ -6,8 +6,9 @@ import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Kein next-themes - der Prototyp haelt es schlank: eine Klasse `.dark` auf
-// <html>, in localStorage gespiegelt. Der Anti-Flash-Setter sitzt inline im
-// Locale-Layout, bevor React laedt.
+// <html>, in localStorage gespiegelt. Der Anti-Flash-Setter (themeInitScript
+// unten) wird im Locale-Layout ueber `next/script` mit strategy
+// "beforeInteractive" eingebunden und laeuft vor der Hydration.
 const listeners = new Set<() => void>();
 
 function subscribe(callback: () => void) {
