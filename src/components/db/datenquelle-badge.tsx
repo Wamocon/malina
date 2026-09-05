@@ -1,23 +1,25 @@
 import { getTranslations } from "next-intl/server";
-import { Database, FlaskConical } from "lucide-react";
+import { Database, FlaskConical, PlugZap } from "lucide-react";
 import { StatusPill } from "@/components/ui/kit";
 import type { Datenquelle } from "@/lib/supabase/config";
 
-// Zeigt an, ob eine Ansicht echte Datenbankdaten oder die eingebauten
-// Beispieldaten darstellt. Wichtig fuer die Vorfuehrung: niemand soll raten
-// muessen, was gerade angebunden ist.
+// Zeigt an, woher die Ansicht ihre Daten hat. Drei Zustaende, weil zwei zu
+// wenig waeren: ein Lesefehler darf nicht wie der gewollte Demo-Modus
+// aussehen, sonst zeigt die Oberflaeche im Ausfall still Beispieldaten.
+const darstellung = {
+  db: { tone: "success", icon: Database, label: "db", hinweis: "dbHint" },
+  demo: { tone: "warning", icon: FlaskConical, label: "demo", hinweis: "demoHint" },
+  fehler: { tone: "danger", icon: PlugZap, label: "fehler", hinweis: "fehlerHint" },
+} as const;
+
 export async function DatenquelleBadge({ quelle }: { quelle: Datenquelle }) {
   const t = await getTranslations("dashboard.dataSource");
-  const live = quelle === "db";
+  const { tone, icon: Symbol, label, hinweis } = darstellung[quelle];
 
   return (
-    <StatusPill tone={live ? "success" : "warning"} title={t(live ? "dbHint" : "demoHint")}>
-      {live ? (
-        <Database className="h-3 w-3" />
-      ) : (
-        <FlaskConical className="h-3 w-3" />
-      )}
-      {t(live ? "db" : "demo")}
+    <StatusPill tone={tone} title={t(hinweis)}>
+      <Symbol className="h-3 w-3" />
+      {t(label)}
     </StatusPill>
   );
 }

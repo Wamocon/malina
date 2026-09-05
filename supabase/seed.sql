@@ -129,31 +129,48 @@ join public.brigaden b on b.name = v.brigade
 on conflict (ausweis) do nothing;
 
 -- --- Chargen -------------------------------------------------------------
-insert into public.chargen (code, reihenblock_id, sorte_id, ernte_datum, status, pflueck_zeitpunkt, vorkuehlung_zeitpunkt)
+-- Mehrere Erntetage je Reihenblock: erst daraus laesst sich das eingehaltene
+-- Pflueckintervall ueberhaupt messen. Menge und Ausschuss tragen Verlustquote
+-- und Deckungsbeitrag.
+insert into public.chargen (code, reihenblock_id, sorte_id, ernte_datum, status,
+                            pflueck_zeitpunkt, vorkuehlung_zeitpunkt, menge_kg, ausschuss_kg)
 select v.code, rb.id, s.id, v.datum::date, v.status::public.charge_status,
-       v.pfluecken::timestamptz, nullif(v.kuehlung, '')::timestamptz
+       nullif(v.pfluecken, '')::timestamptz, nullif(v.kuehlung, '')::timestamptz,
+       v.menge, v.ausschuss
 from (values
-  ('CH-0902-14', 'T-N-A-01', 'Polka',  '2026-09-02', 'gekuehlt', '2026-09-02T09:40:00+06', '2026-09-02T10:21:00+06'),
-  ('CH-0902-15', 'T-O-A-01', 'Polana', '2026-09-02', 'offen',    '2026-09-02T09:15:00+06', ''),
-  ('CH-0902-12', 'T-N-A-03', 'Polka',  '2026-09-02', 'offen',    '2026-09-02T08:30:00+06', '')
-) as v(code, block, sorte, datum, status, pfluecken, kuehlung)
+  -- Block T-N-A-01: 26.08., 29.08., 01.09., 02.09. - Abstaende 3, 3, 1 Tage
+  ('CH-0826-01','T-N-A-01','Polka','2026-08-26','ausgeliefert','2026-08-26T09:20:00+06','2026-08-26T10:02:00+06',46.8,3.1),
+  ('CH-0829-04','T-N-A-01','Polka','2026-08-29','ausgeliefert','2026-08-29T09:05:00+06','2026-08-29T09:44:00+06',44.2,4.6),
+  ('CH-0901-07','T-N-A-01','Polka','2026-09-01','verladen',    '2026-09-01T09:30:00+06','2026-09-01T10:14:00+06',49.5,3.8),
+  ('CH-0902-14','T-N-A-01','Polka','2026-09-02','gekuehlt',    '2026-09-02T09:40:00+06','2026-09-02T10:21:00+06',51.4,4.2),
+  -- Block T-N-A-03: 25.08., 29.08., 01.09. - ein Abstand von 4 Tagen, also gerissen
+  ('CH-0825-02','T-N-A-03','Polka','2026-08-25','ausgeliefert','2026-08-25T08:50:00+06','2026-08-25T09:38:00+06',41.0,2.9),
+  ('CH-0829-05','T-N-A-03','Polka','2026-08-29','ausgeliefert','2026-08-29T08:40:00+06','2026-08-29T09:22:00+06',43.7,3.4),
+  ('CH-0902-12','T-N-A-03','Polka','2026-09-02','offen',       '2026-09-02T08:30:00+06','',                      44.2,5.9),
+  -- Block T-O-A-01: 28.08., 31.08., 02.09. - Abstaende 3 und 2 Tage
+  ('CH-0828-03','T-O-A-01','Polana','2026-08-28','ausgeliefert','2026-08-28T09:10:00+06','2026-08-28T09:52:00+06',29.4,2.2),
+  ('CH-0831-06','T-O-A-01','Polana','2026-08-31','ausgeliefert','2026-08-31T09:25:00+06','2026-08-31T10:09:00+06',31.8,2.0),
+  ('CH-0902-15','T-O-A-01','Polana','2026-09-02','offen',       '2026-09-02T09:15:00+06','',                      17.9,1.4)
+) as v(code, block, sorte, datum, status, pfluecken, kuehlung, menge, ausschuss)
 join public.reihenbloecke rb on rb.code = v.block
 join public.sorten s on s.name = v.sorte
 on conflict (code) do nothing;
 
 -- --- Pflueckaufgaben ----------------------------------------------------
+-- ausschuss_kg spiegelt den Wert, der bereits an der zugehoerigen Charge
+-- steht - beide Seiten sollen dieselbe Zahl zeigen, nicht zwei verschiedene.
 insert into public.pflueckaufgaben
   (code, reihenblock_id, charge_id, brigade_id, sorte_id, status, faelligkeit,
-   zielmenge_kg, ist_menge_kg, pfluecker_anzahl, qualitaetsfaktor)
+   zielmenge_kg, ist_menge_kg, ausschuss_kg, pfluecker_anzahl, qualitaetsfaktor)
 select v.code, rb.id, ch.id, br.id, s.id, v.status::public.pflueckaufgabe_status,
-       v.faellig::timestamptz, v.ziel, v.ist, v.anzahl, v.qf
+       v.faellig::timestamptz, v.ziel, v.ist, v.ausschuss, v.anzahl, v.qf
 from (values
-  ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,6,1.08),
-  ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,4,null),
-  ('PA-2026-0912-03','K-A-01',null,'Brigade Nachbarbetrieb','Polka','angenommen','2026-09-02T14:00:00+06',26,0,5,null),
-  ('PA-2026-0912-04','T-N-A-03','CH-0902-12','Brigade Nord','Polka','abgeschlossen','2026-09-01T11:00:00+06',45,44.2,6,0.97),
-  ('PA-2026-0912-05','T-O-A-02',null,'Brigade Ost','Polana','offen','2026-09-02T15:30:00+06',28,0,4,null)
-) as v(code, block, charge, brigade, sorte, status, faellig, ziel, ist, anzahl, qf)
+  ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,4.2,6,1.08),
+  ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,0,4,null),
+  ('PA-2026-0912-03','K-A-01',null,'Brigade Nachbarbetrieb','Polka','angenommen','2026-09-02T14:00:00+06',26,0,0,5,null),
+  ('PA-2026-0912-04','T-N-A-03','CH-0902-12','Brigade Nord','Polka','abgeschlossen','2026-09-01T11:00:00+06',45,44.2,5.9,6,0.97),
+  ('PA-2026-0912-05','T-O-A-02',null,'Brigade Ost','Polana','offen','2026-09-02T15:30:00+06',28,0,0,4,null)
+) as v(code, block, charge, brigade, sorte, status, faellig, ziel, ist, ausschuss, anzahl, qf)
 join public.reihenbloecke rb on rb.code = v.block
 join public.brigaden br on br.name = v.brigade
 join public.sorten s on s.name = v.sorte
@@ -174,28 +191,106 @@ where not exists (
   select 1 from public.media_belege m where m.pflueckaufgabe_id = pa.id and m.hinweis = v.hinweis
 );
 
--- --- Steigen -----------------------------------------------------------
-insert into public.steigen (code, qr_token, charge_id, gewicht_kg, scan_zeitpunkt)
-select v.code, v.token, ch.id, v.gewicht, v.scan::timestamptz
+-- --- Steigen ------------------------------------------------------------
+-- Die Steige traegt die Person. Erst damit reicht die Nachweiskette vom
+-- Kunden bis zum Pfluecker - und die Pflueckleistung wird messbar.
+-- Das Gewicht je Steige variiert leicht (Muster v1/v2), damit die Summe genau
+-- die gemeldete Ist-Menge der jeweiligen Aufgabe ergibt - eine Abnahmepruefung
+-- hat sonst zwei widerspruechliche Erntemengen auf derselben Karte bemaengelt.
+insert into public.steigen (code, qr_token, charge_id, pflueckaufgabe_id, pfluecker_id, gewicht_kg, scan_zeitpunkt)
+select 'STG-2026-' || lpad((v.start_nr + g.i)::text, 6, '0'),
+       'qr-stg-' || (v.start_nr + g.i),
+       ch.id, pa.id, pf.id,
+       case v.muster
+         when 'v1' then case when g.i < 3 then 1.9 else 2.0 end   -- 3x1,9 + 10x2,0 = 25,7 je Pfluecker
+         when 'v2' then case when g.i = 0 then 2.1 else 2.0 end   -- 1x2,1 + 10x2,0 = 22,1 je Pfluecker
+         else 2.0
+       end,
+       (v.scan::timestamptz + (g.i * interval '11 minutes'))
 from (values
-  ('STG-2026-000480','qr-stg-480','CH-0902-14',2.0,'2026-09-02T10:44:00+06'),
-  ('STG-2026-000481','qr-stg-481','CH-0902-14',2.0,'2026-09-02T10:46:00+06')
-) as v(code, token, charge, gewicht, scan)
-left join public.chargen ch on ch.code = v.charge
+  -- CH-0902-14 / PA-01 (beleg_pruefung): 2x 13 Steigen a 25,7 kg = 51,4 kg,
+  -- passend zur gemeldeten Ist-Menge.
+  ('CH-0902-14','PA-2026-0912-01','MAL-0417',480,13,'2026-09-02T10:05:00+06','v1'),
+  ('CH-0902-14','PA-2026-0912-01','MAL-0418',493,13,'2026-09-02T10:20:00+06','v1'),
+  -- CH-0902-12 / PA-04 (abgeschlossen): 2x 11 Steigen a 22,1 kg = 44,2 kg.
+  ('CH-0902-12','PA-2026-0912-04','MAL-0417',700,11,'2026-09-01T09:05:00+06','v2'),
+  ('CH-0902-12','PA-2026-0912-04','MAL-0418',711,11,'2026-09-01T09:18:00+06','v2'),
+  -- CH-0902-15 / PA-02 (in_arbeit): Aufgabe laeuft noch, bewusst noch nicht
+  -- alle Steigen erfasst - das ist der reale Zwischenstand einer laufenden
+  -- Aufgabe, kein Fehler. Eigener Nummernkreis (900+), damit er sich nicht
+  -- mit dem Bereich von MAL-0418/PA-01 (493-505) ueberschneidet - eine
+  -- Ueberschneidung liess vier Steigen zuvor still verschwinden.
+  ('CH-0902-15','PA-2026-0912-02','MAL-0421',900,4,'2026-09-02T10:30:00+06','flat')
+) as v(charge, aufgabe, ausweis, start_nr, anzahl, scan, muster)
+join public.chargen ch on ch.code = v.charge
+join public.pflueckaufgaben pa on pa.code = v.aufgabe
+join public.pfluecker pf on pf.ausweis = v.ausweis
+cross join lateral generate_series(0, v.anzahl - 1) as g(i)
 on conflict (code) do nothing;
 
--- --- Kuehlketten-Messungen -------------------------------------------------
-insert into public.kuehlketten_messungen (charge_id, gemessen_am, temperatur_c, minuten_seit_pfluecken, ergebnis)
-select ch.id, now(), v.temp, v.minuten, v.ergebnis::public.kuehlkette_ergebnis
+-- --- Arbeitszeiten -------------------------------------------------------
+-- Nenner der Pflueckleistung. Ohne diese Tabelle ist kg je Person und Stunde
+-- strukturell nicht messbar - und damit auch das Lohnmodell nicht.
+-- Die Dauer ist an die erhoehte Steigenzahl angepasst: ueber alle Personen
+-- ergibt sich rund 6,2 kg/h - nahe an der in kpis.ts hinterlegten Baseline
+-- von 6,1 kg/h, statt eines unplausibel doppelt so hohen Werts.
+insert into public.arbeitszeiten (pfluecker_id, pflueckaufgabe_id, beginn, ende)
+select pf.id, pa.id, v.beginn::timestamptz, v.ende::timestamptz
 from (values
-  ('CH-0902-14', 3.8, 41, 'ok'),
-  ('CH-0902-15', 6.1, 58, 'warnung'),
-  ('CH-0902-12', 8.4, 72, 'verstoss')
-) as v(charge, temp, minuten, ergebnis)
-join public.chargen ch on ch.code = v.charge
+  ('MAL-0417','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T12:18:00+06'),
+  ('MAL-0418','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T12:20:00+06'),
+  ('MAL-0421','PA-2026-0912-02','2026-09-02T08:45:00+06','2026-09-02T10:52:00+06'),
+  ('MAL-0417','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T11:44:00+06'),
+  ('MAL-0418','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T11:50:00+06')
+) as v(ausweis, aufgabe, beginn, ende)
+join public.pfluecker pf on pf.ausweis = v.ausweis
+join public.pflueckaufgaben pa on pa.code = v.aufgabe
 where not exists (
-  select 1 from public.kuehlketten_messungen k where k.charge_id = ch.id and k.minuten_seit_pfluecken = v.minuten
+  select 1 from public.arbeitszeiten a
+   where a.pfluecker_id = pf.id and a.pflueckaufgabe_id = pa.id
 );
+
+-- Eine ordnungsgemaess eingehaltene Behandlung: behandelt am 20.08., Wartezeit
+-- drei Tage, geerntet ab dem 26.08. So sieht ein sauberer Rueckstandsnachweis
+-- aus - der Beleg, den Handel und Behoerde sehen wollen.
+insert into public.pflanzenschutz_behandlungen
+  (reihenblock_id, psm_mittel_id, behandelt_am, wartezeit_tage, freigegeben)
+select rb.id, m.id, '2026-08-20'::date, 3, true
+from public.reihenbloecke rb, public.psm_mittel m
+where rb.code = 'T-N-A-01' and m.name = 'Signum'
+  and not exists (
+    select 1 from public.pflanzenschutz_behandlungen b
+     where b.reihenblock_id = rb.id and b.behandelt_am = '2026-08-20'::date
+  );
+
+-- Rueckbindung Charge zur Pflueckaufgabe (der Trigger fuellt nur neue Faelle).
+update public.chargen c
+   set pflueckaufgabe_id = pa.id
+  from public.pflueckaufgaben pa
+ where pa.charge_id = c.id
+   and c.pflueckaufgabe_id is null;
+
+-- --- Kuehlketten-Messungen -------------------------------------------------
+-- Der Messzeitpunkt haengt am Pflueckzeitpunkt der Charge. Minuten und Urteil
+-- rechnet der Trigger public.kuehlkette_bewerten() - hier steht nur, wann
+-- gemessen wurde und wie warm die Ware war.
+insert into public.kuehlketten_messungen (charge_id, gemessen_am, temperatur_c)
+select ch.id, ch.pflueck_zeitpunkt + (v.minuten * interval '1 minute'), v.temp
+from (values
+  ('CH-0902-14', 41,  3.8),
+  ('CH-0902-15', 58,  6.1),
+  ('CH-0902-12', 72,  8.4),
+  ('CH-0901-07', 44,  3.2),
+  ('CH-0829-04', 39,  2.9),
+  ('CH-0826-01', 42,  3.4)
+) as v(charge, minuten, temp)
+join public.chargen ch on ch.code = v.charge
+where ch.pflueck_zeitpunkt is not null
+  and not exists (
+    select 1 from public.kuehlketten_messungen k
+     where k.charge_id = ch.id
+       and k.gemessen_am = ch.pflueck_zeitpunkt + (v.minuten * interval '1 minute')
+  );
 
 -- --- Rotationsplan -------------------------------------------------------
 insert into public.rotationsplan_eintraege (reihenblock_id, brigade_id, geplant_fuer, intervall_tage)

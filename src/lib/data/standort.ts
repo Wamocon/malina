@@ -61,7 +61,7 @@ function statsAus(plantagen: PlantageKnoten[]): StandortBaum["stats"] {
   };
 }
 
-function demoBaum(): StandortBaum {
+function demoBaum(quelle: StandortBaum["quelle"] = "demo"): StandortBaum {
   const plantagen: PlantageKnoten[] = demoBetrieb.plantagen.map((plantage) => ({
     id: plantage.id,
     name: plantage.name,
@@ -82,7 +82,7 @@ function demoBaum(): StandortBaum {
   }));
 
   return {
-    quelle: "demo",
+    quelle,
     betriebName: demoBetrieb.name,
     betriebId: null,
     plantagen,
@@ -113,9 +113,9 @@ export async function ladeStandortBaum(): Promise<StandortBaum> {
       .order("name"),
   ]);
 
-  // Bei einem Lesefehler (z. B. Datenbank nicht erreichbar) lieber die
-  // Beispieldaten zeigen als eine leere Seite.
-  if (error || !plantagenRoh) return demoBaum();
+  // Bei einem Lesefehler lieber die Beispieldaten zeigen als eine leere
+  // Seite - aber ausdruecklich als Fehler gekennzeichnet, nicht als Demo.
+  if (error || !plantagenRoh) return demoBaum("fehler");
 
   const plantagen: PlantageKnoten[] = plantagenRoh.map((plantage) => ({
     id: plantage.id,

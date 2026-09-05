@@ -18,4 +18,10 @@ export function isSupabaseConfigured(): boolean {
 }
 
 // Quelle der angezeigten Daten - fuer den Hinweis-Badge in den Modulen.
-export type Datenquelle = "db" | "demo";
+//   "db"     - echte Daten aus der Datenbank
+//   "demo"   - kein Supabase hinterlegt, bewusst Beispieldaten
+//   "fehler" - Supabase ist hinterlegt, die Abfrage ist aber fehlgeschlagen.
+//              Das muss sichtbar anders aussehen als der Demo-Modus: sonst
+//              zeigt die Oberflaeche im Ausfall still Beispieldaten, und
+//              niemand merkt es.
+export type Datenquelle = "db" | "demo" | "fehler";

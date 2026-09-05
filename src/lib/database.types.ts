@@ -34,6 +34,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      arbeitszeiten: {
+        Row: {
+          beginn: string
+          created_at: string
+          ende: string | null
+          id: string
+          minuten: number | null
+          pflueckaufgabe_id: string | null
+          pfluecker_id: string
+        }
+        Insert: {
+          beginn: string
+          created_at?: string
+          ende?: string | null
+          id?: string
+          minuten?: number | null
+          pflueckaufgabe_id?: string | null
+          pfluecker_id: string
+        }
+        Update: {
+          beginn?: string
+          created_at?: string
+          ende?: string | null
+          id?: string
+          minuten?: number | null
+          pflueckaufgabe_id?: string | null
+          pfluecker_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "arbeitszeiten_pflueckaufgabe_id_fkey"
+            columns: ["pflueckaufgabe_id"]
+            isOneToOne: false
+            referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "arbeitszeiten_pfluecker_id_fkey"
+            columns: ["pfluecker_id"]
+            isOneToOne: false
+            referencedRelation: "pfluecker"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_events: {
         Row: {
           actor: string | null
@@ -152,11 +197,14 @@ export type Database = {
       }
       chargen: {
         Row: {
+          ausschuss_kg: number
           code: string
           created_at: string
           ernte_datum: string
           id: string
+          menge_kg: number
           pflueck_zeitpunkt: string | null
+          pflueckaufgabe_id: string | null
           reihenblock_id: string | null
           sorte_id: string | null
           status: Database["public"]["Enums"]["charge_status"]
@@ -164,11 +212,14 @@ export type Database = {
           vorkuehlung_zeitpunkt: string | null
         }
         Insert: {
+          ausschuss_kg?: number
           code: string
           created_at?: string
           ernte_datum?: string
           id?: string
+          menge_kg?: number
           pflueck_zeitpunkt?: string | null
+          pflueckaufgabe_id?: string | null
           reihenblock_id?: string | null
           sorte_id?: string | null
           status?: Database["public"]["Enums"]["charge_status"]
@@ -176,11 +227,14 @@ export type Database = {
           vorkuehlung_zeitpunkt?: string | null
         }
         Update: {
+          ausschuss_kg?: number
           code?: string
           created_at?: string
           ernte_datum?: string
           id?: string
+          menge_kg?: number
           pflueck_zeitpunkt?: string | null
+          pflueckaufgabe_id?: string | null
           reihenblock_id?: string | null
           sorte_id?: string | null
           status?: Database["public"]["Enums"]["charge_status"]
@@ -188,6 +242,13 @@ export type Database = {
           vorkuehlung_zeitpunkt?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "chargen_pflueckaufgabe_id_fkey"
+            columns: ["pflueckaufgabe_id"]
+            isOneToOne: false
+            referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "chargen_reihenblock_id_fkey"
             columns: ["reihenblock_id"]
@@ -989,6 +1050,7 @@ export type Database = {
       }
       pflueckaufgaben: {
         Row: {
+          ausschuss_kg: number
           brigade_id: string | null
           charge_id: string | null
           code: string
@@ -1005,6 +1067,7 @@ export type Database = {
           zielmenge_kg: number
         }
         Insert: {
+          ausschuss_kg?: number
           brigade_id?: string | null
           charge_id?: string | null
           code: string
@@ -1021,6 +1084,7 @@ export type Database = {
           zielmenge_kg?: number
         }
         Update: {
+          ausschuss_kg?: number
           brigade_id?: string | null
           charge_id?: string | null
           code?: string
@@ -1495,6 +1559,7 @@ export type Database = {
           gewicht_kg: number | null
           id: string
           pflueckaufgabe_id: string | null
+          pfluecker_id: string | null
           qr_token: string
           scan_zeitpunkt: string | null
         }
@@ -1505,6 +1570,7 @@ export type Database = {
           gewicht_kg?: number | null
           id?: string
           pflueckaufgabe_id?: string | null
+          pfluecker_id?: string | null
           qr_token: string
           scan_zeitpunkt?: string | null
         }
@@ -1515,6 +1581,7 @@ export type Database = {
           gewicht_kg?: number | null
           id?: string
           pflueckaufgabe_id?: string | null
+          pfluecker_id?: string | null
           qr_token?: string
           scan_zeitpunkt?: string | null
         }
@@ -1531,6 +1598,13 @@ export type Database = {
             columns: ["pflueckaufgabe_id"]
             isOneToOne: false
             referencedRelation: "pflueckaufgaben"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "steigen_pfluecker_id_fkey"
+            columns: ["pfluecker_id"]
+            isOneToOne: false
+            referencedRelation: "pfluecker"
             referencedColumns: ["id"]
           },
         ]
@@ -1693,6 +1767,16 @@ export type Database = {
         Args: { erlaubt: Database["public"]["Enums"]["app_role"][] }
         Returns: boolean
       }
+      kpi_aktuell: {
+        Args: never
+        Returns: {
+          basis: string
+          datensaetze: number
+          einheit: string
+          schluessel: string
+          wert: number
+        }[]
+      }
       reihenblock_freigeben: {
         Args: {
           p_block: string
@@ -1715,6 +1799,18 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      rueckstandsnachweis: {
+        Args: { p_charge: string }
+        Returns: {
+          behandelt_am: string
+          eingehalten: boolean
+          freigabe_am: string
+          mittel: string
+          tage_vor_ernte: number
+          wartezeit_tage: number
+          wirkstoff: string
+        }[]
       }
     }
     Enums: {

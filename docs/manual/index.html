@@ -379,7 +379,7 @@
       <div class="cover-sub">Betriebssteuerung f&uuml;r einen Himbeerbetrieb im Umland Almaty &ndash; Blaupause auf Basis des 1&Ccedil;at&#305;-ERP-&Ouml;kosystems</div>
       <div class="cover-meta">
         <div><div class="meta-label">Version</div><div class="meta-value">0.1.0</div></div>
-        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein B)</span></div></div>
+        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein C)</span></div></div>
         <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; EN &middot; TR &middot; KK &middot; RU</div></div>
         <div><div class="meta-label">Datum</div><div class="meta-value">September 2026</div></div>
       </div>
@@ -579,7 +579,17 @@
         <li>Betriebsleitung oder Administration pr&uuml;fen den Beleg, tragen den Qualit&auml;tsfaktor ein und geben die Aufgabe frei</li>
       </ol>
 
-      <h3 id="ht-dokumente">4.3 Dokument aufnehmen</h3>
+      <h3 id="ht-kette">4.3 Nachweiskette einer Lieferung zeigen</h3>
+      <ol>
+        <li><code>Dashboard &rarr; Feld &rarr; Pfl&uuml;ckaufgaben mit Fotobeleg</code> &ouml;ffnen, links eine Aufgabe w&auml;hlen</li>
+        <li>Rechts unter <strong>Nachweiskette</strong> steht die Charge: Kühlkurve mit der 60-Minuten-Grenze, Menge und Ausschuss, die Steigen mit der Person, die sie gef&uuml;llt hat, und der Rückstandsnachweis</li>
+        <li><strong>Steige erfassen</strong> ordnet eine Steige einer Person zu - erst damit reicht die Kette vom Kunden bis zum Pfl&uuml;cker</li>
+        <li><strong>Arbeitszeit melden</strong> liefert den Nenner der Pfl&uuml;ckleistung in kg je Stunde</li>
+        <li><strong>K&uuml;hlmessung erfassen</strong>: Minuten und Urteil rechnet die Datenbank aus dem Pfl&uuml;ckzeitpunkt. &Uuml;ber 60 Minuten meldet die Oberfl&auml;che einen Versto&szlig; und die Ware ist abzuwerten</li>
+        <li>Auf der &Uuml;bersicht zeigen die Kennzahlenkacheln danach den ge&auml;nderten Istwert - gerechnet, nicht gesetzt</li>
+      </ol>
+
+      <h3 id="ht-dokumente">4.4 Dokument aufnehmen</h3>
       <ol>
         <li>Als B&uuml;rorolle <code>Dashboard &rarr; B&uuml;ro &rarr; Dokumentenverwaltung</code> &ouml;ffnen</li>
         <li>Unter <strong>Dokument aufnehmen</strong> Bezeichnung, Kategorie, Bezug und Stand erfassen; die Datei (PDF oder Bild) ist optional</li>

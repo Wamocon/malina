@@ -38,9 +38,33 @@ const demoBenutzer = [
   { email: "kunde@malina.demo", role: "kunde", full_name: "Almaty Fresh Market" },
 ];
 
+// Nach `supabase db reset` startet der Auth-Dienst neu und bekommt eine neue
+// Container-IP. Das Gateway zeigt dann kurz noch auf die alte und antwortet mit
+// 502. Ohne diese Wiederholung scheitert das Anlegen der Demo-Zugaenge still -
+// und der Anmeldeversuch schlaegt spaeter unerklaerlich fehl.
+async function mitWiederholung(name, aufgabe, versuche = 6) {
+  for (let versuch = 1; versuch <= versuche; versuch += 1) {
+    try {
+      return await aufgabe();
+    } catch (error) {
+      const erreichbar = !/fetch|502|upstream|ECONNREFUSED/i.test(
+        error?.message ?? "",
+      );
+      if (erreichbar || versuch === versuche) throw error;
+      console.log(`  ${name}: Auth-Dienst noch nicht bereit, Versuch ${versuch} von ${versuche} ...`);
+      await new Promise((fertig) => setTimeout(fertig, 2000));
+    }
+  }
+  throw new Error(`${name}: Auth-Dienst nicht erreichbar.`);
+}
+
 async function findeBenutzer(email) {
   // listUsers paginiert; bei sechs Demo-Konten reicht die erste Seite.
-  const { data, error } = await admin.auth.admin.listUsers({ perPage: 200 });
+  const { data, error } = await mitWiederholung("Benutzerliste", async () => {
+    const antwort = await admin.auth.admin.listUsers({ perPage: 200 });
+    if (antwort.error) throw antwort.error;
+    return antwort;
+  });
   if (error) throw error;
   return data.users.find((user) => user.email?.toLowerCase() === email.toLowerCase());
 }

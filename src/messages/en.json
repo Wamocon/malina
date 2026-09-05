@@ -244,7 +244,9 @@
       "db": "Live data",
       "demo": "Sample data",
       "dbHint": "Connected to the Supabase database, read under the RLS permissions of your role.",
-      "demoHint": "No database connection - the view shows the built-in sample data."
+      "demoHint": "No database connection - the view shows the built-in sample data.",
+      "fehler": "Database unreachable",
+      "fehlerHint": "The query failed. Sample data is shown instead - it does not come from the farm."
     },
     "rbacHintLabel": "Roles",
     "rbacHint": "Which modules are visible depends on the role of the signed-in account. Six core roles, from administration to the brigade in the field - the same role also governs read and write permissions in the database.",
@@ -284,7 +286,9 @@
         "kpi": "Dashboard skeleton with the 14 baseline key figures as tiles"
       },
       "milestoneBNote": "All main functions are connected to the database: sign-in, role permissions through row level security, location management, row block lock, picking task with photo proof and document storage. The sub-functions remain visible menu entries with a status, as planned.",
-      "kpiSummary": "{berechenbar} measurable today · {erfassung} capture missing · {tabelle} function missing"
+      "kpiSummary": "{berechenbar} measurable today · {erfassung} capture missing · {tabelle} function missing",
+      "kpiGerechnet": "computed from {anzahl} records",
+      "kpiSummaryLive": "{gerechnet} computed from real data · {offen} waiting for the function behind them"
     }
   },
   "roles": {
@@ -612,7 +616,10 @@
       "aufgabeStatus": "Task {wert} updated.",
       "menge": "Quantity reported for {wert} - proof is under review.",
       "beleg": "Photo proof uploaded.",
-      "dokument": "Document \"{wert}\" added."
+      "dokument": "Document \"{wert}\" added.",
+      "steige": "Crate {wert} recorded.",
+      "arbeitszeit": "{wert} minutes of working time reported.",
+      "kuehlmessung": "Measurement recorded - {wert} minutes after picking."
     },
     "fehler": {
       "eingabe": "Please fill in all required fields.",
@@ -625,7 +632,9 @@
       "doppelt": "An entry with this identifier already exists.",
       "bezug": "The selected reference record does not exist.",
       "regel": "Not possible: the waiting period has not elapsed yet.",
-      "unbekannt": "Action failed. Details are in the server log."
+      "unbekannt": "Action failed. Details are in the server log.",
+      "keineCharge": "This task has no batch.",
+      "kuehlkette": "Limit broken: {wert} minutes until measurement. The goods have to be downgraded."
     }
   },
   "standortVerwaltung": {
@@ -734,7 +743,8 @@
       "art": "Proof type",
       "datei": "Photo",
       "hinweis": "Note",
-      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface"
+      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface",
+      "ausschuss": "Rejects in kg"
     }
   },
   "pflanzenschutzVerwaltung": {
@@ -956,5 +966,57 @@
     "berechenbar": "measurable today",
     "erfassung-fehlt": "capture missing",
     "tabelle-fehlt": "function missing"
+  },
+  "nachweiskette": {
+    "titel": "Chain of evidence",
+    "lead": "Batch, cooling curve, crates with the person and residue proof - the chain that trade and authorities want to see.",
+    "keineCharge": "This task has no batch yet. It is created together with the picking task.",
+    "menge": "Quantity",
+    "ausschuss": "Rejects",
+    "steigen": "Crates",
+    "steigenTitel": "Crates with the person",
+    "ohnePerson": "no person",
+    "weitereSteigen": "and {anzahl} more",
+    "kuehlung": {
+      "minuten": "{minuten} minutes to pre-cooling",
+      "offen": "Pre-cooling pending",
+      "laeuft": "running",
+      "gehalten": "limit held",
+      "gerissen": "limit broken",
+      "regel": "No more than 60 minutes may pass between picking and cooling. Break that limit and every further measure is worthless.",
+      "nachMinuten": "after {minuten} minutes",
+      "knopf": "Record cooling measurement",
+      "grenzwertig": "borderline"
+    },
+    "ergebnis": {
+      "ok": "ok",
+      "warnung": "warning",
+      "verstoss": "violation"
+    },
+    "rueckstand": {
+      "titel": "Residue proof per batch",
+      "keine": "No treatment in the 90 days before the harvest date.",
+      "eingehalten": "respected",
+      "verletzt": "violated",
+      "zeile": "Treated on {behandelt}, waiting period {wartezeit} days, free from {frei} - harvested {tage} days after treatment."
+    },
+    "steige": {
+      "knopf": "Record crate"
+    },
+    "arbeitszeit": {
+      "knopf": "Report working time"
+    },
+    "feld": {
+      "pfluecker": "Picker",
+      "gewicht": "Weight in kg",
+      "minuten": "Minutes",
+      "temperatur": "Temperature in °C"
+    }
+  },
+  "fehlerseite": {
+    "titel": "This view could not be loaded",
+    "lead": "The data is currently unreachable. Nothing was executed and nothing was lost.",
+    "kennung": "Error reference",
+    "erneut": "Try again"
   }
 }

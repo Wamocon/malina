@@ -171,13 +171,15 @@ export async function mengeMelden(
 
   const id = text(formData, "id");
   const menge = zahl(formData, "ist_menge_kg");
-  if (!id || menge === null || menge < 0) return fehler("fehler.eingabe");
+  const ausschuss = zahl(formData, "ausschuss_kg") ?? 0;
+  if (!id || menge === null || menge < 0 || ausschuss < 0) return fehler("fehler.eingabe");
 
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("pflueckaufgaben")
     .update({
       ist_menge_kg: menge,
+      ausschuss_kg: ausschuss,
       ...(zahl(formData, "pfluecker_anzahl") !== null
         ? { pfluecker_anzahl: zahl(formData, "pfluecker_anzahl")! }
         : {}),
@@ -193,6 +195,7 @@ export async function mengeMelden(
   await protokolliere(profil, "aufgabe.menge", data.id, {
     code: data.code,
     ist_menge_kg: menge,
+    ausschuss_kg: ausschuss,
   });
   aktualisiere(formData);
   return ok("ok.menge", data.code);

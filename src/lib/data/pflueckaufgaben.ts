@@ -35,6 +35,7 @@ export interface AufgabeAnsicht {
   faelligkeit: string | null;
   zielmengeKg: number;
   istMengeKg: number;
+  ausschussKg: number;
   qualitaetsfaktor: number | null;
   belege: BelegAnsicht[];
 }
@@ -53,9 +54,9 @@ const platzhalter: Record<BelegAnsicht["art"], string> = {
   steige: "/belege/steige.svg",
 };
 
-function demoListe(): AufgabenListe {
+function demoListe(quelle: AufgabenListe["quelle"] = "demo"): AufgabenListe {
   return {
-    quelle: "demo",
+    quelle,
     aufgaben: demoAufgaben.map((aufgabe) => ({
       id: aufgabe.id,
       code: aufgabe.id,
@@ -68,6 +69,7 @@ function demoListe(): AufgabenListe {
       faelligkeit: aufgabe.faelligkeit,
       zielmengeKg: aufgabe.zielmengeKg,
       istMengeKg: aufgabe.istMengeKg,
+      ausschussKg: 0,
       qualitaetsfaktor: aufgabe.qualitaetsfaktor,
       belege: aufgabe.belege.map((beleg) => ({
         id: beleg.id,
@@ -88,7 +90,7 @@ export async function ladePflueckaufgaben(): Promise<AufgabenListe> {
   const { data, error } = await supabase
     .from("pflueckaufgaben")
     .select(
-      `id, code, status, faelligkeit, zielmenge_kg, ist_menge_kg,
+      `id, code, status, faelligkeit, zielmenge_kg, ist_menge_kg, ausschuss_kg,
        pfluecker_anzahl, qualitaetsfaktor,
        reihenbloecke ( id, code ),
        sorten ( name ),
@@ -97,7 +99,7 @@ export async function ladePflueckaufgaben(): Promise<AufgabenListe> {
     )
     .order("code");
 
-  if (error || !data) return demoListe();
+  if (error || !data) return demoListe("fehler");
 
   // Alle Belege mit Datei in einem Rutsch signieren.
   const pfade = data
@@ -131,6 +133,7 @@ export async function ladePflueckaufgaben(): Promise<AufgabenListe> {
       faelligkeit: aufgabe.faelligkeit,
       zielmengeKg: Number(aufgabe.zielmenge_kg),
       istMengeKg: Number(aufgabe.ist_menge_kg),
+      ausschussKg: Number(aufgabe.ausschuss_kg),
       qualitaetsfaktor:
         aufgabe.qualitaetsfaktor === null ? null : Number(aufgabe.qualitaetsfaktor),
       belege: (aufgabe.media_belege ?? [])

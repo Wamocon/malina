@@ -42,3 +42,8 @@ next-env.d.ts
 
 # playwright mcp artifacts
 .playwright-mcp/
+
+# Snapshots und Zwischenergebnisse von Prüf-Agenten
+/*-leitung.md
+/*-brigade.md
+/*-kunde.md

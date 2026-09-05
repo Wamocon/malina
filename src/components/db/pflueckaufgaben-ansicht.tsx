@@ -10,7 +10,9 @@ import {
   BelegUploadFormular,
   MengeFormular,
 } from "@/components/db/pflueckaufgaben-formulare";
+import { NachweiskettenKarte } from "@/components/db/nachweiskette-ansicht";
 import { ladeBrigaden, ladePflueckaufgaben } from "@/lib/data/pflueckaufgaben";
+import { ladeNachweiskette, ladePfluecker } from "@/lib/data/nachweiskette";
 import { ladeReihenbloecke } from "@/lib/data/reihenbloecke";
 import { getSessionProfile } from "@/lib/auth";
 import { hasPermission } from "@/lib/rbac";
@@ -41,6 +43,19 @@ export async function PflueckaufgabenAnsicht({
     liste.aufgaben.find((aufgabe) => aufgabe.id === auswahl) ??
     liste.aufgaben.find((aufgabe) => aufgabe.belege.length > 0) ??
     liste.aufgaben[0];
+
+  // Nachweiskette der gewaehlten Aufgabe: Charge, Kuehlkurve, Steigen mit
+  // Person, Rueckstandsnachweis. Erst mit Meilenstein C gibt es sie ueberhaupt.
+  // Die Pflueckerliste ist fuer die Brigade auf die eigene Brigade beschraenkt
+  // - Administration und Betriebsleitung sehen weiterhin alle.
+  const [kette, pflueckerListe] = await Promise.all([
+    liste.quelle === "db" && gewaehlt
+      ? ladeNachweiskette(gewaehlt.id)
+      : Promise.resolve(null),
+    liste.quelle === "db"
+      ? ladePfluecker(profil?.role === "brigade" ? profil.brigadeId : null)
+      : Promise.resolve([]),
+  ]);
 
   const live = liste.quelle === "db";
   const darfBearbeiten = live && hasPermission(profil?.role, "pflueckaufgaben", "update");
@@ -212,11 +227,21 @@ export async function PflueckaufgabenAnsicht({
                   <MengeFormular
                     id={gewaehlt.id}
                     istMenge={gewaehlt.istMengeKg}
+                    ausschussKg={gewaehlt.ausschussKg}
                     pflueckerAnzahl={gewaehlt.pflueckerAnzahl}
                   />
                 ) : null}
               </div>
             </Card>
+          ) : null}
+
+          {kette && gewaehlt ? (
+            <NachweiskettenKarte
+              kette={kette}
+              aufgabeId={gewaehlt.id}
+              pfluecker={pflueckerListe}
+              darfErfassen={darfBearbeiten}
+            />
           ) : null}
 
           {gewaehlt?.status === "beleg_pruefung" && darfAbschliessen ? (
