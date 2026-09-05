@@ -283,7 +283,8 @@
         "i18n": "Mehrsprachige Oberfläche in fünf Sprachen",
         "kpi": "Dashboard-Grundgerüst mit den 14 Baseline-Kennzahlen als Kacheln"
       },
-      "milestoneBNote": "Alle Hauptfunktionen sind an die Datenbank angebunden: Anmeldung, Rollenrechte über Row Level Security, Standortverwaltung, Reihenblock-Sperre, Pflückaufgabe mit Fotobeleg und Dokumentenablage. Die Unterfunktionen bleiben planmäßig sichtbare Menüpunkte mit Status."
+      "milestoneBNote": "Alle Hauptfunktionen sind an die Datenbank angebunden: Anmeldung, Rollenrechte über Row Level Security, Standortverwaltung, Reihenblock-Sperre, Pflückaufgabe mit Fotobeleg und Dokumentenablage. Die Unterfunktionen bleiben planmäßig sichtbare Menüpunkte mit Status.",
+      "kpiSummary": "{berechenbar} heute messbar · {erfassung} Erfassung fehlt · {tabelle} Funktion fehlt"
     }
   },
   "roles": {
@@ -950,5 +951,10 @@
     "privacyScopeText": "Der Prototyp verarbeitet keine personenbezogenen Daten. Es werden keine Cookies zu Analysezwecken gesetzt. Die Design-Auswahl (hell/dunkel) und die Demo-Rolle werden nur lokal im Browser gespeichert.",
     "residencyTitle": "Datenresidenz (geplanter Betrieb)",
     "residencyText": "Für den späteren Realbetrieb schränkt der kasachstanische Digitalkodex Nr. 255-VIII die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Der Hosting-Standort für QR-, Offline-Sync- und KI-Architektur wird vor Produktivsetzung rechtlich geprüft."
+  },
+  "kpiHerkunft": {
+    "berechenbar": "heute messbar",
+    "erfassung-fehlt": "Erfassung fehlt",
+    "tabelle-fehlt": "Funktion fehlt"
   }
 }

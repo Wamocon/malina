@@ -283,7 +283,8 @@
         "i18n": "Multilingual interface in five languages",
         "kpi": "Dashboard skeleton with the 14 baseline key figures as tiles"
       },
-      "milestoneBNote": "All main functions are connected to the database: sign-in, role permissions through row level security, location management, row block lock, picking task with photo proof and document storage. The sub-functions remain visible menu entries with a status, as planned."
+      "milestoneBNote": "All main functions are connected to the database: sign-in, role permissions through row level security, location management, row block lock, picking task with photo proof and document storage. The sub-functions remain visible menu entries with a status, as planned.",
+      "kpiSummary": "{berechenbar} measurable today · {erfassung} capture missing · {tabelle} function missing"
     }
   },
   "roles": {
@@ -950,5 +951,10 @@
     "privacyScopeText": "The prototype processes no personal data. No analytics cookies are set. The theme choice (light/dark) and the demo role are stored only locally in the browser.",
     "residencyTitle": "Data residency (planned operation)",
     "residencyText": "For later live operation, Kazakh Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location for the QR, offline-sync and AI architecture will be reviewed legally before going live."
+  },
+  "kpiHerkunft": {
+    "berechenbar": "measurable today",
+    "erfassung-fehlt": "capture missing",
+    "tabelle-fehlt": "function missing"
   }
 }

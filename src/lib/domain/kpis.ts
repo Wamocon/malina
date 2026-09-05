@@ -5,6 +5,16 @@
 
 export type KpiTrend = "up" | "down" | "flat";
 
+// Kann das System diese Kennzahl heute fortschreiben?
+//   "berechenbar"    - aus den vorhandenen Tabellen ableitbar, nur die
+//                      Aggregation fehlt noch.
+//   "erfassung-fehlt"- die Tabellen stehen, aber niemand traegt die Werte ein.
+//   "tabelle-fehlt"  - das Datenmodell hat dafuer noch keinen Platz.
+//
+// Diese Einordnung gehoert an die Kachel, nicht in eine Anlage: wer eine
+// Baseline unterschreibt, muss sehen, welche Zusage heute schon messbar ist.
+export type Datenherkunft = "berechenbar" | "erfassung-fehlt" | "tabelle-fehlt";
+
 export interface Kpi {
   key: string;
   zone: "feld" | "hof" | "buero" | "markt";
@@ -14,21 +24,175 @@ export interface Kpi {
   // positive Richtung: ist ein steigender Wert gut ("up") oder schlecht ("down")?
   gutRichtung: "up" | "down";
   platzhalter: true;
+  datenherkunft: Datenherkunft;
+  /** Was fehlt, damit die Kennzahl gemessen werden kann. */
+  braucht: string;
 }
 
 export const kpis: Kpi[] = [
-  { key: "verlustquote", zone: "hof", wert: "8,4 %", ziel: "< 6 %", trend: "down", gutRichtung: "down", platzhalter: true },
-  { key: "vermarktungsfaehig", zone: "hof", wert: "82 %", ziel: "> 90 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "zeitBisVorkuehlung", zone: "hof", wert: "47 min", ziel: "< 60 min", trend: "flat", gutRichtung: "down", platzhalter: true },
-  { key: "zeitBisKunde", zone: "hof", wert: "19 h", ziel: "< 24 h", trend: "down", gutRichtung: "down", platzhalter: true },
-  { key: "pflueckleistung", zone: "feld", wert: "6,1 kg/h", ziel: "> 7 kg/h", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "pflueckStreuung", zone: "feld", wert: "2,3×", ziel: "< 1,8×", trend: "down", gutRichtung: "down", platzhalter: true },
-  { key: "pflueckintervall", zone: "feld", wert: "84 %", ziel: "> 95 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "behandlungenWartezeit", zone: "feld", wert: "96 %", ziel: "100 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "reklamationsquote", zone: "markt", wert: "3,2 %", ziel: "< 2 %", trend: "down", gutRichtung: "down", platzhalter: true },
-  { key: "liefertreue", zone: "markt", wert: "91 %", ziel: "> 97 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "belegteVerkaeufe", zone: "buero", wert: "71 %", ziel: "100 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "deckungsbeitrag", zone: "buero", wert: "640 ₸/kg", ziel: "> 700 ₸/kg", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "esutdAbdeckung", zone: "buero", wert: "64 %", ziel: "100 %", trend: "up", gutRichtung: "up", platzhalter: true },
-  { key: "websiteAnfragen", zone: "markt", wert: "12 / Monat", ziel: "Ausgangswert", trend: "up", gutRichtung: "up", platzhalter: true },
+  {
+    key: "verlustquote",
+    zone: "hof",
+    wert: "8,4 %",
+    ziel: "< 6 %",
+    trend: "down",
+    gutRichtung: "down",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Erntemenge und Ausschuss je Charge",
+  },
+  {
+    key: "vermarktungsfaehig",
+    zone: "hof",
+    wert: "82 %",
+    ziel: "> 90 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Qualitaetssortierung je Schale",
+  },
+  {
+    key: "zeitBisVorkuehlung",
+    zone: "hof",
+    wert: "47 min",
+    ziel: "< 60 min",
+    trend: "flat",
+    gutRichtung: "down",
+    platzhalter: true,
+    datenherkunft: "erfassung-fehlt",
+    braucht: "Pflueckzeitpunkt und Kuehlbeginn je Charge eintragen",
+  },
+  {
+    key: "zeitBisKunde",
+    zone: "hof",
+    wert: "19 h",
+    ziel: "< 24 h",
+    trend: "down",
+    gutRichtung: "down",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Lieferungen mit Abfahrt und Ankunft",
+  },
+  {
+    key: "pflueckleistung",
+    zone: "feld",
+    wert: "6,1 kg/h",
+    ziel: "> 7 kg/h",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Arbeitszeit je Pfluecker und Erntetag",
+  },
+  {
+    key: "pflueckStreuung",
+    zone: "feld",
+    wert: "2,3×",
+    ziel: "< 1,8×",
+    trend: "down",
+    gutRichtung: "down",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Erntemenge je Person, nicht je Brigade",
+  },
+  {
+    key: "pflueckintervall",
+    zone: "feld",
+    wert: "84 %",
+    ziel: "> 95 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Ist-Erntetermin je Reihenblock fortschreiben",
+  },
+  {
+    key: "behandlungenWartezeit",
+    zone: "feld",
+    wert: "96 %",
+    ziel: "100 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "berechenbar",
+    braucht: "nichts - aus Behandlung und Sperrlogik ableitbar",
+  },
+  {
+    key: "reklamationsquote",
+    zone: "markt",
+    wert: "3,2 %",
+    ziel: "< 2 %",
+    trend: "down",
+    gutRichtung: "down",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Reklamationen mit Bezug zur Charge",
+  },
+  {
+    key: "liefertreue",
+    zone: "markt",
+    wert: "91 %",
+    ziel: "> 97 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Zugesagte gegen tatsaechliche Lieferung",
+  },
+  {
+    key: "belegteVerkaeufe",
+    zone: "buero",
+    wert: "71 %",
+    ziel: "100 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Anbindung an ЭСФ und Warenbegleitschein",
+  },
+  {
+    key: "deckungsbeitrag",
+    zone: "buero",
+    wert: "640 ₸/kg",
+    ziel: "> 700 ₸/kg",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "erfassung-fehlt",
+    braucht: "Erloese stehen, Erntemenge je Kostentraeger fehlt",
+  },
+  {
+    key: "esutdAbdeckung",
+    zone: "buero",
+    wert: "64 %",
+    ziel: "100 %",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "erfassung-fehlt",
+    braucht: "Vertragsstatus je Saisonkraft pflegen",
+  },
+  {
+    key: "websiteAnfragen",
+    zone: "markt",
+    wert: "12 / Monat",
+    ziel: "Ausgangswert",
+    trend: "up",
+    gutRichtung: "up",
+    platzhalter: true,
+    datenherkunft: "tabelle-fehlt",
+    braucht: "Kontaktformular auf der Website",
+  },
 ];
+
+// Verteilung der Messbarkeit - Grundlage fuer den Hinweis am Kennzahlenblock.
+export function herkunftZaehlen(liste: Kpi[] = kpis): Record<Datenherkunft, number> {
+  const zaehler: Record<Datenherkunft, number> = {
+    berechenbar: 0,
+    "erfassung-fehlt": 0,
+    "tabelle-fehlt": 0,
+  };
+  for (const kpi of liste) zaehler[kpi.datenherkunft] += 1;
+  return zaehler;
+}
