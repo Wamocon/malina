@@ -80,10 +80,12 @@ export function AufgabeAnlegenFormular({
 export function MengeFormular({
   id,
   istMenge,
+  ausschussKg,
   pflueckerAnzahl,
 }: {
   id: string;
   istMenge: number;
+  ausschussKg: number;
   pflueckerAnzahl: number;
 }) {
   const [status, action] = useActionState(mengeMelden, leer);
@@ -100,6 +102,12 @@ export function MengeFormular({
           inputMode="decimal"
           required
           defaultValue={String(istMenge)}
+        />
+        <Feld
+          label={t("feld.ausschuss")}
+          name="ausschuss_kg"
+          inputMode="decimal"
+          defaultValue={String(ausschussKg)}
         />
         <Feld
           label={t("feld.pfluecker")}

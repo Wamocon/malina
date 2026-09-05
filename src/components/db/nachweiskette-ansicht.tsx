@@ -6,7 +6,7 @@ import {
   KuehlmessungFormular,
   SteigeFormular,
 } from "@/components/db/nachweiskette-formulare";
-import type { Nachweiskette, PflueckerOption } from "@/lib/data/nachweiskette";
+import type { KuehlMessung, Nachweiskette, PflueckerOption } from "@/lib/data/nachweiskette";
 
 const ergebnisTon: Record<string, Tone> = {
   ok: "success",
@@ -39,8 +39,20 @@ export async function NachweiskettenKarte({
   }
 
   const c = kette.charge;
-  const gerissen = c.minutenBisVorkuehlung !== null && c.minutenBisVorkuehlung > 60;
-  const offen = c.minutenBisVorkuehlung === null;
+  // Der Zustand kommt aus dem strengsten Messergebnis, das die Datenbank
+  // schon geurteilt hat (public.kuehlkette_bewerten) - nicht aus einer eigenen
+  // Minutenschwelle der Oberflaeche. Sonst kann die Karte grün zeigen, wo die
+  // Datenbank bereits eine Warnung oder einen Verstoss festgehalten hat, weil
+  // seit Meilenstein C auch verspaetete Messungen einen Zeitpunkt bekommen.
+  const rang = { verstoss: 2, warnung: 1, ok: 0 } as const;
+  const schwerste = kette.messungen.reduce<KuehlMessung["ergebnis"] | null>(
+    (schlimmste, m) =>
+      schlimmste === null || rang[m.ergebnis] > rang[schlimmste] ? m.ergebnis : schlimmste,
+    null,
+  );
+  const offen = schwerste === null;
+  const gerissen = schwerste === "verstoss";
+  const warnung = schwerste === "warnung";
   const verstoesse = kette.behandlungen.filter((b) => !b.eingehalten);
   const optionen = pfluecker.map((p) => ({ wert: p.id, text: p.name }));
 
@@ -57,7 +69,7 @@ export async function NachweiskettenKarte({
         className={`mt-4 rounded-xl border p-3 ${
           gerissen
             ? "border-destructive/25 bg-destructive/[0.06]"
-            : offen
+            : offen || warnung
               ? "border-warning/25 bg-warning/[0.06]"
               : "border-success/25 bg-success/[0.06]"
         }`}
@@ -65,7 +77,7 @@ export async function NachweiskettenKarte({
         <div className="flex items-center gap-2">
           <Snowflake
             className={`h-4 w-4 ${
-              gerissen ? "text-destructive" : offen ? "text-warning" : "text-success"
+              gerissen ? "text-destructive" : offen || warnung ? "text-warning" : "text-success"
             }`}
           />
           <p className="text-xs font-black text-foreground">
@@ -73,8 +85,14 @@ export async function NachweiskettenKarte({
               ? t("kuehlung.offen")
               : t("kuehlung.minuten", { minuten: c.minutenBisVorkuehlung ?? 0 })}
           </p>
-          <StatusPill tone={gerissen ? "danger" : offen ? "warning" : "success"}>
-            {gerissen ? t("kuehlung.gerissen") : offen ? t("kuehlung.laeuft") : t("kuehlung.gehalten")}
+          <StatusPill tone={gerissen ? "danger" : offen || warnung ? "warning" : "success"}>
+            {gerissen
+              ? t("kuehlung.gerissen")
+              : offen
+                ? t("kuehlung.laeuft")
+                : warnung
+                  ? t("kuehlung.grenzwertig")
+                  : t("kuehlung.gehalten")}
           </StatusPill>
         </div>
         <p className="mt-1 text-[11px] leading-4 text-muted-foreground">

@@ -743,7 +743,8 @@
       "art": "Belegart",
       "datei": "Foto",
       "hinweis": "Hinweis",
-      "hinweisBeispiel": "Verkaufsschale 125 g, geschlossene Fruchtdecke"
+      "hinweisBeispiel": "Verkaufsschale 125 g, geschlossene Fruchtdecke",
+      "ausschuss": "Ausschuss in kg"
     }
   },
   "pflanzenschutzVerwaltung": {
@@ -984,7 +985,8 @@
       "gerissen": "Grenze gerissen",
       "regel": "Zwischen Pflücken und Herunterkühlen dürfen höchstens 60 Minuten liegen. Wird diese Grenze gerissen, ist jede weitere Maßnahme wirkungslos.",
       "nachMinuten": "nach {minuten} Minuten",
-      "knopf": "Kühlmessung erfassen"
+      "knopf": "Kühlmessung erfassen",
+      "grenzwertig": "grenzwertig"
     },
     "ergebnis": {
       "ok": "ok",

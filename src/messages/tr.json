@@ -902,7 +902,8 @@
       "art": "Kanıt türü",
       "datei": "Fotoğraf",
       "hinweis": "Not",
-      "hinweisBeispiel": "Satış kabı 125 g, kapalı meyve yüzeyi"
+      "hinweisBeispiel": "Satış kabı 125 g, kapalı meyve yüzeyi",
+      "ausschuss": "Fire, kg"
     }
   },
   "pflanzenschutzVerwaltung": {
@@ -984,7 +985,8 @@
       "gerissen": "sınır aşıldı",
       "regel": "Toplama ile soğutma arasında en fazla 60 dakika geçebilir. Bu sınır aşılırsa sonraki her önlem etkisizdir.",
       "nachMinuten": "{minuten} dakika sonra",
-      "knopf": "Soğutma ölçümü kaydet"
+      "knopf": "Soğutma ölçümü kaydet",
+      "grenzwertig": "sınırda"
     },
     "ergebnis": {
       "ok": "uygun",

@@ -1050,6 +1050,7 @@ export type Database = {
       }
       pflueckaufgaben: {
         Row: {
+          ausschuss_kg: number
           brigade_id: string | null
           charge_id: string | null
           code: string
@@ -1066,6 +1067,7 @@ export type Database = {
           zielmenge_kg: number
         }
         Insert: {
+          ausschuss_kg?: number
           brigade_id?: string | null
           charge_id?: string | null
           code: string
@@ -1082,6 +1084,7 @@ export type Database = {
           zielmenge_kg?: number
         }
         Update: {
+          ausschuss_kg?: number
           brigade_id?: string | null
           charge_id?: string | null
           code?: string

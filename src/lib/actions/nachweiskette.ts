@@ -98,8 +98,9 @@ export async function arbeitszeitErfassen(
   _status: AktionsStatus,
   formData: FormData,
 ): Promise<AktionsStatus> {
+  let profil: SessionProfile;
   try {
-    await requirePermission("pflueckaufgaben", "create");
+    profil = await requirePermission("pflueckaufgaben", "create");
   } catch (error) {
     return zugriffsFehler(error);
   }
@@ -115,14 +116,25 @@ export async function arbeitszeitErfassen(
   const beginn = new Date(ende.getTime() - minuten * 60_000);
 
   const supabase = await createClient();
-  const { error } = await supabase.from("arbeitszeiten").insert({
-    pfluecker_id: pflueckerId,
-    pflueckaufgabe_id: aufgabeId,
-    beginn: beginn.toISOString(),
-    ende: ende.toISOString(),
-  });
+  const { data, error } = await supabase
+    .from("arbeitszeiten")
+    .insert({
+      pfluecker_id: pflueckerId,
+      pflueckaufgabe_id: aufgabeId,
+      beginn: beginn.toISOString(),
+      ende: ende.toISOString(),
+    })
+    .select("id")
+    .single();
 
   if (error) return dbFehler(error);
+
+  await supabase.from("audit_events").insert({
+    aktion: "arbeitszeit.erfasst",
+    ressource: "arbeitszeiten",
+    ressource_id: data.id,
+    metadata: { pfluecker_id: pflueckerId, minuten, aktor_rolle: profil.role },
+  });
 
   aktualisiere(formData);
   return ok("ok.arbeitszeit", String(minuten));
@@ -133,8 +145,12 @@ export async function kuehlmessungErfassen(
   _status: AktionsStatus,
   formData: FormData,
 ): Promise<AktionsStatus> {
+  let profil: SessionProfile;
   try {
-    await requirePermission("kuehlkette", "view");
+    // Die Messung gehoert zum Ablauf der Pflueckaufgabe, deshalb dasselbe Recht
+    // wie die Mengenmeldung. Ein Leserecht ("kuehlkette:view") waere hier die
+    // falsche Schranke - geschrieben wird trotzdem.
+    profil = await requirePermission("pflueckaufgaben", "update");
   } catch (error) {
     return zugriffsFehler(error);
   }
@@ -154,10 +170,22 @@ export async function kuehlmessungErfassen(
       gemessen_am: new Date().toISOString(),
       temperatur_c: temperatur,
     })
-    .select("minuten_seit_pfluecken, ergebnis")
+    .select("id, minuten_seit_pfluecken, ergebnis")
     .single();
 
   if (error) return dbFehler(error);
+
+  await supabase.from("audit_events").insert({
+    aktion: "kuehlmessung.erfasst",
+    ressource: "kuehlketten_messungen",
+    ressource_id: data.id,
+    metadata: {
+      charge: charge.code,
+      temperatur_c: temperatur,
+      ergebnis: data.ergebnis,
+      aktor_rolle: profil.role,
+    },
+  });
 
   aktualisiere(formData);
   return data.ergebnis === "verstoss"

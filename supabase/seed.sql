@@ -157,18 +157,20 @@ join public.sorten s on s.name = v.sorte
 on conflict (code) do nothing;
 
 -- --- Pflueckaufgaben ----------------------------------------------------
+-- ausschuss_kg spiegelt den Wert, der bereits an der zugehoerigen Charge
+-- steht - beide Seiten sollen dieselbe Zahl zeigen, nicht zwei verschiedene.
 insert into public.pflueckaufgaben
   (code, reihenblock_id, charge_id, brigade_id, sorte_id, status, faelligkeit,
-   zielmenge_kg, ist_menge_kg, pfluecker_anzahl, qualitaetsfaktor)
+   zielmenge_kg, ist_menge_kg, ausschuss_kg, pfluecker_anzahl, qualitaetsfaktor)
 select v.code, rb.id, ch.id, br.id, s.id, v.status::public.pflueckaufgabe_status,
-       v.faellig::timestamptz, v.ziel, v.ist, v.anzahl, v.qf
+       v.faellig::timestamptz, v.ziel, v.ist, v.ausschuss, v.anzahl, v.qf
 from (values
-  ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,6,1.08),
-  ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,4,null),
-  ('PA-2026-0912-03','K-A-01',null,'Brigade Nachbarbetrieb','Polka','angenommen','2026-09-02T14:00:00+06',26,0,5,null),
-  ('PA-2026-0912-04','T-N-A-03','CH-0902-12','Brigade Nord','Polka','abgeschlossen','2026-09-01T11:00:00+06',45,44.2,6,0.97),
-  ('PA-2026-0912-05','T-O-A-02',null,'Brigade Ost','Polana','offen','2026-09-02T15:30:00+06',28,0,4,null)
-) as v(code, block, charge, brigade, sorte, status, faellig, ziel, ist, anzahl, qf)
+  ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,4.2,6,1.08),
+  ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,0,4,null),
+  ('PA-2026-0912-03','K-A-01',null,'Brigade Nachbarbetrieb','Polka','angenommen','2026-09-02T14:00:00+06',26,0,0,5,null),
+  ('PA-2026-0912-04','T-N-A-03','CH-0902-12','Brigade Nord','Polka','abgeschlossen','2026-09-01T11:00:00+06',45,44.2,5.9,6,0.97),
+  ('PA-2026-0912-05','T-O-A-02',null,'Brigade Ost','Polana','offen','2026-09-02T15:30:00+06',28,0,0,4,null)
+) as v(code, block, charge, brigade, sorte, status, faellig, ziel, ist, ausschuss, anzahl, qf)
 join public.reihenbloecke rb on rb.code = v.block
 join public.brigaden br on br.name = v.brigade
 join public.sorten s on s.name = v.sorte
@@ -192,18 +194,34 @@ where not exists (
 -- --- Steigen ------------------------------------------------------------
 -- Die Steige traegt die Person. Erst damit reicht die Nachweiskette vom
 -- Kunden bis zum Pfluecker - und die Pflueckleistung wird messbar.
+-- Das Gewicht je Steige variiert leicht (Muster v1/v2), damit die Summe genau
+-- die gemeldete Ist-Menge der jeweiligen Aufgabe ergibt - eine Abnahmepruefung
+-- hat sonst zwei widerspruechliche Erntemengen auf derselben Karte bemaengelt.
 insert into public.steigen (code, qr_token, charge_id, pflueckaufgabe_id, pfluecker_id, gewicht_kg, scan_zeitpunkt)
 select 'STG-2026-' || lpad((v.start_nr + g.i)::text, 6, '0'),
        'qr-stg-' || (v.start_nr + g.i),
-       ch.id, pa.id, pf.id, 2.0,
+       ch.id, pa.id, pf.id,
+       case v.muster
+         when 'v1' then case when g.i < 3 then 1.9 else 2.0 end   -- 3x1,9 + 10x2,0 = 25,7 je Pfluecker
+         when 'v2' then case when g.i = 0 then 2.1 else 2.0 end   -- 1x2,1 + 10x2,0 = 22,1 je Pfluecker
+         else 2.0
+       end,
        (v.scan::timestamptz + (g.i * interval '11 minutes'))
 from (values
-  ('CH-0902-14','PA-2026-0912-01','MAL-0417',480,6,'2026-09-02T10:05:00+06'),
-  ('CH-0902-14','PA-2026-0912-01','MAL-0418',490,5,'2026-09-02T10:12:00+06'),
-  ('CH-0902-15','PA-2026-0912-02','MAL-0421',500,4,'2026-09-02T10:30:00+06'),
-  ('CH-0902-12','PA-2026-0912-04','MAL-0417',510,4,'2026-09-01T09:40:00+06'),
-  ('CH-0902-12','PA-2026-0912-04','MAL-0418',520,4,'2026-09-01T09:55:00+06')
-) as v(charge, aufgabe, ausweis, start_nr, anzahl, scan)
+  -- CH-0902-14 / PA-01 (beleg_pruefung): 2x 13 Steigen a 25,7 kg = 51,4 kg,
+  -- passend zur gemeldeten Ist-Menge.
+  ('CH-0902-14','PA-2026-0912-01','MAL-0417',480,13,'2026-09-02T10:05:00+06','v1'),
+  ('CH-0902-14','PA-2026-0912-01','MAL-0418',493,13,'2026-09-02T10:20:00+06','v1'),
+  -- CH-0902-12 / PA-04 (abgeschlossen): 2x 11 Steigen a 22,1 kg = 44,2 kg.
+  ('CH-0902-12','PA-2026-0912-04','MAL-0417',700,11,'2026-09-01T09:05:00+06','v2'),
+  ('CH-0902-12','PA-2026-0912-04','MAL-0418',711,11,'2026-09-01T09:18:00+06','v2'),
+  -- CH-0902-15 / PA-02 (in_arbeit): Aufgabe laeuft noch, bewusst noch nicht
+  -- alle Steigen erfasst - das ist der reale Zwischenstand einer laufenden
+  -- Aufgabe, kein Fehler. Eigener Nummernkreis (900+), damit er sich nicht
+  -- mit dem Bereich von MAL-0418/PA-01 (493-505) ueberschneidet - eine
+  -- Ueberschneidung liess vier Steigen zuvor still verschwinden.
+  ('CH-0902-15','PA-2026-0912-02','MAL-0421',900,4,'2026-09-02T10:30:00+06','flat')
+) as v(charge, aufgabe, ausweis, start_nr, anzahl, scan, muster)
 join public.chargen ch on ch.code = v.charge
 join public.pflueckaufgaben pa on pa.code = v.aufgabe
 join public.pfluecker pf on pf.ausweis = v.ausweis
@@ -213,14 +231,17 @@ on conflict (code) do nothing;
 -- --- Arbeitszeiten -------------------------------------------------------
 -- Nenner der Pflueckleistung. Ohne diese Tabelle ist kg je Person und Stunde
 -- strukturell nicht messbar - und damit auch das Lohnmodell nicht.
+-- Die Dauer ist an die erhoehte Steigenzahl angepasst: ueber alle Personen
+-- ergibt sich rund 6,2 kg/h - nahe an der in kpis.ts hinterlegten Baseline
+-- von 6,1 kg/h, statt eines unplausibel doppelt so hohen Werts.
 insert into public.arbeitszeiten (pfluecker_id, pflueckaufgabe_id, beginn, ende)
 select pf.id, pa.id, v.beginn::timestamptz, v.ende::timestamptz
 from (values
-  ('MAL-0417','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T09:53:00+06'),
-  ('MAL-0418','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T10:10:00+06'),
+  ('MAL-0417','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T12:18:00+06'),
+  ('MAL-0418','PA-2026-0912-01','2026-09-02T08:30:00+06','2026-09-02T12:20:00+06'),
   ('MAL-0421','PA-2026-0912-02','2026-09-02T08:45:00+06','2026-09-02T10:52:00+06'),
-  ('MAL-0417','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T09:15:00+06'),
-  ('MAL-0418','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T09:40:00+06')
+  ('MAL-0417','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T11:44:00+06'),
+  ('MAL-0418','PA-2026-0912-04','2026-09-01T08:20:00+06','2026-09-01T11:50:00+06')
 ) as v(ausweis, aufgabe, beginn, ende)
 join public.pfluecker pf on pf.ausweis = v.ausweis
 join public.pflueckaufgaben pa on pa.code = v.aufgabe

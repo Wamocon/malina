@@ -743,7 +743,8 @@
       "art": "Proof type",
       "datei": "Photo",
       "hinweis": "Note",
-      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface"
+      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface",
+      "ausschuss": "Rejects in kg"
     }
   },
   "pflanzenschutzVerwaltung": {
@@ -984,7 +985,8 @@
       "gerissen": "limit broken",
       "regel": "No more than 60 minutes may pass between picking and cooling. Break that limit and every further measure is worthless.",
       "nachMinuten": "after {minuten} minutes",
-      "knopf": "Record cooling measurement"
+      "knopf": "Record cooling measurement",
+      "grenzwertig": "borderline"
     },
     "ergebnis": {
       "ok": "ok",

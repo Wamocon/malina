@@ -562,6 +562,187 @@ if (leitung && brigade) {
     `sichtbare Zeilen: ${kundeSieht?.length}`,
   );
 
+  // --- 10. Abnahmepruefung vor dem Kundentermin: 19 bestaetigte Befunde ----
+
+  // KRITISCH: die Brigade konnte Chargenfelder direkt umschreiben und damit
+  // die 60-Minuten-Regel und die Verlustquote selbst setzen.
+  const { data: brigadeChargeUpdate, error: brigadeChargeFehler } = await brigade
+    .from("chargen")
+    .update({ ausschuss_kg: 0 })
+    .eq("id", autoCharge.id)
+    .select("id");
+  check(
+    "Abnahme: Brigade schreibt keine Chargenfelder direkt",
+    !brigadeChargeFehler && (brigadeChargeUpdate?.length ?? 0) === 0,
+    brigadeChargeFehler?.message ?? `geaenderte Zeilen: ${brigadeChargeUpdate?.length}`,
+  );
+  const { error: leitungChargeFehler } = await leitung
+    .from("chargen")
+    .update({ ausschuss_kg: autoCharge.ausschuss_kg ?? 0 })
+    .eq("id", autoCharge.id);
+  check(
+    "Abnahme: Betriebsleitung darf Chargenfelder korrigieren",
+    !leitungChargeFehler,
+    leitungChargeFehler?.message ?? "",
+  );
+
+  // KRITISCH: die Menge einer abgeschlossenen Aufgabe war fuer die Brigade
+  // weiterhin aenderbar.
+  const { data: abgeschlosseneAufgabe } = await admin
+    .from("pflueckaufgaben")
+    .select("id, ist_menge_kg")
+    .eq("status", "abgeschlossen")
+    .limit(1)
+    .single();
+  const { data: brigadeMengeUpdate, error: brigadeMengeFehler } = await brigade
+    .from("pflueckaufgaben")
+    .update({ ist_menge_kg: Number(abgeschlosseneAufgabe.ist_menge_kg) + 100 })
+    .eq("id", abgeschlosseneAufgabe.id)
+    .select("id");
+  check(
+    "Abnahme: Brigade aendert die Menge einer abgeschlossenen Aufgabe nicht",
+    // Blockiert entweder die RLS-Policy still (0 Zeilen) oder der Trigger
+    // pflueckaufgabe_freigabe_pruefen mit einer Exception - beides ist ein Pass.
+    !!brigadeMengeFehler || (brigadeMengeUpdate?.length ?? 0) === 0,
+    brigadeMengeFehler?.message ?? `geaenderte Zeilen: ${brigadeMengeUpdate?.length}`,
+  );
+
+  // HOCH: eine Brigade-Anmeldung konnte Arbeitszeit fuer eine Person aus
+  // einer fremden Brigade anlegen. Massgeblich ist die tatsaechliche
+  // Brigadenzuordnung des Demo-Kontos aus dem Profil, nicht eine Vermutung.
+  const { data: eigeneBrigade } = await admin
+    .from("profiles")
+    .select("brigade_id")
+    .eq("email", "brigade@malina.demo")
+    .single();
+  const { data: fremderPfluecker } = await admin
+    .from("pfluecker")
+    .select("id, brigade_id")
+    .neq("brigade_id", eigeneBrigade.brigade_id)
+    .limit(1)
+    .single();
+  const { data: fremdeZeitInsert, error: fremdeZeitFehler } = await brigade
+    .from("arbeitszeiten")
+    .insert({
+      pfluecker_id: fremderPfluecker.id,
+      pflueckaufgabe_id: neueAufgabe.id,
+      beginn: new Date(Date.now() - 60_000).toISOString(),
+      ende: new Date().toISOString(),
+    })
+    .select("id");
+  check(
+    "Abnahme: Brigade erfasst keine Arbeitszeit fuer eine fremde Brigade",
+    !!fremdeZeitFehler || (fremdeZeitInsert?.length ?? 0) === 0,
+    fremdeZeitFehler?.message ?? `eingefuegte Zeilen: ${fremdeZeitInsert?.length}`,
+  );
+  if (fremdeZeitInsert?.length) {
+    await admin.from("arbeitszeiten").delete().in("id", fremdeZeitInsert.map((z) => z.id));
+  }
+
+  // HOCH: Steigen mit Personenbezug waren fuer kunde/erzeuger lesbar.
+  const { data: kundeSteigen } = await (await anmelden("kunde@malina.demo")).client
+    .from("steigen")
+    .select("id");
+  check(
+    "Abnahme: die Rolle kunde liest keine Steigen",
+    (kundeSteigen?.length ?? 0) === 0,
+    `sichtbare Zeilen: ${kundeSteigen?.length}`,
+  );
+
+  // KRITISCH: eine Messung vor dem Pflueckzeitpunkt wurde als 0 Minuten / "ok"
+  // gewertet statt abgelehnt zu werden.
+  const { error: messungZuFruehFehler } = await admin
+    .from("kuehlketten_messungen")
+    .insert({
+      charge_id: autoCharge.id,
+      gemessen_am: new Date(Date.now() - 999 * 24 * 60 * 60_000).toISOString(),
+      temperatur_c: 3,
+    });
+  check(
+    "Abnahme: Messung vor dem Pflueckzeitpunkt wird abgelehnt",
+    messungZuFruehFehler?.code === "23514",
+    messungZuFruehFehler?.code ?? "kein Fehler",
+  );
+
+  // KRITISCH: eine deutlich zu warme Probe ohne bekannten Pflueckzeitpunkt
+  // galt als "ok".
+  const { data: planungsAufgabe } = await admin
+    .from("pflueckaufgaben")
+    .insert({
+      code: `PA-IT-PLAN-${Date.now().toString().slice(-7)}`,
+      reihenblock_id: freierBlock.id,
+      zielmenge_kg: 5,
+    })
+    .select("id")
+    .single();
+  const { data: planungsCharge } = await admin
+    .from("chargen")
+    .select("id")
+    .eq("pflueckaufgabe_id", planungsAufgabe.id)
+    .single();
+  const { data: heisseMessung, error: heisseMessungFehler } = await admin
+    .from("kuehlketten_messungen")
+    .insert({ charge_id: planungsCharge.id, gemessen_am: new Date().toISOString(), temperatur_c: 26 })
+    .select("ergebnis")
+    .single();
+  check(
+    "Abnahme: eine 26-Grad-Probe ohne Pflueckzeitpunkt gilt nicht als ok",
+    !heisseMessungFehler && heisseMessung?.ergebnis !== "ok",
+    heisseMessungFehler?.message ?? `ergebnis: ${heisseMessung?.ergebnis}`,
+  );
+  await admin.from("kuehlketten_messungen").delete().eq("charge_id", planungsCharge.id);
+  await admin.from("chargen").delete().eq("id", planungsCharge.id);
+  await admin.from("pflueckaufgaben").delete().eq("id", planungsAufgabe.id);
+
+  // KRITISCH: zeitBisVorkuehlung blendete genau die Chargen aus, die die
+  // 60-Minuten-Regel gerissen haben (Ueberlebenden-Fehler).
+  const { data: verstossMessung, error: verstossMessungFehler } = await admin
+    .from("kuehlketten_messungen")
+    .insert({
+      charge_id: autoCharge.id,
+      gemessen_am: new Date().toISOString(),
+      temperatur_c: 9,
+    })
+    .select("ergebnis")
+    .single();
+  const { data: chargeNachVerstoss } = await admin
+    .from("chargen")
+    .select("vorkuehlung_zeitpunkt")
+    .eq("id", autoCharge.id)
+    .single();
+  check(
+    "Abnahme: auch eine zu warme Probe setzt den Vorkuehlungszeitpunkt (zaehlt in der Kennzahl mit)",
+    !verstossMessungFehler &&
+      verstossMessung?.ergebnis === "verstoss" &&
+      !!chargeNachVerstoss?.vorkuehlung_zeitpunkt,
+    verstossMessungFehler?.message ?? `ergebnis: ${verstossMessung?.ergebnis}`,
+  );
+
+  // HOCH: ein geloeschter Reihenblock riss den Rueckstandsnachweis seiner
+  // Chargen ab (SET NULL) bzw. loeschte Aufgaben mit (CASCADE).
+  const { error: blockLoeschenFehler } = await admin
+    .from("reihenbloecke")
+    .delete()
+    .eq("id", freierBlock.id);
+  check(
+    "Abnahme: ein Reihenblock mit Ernte-Historie laesst sich nicht loeschen",
+    blockLoeschenFehler?.code === "23503",
+    blockLoeschenFehler?.code ?? "kein Fehler - Loeschen war erlaubt",
+  );
+
+  // GERING: pflueckaufgaben.charge_id blieb bei automatisch erzeugten Chargen
+  // leer.
+  const { data: aufgabeMitCharge } = await admin
+    .from("pflueckaufgaben")
+    .select("charge_id")
+    .eq("id", neueAufgabe.id)
+    .single();
+  check(
+    "Abnahme: pflueckaufgaben.charge_id wird von der automatisch erzeugten Charge gefuellt",
+    !!aufgabeMitCharge?.charge_id,
+    `charge_id: ${aufgabeMitCharge?.charge_id}`,
+  );
+
   // Cleanup: Testaufgabe samt Kette entfernen, Ursprungsstatus wiederherstellen.
   await admin.from("steigen").delete().eq("pflueckaufgabe_id", neueAufgabe.id);
   await admin.from("kuehlketten_messungen").delete().eq("charge_id", autoCharge.id);

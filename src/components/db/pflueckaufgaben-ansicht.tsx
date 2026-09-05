@@ -46,11 +46,15 @@ export async function PflueckaufgabenAnsicht({
 
   // Nachweiskette der gewaehlten Aufgabe: Charge, Kuehlkurve, Steigen mit
   // Person, Rueckstandsnachweis. Erst mit Meilenstein C gibt es sie ueberhaupt.
+  // Die Pflueckerliste ist fuer die Brigade auf die eigene Brigade beschraenkt
+  // - Administration und Betriebsleitung sehen weiterhin alle.
   const [kette, pflueckerListe] = await Promise.all([
     liste.quelle === "db" && gewaehlt
       ? ladeNachweiskette(gewaehlt.id)
       : Promise.resolve(null),
-    liste.quelle === "db" ? ladePfluecker() : Promise.resolve([]),
+    liste.quelle === "db"
+      ? ladePfluecker(profil?.role === "brigade" ? profil.brigadeId : null)
+      : Promise.resolve([]),
   ]);
 
   const live = liste.quelle === "db";
@@ -223,6 +227,7 @@ export async function PflueckaufgabenAnsicht({
                   <MengeFormular
                     id={gewaehlt.id}
                     istMenge={gewaehlt.istMengeKg}
+                    ausschussKg={gewaehlt.ausschussKg}
                     pflueckerAnzahl={gewaehlt.pflueckerAnzahl}
                   />
                 ) : null}
