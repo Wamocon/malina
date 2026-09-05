@@ -50,7 +50,7 @@ export function StatusWechsel({
           name="status"
           defaultValue={status}
           aria-label={a("statusLabel")}
-          className="h-8 rounded-lg border border-border bg-background px-2 text-[11px] font-semibold text-foreground outline-none transition focus:border-primary"
+          className="h-9 rounded-lg border border-border bg-background px-2 text-[11px] font-semibold text-foreground outline-none transition focus:border-primary"
         >
           {reihenblockStatus.map((wert) => (
             <option key={wert} value={wert}>
@@ -77,7 +77,7 @@ export function FreigabeKnopf({ id }: { id: string }) {
       <input type="hidden" name="id" value={id} />
       <button
         type="submit"
-        className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-success px-2.5 text-[11px] font-bold text-white transition hover:brightness-110"
+        className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-success px-2.5 text-[11px] font-bold text-white transition hover:brightness-110"
       >
         <ShieldCheck className="h-3.5 w-3.5" />
         {a("freigeben")}
