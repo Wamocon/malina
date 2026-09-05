@@ -1018,5 +1018,14 @@
     "lead": "Veriler şu anda erişilebilir değil. İşlem yapılmadı, hiçbir şey kaybolmadı.",
     "kennung": "Hata kodu",
     "erneut": "Tekrar dene"
+  },
+  "faelligkeit": {
+    "faellig": "Son tarih {dauer} sonra",
+    "ueberfaellig": "Gecikti, {dauer} önce",
+    "einheit": {
+      "minuten": "{anzahl, plural, other {# dakika}}",
+      "stunden": "{anzahl, plural, other {# saat}}",
+      "tage": "{anzahl, plural, other {# gün}}"
+    }
   }
 }

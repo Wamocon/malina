@@ -1018,5 +1018,14 @@
     "lead": "Die Daten sind gerade nicht erreichbar. Der Vorgang wurde nicht ausgeführt - es ist nichts verloren gegangen.",
     "kennung": "Fehlerkennung",
     "erneut": "Erneut versuchen"
+  },
+  "faelligkeit": {
+    "faellig": "Fällig in {dauer}",
+    "ueberfaellig": "Überfällig seit {dauer}",
+    "einheit": {
+      "minuten": "{anzahl, plural, one {einer Minute} other {# Minuten}}",
+      "stunden": "{anzahl, plural, one {einer Stunde} other {# Stunden}}",
+      "tage": "{anzahl, plural, one {einem Tag} other {# Tagen}}"
+    }
   }
 }
