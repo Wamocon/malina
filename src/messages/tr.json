@@ -59,7 +59,7 @@
     }
   },
   "footer": {
-    "prototypeNote": "İç proof-of-concept. Sözleşmeyle taahhüt edilen hizmet kapsamı değildir. Görseller serbest kaynaklardan yer tutuculardır.",
+    "prototypeNote": "İç proof-of-concept. Sözleşmeyle taahhüt edilen hizmet kapsamı değildir. Çiftlik fotoğrafları Almatı yakınındaki gerçek araziyi gösterir, kalan görseller serbest kaynaklardan yer tutuculardır.",
     "productHeading": "Ürün",
     "legalHeading": "Hukuki",
     "imprint": "Künye",
@@ -1027,5 +1027,43 @@
       "stunden": "{anzahl, plural, other {# saat}}",
       "tage": "{anzahl, plural, other {# gün}}"
     }
+  },
+  "farmReality": {
+    "eyebrow": "Fotoğraf arşivi değil, işletmenin kendisi",
+    "title": "Stok fotoğraf yerine gerçek görüntüler",
+    "lead": "Bu görseller Almatı yakınındaki plantasyonu dijitalleşmeden önce gösteriyor - henüz doğru olmayanlar dahil. Sadece başarıları gösteren bir sunum alıcıya reklam gibi görünür; açık sorunu kendisi adlandıran bir sunum ise durum tespiti gibi görünür.",
+    "bandCaption": "Plantasyon, güneye, Zailiyskiy Alatau sırasına bakış",
+    "photo1Title": "Polka çeşidi",
+    "photo1Text": "Yıl içinde iki kez ürün veren, bir yaşındaki sürgünde meyve verir. Olgun ve yeşil meyveler aynı anda asılıdır - bu yüzden her blok iki üç günde bir toplanır.",
+    "photo2Title": "Hasat",
+    "photo2Text": "Toplamadan soğuk odaya kadar 5 ila 15 dakika geçer. Bu değer iyidir ve iyileştirilmesi gerekmez.",
+    "photo3Title": "Açık sorun",
+    "photo3Text": "Aynı ürün depoda, 0 °C'ye yakın yerine yaklaşık +16 °C'de dökme halde. Ahududu kendi ağırlığını taşımaz: üst katmanın altında kalan ezilir - ve bu sıcaklıkta olgunlaşmaya devam eder."
+  },
+  "existingAssets": {
+    "eyebrow": "Boş bir araziden başlamıyoruz",
+    "title": "Burada sıfırdan başlanmıyor",
+    "lead": "İşletmenin ekipmanı, sulaması ve kendi ürünü var. Eksik olan ekipman değil, neyin ne zaman nereye gittiğinin kanıtı.",
+    "asset1Title": "Traktör",
+    "asset1Text": "Bakım ve taşıma için kendi traktörü.",
+    "asset2Title": "Bitki koruma",
+    "asset2Text": "Kendi ilaçlama ekipmanı. Her işlem bir bekleme süresini tetikler - sistem bloğu bunun için otomatik olarak kilitler.",
+    "asset3Title": "Sulama",
+    "asset3Text": "Arazide su deposu ve tanklar, ayrıca kendi trafo istasyonu - elektrik yerel şebekeye bağlı değil.",
+    "asset4Title": "Kendi markası",
+    "asset4Text": "Kendi etiketi altında, iki dilli ahududu reçeli. İkinci kalitenin zaten bir satış yolu var - bir kalite standardının gerektirdiği tam olarak bu."
+  },
+  "qualityStandard": {
+    "eyebrow": "Sistemdekiyle aynı standart",
+    "title": "Standart burada, broşürde değil",
+    "lead": "İşletme için toplayan veya ondan satın alan kişi, sistemde geçerli olan standardı görür - toplayıcının telefonundaki aynı çizimler. Teknik temel, ahududu için UNECE FFV-32 standardıdır.",
+    "q1Title": "Satışa uygun",
+    "q1Text": "Düzgün renklenmiş, içi boş, taneler bir arada. Çiçek tablası dalda kalır.",
+    "q2Title": "Çok erken toplanmış",
+    "q2Text": "Beyaz çiçek tablası hâlâ meyvenin içinde. Alınmak yerine zorla koparılmış ve taşıma sırasında suyunu kaybeder.",
+    "q3Title": "Fire",
+    "q3Text": "Tek bir noktada bile olsa gri kaplama. Tarlada kalır: kapalı bir kapta bir gecede tüm katmana bulaşır.",
+    "trayTitle": "En pahalı hata bir yükseklik",
+    "trayText": "Yukarıdan bakıldığında aşırı dolu kap en iyi görünür: dolu, sık, boşluk yok. Ama kapak üst katmana baskı yapar, alt katman ise ağırlığı taşır. Ahududu kendi ağırlığını taşımaz - markete ulaştığında alt katman artık sudur. Bu sadece yandan görülebilir."
   }
 }

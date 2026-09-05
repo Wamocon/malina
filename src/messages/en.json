@@ -206,7 +206,7 @@
   },
   "footer": {
     "blurb": "Malina, Russian for raspberry. Farm management for a raspberry farm near Almaty - from the harvest run through the cold chain to the evidence for every delivery.",
-    "prototypeNote": "Internal proof of concept. Not a contractually committed scope. All imagery is placeholder material from royalty-free sources.",
+    "prototypeNote": "Internal proof of concept. Not a contractually committed scope. Farm photos show the real site near Almaty; remaining imagery is placeholder material from royalty-free sources.",
     "productHeading": "Product",
     "legalHeading": "Legal",
     "imprint": "Imprint",
@@ -1027,5 +1027,43 @@
       "stunden": "{anzahl, plural, one {an hour} other {# hours}}",
       "tage": "{anzahl, plural, one {a day} other {# days}}"
     }
+  },
+  "farmReality": {
+    "eyebrow": "The farm, not a photo library",
+    "title": "Real footage instead of stock photos",
+    "lead": "These images show the plantation near Almaty before digitalisation - including what isn't right yet. A presence that shows only the successes reads to a buyer as advertising; one that names the open issue itself reads as a status report.",
+    "bandCaption": "The plantation, looking south toward the Zailiyskiy Alatau range",
+    "photo1Title": "Polka variety",
+    "photo1Text": "Everbearing, fruits on first-year cane. Ripe and green berries hang at the same time - which is why every block is picked every two to three days.",
+    "photo2Title": "The harvest",
+    "photo2Text": "5 to 15 minutes pass from picking to the cold room. That figure is good and does not need improving.",
+    "photo3Title": "The open issue",
+    "photo3Text": "The same ware in storage, poured loose at around +16 °C instead of near 0 °C. Raspberries carry no weight of their own: whatever lies beneath the top layer gets crushed - and at this temperature it keeps ripening."
+  },
+  "existingAssets": {
+    "eyebrow": "Not starting on empty ground",
+    "title": "This does not start at zero",
+    "lead": "The farm has equipment, irrigation and its own product. What is missing is not equipment, but proof of what went where and when.",
+    "asset1Title": "Tractor",
+    "asset1Text": "Own tractor for maintenance and transport.",
+    "asset2Title": "Crop protection",
+    "asset2Text": "Own spraying equipment. Every treatment triggers a waiting period - the system locks the block for it automatically.",
+    "asset3Title": "Irrigation",
+    "asset3Text": "Water storage and tanks on site, plus its own transformer station - power does not depend on the local grid.",
+    "asset4Title": "Own brand",
+    "asset4Text": "Raspberry jam under its own label, bilingual. Second-choice fruit already has a path - exactly what a quality standard requires."
+  },
+  "qualityStandard": {
+    "eyebrow": "The same standard as in the system",
+    "title": "The standard lives here, not in a brochure",
+    "lead": "Whoever picks for the farm or buys from it sees the same standard that applies in the system - the same drawings as on the picker's phone. The technical basis is UNECE standard FFV-32 for raspberries.",
+    "q1Title": "Marketable",
+    "q1Text": "Evenly coloured, hollow inside, the drupelets hold together. The receptacle stays on the cane.",
+    "q2Title": "Picked too early",
+    "q2Text": "The white receptacle is still lodged in the berry. It was pulled off by force instead of lifted away, and loses juice in transport.",
+    "q3Title": "Reject",
+    "q3Text": "Grey coating, even at just one spot. Stays in the field: inside a closed punnet it infects the whole layer overnight.",
+    "trayTitle": "The costliest mistake is a height",
+    "trayText": "Seen from above, the overfilled punnet looks best: full, dense, no gap. But the lid presses on the top layer, and the bottom layer carries the weight. Raspberries carry no weight of their own - by the time it's in the shop, the bottom layer is juice. That is visible only from the side."
   }
 }

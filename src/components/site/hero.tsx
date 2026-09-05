@@ -1,11 +1,7 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Snowflake, Timer, Repeat } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { PlantationBackdrop } from "@/components/site/plantation-backdrop";
-
-const HERO_IMG =
-  "https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=1600&q=70";
+import { HeroVideo } from "@/components/site/hero-video";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -18,18 +14,10 @@ export function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-[#1a0308] text-white">
-      {/* Platzhalterbild Himbeerplantage - wird laut Analyse Kapitel 8 spaeter
-          1:1 durch echtes Betriebsmaterial aus Kasachstan ersetzt. */}
-      <Image
-        src={HERO_IMG}
-        alt={t("imageAlt")}
-        fill
-        sizes="100vw"
-        priority
-        className="-z-10 object-cover opacity-20"
-      />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_55%_at_50%_38%,rgba(177,23,66,0.30)_0%,transparent_62%),radial-gradient(ellipse_45%_50%_at_82%_20%,rgba(120,10,40,0.28)_0%,transparent_55%),linear-gradient(180deg,rgba(26,3,8,0.82)_0%,rgba(26,3,8,0.94)_100%)]" />
-      <PlantationBackdrop className="absolute inset-0 -z-10" />
+      {/* Echtes Rundgangsmaterial aus der Plantage im Umland Almaty statt
+          eines Stockfotos - siehe hero-video.tsx. */}
+      <HeroVideo className="absolute inset-0 -z-10 h-full w-full opacity-45" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_55%_at_50%_38%,rgba(177,23,66,0.30)_0%,transparent_62%),radial-gradient(ellipse_45%_50%_at_82%_20%,rgba(120,10,40,0.28)_0%,transparent_55%),linear-gradient(180deg,rgba(26,3,8,0.55)_0%,rgba(26,3,8,0.92)_100%)]" />
 
       <div className="container relative flex min-h-[calc(100svh-4rem)] flex-col justify-center py-16">
         <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/6 px-3 py-1.5 text-xs font-semibold tracking-wide text-white/80 backdrop-blur">
