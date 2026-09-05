@@ -506,6 +506,38 @@ if (leitung && brigade) {
     nachweisFehler?.message ?? `${nachweis?.length} Eintraege`,
   );
 
+  // Zwei Aufgaben auf demselben Block in derselben Minute: ohne die
+  // Aufgaben-Kennung im Chargencode bekaeme die zweite still keine Charge.
+  const kollisionCodes = [];
+  for (const nummer of [1, 2]) {
+    const { data: aufgabe } = await leitung
+      .from("pflueckaufgaben")
+      .insert({
+        code: `PA-IT-KOLL-${Date.now().toString().slice(-7)}-${nummer}`,
+        reihenblock_id: freierBlock.id,
+        zielmenge_kg: 5,
+        faelligkeit: "2026-09-10T10:00:00+06",
+      })
+      .select("id")
+      .single();
+    const { data: ch } = await admin
+      .from("chargen")
+      .select("code")
+      .eq("pflueckaufgabe_id", aufgabe.id)
+      .maybeSingle();
+    kollisionCodes.push({ aufgabe: aufgabe.id, code: ch?.code ?? null });
+  }
+  check(
+    "Kette: gleiche Minute, gleicher Block - beide Aufgaben bekommen eine Charge",
+    kollisionCodes.every((k) => k.code) &&
+      kollisionCodes[0].code !== kollisionCodes[1].code,
+    kollisionCodes.map((k) => k.code ?? "KEINE").join(" | "),
+  );
+  for (const k of kollisionCodes) {
+    await admin.from("chargen").delete().eq("pflueckaufgabe_id", k.aufgabe);
+    await admin.from("pflueckaufgaben").delete().eq("id", k.aufgabe);
+  }
+
   // --- 9. Kennzahlen rechnen ----------------------------------------------
   const { data: kennzahlen, error: kennzahlenFehler } = await leitung.rpc("kpi_aktuell");
   const schluessel = new Set((kennzahlen ?? []).map((k) => k.schluessel));

@@ -115,17 +115,22 @@ begin
     from public.reihenbloecke r
    where r.id = new.reihenblock_id;
 
+  -- Der Code traegt zusaetzlich die ersten Stellen der Aufgaben-Kennung. Ohne
+  -- sie kollidieren zwei Aufgaben auf demselben Block in derselben Minute, und
+  -- "on conflict do nothing" liesse die zweite Aufgabe still ohne Charge
+  -- zurueck - genau der Bruch, den diese Migration beseitigen soll.
   insert into public.chargen (
     code, reihenblock_id, sorte_id, pflueckaufgabe_id, ernte_datum, status
   ) values (
-    'CH-' || v_block.code || '-' || to_char(coalesce(new.faelligkeit, now()), 'YYMMDDHH24MI'),
+    'CH-' || v_block.code || '-'
+      || to_char(coalesce(new.faelligkeit, now()), 'YYMMDDHH24MI')
+      || '-' || upper(substr(replace(new.id::text, '-', ''), 1, 4)),
     new.reihenblock_id,
     coalesce(new.sorte_id, v_block.sorte_id),
     new.id,
     coalesce(new.faelligkeit::date, current_date),
     'offen'
-  )
-  on conflict (code) do nothing;
+  );
 
   return new;
 end;
@@ -164,10 +169,20 @@ begin
 
   -- Abschluss schreibt den Ist-Erntetermin am Reihenblock fort. Ohne ihn misst
   -- der Rotationsplan nichts und das eingehaltene Pflueckintervall bleibt leer.
+  -- Massgeblich ist das Erntedatum der Charge, nicht der Tag der Eingabe - eine
+  -- nachgetragene Ernte darf den Termin nicht verfaelschen. Zurueckdatieren
+  -- kann der Abschluss den Termin nie.
   if new.status = 'abgeschlossen' and old.status <> 'abgeschlossen' then
-    update public.reihenbloecke
-       set letzte_ernte = current_date
-     where id = new.reihenblock_id;
+    update public.reihenbloecke r
+       set letzte_ernte = greatest(
+             coalesce(r.letzte_ernte, '-infinity'::date),
+             coalesce(
+               (select c.ernte_datum from public.chargen c
+                 where c.pflueckaufgabe_id = new.id),
+               current_date
+             )
+           )
+     where r.id = new.reihenblock_id;
   end if;
 
   return new;
