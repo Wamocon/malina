@@ -109,13 +109,17 @@
         "kpi": "14 başlangıç göstergesinin kart olarak yer aldığı panel iskeleti"
       },
       "milestoneBNote": "Tüm ana işlevler veri tabanına bağlı: oturum açma, Row Level Security ile rol yetkileri, konum yönetimi, sıra bloğu kilidi, fotoğraf kanıtlı toplama görevi ve doküman arşivi. Alt işlevler planlandığı gibi durum etiketli menü girdileri olarak kalır.",
-      "kpiSummary": "{berechenbar} bugün ölçülebilir · {erfassung} kayıt eksik · {tabelle} işlev eksik"
+      "kpiSummary": "{berechenbar} bugün ölçülebilir · {erfassung} kayıt eksik · {tabelle} işlev eksik",
+      "kpiGerechnet": "{anzahl} kayıttan hesaplandı",
+      "kpiSummaryLive": "{gerechnet} gerçek veriden hesaplandı · {offen} arkasındaki işlevi bekliyor"
     },
     "dataSource": {
       "db": "Canlı veri",
       "demo": "Örnek veri",
       "dbHint": "Supabase veri tabanına bağlı, rolünüzün RLS yetkileriyle okunuyor.",
-      "demoHint": "Veri tabanı bağlantısı yok - görünüm yerleşik örnek verileri gösteriyor."
+      "demoHint": "Veri tabanı bağlantısı yok - görünüm yerleşik örnek verileri gösteriyor.",
+      "fehler": "Veri tabanına ulaşılamıyor",
+      "fehlerHint": "Sorgu başarısız oldu. Yerine örnek veriler gösteriliyor - bunlar işletmeden gelmiyor."
     },
     "rbacHintLabel": "Roller",
     "rbacHint": "Hangi modüllerin görüneceği, oturum açan hesabın rolüne bağlıdır. Yönetimden tarladaki ekibe kadar altı temel rol - aynı rol veri tabanında okuma ve yazma yetkilerini de belirler."
@@ -771,7 +775,10 @@
       "aufgabeStatus": "{wert} görevi güncellendi.",
       "menge": "{wert} için miktar bildirildi - kanıt inceleniyor.",
       "beleg": "Fotoğraf kanıtı yüklendi.",
-      "dokument": "\"{wert}\" dokümanı kaydedildi."
+      "dokument": "\"{wert}\" dokümanı kaydedildi.",
+      "steige": "{wert} kasası kaydedildi.",
+      "arbeitszeit": "{wert} dakika çalışma süresi bildirildi.",
+      "kuehlmessung": "Ölçüm kaydedildi - toplamadan {wert} dakika sonra."
     },
     "fehler": {
       "eingabe": "Lütfen tüm zorunlu alanları doldurun.",
@@ -784,7 +791,9 @@
       "doppelt": "Bu tanımla bir kayıt zaten var.",
       "bezug": "Seçilen ilişkili kayıt bulunmuyor.",
       "regel": "Mümkün değil: bekleme süresi henüz dolmadı.",
-      "unbekannt": "İşlem başarısız. Ayrıntılar sunucu kaydında."
+      "unbekannt": "İşlem başarısız. Ayrıntılar sunucu kaydında.",
+      "keineCharge": "Bu göreve ait bir parti yok.",
+      "kuehlkette": "Sınır aşıldı: ölçüme kadar {wert} dakika. Ürünün değeri düşürülmeli."
     }
   },
   "standortVerwaltung": {
@@ -956,5 +965,56 @@
     "berechenbar": "bugün ölçülebilir",
     "erfassung-fehlt": "kayıt eksik",
     "tabelle-fehlt": "işlev eksik"
+  },
+  "nachweiskette": {
+    "titel": "Kanıt zinciri",
+    "lead": "Parti, soğutma eğrisi, kişiyle birlikte kasalar ve kalıntı kanıtı - ticaretin ve resmî makamların görmek istediği zincir.",
+    "keineCharge": "Bu görevin henüz bir partisi yok. Parti, toplama göreviyle birlikte oluşur.",
+    "menge": "Miktar",
+    "ausschuss": "Fire",
+    "steigen": "Kasa",
+    "steigenTitel": "Kişiyle birlikte kasalar",
+    "ohnePerson": "kişi yok",
+    "weitereSteigen": "ve {anzahl} tane daha",
+    "kuehlung": {
+      "minuten": "Ön soğutmaya {minuten} dakika",
+      "offen": "Ön soğutma bekliyor",
+      "laeuft": "sürüyor",
+      "gehalten": "sınır tutuldu",
+      "gerissen": "sınır aşıldı",
+      "regel": "Toplama ile soğutma arasında en fazla 60 dakika geçebilir. Bu sınır aşılırsa sonraki her önlem etkisizdir.",
+      "nachMinuten": "{minuten} dakika sonra",
+      "knopf": "Soğutma ölçümü kaydet"
+    },
+    "ergebnis": {
+      "ok": "uygun",
+      "warnung": "uyarı",
+      "verstoss": "ihlal"
+    },
+    "rueckstand": {
+      "titel": "Parti başına kalıntı kanıtı",
+      "keine": "Hasat tarihinden önceki 90 günde işlem yok.",
+      "eingehalten": "uyuldu",
+      "verletzt": "ihlal edildi",
+      "zeile": "{behandelt} tarihinde işlem, bekleme süresi {wartezeit} gün, {frei} tarihinden serbest - işlemden {tage} gün sonra hasat edildi."
+    },
+    "steige": {
+      "knopf": "Kasa kaydet"
+    },
+    "arbeitszeit": {
+      "knopf": "Çalışma süresi bildir"
+    },
+    "feld": {
+      "pfluecker": "Toplayıcı",
+      "gewicht": "Ağırlık, kg",
+      "minuten": "Dakika",
+      "temperatur": "Sıcaklık, °C"
+    }
+  },
+  "fehlerseite": {
+    "titel": "Bu görünüm yüklenemedi",
+    "lead": "Veriler şu anda erişilebilir değil. İşlem yapılmadı, hiçbir şey kaybolmadı.",
+    "kennung": "Hata kodu",
+    "erneut": "Tekrar dene"
   }
 }

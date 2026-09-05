@@ -46,9 +46,9 @@ const kategorieAusText: Record<string, DokumentKategorie> = {
   Zertifikat: "zertifikat",
 };
 
-function demoListe(): DokumentListe {
+function demoListe(quelle: DokumentListe["quelle"] = "demo"): DokumentListe {
   return {
-    quelle: "demo",
+    quelle,
     dokumente: demoDokumente.map((doc) => ({
       id: doc.id,
       name: doc.name,
@@ -75,7 +75,7 @@ export async function ladeDokumente(): Promise<DokumentListe> {
     .order("stand", { ascending: false, nullsFirst: false })
     .order("name");
 
-  if (error || !data) return demoListe();
+  if (error || !data) return demoListe("fehler");
 
   const pfade = data
     .map((doc) => doc.storage_path)

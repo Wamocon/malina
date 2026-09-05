@@ -27,6 +27,13 @@ export interface Kpi {
   datenherkunft: Datenherkunft;
   /** Was fehlt, damit die Kennzahl gemessen werden kann. */
   braucht: string;
+  /** Aus echten Daten gerechneter Istwert, falls vorhanden. */
+  gerechnet?: {
+    zahl: number;
+    einheit: string;
+    basis: string;
+    datensaetze: number;
+  } | null;
 }
 
 export const kpis: Kpi[] = [
@@ -38,8 +45,8 @@ export const kpis: Kpi[] = [
     trend: "down",
     gutRichtung: "down",
     platzhalter: true,
-    datenherkunft: "tabelle-fehlt",
-    braucht: "Erntemenge und Ausschuss je Charge",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Ausschuss je Charge wird erfasst",
   },
   {
     key: "vermarktungsfaehig",
@@ -60,8 +67,8 @@ export const kpis: Kpi[] = [
     trend: "flat",
     gutRichtung: "down",
     platzhalter: true,
-    datenherkunft: "erfassung-fehlt",
-    braucht: "Pflueckzeitpunkt und Kuehlbeginn je Charge eintragen",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Pflueck- und Kuehlzeitpunkt je Charge",
   },
   {
     key: "zeitBisKunde",
@@ -82,8 +89,8 @@ export const kpis: Kpi[] = [
     trend: "up",
     gutRichtung: "up",
     platzhalter: true,
-    datenherkunft: "tabelle-fehlt",
-    braucht: "Arbeitszeit je Pfluecker und Erntetag",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Steige mit Person gegen Arbeitszeit",
   },
   {
     key: "pflueckStreuung",
@@ -93,8 +100,8 @@ export const kpis: Kpi[] = [
     trend: "down",
     gutRichtung: "down",
     platzhalter: true,
-    datenherkunft: "tabelle-fehlt",
-    braucht: "Erntemenge je Person, nicht je Brigade",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Leistung je Person ueber die Saison",
   },
   {
     key: "pflueckintervall",
@@ -104,8 +111,8 @@ export const kpis: Kpi[] = [
     trend: "up",
     gutRichtung: "up",
     platzhalter: true,
-    datenherkunft: "tabelle-fehlt",
-    braucht: "Ist-Erntetermin je Reihenblock fortschreiben",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Erntefolge je Reihenblock aus den Chargen",
   },
   {
     key: "behandlungenWartezeit",
@@ -159,8 +166,8 @@ export const kpis: Kpi[] = [
     trend: "up",
     gutRichtung: "up",
     platzhalter: true,
-    datenherkunft: "erfassung-fehlt",
-    braucht: "Erloese stehen, Erntemenge je Kostentraeger fehlt",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Buchungen je Charge gegen Erntemenge",
   },
   {
     key: "esutdAbdeckung",
@@ -170,8 +177,8 @@ export const kpis: Kpi[] = [
     trend: "up",
     gutRichtung: "up",
     platzhalter: true,
-    datenherkunft: "erfassung-fehlt",
-    braucht: "Vertragsstatus je Saisonkraft pflegen",
+    datenherkunft: "berechenbar",
+    braucht: "nichts - Vertragsstatus je Saisonkraft",
   },
   {
     key: "websiteAnfragen",

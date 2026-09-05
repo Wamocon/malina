@@ -4,11 +4,15 @@ Interner Prototyp einer Betriebssteuerung für einen **Himbeerbetrieb im Umland 
 Malina überträgt das bestehende **1Çatı**-ERP-Ökosystem (Immobilienbranche) identisch,
 nur mit anderem fachlichen Fokus, auf den Agrar-Kontext.
 
-> **Status:** Meilenstein B - Grundgerüst mit echten Hauptfunktionen.
-> Anmeldung, Rollenrechte (Row Level Security), Standortverwaltung, Reihenblock-Sperre,
-> Pflückaufgabe mit Fotobeleg und Dokumentenablage laufen gegen die Datenbank.
-> Die Unterfunktionen bleiben planmäßig sichtbare Menüpunkte mit Status
-> "In Entwicklung". Alle Kennzahlenwerte sind weiterhin Platzhalter.
+> **Status:** Meilenstein C - geschlossene Nachweiskette, vorführbereit.
+> Auf Meilenstein B (Anmeldung, Rollenrechte über Row Level Security,
+> Standortverwaltung, Reihenblock-Sperre, Fotobeleg, Dokumente) setzt C die
+> Kette auf: jede Pflückaufgabe erzeugt ihre Charge, die Steige trägt die
+> Person, die Arbeitszeit macht die Pflückleistung messbar, die 60-Minuten-Regel
+> der Kühlkette urteilt in der Datenbank, und der Rückstandsnachweis hängt an
+> der Charge. **Acht der 14 Baseline-Kennzahlen werden dadurch aus echten Daten
+> gerechnet** statt behauptet; die übrigen sechs sagen an der Kachel, welche
+> Funktion ihnen fehlt.
 
 ## Tech Stack
 
@@ -80,15 +84,38 @@ angelegt - je Rolle eines, Passwort für alle `MalinaDemo2026!`:
 
 ## Regeln, die in der Datenbank liegen
 
-Nicht im UI, sondern als Trigger bzw. Funktion - sie greifen auch bei direktem API-Zugriff:
+Nicht im UI, sondern als Trigger bzw. Funktion - sie greifen auch bei direktem
+API-Zugriff und lassen sich durch kein Formular umgehen:
 
 - **Wartezeitsperre:** Eine neue Pflanzenschutzbehandlung sperrt den Reihenblock
   (`lock_reihenblock_on_behandlung`); ein vorzeitiger Statuswechsel wird abgewiesen
   (`reihenblock_sperre_pruefen`); die reguläre Freigabe läuft über
   `reihenblock_freigeben()`.
-- **Kein Pflücken auf gesperrtem Block:** `pflueckaufgabe_sperre_pruefen`.
+- **Kein Pflücken auf gesperrtem Block** - beim Anlegen und bei jedem
+  Fortschritt einer laufenden Aufgabe (`pflueckaufgabe_sperre_pruefen`).
+- **Vier Augen:** Die Brigade meldet die Menge, abschließen und den
+  Qualitätsfaktor setzen darf nur die Leitung
+  (`pflueckaufgabe_freigabe_pruefen`). Eine abgeschlossene Aufgabe lässt sich
+  nicht zurückdrehen.
+- **Jede Aufgabe erzeugt ihre Charge** (`charge_zur_aufgabe_anlegen`), der
+  Arbeitsbeginn startet die Kühlkettenuhr, der Abschluss schreibt den
+  Ist-Erntetermin fort (`aufgabe_fortschreiben`).
+- **60-Minuten-Regel:** Minuten und Urteil einer Kühlmessung rechnet
+  `kuehlkette_bewerten` aus dem Pflückzeitpunkt - nicht das Formular.
+- **Rollen:** Die Rolle eines neuen Zugangs kommt aus `app_metadata`
+  (nur service_role) und lässt sich vom eigenen Profil aus nicht anheben.
 - **Append-only:** Finanzjournal und Audit-Protokoll lassen sich weder ändern
-  noch löschen (`block_ledger_mutation`).
+  noch löschen (`block_ledger_mutation`); der Urheber im Protokoll wird
+  serverseitig gesetzt (`audit_actor_setzen`).
+
+## Kennzahlen
+
+`public.kpi_aktuell()` rechnet die Baseline-Kennzahlen, die sich aus den
+vorhandenen Daten ableiten lassen - derzeit acht von 14. Was die Funktion nicht
+liefert, bleibt Platzhalter aus `kpi_baseline`, und die Kachel nennt die
+fehlende Funktion. `public.rueckstandsnachweis(charge)` beantwortet die Frage
+von Handel und Behörde: welche Behandlungen betreffen diese Lieferung, und war
+die Wartezeit eingehalten?
 
 ## Scripts
 

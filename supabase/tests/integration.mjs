@@ -362,7 +362,179 @@ if (leitung && brigade) {
     `actor: ${gefaelscht?.actor}`,
   );
 
-  // Cleanup: Testbehandlung entfernen, Ursprungsstatus wiederherstellen.
+  // --- 8. Meilenstein C: die Nachweiskette --------------------------------
+  // Jede dieser Zusagen wird dem Kunden in der Analysewoche gezeigt.
+
+  const { data: freierBlock } = await admin
+    .from("reihenbloecke")
+    .select("id, code")
+    .neq("status", "wartezeitgesperrt")
+    .limit(1)
+    .single();
+
+  const testCode = `PA-IT-${Date.now().toString().slice(-8)}`;
+  const { data: neueAufgabe, error: aufgabeAnlegenFehler } = await leitung
+    .from("pflueckaufgaben")
+    .insert({ code: testCode, reihenblock_id: freierBlock.id, zielmenge_kg: 20 })
+    .select("id, code")
+    .single();
+  check(
+    "Kette: Pflueckaufgabe angelegt",
+    !aufgabeAnlegenFehler && !!neueAufgabe,
+    aufgabeAnlegenFehler?.message ?? "",
+  );
+
+  const { data: autoCharge } = await admin
+    .from("chargen")
+    .select("id, code, pflueck_zeitpunkt")
+    .eq("pflueckaufgabe_id", neueAufgabe.id)
+    .maybeSingle();
+  check(
+    "Kette: Charge entsteht automatisch zur Aufgabe",
+    !!autoCharge,
+    autoCharge?.code ?? "keine Charge",
+  );
+
+  // Arbeitsbeginn startet die Uhr der Kuehlkette.
+  await leitung
+    .from("pflueckaufgaben")
+    .update({ status: "angenommen" })
+    .eq("id", neueAufgabe.id);
+  await leitung
+    .from("pflueckaufgaben")
+    .update({ status: "in_arbeit" })
+    .eq("id", neueAufgabe.id);
+
+  const { data: chargeGestartet } = await admin
+    .from("chargen")
+    .select("pflueck_zeitpunkt")
+    .eq("id", autoCharge.id)
+    .single();
+  check(
+    "Kette: Arbeitsbeginn setzt den Pflueckzeitpunkt",
+    !!chargeGestartet?.pflueck_zeitpunkt,
+    chargeGestartet?.pflueck_zeitpunkt ?? "leer",
+  );
+
+  // Die Steige traegt die Person - hier endet die Kette nicht mehr bei der Brigade.
+  const { data: einPfluecker } = await admin
+    .from("pfluecker")
+    .select("id, name")
+    .limit(1)
+    .single();
+
+  const { error: steigeFehler } = await brigade.from("steigen").insert({
+    code: `STG-IT-${Date.now().toString().slice(-8)}`,
+    qr_token: `qr-it-${Date.now()}`,
+    charge_id: autoCharge.id,
+    pflueckaufgabe_id: neueAufgabe.id,
+    pfluecker_id: einPfluecker.id,
+    gewicht_kg: 2,
+    scan_zeitpunkt: new Date().toISOString(),
+  });
+  check(
+    "Kette: Brigade erfasst eine Steige mit Person",
+    !steigeFehler,
+    steigeFehler?.message ?? "",
+  );
+
+  // Die 60-Minuten-Regel urteilt in der Datenbank, nicht im Formular.
+  await admin
+    .from("chargen")
+    .update({
+      pflueck_zeitpunkt: new Date(Date.now() - 75 * 60_000).toISOString(),
+    })
+    .eq("id", autoCharge.id);
+
+  const { data: messung, error: messungFehler } = await brigade
+    .from("kuehlketten_messungen")
+    .insert({
+      charge_id: autoCharge.id,
+      gemessen_am: new Date().toISOString(),
+      temperatur_c: 7.5,
+    })
+    .select("minuten_seit_pfluecken, ergebnis")
+    .single();
+  check(
+    "Kuehlkette: 75 Minuten werden als Verstoss erkannt",
+    !messungFehler &&
+      messung?.ergebnis === "verstoss" &&
+      messung.minuten_seit_pfluecken >= 74,
+    messungFehler?.message ?? `${messung?.minuten_seit_pfluecken} min, ${messung?.ergebnis}`,
+  );
+
+  // Abschluss schreibt den Ist-Erntetermin fort - Grundlage des Rotationsplans.
+  await admin
+    .from("pflueckaufgaben")
+    .update({ status: "beleg_pruefung", ist_menge_kg: 18.5 })
+    .eq("id", neueAufgabe.id);
+  await leitung
+    .from("pflueckaufgaben")
+    .update({ status: "abgeschlossen" })
+    .eq("id", neueAufgabe.id);
+
+  const { data: blockNachher } = await admin
+    .from("reihenbloecke")
+    .select("letzte_ernte")
+    .eq("id", freierBlock.id)
+    .single();
+  const heute = new Date().toISOString().slice(0, 10);
+  check(
+    "Kette: Abschluss schreibt die letzte Ernte fort",
+    blockNachher?.letzte_ernte === heute,
+    `letzte_ernte: ${blockNachher?.letzte_ernte}`,
+  );
+
+  const { data: chargeMenge } = await admin
+    .from("chargen")
+    .select("menge_kg")
+    .eq("id", autoCharge.id)
+    .single();
+  check(
+    "Kette: gemeldete Menge landet in der Charge",
+    Number(chargeMenge?.menge_kg) === 18.5,
+    `menge_kg: ${chargeMenge?.menge_kg}`,
+  );
+
+  const { data: nachweis, error: nachweisFehler } = await leitung.rpc(
+    "rueckstandsnachweis",
+    { p_charge: autoCharge.id },
+  );
+  check(
+    "Kette: Rueckstandsnachweis je Charge ist abrufbar",
+    !nachweisFehler && Array.isArray(nachweis),
+    nachweisFehler?.message ?? `${nachweis?.length} Eintraege`,
+  );
+
+  // --- 9. Kennzahlen rechnen ----------------------------------------------
+  const { data: kennzahlen, error: kennzahlenFehler } = await leitung.rpc("kpi_aktuell");
+  const schluessel = new Set((kennzahlen ?? []).map((k) => k.schluessel));
+  check(
+    "Kennzahlen: mindestens acht werden aus Daten gerechnet",
+    !kennzahlenFehler && (kennzahlen?.length ?? 0) >= 8,
+    kennzahlenFehler?.message ?? `${kennzahlen?.length} Kennzahlen`,
+  );
+  check(
+    "Kennzahlen: Pflueckleistung wird ohne Mehrfachzaehlung gerechnet",
+    schluessel.has("pflueckleistung") &&
+      (kennzahlen.find((k) => k.schluessel === "pflueckleistung")?.wert ?? 0) > 3,
+    `kg/h: ${kennzahlen?.find((k) => k.schluessel === "pflueckleistung")?.wert}`,
+  );
+
+  const { data: kundeSieht } = await (await anmelden("kunde@malina.demo")).client
+    .from("arbeitszeiten")
+    .select("id");
+  check(
+    "Haertung: die Rolle kunde sieht keine Arbeitszeiten",
+    (kundeSieht?.length ?? 0) === 0,
+    `sichtbare Zeilen: ${kundeSieht?.length}`,
+  );
+
+  // Cleanup: Testaufgabe samt Kette entfernen, Ursprungsstatus wiederherstellen.
+  await admin.from("steigen").delete().eq("pflueckaufgabe_id", neueAufgabe.id);
+  await admin.from("kuehlketten_messungen").delete().eq("charge_id", autoCharge.id);
+  await admin.from("chargen").delete().eq("id", autoCharge.id);
+  await admin.from("pflueckaufgaben").delete().eq("id", neueAufgabe.id);
   await admin.from("pflanzenschutz_behandlungen").delete().eq("id", behandlung.id);
   await admin.from("reihenbloecke").update({ status: block.status }).eq("id", block.id);
 }

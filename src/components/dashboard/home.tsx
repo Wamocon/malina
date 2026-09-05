@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Minus } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/icon";
@@ -50,7 +50,9 @@ export function DashboardHome({
   const roleT = useTranslations("roles");
   const quelleT = useTranslations("dashboard.dataSource");
   const herkunftT = useTranslations("kpiHerkunft");
+  const format = useFormatter();
   const herkunft = herkunftZaehlen(kpis);
+  const gerechnet = kpis.filter((kpi) => kpi.gerechnet).length;
 
   return (
     <div className="space-y-8">
@@ -64,11 +66,18 @@ export function DashboardHome({
 
       <Section
         title={t("home.kpiTitle")}
-        description={`${t("home.kpiDescription")} ${t("home.kpiSummary", {
-          berechenbar: herkunft.berechenbar,
-          erfassung: herkunft["erfassung-fehlt"],
-          tabelle: herkunft["tabelle-fehlt"],
-        })}`}
+        description={`${t("home.kpiDescription")} ${
+          gerechnet > 0
+            ? t("home.kpiSummaryLive", {
+                gerechnet,
+                offen: kpis.length - gerechnet,
+              })
+            : t("home.kpiSummary", {
+                berechenbar: herkunft.berechenbar,
+                erfassung: herkunft["erfassung-fehlt"],
+                tabelle: herkunft["tabelle-fehlt"],
+              })
+        }`}
         action={
           <div className="flex flex-wrap items-center gap-1.5">
             <StatusPill tone={quelle === "db" ? "success" : "warning"}>
@@ -84,10 +93,15 @@ export function DashboardHome({
             const positive =
               (kpi.trend === "up" && kpi.gutRichtung === "up") ||
               (kpi.trend === "down" && kpi.gutRichtung === "down");
+            // Gerechnete Kennzahlen zeigen den Istwert aus der Datenbank, die
+            // uebrigen weiter den unterschriebenen Platzhalter.
+            const anzeige = kpi.gerechnet
+              ? `${format.number(kpi.gerechnet.zahl, { maximumFractionDigits: 1 })} ${kpi.gerechnet.einheit}`.trim()
+              : kpi.wert;
             return (
               <Card key={kpi.key} className="p-3">
                 <div className="flex items-start justify-between gap-1">
-                  <p className="text-lg font-black text-foreground">{kpi.wert}</p>
+                  <p className="text-lg font-black text-foreground">{anzeige}</p>
                   <TrendCmp
                     className={`h-4 w-4 shrink-0 ${
                       kpi.trend === "flat"
@@ -105,18 +119,20 @@ export function DashboardHome({
                   {t("home.target")}: {kpi.ziel}
                 </p>
                 <p
-                  title={kpi.braucht}
+                  title={kpi.gerechnet ? kpi.gerechnet.basis : kpi.braucht}
                   className={`mt-2 flex items-start gap-1 border-t border-border pt-1.5 text-[10px] leading-3 ${
-                    herkunftFarbe[kpi.datenherkunft]
+                    kpi.gerechnet ? "text-success" : herkunftFarbe[kpi.datenherkunft]
                   }`}
                 >
                   <span
                     aria-hidden="true"
                     className={`mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-                      herkunftPunkt[kpi.datenherkunft]
+                      kpi.gerechnet ? "bg-success" : herkunftPunkt[kpi.datenherkunft]
                     }`}
                   />
-                  {herkunftT(kpi.datenherkunft)}
+                  {kpi.gerechnet
+                    ? t("home.kpiGerechnet", { anzahl: kpi.gerechnet.datensaetze })
+                    : herkunftT(kpi.datenherkunft)}
                 </p>
               </Card>
             );

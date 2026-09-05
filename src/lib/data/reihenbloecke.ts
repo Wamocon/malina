@@ -63,7 +63,7 @@ function zaehle(bloecke: ReihenblockZeile[]): Record<ReihenblockStatus, number> 
   return counts;
 }
 
-function demoListe(): ReihenblockListe {
+function demoListe(quelle: ReihenblockListe["quelle"] = "demo"): ReihenblockListe {
   const bloecke: ReihenblockZeile[] = demoBloecke.map((block) => ({
     id: block.id,
     code: block.id,
@@ -84,7 +84,7 @@ function demoListe(): ReihenblockListe {
         }
       : null,
   }));
-  return { quelle: "demo", bloecke, counts: zaehle(bloecke) };
+  return { quelle, bloecke, counts: zaehle(bloecke) };
 }
 
 export async function ladeReihenbloecke(): Promise<ReihenblockListe> {
@@ -104,7 +104,7 @@ export async function ladeReihenbloecke(): Promise<ReihenblockListe> {
     )
     .order("code");
 
-  if (error || !data) return demoListe();
+  if (error || !data) return demoListe("fehler");
 
   const heute = heuteIso();
 

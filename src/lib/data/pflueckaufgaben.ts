@@ -53,9 +53,9 @@ const platzhalter: Record<BelegAnsicht["art"], string> = {
   steige: "/belege/steige.svg",
 };
 
-function demoListe(): AufgabenListe {
+function demoListe(quelle: AufgabenListe["quelle"] = "demo"): AufgabenListe {
   return {
-    quelle: "demo",
+    quelle,
     aufgaben: demoAufgaben.map((aufgabe) => ({
       id: aufgabe.id,
       code: aufgabe.id,
@@ -97,7 +97,7 @@ export async function ladePflueckaufgaben(): Promise<AufgabenListe> {
     )
     .order("code");
 
-  if (error || !data) return demoListe();
+  if (error || !data) return demoListe("fehler");
 
   // Alle Belege mit Datei in einem Rutsch signieren.
   const pfade = data

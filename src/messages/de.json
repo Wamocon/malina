@@ -244,7 +244,9 @@
       "db": "Live-Daten",
       "demo": "Beispieldaten",
       "dbHint": "Angebunden an die Supabase-Datenbank, gelesen unter den RLS-Rechten Ihrer Rolle.",
-      "demoHint": "Ohne Datenbankverbindung - die Ansicht zeigt die hinterlegten Beispieldaten."
+      "demoHint": "Ohne Datenbankverbindung - die Ansicht zeigt die hinterlegten Beispieldaten.",
+      "fehler": "Datenbank nicht erreichbar",
+      "fehlerHint": "Die Abfrage ist fehlgeschlagen. Angezeigt werden ersatzweise Beispieldaten - sie stammen nicht aus dem Betrieb."
     },
     "rbacHintLabel": "Rollen",
     "rbacHint": "Welche Module sichtbar sind, hängt von der Rolle des angemeldeten Kontos ab. Sechs Kernrollen von der Administration bis zur Brigade im Feld - dieselbe Rolle entscheidet auch in der Datenbank über Lese- und Schreibrechte.",
@@ -284,7 +286,9 @@
         "kpi": "Dashboard-Grundgerüst mit den 14 Baseline-Kennzahlen als Kacheln"
       },
       "milestoneBNote": "Alle Hauptfunktionen sind an die Datenbank angebunden: Anmeldung, Rollenrechte über Row Level Security, Standortverwaltung, Reihenblock-Sperre, Pflückaufgabe mit Fotobeleg und Dokumentenablage. Die Unterfunktionen bleiben planmäßig sichtbare Menüpunkte mit Status.",
-      "kpiSummary": "{berechenbar} heute messbar · {erfassung} Erfassung fehlt · {tabelle} Funktion fehlt"
+      "kpiSummary": "{berechenbar} heute messbar · {erfassung} Erfassung fehlt · {tabelle} Funktion fehlt",
+      "kpiGerechnet": "gerechnet aus {anzahl} Datensätzen",
+      "kpiSummaryLive": "{gerechnet} aus echten Daten gerechnet · {offen} warten auf die Funktion dahinter"
     }
   },
   "roles": {
@@ -612,7 +616,10 @@
       "aufgabeStatus": "Aufgabe {wert} aktualisiert.",
       "menge": "Menge für {wert} gemeldet - Beleg wird geprüft.",
       "beleg": "Fotobeleg hochgeladen.",
-      "dokument": "Dokument \"{wert}\" aufgenommen."
+      "dokument": "Dokument \"{wert}\" aufgenommen.",
+      "steige": "Steige {wert} erfasst.",
+      "arbeitszeit": "{wert} Minuten Arbeitszeit gemeldet.",
+      "kuehlmessung": "Messung erfasst - {wert} Minuten nach dem Pflücken."
     },
     "fehler": {
       "eingabe": "Bitte alle Pflichtfelder ausfüllen.",
@@ -625,7 +632,9 @@
       "doppelt": "Ein Eintrag mit dieser Kennung existiert bereits.",
       "bezug": "Der gewählte Bezugsdatensatz existiert nicht.",
       "regel": "Nicht möglich: Die Wartezeit ist noch nicht abgelaufen.",
-      "unbekannt": "Vorgang fehlgeschlagen. Details stehen im Server-Log."
+      "unbekannt": "Vorgang fehlgeschlagen. Details stehen im Server-Log.",
+      "keineCharge": "Zu dieser Aufgabe gehört keine Charge.",
+      "kuehlkette": "Grenzwert gerissen: {wert} Minuten bis zur Messung. Die Ware ist abzuwerten."
     }
   },
   "standortVerwaltung": {
@@ -956,5 +965,56 @@
     "berechenbar": "heute messbar",
     "erfassung-fehlt": "Erfassung fehlt",
     "tabelle-fehlt": "Funktion fehlt"
+  },
+  "nachweiskette": {
+    "titel": "Nachweiskette",
+    "lead": "Charge, Kühlkurve, Steigen mit Person und Rückstandsnachweis - die Kette, die Handel und Behörde sehen wollen.",
+    "keineCharge": "Zu dieser Aufgabe gehört noch keine Charge. Sie entsteht beim Anlegen der Pflückaufgabe.",
+    "menge": "Menge",
+    "ausschuss": "Ausschuss",
+    "steigen": "Steigen",
+    "steigenTitel": "Steigen mit Person",
+    "ohnePerson": "ohne Person",
+    "weitereSteigen": "und {anzahl} weitere",
+    "kuehlung": {
+      "minuten": "{minuten} Minuten bis zur Vorkühlung",
+      "offen": "Vorkühlung steht aus",
+      "laeuft": "läuft",
+      "gehalten": "Grenze gehalten",
+      "gerissen": "Grenze gerissen",
+      "regel": "Zwischen Pflücken und Herunterkühlen dürfen höchstens 60 Minuten liegen. Wird diese Grenze gerissen, ist jede weitere Maßnahme wirkungslos.",
+      "nachMinuten": "nach {minuten} Minuten",
+      "knopf": "Kühlmessung erfassen"
+    },
+    "ergebnis": {
+      "ok": "ok",
+      "warnung": "Warnung",
+      "verstoss": "Verstoß"
+    },
+    "rueckstand": {
+      "titel": "Rückstandsnachweis je Charge",
+      "keine": "Keine Behandlung in den 90 Tagen vor dem Erntedatum.",
+      "eingehalten": "eingehalten",
+      "verletzt": "verletzt",
+      "zeile": "Behandelt am {behandelt}, Wartezeit {wartezeit} Tage, frei ab {frei} - geerntet {tage} Tage nach der Behandlung."
+    },
+    "steige": {
+      "knopf": "Steige erfassen"
+    },
+    "arbeitszeit": {
+      "knopf": "Arbeitszeit melden"
+    },
+    "feld": {
+      "pfluecker": "Pflücker",
+      "gewicht": "Gewicht in kg",
+      "minuten": "Minuten",
+      "temperatur": "Temperatur in °C"
+    }
+  },
+  "fehlerseite": {
+    "titel": "Diese Ansicht konnte nicht geladen werden",
+    "lead": "Die Daten sind gerade nicht erreichbar. Der Vorgang wurde nicht ausgeführt - es ist nichts verloren gegangen.",
+    "kennung": "Fehlerkennung",
+    "erneut": "Erneut versuchen"
   }
 }

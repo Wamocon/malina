@@ -45,3 +45,54 @@ jobs:
     name: PR Checks
     needs: autofix
     uses: Wamocon/github_workflow/.github/workflows/pr-checks.yml@main
+
+  # --- Step 3: Build und Datenbank ------------------------------------------
+  # Typecheck und Lint fangen den Build nicht: Server-/Client-Grenzen, fehlende
+  # Uebersetzungsschluessel und kaputte Migrationen fallen erst hier auf.
+  # Die Fachregeln von Malina liegen in der Datenbank - ohne diesen Lauf
+  # waeren Sperrlogik und Rollenrechte in der CI ungeprueft.
+  datenbank:
+    name: Build und Integrationstests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Supabase starten (Migrationen und Seed laufen mit)
+        run: supabase start
+
+      - name: Umgebung aus der laufenden Instanz schreiben
+        run: |
+          eval "$(supabase status -o env | sed 's/^/export /')"
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+            echo "NEXT_PUBLIC_APP_URL=http://localhost:3000"
+            echo "NEXT_PUBLIC_SITE_NAME=Malina"
+          } >> .env.local
+
+      - name: Demo-Zugänge anlegen
+        run: npm run db:seed-auth
+
+      - name: Integrationstests (RLS, Rollen, Sperrlogik, Kennzahlen)
+        run: npm run db:test
+
+      - name: Produktions-Build
+        run: npm run build
+
+      - name: Supabase stoppen
+        if: always()
+        run: supabase stop --no-backup
