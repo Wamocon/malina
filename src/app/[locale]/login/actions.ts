@@ -16,10 +16,16 @@ function sicheresLocale(wert: FormDataEntryValue | null): string {
 }
 
 // Nur interne Pfade als Rueckkehrziel zulassen (kein Open Redirect).
+// "//fremd.example" und "/\fremd.example" sind protokollrelative Adressen und
+// fuehren aus der Anwendung heraus - beide Zeichen an zweiter Stelle sperren.
 function sicheresZiel(wert: FormDataEntryValue | null, locale: string): string {
   const kandidat = String(wert ?? "");
-  if (kandidat.startsWith("/") && !kandidat.startsWith("//")) return kandidat;
-  return `/${locale}/dashboard`;
+  const intern =
+    kandidat.startsWith("/") &&
+    kandidat[1] !== "/" &&
+    kandidat[1] !== "\\" &&
+    !kandidat.includes("\\");
+  return intern ? kandidat : `/${locale}/dashboard`;
 }
 
 export async function anmelden(

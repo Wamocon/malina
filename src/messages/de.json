@@ -46,21 +46,51 @@
     "berryTitle": "Die empfindlichste Beere im Frischesortiment",
     "berryLead": "Sie hat keine schützende Schale, ist innen hohl und hoch anfällig für Graufäule. Software allein rettet keine einzige Beere - aber sie steuert genau die Stunde, die Rotation und die Nachweise, an denen der Preis hängt.",
     "berryPoints": {
-      "schale": { "title": "Keine schützende Schale", "text": "Ungekühlt ist die Himbeere nach etwa einem Tag nicht mehr verkaufsfähig. Sauber vorgekühlt hält sie zwei bis drei Tage, bei sehr guter Führung bis zu fünf." },
-      "kuehlung": { "title": "60 Minuten bis zur Kühlung", "text": "Zwischen Pflücken und Herunterkühlen dürfen nicht mehr als 60 Minuten liegen. Wird diese Grenze gerissen, ist jede weitere Maßnahme wirkungslos." },
-      "umpacken": { "title": "Pflücken in die Verkaufsschale", "text": "Die verkaufsfertige Schale entsteht in der Hand des Pflückers. Jedes Umpacken oder Nachsortieren zerstört Ware." },
-      "feld": { "title": "Qualität entscheidet sich im Feld", "text": "Die Qualitätsentscheidung fällt beim Pflücker. Sie muss dort erfasst und gemessen werden, nicht erst an einer zentralen Sortierstation." },
-      "rhythmus": { "title": "Fließband statt Peak", "text": "Remontierende Sorten tragen von August bis zum ersten Frost. Jeder Reihenblock wird alle zwei bis drei Tage abgepflückt, über drei bis acht Wochen." },
-      "schaden": { "title": "Eine Beere entwertet die Schale", "text": "Eine einzige auslaufende oder beschädigte Beere macht die gesamte Schale unverkäuflich. Reiner Stücklohn ist deshalb wertvernichtend." }
+      "schale": {
+        "title": "Keine schützende Schale",
+        "text": "Ungekühlt ist die Himbeere nach etwa einem Tag nicht mehr verkaufsfähig. Sauber vorgekühlt hält sie zwei bis drei Tage, bei sehr guter Führung bis zu fünf."
+      },
+      "kuehlung": {
+        "title": "60 Minuten bis zur Kühlung",
+        "text": "Zwischen Pflücken und Herunterkühlen dürfen nicht mehr als 60 Minuten liegen. Wird diese Grenze gerissen, ist jede weitere Maßnahme wirkungslos."
+      },
+      "umpacken": {
+        "title": "Pflücken in die Verkaufsschale",
+        "text": "Die verkaufsfertige Schale entsteht in der Hand des Pflückers. Jedes Umpacken oder Nachsortieren zerstört Ware."
+      },
+      "feld": {
+        "title": "Qualität entscheidet sich im Feld",
+        "text": "Die Qualitätsentscheidung fällt beim Pflücker. Sie muss dort erfasst und gemessen werden, nicht erst an einer zentralen Sortierstation."
+      },
+      "rhythmus": {
+        "title": "Fließband statt Peak",
+        "text": "Remontierende Sorten tragen von August bis zum ersten Frost. Jeder Reihenblock wird alle zwei bis drei Tage abgepflückt, über drei bis acht Wochen."
+      },
+      "schaden": {
+        "title": "Eine Beere entwertet die Schale",
+        "text": "Eine einzige auslaufende oder beschädigte Beere macht die gesamte Schale unverkäuflich. Reiner Stücklohn ist deshalb wertvernichtend."
+      }
     },
     "berryQuote": "Ein Peak übersteht man mit vielen Händen. Ein Fließband über sechs Wochen übersteht man nur mit einem Plan.",
     "spreadEyebrow": "Der Preisspread ist der Business Case",
     "spreadTitle": "Zwischen loser Ware und Premium liegt der Faktor 2,3",
     "spreadLead": "Der Markt in Almaty zahlt für lose Frischware ab Feld etwa 1.500 Tenge je Kilogramm und für Ware, die am selben Tag gepflückt und direkt vermarktet wird, bis zu 3.500 Tenge. Der Unterschied entsteht nicht im Feld.",
     "spreadTiers": {
-      "lose": { "label": "Lose Frischware ab Feld", "price": "1.500 – 1.600 ₸/kg", "note": "Verkauf ab Feld und über Kleinanzeigen. Preislich nicht zu unterbieten." },
-      "schale": { "label": "Schalenware, Tunnel / Gewächshaus", "price": "≈ 2.000 ₸/kg", "note": "Sorten Polka und Babje leto. Die Schale erzeugt den Aufpreis, nicht die Beere." },
-      "premium": { "label": "Premium, am selben Tag gepflückt", "price": "bis 3.500 ₸/kg", "note": "Direkt vermarktet. Frische, Konstanz und Nachweisbarkeit sind der gesamte Mehrwert." }
+      "lose": {
+        "label": "Lose Frischware ab Feld",
+        "price": "1.500 – 1.600 ₸/kg",
+        "note": "Verkauf ab Feld und über Kleinanzeigen. Preislich nicht zu unterbieten."
+      },
+      "schale": {
+        "label": "Schalenware, Tunnel / Gewächshaus",
+        "price": "≈ 2.000 ₸/kg",
+        "note": "Sorten Polka und Babje leto. Die Schale erzeugt den Aufpreis, nicht die Beere."
+      },
+      "premium": {
+        "label": "Premium, am selben Tag gepflückt",
+        "price": "bis 3.500 ₸/kg",
+        "note": "Direkt vermarktet. Frische, Konstanz und Nachweisbarkeit sind der gesamte Mehrwert."
+      }
     },
     "spreadFactor": "≈ 4 – 5 Mio. ₸",
     "spreadFactorText": "So viel zusätzlicher Erlös je Saison bringt jede Verschiebung von 10 Prozentpunkten der Menge in das obere Preissegment - bei drei Hektar. Der Hebel liegt in Kühlzeit, Schalenqualität, Liefertreue und Nachweisbarkeit.",
@@ -68,21 +98,48 @@
     "proofTitle": "Eine lückenlose Nachweiskette für jede Lieferung",
     "proofLead": "Der Betrieb, der als Einziger jede Lieferung bis zum Reihenblock, zur Kühlzeit und zur Person zurückverfolgen kann, wird zum Standard, an dem der Handel die anderen misst.",
     "proofSteps": {
-      "kuehlkurve": { "title": "Kühlkurve", "text": "Zeit und Temperatur von Pflücken bis Vorkühlung, harte 60-Minuten-Grenze, Temperaturlogger bis zum Kunden." },
-      "charge": { "title": "Charge", "text": "Jede Steige trägt eine im Feld vergebene Kennung und ist genau einer Charge zugeordnet - von der Steige bis zur Rechnung." },
-      "herkunftsblock": { "title": "Herkunftsblock", "text": "Reihenblock, Sorte und Erntetag als Kostenträger und Herkunftsangabe je Charge." },
-      "pfluecker": { "title": "Pflücker", "text": "Menge, Reihenblock, Uhrzeit und Person werden beim Abgeben der Steige in einem Scan erfasst." },
-      "behandlung": { "title": "Behandlungsnachweis", "text": "Jede Pflanzenschutzbehandlung sperrt den Reihenblock automatisch bis zum Ablauf der Wartezeit. Rückstandsnachweis je Charge auf Knopfdruck." }
+      "kuehlkurve": {
+        "title": "Kühlkurve",
+        "text": "Zeit und Temperatur von Pflücken bis Vorkühlung, harte 60-Minuten-Grenze, Temperaturlogger bis zum Kunden."
+      },
+      "charge": {
+        "title": "Charge",
+        "text": "Jede Steige trägt eine im Feld vergebene Kennung und ist genau einer Charge zugeordnet - von der Steige bis zur Rechnung."
+      },
+      "herkunftsblock": {
+        "title": "Herkunftsblock",
+        "text": "Reihenblock, Sorte und Erntetag als Kostenträger und Herkunftsangabe je Charge."
+      },
+      "pfluecker": {
+        "title": "Pflücker",
+        "text": "Menge, Reihenblock, Uhrzeit und Person werden beim Abgeben der Steige in einem Scan erfasst."
+      },
+      "behandlung": {
+        "title": "Behandlungsnachweis",
+        "text": "Jede Pflanzenschutzbehandlung sperrt den Reihenblock automatisch bis zum Ablauf der Wartezeit. Rückstandsnachweis je Charge auf Knopfdruck."
+      }
     },
     "proofClosing": "Bei einer Reklamation ist in Sekunden feststellbar, aus welchem Block, von wem und mit welcher Kühlzeit die Ware stammt.",
     "leversEyebrow": "Weg zur Marktführerschaft",
     "leversTitle": "Vier Hebel, auf die Malina einzahlt",
     "leversLead": "Jeder Hebel steht für sich, aber sie bauen aufeinander auf. Ohne den ersten sind die anderen drei wirkungslos.",
     "leverItems": {
-      "stunde": { "title": "Die Stunde nach dem Pflücken", "text": "Feste Abholrunden, Vorkühlung auf 0 bis 1 Grad, Zeitmessung mit Grenzwert 60 Minuten. Der Preisunterschied verfällt in der ersten Stunde auf dem Feld, nicht im Verkaufsgespräch." },
-      "herbstfenster": { "title": "Das Herbstfenster", "text": "Bei remontierenden Sorten ist der Herbstertrag der Hauptertrag, und das regionale Angebot ist dünn. Der Rotationsplan hält die Pflückdisziplin über sechs Wochen - ein ausgelassener Durchgang vernichtet den Block für diesen Zyklus." },
-      "zugang": { "title": "Belegbarkeit als Zugangsvorteil", "text": "Große Ketten nehmen nur belegfähige Lieferanten auf. Wer die Kette von der Steige bis zur Rechnung lückenlos zeigt, wird für diese Abnehmer überhaupt erst ansprechbar. Aus der Regulierungslast wird ein Vorsprung." },
-      "aggregation": { "title": "Aggregation statt Landkauf", "text": "Eigene Ernte und Zukauf von Nachbarbetrieben unter einer Marke, einer Qualitätsklasse und durchgängiger Rückverfolgbarkeit - mit getrennter Chargenführung je Betrieb. Wachstum ohne Landkauf." }
+      "stunde": {
+        "title": "Die Stunde nach dem Pflücken",
+        "text": "Feste Abholrunden, Vorkühlung auf 0 bis 1 Grad, Zeitmessung mit Grenzwert 60 Minuten. Der Preisunterschied verfällt in der ersten Stunde auf dem Feld, nicht im Verkaufsgespräch."
+      },
+      "herbstfenster": {
+        "title": "Das Herbstfenster",
+        "text": "Bei remontierenden Sorten ist der Herbstertrag der Hauptertrag, und das regionale Angebot ist dünn. Der Rotationsplan hält die Pflückdisziplin über sechs Wochen - ein ausgelassener Durchgang vernichtet den Block für diesen Zyklus."
+      },
+      "zugang": {
+        "title": "Belegbarkeit als Zugangsvorteil",
+        "text": "Große Ketten nehmen nur belegfähige Lieferanten auf. Wer die Kette von der Steige bis zur Rechnung lückenlos zeigt, wird für diese Abnehmer überhaupt erst ansprechbar. Aus der Regulierungslast wird ein Vorsprung."
+      },
+      "aggregation": {
+        "title": "Aggregation statt Landkauf",
+        "text": "Eigene Ernte und Zukauf von Nachbarbetrieben unter einer Marke, einer Qualitätsklasse und durchgängiger Rückverfolgbarkeit - mit getrennter Chargenführung je Betrieb. Wachstum ohne Landkauf."
+      }
     },
     "zonesEyebrow": "Vier Bereiche, ein Betrieb",
     "zonesTitle": "Feld, Hof, Büro, Markt",
@@ -95,12 +152,30 @@
     "complianceTitle": "Aus der Regulierungslast wird ein Zugangsvorteil",
     "complianceLead": "Kasachstan hat 2026 den Rechtsrahmen für Digitales in Serie neu gesetzt. Für einen Betrieb, der diese Pflichten vollständig erfüllt, wird aus der Last der Zugang zum organisierten Handel.",
     "complianceItems": {
-      "steuer": { "title": "Steuergesetzbuch 2026", "text": "Mehrwertsteuer 16 %, Registrierungsschwelle bei 43,25 Mio. Tenge. Ein wachsender Betrieb rutscht in die Steuerpflicht - ohne saubere Belegkette ein Risiko." },
-      "warenbegleit": { "title": "Elektronischer Warenbegleitschein", "text": "Seit 01.01.2026 wird jede Lieferung elektronisch über das ЭСФ-System belegt. Der Begleitschein ist der zentrale Waren- und Buchhaltungsbeleg, Papier nur bei Störung." },
-      "ki": { "title": "KI-Gesetz Nr. 230-VIII", "text": "Der KI-Chat braucht einen sichtbaren Transparenzhinweis, zweckgebundene Einwilligung, Protokollierung und Eskalation an einen Menschen. Emotionsanalyse ist untersagt." },
-      "digitalkodex": { "title": "Digitalkodex Nr. 255-VIII", "text": "Schränkt die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Der Hosting-Standort wird vor Produktivsetzung rechtlich geprüft." },
-      "datenschutz": { "title": "Verschärftes Datenschutzrecht", "text": "Seit 24.08.2026: zweckgebundene Einwilligung, Speicherfristen, benannte Verantwortliche, Verschlüsselung, Mehrfaktor-Authentifizierung, jährliche Pflichtschulung." },
-      "esutd": { "title": "ЕСУТД-Arbeitsvertragserfassung", "text": "Abschluss, Änderung und Beendigung jedes Saisonvertrags werden im Einheitssystem erfasst. Bei Saisonkräften heute oft nicht erfüllt - ein Risiko bis 2.000 MRP." }
+      "steuer": {
+        "title": "Steuergesetzbuch 2026",
+        "text": "Mehrwertsteuer 16 %, Registrierungsschwelle bei 43,25 Mio. Tenge. Ein wachsender Betrieb rutscht in die Steuerpflicht - ohne saubere Belegkette ein Risiko."
+      },
+      "warenbegleit": {
+        "title": "Elektronischer Warenbegleitschein",
+        "text": "Seit 01.01.2026 wird jede Lieferung elektronisch über das ЭСФ-System belegt. Der Begleitschein ist der zentrale Waren- und Buchhaltungsbeleg, Papier nur bei Störung."
+      },
+      "ki": {
+        "title": "KI-Gesetz Nr. 230-VIII",
+        "text": "Der KI-Chat braucht einen sichtbaren Transparenzhinweis, zweckgebundene Einwilligung, Protokollierung und Eskalation an einen Menschen. Emotionsanalyse ist untersagt."
+      },
+      "digitalkodex": {
+        "title": "Digitalkodex Nr. 255-VIII",
+        "text": "Schränkt die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Der Hosting-Standort wird vor Produktivsetzung rechtlich geprüft."
+      },
+      "datenschutz": {
+        "title": "Verschärftes Datenschutzrecht",
+        "text": "Seit 24.08.2026: zweckgebundene Einwilligung, Speicherfristen, benannte Verantwortliche, Verschlüsselung, Mehrfaktor-Authentifizierung, jährliche Pflichtschulung."
+      },
+      "esutd": {
+        "title": "ЕСУТД-Arbeitsvertragserfassung",
+        "text": "Abschluss, Änderung und Beendigung jedes Saisonvertrags werden im Einheitssystem erfasst. Bei Saisonkräften heute oft nicht erfüllt - ein Risiko bis 2.000 MRP."
+      }
     },
     "complianceClosing": "Große Ketten mit eigener Lieferkette nehmen nur Lieferanten auf, die belegfähig sind. Compliance ist hier kein Formalakt, sondern die Eintrittskarte.",
     "ctaTitle": "Ein greifbares System statt Konzeptfolien",
@@ -248,7 +323,7 @@
   },
   "accessDenied": {
     "title": "Die Rolle {role} hat auf dieses Modul keinen Zugriff.",
-    "hint": "Wechsle oben rechts die Demo-Rolle, um den Zugriff zu sehen.",
+    "hint": "Diese Module sind anderen Rollen vorbehalten. Wenden Sie sich an die Administration, wenn Sie Zugriff brauchen.",
     "back": "Zur Übersicht"
   },
   "resourceLabels": {
@@ -278,20 +353,48 @@
     "abgeschlossen": "abgeschlossen"
   },
   "kpis": {
-    "verlustquote": { "label": "Verlustquote vom Pflücken bis zum Kunden" },
-    "vermarktungsfaehig": { "label": "Anteil vermarktungsfähiger Schalen" },
-    "zeitBisVorkuehlung": { "label": "Zeit vom Pflücken bis zur Vorkühlung" },
-    "zeitBisKunde": { "label": "Zeit vom Pflücken bis zum Kunden" },
-    "pflueckleistung": { "label": "Pflückleistung je Person und Stunde" },
-    "pflueckStreuung": { "label": "Streuung der Pflückleistung (beste zu schwächste Kraft)" },
-    "pflueckintervall": { "label": "Eingehaltenes Pflückintervall je Reihenblock" },
-    "behandlungenWartezeit": { "label": "Behandlungen mit eingehaltener Wartezeit" },
-    "reklamationsquote": { "label": "Reklamationsquote" },
-    "liefertreue": { "label": "Liefertreue (pünktlich und vollständig)" },
-    "belegteVerkaeufe": { "label": "Anteil belegter Verkäufe (ЭСФ und Warenbegleitschein)" },
-    "deckungsbeitrag": { "label": "Deckungsbeitrag je kg" },
-    "esutdAbdeckung": { "label": "Abdeckung der Saisonkräfte in ЕСУТД" },
-    "websiteAnfragen": { "label": "Anfragen über die Website je Monat" }
+    "verlustquote": {
+      "label": "Verlustquote vom Pflücken bis zum Kunden"
+    },
+    "vermarktungsfaehig": {
+      "label": "Anteil vermarktungsfähiger Schalen"
+    },
+    "zeitBisVorkuehlung": {
+      "label": "Zeit vom Pflücken bis zur Vorkühlung"
+    },
+    "zeitBisKunde": {
+      "label": "Zeit vom Pflücken bis zum Kunden"
+    },
+    "pflueckleistung": {
+      "label": "Pflückleistung je Person und Stunde"
+    },
+    "pflueckStreuung": {
+      "label": "Streuung der Pflückleistung (beste zu schwächste Kraft)"
+    },
+    "pflueckintervall": {
+      "label": "Eingehaltenes Pflückintervall je Reihenblock"
+    },
+    "behandlungenWartezeit": {
+      "label": "Behandlungen mit eingehaltener Wartezeit"
+    },
+    "reklamationsquote": {
+      "label": "Reklamationsquote"
+    },
+    "liefertreue": {
+      "label": "Liefertreue (pünktlich und vollständig)"
+    },
+    "belegteVerkaeufe": {
+      "label": "Anteil belegter Verkäufe (ЭСФ und Warenbegleitschein)"
+    },
+    "deckungsbeitrag": {
+      "label": "Deckungsbeitrag je kg"
+    },
+    "esutdAbdeckung": {
+      "label": "Abdeckung der Saisonkräfte in ЕСУТД"
+    },
+    "websiteAnfragen": {
+      "label": "Anfragen über die Website je Monat"
+    }
   },
   "modules": {
     "standort": {
@@ -746,11 +849,31 @@
     "cockpitTitle": "Compliance-Cockpit",
     "cockpitLead": "Einwilligungen, Aufbewahrungsfristen, Audit-Log und Datenresidenz - nach dem kasachstanischen Rechtsrahmen von 2026.",
     "items": {
-      "consent": { "title": "Einwilligungen", "state": "aktiv", "text": "Zweckgebundene Einwilligung je Verarbeitung, mit Speicherfrist und benanntem Verantwortlichen." },
-      "retention": { "title": "Aufbewahrung", "state": "aktiv", "text": "Aufbewahrungsfristen je Datenprodukt, danach automatische Löschung oder Anonymisierung." },
-      "audit": { "title": "Audit-Log", "state": "aktiv", "text": "Jede sicherheitsrelevante Aktion wird protokolliert - unveränderlich und je Ressource durchsuchbar." },
-      "residency": { "title": "Datenresidenz", "state": "offen", "text": "Digitalkodex Nr. 255-VIII schränkt die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Hosting-Standort ist zu prüfen." },
-      "ai": { "title": "KI-Transparenz", "state": "offen", "text": "Gesetz Nr. 230-VIII: sichtbarer Transparenzhinweis und Einwilligung für den KI-Chat, Emotionsanalyse untersagt." }
+      "consent": {
+        "title": "Einwilligungen",
+        "state": "aktiv",
+        "text": "Zweckgebundene Einwilligung je Verarbeitung, mit Speicherfrist und benanntem Verantwortlichen."
+      },
+      "retention": {
+        "title": "Aufbewahrung",
+        "state": "aktiv",
+        "text": "Aufbewahrungsfristen je Datenprodukt, danach automatische Löschung oder Anonymisierung."
+      },
+      "audit": {
+        "title": "Audit-Log",
+        "state": "aktiv",
+        "text": "Jede sicherheitsrelevante Aktion wird protokolliert - unveränderlich und je Ressource durchsuchbar."
+      },
+      "residency": {
+        "title": "Datenresidenz",
+        "state": "offen",
+        "text": "Digitalkodex Nr. 255-VIII schränkt die Speicherung bestimmter Datenprodukte außerhalb Kasachstans ein. Hosting-Standort ist zu prüfen."
+      },
+      "ai": {
+        "title": "KI-Transparenz",
+        "state": "offen",
+        "text": "Gesetz Nr. 230-VIII: sichtbarer Transparenzhinweis und Einwilligung für den KI-Chat, Emotionsanalyse untersagt."
+      }
     },
     "integrationTitle": "Staatliche Integrationen",
     "integrationLead": "Ein Konnektor je Zielsystem mit Statusrückmeldung. Die Buchhaltung bleibt bei einer im Land etablierten Lösung.",

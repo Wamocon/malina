@@ -51,39 +51,43 @@ async function main() {
 
   for (const eintrag of demoBenutzer) {
     const vorhanden = await findeBenutzer(eintrag.email);
+    let benutzerId = vorhanden?.id;
 
     if (vorhanden) {
       const { error } = await admin.auth.admin.updateUserById(vorhanden.id, {
         password: demoPasswort,
         email_confirm: true,
-        user_metadata: { role: eintrag.role, full_name: eintrag.full_name },
+        // Die Rolle steht in app_metadata: nur der service_role-Schluessel darf
+        // sie setzen. user_metadata waere vom Anmeldenden frei waehlbar.
+        app_metadata: { role: eintrag.role },
+        user_metadata: { full_name: eintrag.full_name },
       });
       if (error) throw error;
-
-      // Der Trigger greift nur beim INSERT - beim Update das Profil nachziehen.
-      const { error: profilFehler } = await admin
-        .from("profiles")
-        .update({
-          role: eintrag.role,
-          full_name: eintrag.full_name,
-          email: eintrag.email,
-        })
-        .eq("auth_user_id", vorhanden.id);
-      if (profilFehler) throw profilFehler;
-
       aktualisiert += 1;
       console.log(`AKTUALISIERT  ${eintrag.email.padEnd(26)} ${eintrag.role}`);
     } else {
-      const { error } = await admin.auth.admin.createUser({
+      const { data, error } = await admin.auth.admin.createUser({
         email: eintrag.email,
         password: demoPasswort,
         email_confirm: true,
-        user_metadata: { role: eintrag.role, full_name: eintrag.full_name },
+        app_metadata: { role: eintrag.role },
+        user_metadata: { full_name: eintrag.full_name },
       });
       if (error) throw error;
+      benutzerId = data.user.id;
       angelegt += 1;
       console.log(`ANGELEGT      ${eintrag.email.padEnd(26)} ${eintrag.role}`);
     }
+
+    // Der Profil-Trigger vergibt beim INSERT in auth.users die niedrigste Rolle,
+    // weil GoTrue die app_metadata erst danach schreibt. Die vorgesehene Rolle
+    // wird deshalb hier gesetzt - ueber den service_role-Schluessel, den nur der
+    // Server hat.
+    const { error: profilFehler } = await admin
+      .from("profiles")
+      .update({ role: eintrag.role, full_name: eintrag.full_name, email: eintrag.email })
+      .eq("auth_user_id", benutzerId);
+    if (profilFehler) throw profilFehler;
   }
 
   // Die Brigade-Rolle bekommt eine echte Brigadenzuordnung, damit die
