@@ -16,6 +16,7 @@
   "nav": {
     "platformSubtitle": "Raspberry plantation management",
     "activePersona": "Active role (demo)",
+    "activeRole": "Signed in as",
     "overview": "Overview",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -45,21 +46,51 @@
     "berryTitle": "The most delicate berry in the fresh-produce range",
     "berryLead": "It has no protective shell, is hollow inside and highly prone to grey mould. Software alone saves no berry - but it runs exactly the hour, the rotation and the records that the price depends on.",
     "berryPoints": {
-      "schale": { "title": "No protective shell", "text": "Unrefrigerated, the raspberry is no longer marketable after about a day. Properly pre-cooled it keeps two to three days, up to five with excellent handling." },
-      "kuehlung": { "title": "60 minutes to cooling", "text": "No more than 60 minutes may pass between picking and cooling. Break that limit and every further measure is worthless." },
-      "umpacken": { "title": "Pick straight into the retail punnet", "text": "The retail-ready punnet is made in the picker's hand. Any repacking or re-sorting destroys the goods." },
-      "feld": { "title": "Quality is decided in the field", "text": "The quality call happens at the picker. It has to be captured and measured there, not at a central sorting station." },
-      "rhythmus": { "title": "A conveyor belt, not a peak", "text": "Everbearing varieties bear from August to the first frost. Every row block is picked every two to three days, over three to eight weeks." },
-      "schaden": { "title": "One berry devalues the punnet", "text": "A single leaking or damaged berry makes the whole punnet unsellable. A pure piece rate is therefore value-destroying." }
+      "schale": {
+        "title": "No protective shell",
+        "text": "Unrefrigerated, the raspberry is no longer marketable after about a day. Properly pre-cooled it keeps two to three days, up to five with excellent handling."
+      },
+      "kuehlung": {
+        "title": "60 minutes to cooling",
+        "text": "No more than 60 minutes may pass between picking and cooling. Break that limit and every further measure is worthless."
+      },
+      "umpacken": {
+        "title": "Pick straight into the retail punnet",
+        "text": "The retail-ready punnet is made in the picker's hand. Any repacking or re-sorting destroys the goods."
+      },
+      "feld": {
+        "title": "Quality is decided in the field",
+        "text": "The quality call happens at the picker. It has to be captured and measured there, not at a central sorting station."
+      },
+      "rhythmus": {
+        "title": "A conveyor belt, not a peak",
+        "text": "Everbearing varieties bear from August to the first frost. Every row block is picked every two to three days, over three to eight weeks."
+      },
+      "schaden": {
+        "title": "One berry devalues the punnet",
+        "text": "A single leaking or damaged berry makes the whole punnet unsellable. A pure piece rate is therefore value-destroying."
+      }
     },
     "berryQuote": "A peak you survive with many hands. A conveyor belt over six weeks you survive only with a plan.",
     "spreadEyebrow": "The price spread is the business case",
     "spreadTitle": "Between loose ware and premium lies a factor of 2.3",
     "spreadLead": "The Almaty market pays about 1,500 tenge per kilogram for loose fresh ware off the field, and up to 3,500 tenge for ware picked and marketed on the same day. The difference is not made in the field.",
     "spreadTiers": {
-      "lose": { "label": "Loose fresh ware off the field", "price": "1,500 – 1,600 ₸/kg", "note": "Sold from the field and via classifieds. Impossible to undercut on price." },
-      "schale": { "label": "Punnet ware, tunnel / greenhouse", "price": "≈ 2,000 ₸/kg", "note": "Polka and Babje leto varieties. The punnet creates the premium, not the berry." },
-      "premium": { "label": "Premium, picked the same day", "price": "up to 3,500 ₸/kg", "note": "Marketed directly. Freshness, consistency and verifiability are the entire added value." }
+      "lose": {
+        "label": "Loose fresh ware off the field",
+        "price": "1,500 – 1,600 ₸/kg",
+        "note": "Sold from the field and via classifieds. Impossible to undercut on price."
+      },
+      "schale": {
+        "label": "Punnet ware, tunnel / greenhouse",
+        "price": "≈ 2,000 ₸/kg",
+        "note": "Polka and Babje leto varieties. The punnet creates the premium, not the berry."
+      },
+      "premium": {
+        "label": "Premium, picked the same day",
+        "price": "up to 3,500 ₸/kg",
+        "note": "Marketed directly. Freshness, consistency and verifiability are the entire added value."
+      }
     },
     "spreadFactor": "≈ 4 – 5 M ₸",
     "spreadFactorText": "That much extra revenue per season comes from every 10-percentage-point shift of volume into the upper price segment - at three hectares. The lever is cooling time, punnet quality, delivery reliability and verifiability.",
@@ -67,21 +98,48 @@
     "proofTitle": "An unbroken chain of evidence for every delivery",
     "proofLead": "The farm that is the only one able to trace every delivery back to the row block, the cooling time and the person becomes the standard against which trade measures the others.",
     "proofSteps": {
-      "kuehlkurve": { "title": "Cooling curve", "text": "Time and temperature from picking to pre-cooling, a hard 60-minute limit, temperature logger all the way to the client." },
-      "charge": { "title": "Batch", "text": "Every crate carries an identifier assigned in the field and belongs to exactly one batch - from the crate to the invoice." },
-      "herkunftsblock": { "title": "Source block", "text": "Row block, variety and harvest day as cost object and origin declaration per batch." },
-      "pfluecker": { "title": "Picker", "text": "Volume, row block, time and person are captured in one scan when the crate is handed over." },
-      "behandlung": { "title": "Treatment record", "text": "Every plant-protection treatment locks the row block automatically until the pre-harvest interval expires. Residue proof per batch at the press of a button." }
+      "kuehlkurve": {
+        "title": "Cooling curve",
+        "text": "Time and temperature from picking to pre-cooling, a hard 60-minute limit, temperature logger all the way to the client."
+      },
+      "charge": {
+        "title": "Batch",
+        "text": "Every crate carries an identifier assigned in the field and belongs to exactly one batch - from the crate to the invoice."
+      },
+      "herkunftsblock": {
+        "title": "Source block",
+        "text": "Row block, variety and harvest day as cost object and origin declaration per batch."
+      },
+      "pfluecker": {
+        "title": "Picker",
+        "text": "Volume, row block, time and person are captured in one scan when the crate is handed over."
+      },
+      "behandlung": {
+        "title": "Treatment record",
+        "text": "Every plant-protection treatment locks the row block automatically until the pre-harvest interval expires. Residue proof per batch at the press of a button."
+      }
     },
     "proofClosing": "On a complaint it can be established within seconds which block, which person and which cooling time the ware came from.",
     "leversEyebrow": "The path to market leadership",
     "leversTitle": "Four levers that Malina feeds",
     "leversLead": "Each lever stands on its own, but they build on each other. Without the first, the other three are worthless.",
     "leverItems": {
-      "stunde": { "title": "The hour after picking", "text": "Fixed collection rounds, pre-cooling to 0 – 1 degree, timing with a 60-minute threshold. The price difference collapses in the first hour on the field, not in the sales conversation." },
-      "herbstfenster": { "title": "The autumn window", "text": "With everbearing varieties the autumn yield is the main yield, and regional supply is thin. The rotation plan holds picking discipline over six weeks - one missed round destroys the block for that cycle." },
-      "zugang": { "title": "Traceability as an access advantage", "text": "Large retail chains only take on verifiable suppliers. Anyone who can show the chain from crate to invoice becomes reachable for these buyers in the first place. The regulatory burden turns into an advantage." },
-      "aggregation": { "title": "Aggregation instead of buying land", "text": "Own harvest and buy-in from neighbouring farms under one brand, one quality class and continuous traceability - with separate batch tracking per farm. Growth without buying land." }
+      "stunde": {
+        "title": "The hour after picking",
+        "text": "Fixed collection rounds, pre-cooling to 0 – 1 degree, timing with a 60-minute threshold. The price difference collapses in the first hour on the field, not in the sales conversation."
+      },
+      "herbstfenster": {
+        "title": "The autumn window",
+        "text": "With everbearing varieties the autumn yield is the main yield, and regional supply is thin. The rotation plan holds picking discipline over six weeks - one missed round destroys the block for that cycle."
+      },
+      "zugang": {
+        "title": "Traceability as an access advantage",
+        "text": "Large retail chains only take on verifiable suppliers. Anyone who can show the chain from crate to invoice becomes reachable for these buyers in the first place. The regulatory burden turns into an advantage."
+      },
+      "aggregation": {
+        "title": "Aggregation instead of buying land",
+        "text": "Own harvest and buy-in from neighbouring farms under one brand, one quality class and continuous traceability - with separate batch tracking per farm. Growth without buying land."
+      }
     },
     "zonesEyebrow": "Four areas, one farm",
     "zonesTitle": "Field, Yard, Office, Market",
@@ -94,12 +152,30 @@
     "complianceTitle": "The regulatory burden turns into an access advantage",
     "complianceLead": "In 2026 Kazakhstan reset the legal framework for digital matters in a series of laws. For a farm that fully meets these obligations, the burden becomes the entry ticket to organised trade.",
     "complianceItems": {
-      "steuer": { "title": "Tax Code 2026", "text": "VAT 16 %, registration threshold at 43.25 million tenge. A growing farm slips into the tax obligation - without a clean chain of records that is a risk." },
-      "warenbegleit": { "title": "Electronic goods-accompanying document", "text": "Since 01 Jan 2026 every delivery is documented electronically via the ЭСФ system. The accompanying document is the central goods and accounting record, paper only on failure." },
-      "ki": { "title": "AI Act No. 230-VIII", "text": "The AI chat needs a visible transparency notice, purpose-bound consent, logging and escalation to a human. Emotion analysis is prohibited." },
-      "digitalkodex": { "title": "Digital Code No. 255-VIII", "text": "Restricts the storage of certain data products outside Kazakhstan. The hosting location is reviewed legally before going live." },
-      "datenschutz": { "title": "Tightened data-protection law", "text": "Since 24 Aug 2026: purpose-bound consent, retention periods, named controllers, encryption, multi-factor authentication, annual mandatory training." },
-      "esutd": { "title": "ЕСУТД employment-contract registration", "text": "The start, change and end of every seasonal contract is recorded in the unified system. Often not done for seasonal workers today - a risk of up to 2,000 MRP." }
+      "steuer": {
+        "title": "Tax Code 2026",
+        "text": "VAT 16 %, registration threshold at 43.25 million tenge. A growing farm slips into the tax obligation - without a clean chain of records that is a risk."
+      },
+      "warenbegleit": {
+        "title": "Electronic goods-accompanying document",
+        "text": "Since 01 Jan 2026 every delivery is documented electronically via the ЭСФ system. The accompanying document is the central goods and accounting record, paper only on failure."
+      },
+      "ki": {
+        "title": "AI Act No. 230-VIII",
+        "text": "The AI chat needs a visible transparency notice, purpose-bound consent, logging and escalation to a human. Emotion analysis is prohibited."
+      },
+      "digitalkodex": {
+        "title": "Digital Code No. 255-VIII",
+        "text": "Restricts the storage of certain data products outside Kazakhstan. The hosting location is reviewed legally before going live."
+      },
+      "datenschutz": {
+        "title": "Tightened data-protection law",
+        "text": "Since 24 Aug 2026: purpose-bound consent, retention periods, named controllers, encryption, multi-factor authentication, annual mandatory training."
+      },
+      "esutd": {
+        "title": "ЕСУТД employment-contract registration",
+        "text": "The start, change and end of every seasonal contract is recorded in the unified system. Often not done for seasonal workers today - a risk of up to 2,000 MRP."
+      }
     },
     "complianceClosing": "Large chains with their own supply chain only take on suppliers who can produce evidence. Compliance here is not a formality but the admission ticket.",
     "ctaTitle": "A tangible system instead of concept slides",
@@ -138,23 +214,51 @@
     "copyright": "© {year} WAMOCON GmbH",
     "madeBy": "Built in Germany"
   },
+  "auth": {
+    "title": "Sign in",
+    "lead": "Malina - ERP ecosystem for the raspberry farm",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in ...",
+    "error": {
+      "ungueltig": "Email or password is not correct.",
+      "unbekannt": "Sign-in failed. Please try again later.",
+      "eingabe": "Please fill in email and password."
+    },
+    "demoTitle": "Demo accounts",
+    "demoLead": "One account per role - so the permission logic can be demonstrated.",
+    "demoPassword": "Password for all accounts:",
+    "backToSite": "Back to the start page",
+    "demoModeTitle": "Demo mode without database",
+    "demoModeLead": "No Supabase environment is configured. The dashboard runs on sample data and the role can be switched freely.",
+    "toDashboard": "Go to dashboard",
+    "signOut": "Sign out"
+  },
   "dashboard": {
     "searchPlaceholder": "Search row block, batch, picker, document ...",
     "notifications": "Notifications",
     "open": "Open",
     "zoneEmpty": "No module in this zone is enabled for the active role.",
+    "dataSource": {
+      "db": "Live data",
+      "demo": "Sample data",
+      "dbHint": "Connected to the Supabase database, read under the RLS permissions of your role.",
+      "demoHint": "No database connection - the view shows the built-in sample data."
+    },
     "rbacHintLabel": "Roles",
-    "rbacHint": "Which modules are visible depends on the demo role selected above. Six core roles, from administration to the brigade in the field.",
+    "rbacHint": "Which modules are visible depends on the role of the signed-in account. Six core roles, from administration to the brigade in the field - the same role also governs read and write permissions in the database.",
     "home": {
       "eyebrow": "Farm management",
       "title": "Malina operations overview",
-      "description": "Aggregator, Almaty region. The prototype shows the structure and look of the first release - main functions as an operable demo, sub-functions as visible menu entries with a status.",
+      "description": "Aggregator, Almaty region. The main functions run against the database - with sign-in, role permissions and real write operations. Sub-functions remain visible menu entries with a status.",
       "kpiTitle": "14 baseline key figures",
       "kpiDescription": "To be signed off with the client as the baseline on 01 Oct 2026.",
       "placeholderBadge": "Placeholder values",
       "target": "Target",
       "zonesTitle": "The four zones",
       "zonesDescription": "The dashboard's navigation structure, organised like the target architecture.",
+      "dbCount": "{count} connected",
       "demoCount": "{count} demo",
       "wipCount": "{count} in development",
       "openZone": "Open zone",
@@ -178,11 +282,13 @@
         "docs": "Document management for spray records, contracts and ЕСУТД evidence",
         "i18n": "Multilingual interface in five languages",
         "kpi": "Dashboard skeleton with the 14 baseline key figures as tiles"
-      }
+      },
+      "milestoneBNote": "All main functions are connected to the database: sign-in, role permissions through row level security, location management, row block lock, picking task with photo proof and document storage. The sub-functions remain visible menu entries with a status, as planned."
     }
   },
   "roles": {
     "switcherHint": "Switch demo role - controls the visible navigation",
+    "viewAsHint": "View as role - changes the presentation only; write permissions still follow your profile",
     "admin": "Administration",
     "betriebsleitung": "Farm management",
     "buchhaltung": "Accounting",
@@ -204,6 +310,7 @@
     "neu-bauen": "Build new"
   },
   "reifegrad": {
+    "angebunden": "Database connected",
     "demo": "Demo operable",
     "in-entwicklung": "In development"
   },
@@ -216,7 +323,7 @@
   },
   "accessDenied": {
     "title": "The role {role} has no access to this module.",
-    "hint": "Switch the demo role at the top right to see the access.",
+    "hint": "These modules are reserved for other roles. Contact your administrator if you need access.",
     "back": "Back to overview"
   },
   "resourceLabels": {
@@ -246,20 +353,48 @@
     "abgeschlossen": "completed"
   },
   "kpis": {
-    "verlustquote": { "label": "Loss rate from picking to the client" },
-    "vermarktungsfaehig": { "label": "Share of marketable punnets" },
-    "zeitBisVorkuehlung": { "label": "Time from picking to pre-cooling" },
-    "zeitBisKunde": { "label": "Time from picking to the client" },
-    "pflueckleistung": { "label": "Picking output per person and hour" },
-    "pflueckStreuung": { "label": "Spread of picking output (best to weakest)" },
-    "pflueckintervall": { "label": "Picking interval kept per row block" },
-    "behandlungenWartezeit": { "label": "Treatments with the pre-harvest interval kept" },
-    "reklamationsquote": { "label": "Complaint rate" },
-    "liefertreue": { "label": "Delivery reliability (on time and complete)" },
-    "belegteVerkaeufe": { "label": "Share of documented sales (ЭСФ and accompanying document)" },
-    "deckungsbeitrag": { "label": "Contribution margin per kg" },
-    "esutdAbdeckung": { "label": "Seasonal-worker coverage in ЕСУТД" },
-    "websiteAnfragen": { "label": "Enquiries via the website per month" }
+    "verlustquote": {
+      "label": "Loss rate from picking to the client"
+    },
+    "vermarktungsfaehig": {
+      "label": "Share of marketable punnets"
+    },
+    "zeitBisVorkuehlung": {
+      "label": "Time from picking to pre-cooling"
+    },
+    "zeitBisKunde": {
+      "label": "Time from picking to the client"
+    },
+    "pflueckleistung": {
+      "label": "Picking output per person and hour"
+    },
+    "pflueckStreuung": {
+      "label": "Spread of picking output (best to weakest)"
+    },
+    "pflueckintervall": {
+      "label": "Picking interval kept per row block"
+    },
+    "behandlungenWartezeit": {
+      "label": "Treatments with the pre-harvest interval kept"
+    },
+    "reklamationsquote": {
+      "label": "Complaint rate"
+    },
+    "liefertreue": {
+      "label": "Delivery reliability (on time and complete)"
+    },
+    "belegteVerkaeufe": {
+      "label": "Share of documented sales (ЭСФ and accompanying document)"
+    },
+    "deckungsbeitrag": {
+      "label": "Contribution margin per kg"
+    },
+    "esutdAbdeckung": {
+      "label": "Seasonal-worker coverage in ЕСУТД"
+    },
+    "websiteAnfragen": {
+      "label": "Enquiries via the website per month"
+    }
   },
   "modules": {
     "standort": {
@@ -454,6 +589,164 @@
     },
     "note": "The retail-ready punnet is made in the picker's hand. The photo of the punnet stays on the task and feeds into the quality factor."
   },
+  "aktionen": {
+    "anlegen": "Create",
+    "speichern": "Save",
+    "freigeben": "Release",
+    "laeuft": "...",
+    "spalte": "Action",
+    "statusLabel": "Select status",
+    "faellig": "waiting period elapsed",
+    "resttage": "{tage} days left",
+    "gesperrtHinweis": "Release only after the waiting period",
+    "ok": {
+      "plantage": "Plantation \"{wert}\" created.",
+      "parzelle": "Field plot \"{wert}\" created.",
+      "reihengruppe": "Row group \"{wert}\" created.",
+      "reihenblock": "Row block {wert} created.",
+      "status": "Status of {wert} saved.",
+      "behandlung": "Treatment recorded - block locked until {wert}.",
+      "freigabe": "Row block {wert} released.",
+      "aufgabe": "Picking task {wert} created.",
+      "aufgabeStatus": "Task {wert} updated.",
+      "menge": "Quantity reported for {wert} - proof is under review.",
+      "beleg": "Photo proof uploaded.",
+      "dokument": "Document \"{wert}\" added."
+    },
+    "fehler": {
+      "eingabe": "Please fill in all required fields.",
+      "gesperrt": "Row block {wert} is locked for the waiting period - no picking task possible.",
+      "keineDatei": "Please select an image file.",
+      "zuGross": "The file is larger than 8 MB.",
+      "upload": "The photo could not be stored.",
+      "berechtigung": "Your role is not allowed to perform this action.",
+      "angemeldet": "Session expired. Please sign in again.",
+      "doppelt": "An entry with this identifier already exists.",
+      "bezug": "The selected reference record does not exist.",
+      "regel": "Not possible: the waiting period has not elapsed yet.",
+      "unbekannt": "Action failed. Details are in the server log."
+    }
+  },
+  "standortVerwaltung": {
+    "titel": "Manage locations",
+    "lead": "Create new levels. Every action is checked against the role permissions in the database and recorded in the audit log.",
+    "keinRecht": "Your role may read the location structure but not edit it. Creating and changing is reserved for administration and farm management.",
+    "plantage": {
+      "titel": "Plantation",
+      "lead": "Own area or an affiliated neighbouring farm."
+    },
+    "parzelle": {
+      "titel": "Field plot",
+      "lead": "Area within a plantation, usually assigned to one variety."
+    },
+    "reihengruppe": {
+      "titel": "Row group",
+      "lead": "Trellis rows of a plot sharing one orientation."
+    },
+    "reihenblock": {
+      "titel": "Row block",
+      "lead": "Smallest unit of the field map - the basis for harvest and lock."
+    },
+    "feld": {
+      "name": "Name",
+      "ort": "Location",
+      "typ": "Type",
+      "plantage": "Plantation",
+      "parzelle": "Field plot",
+      "reihengruppe": "Row group",
+      "sorte": "Variety",
+      "ohneSorte": "no variety assigned",
+      "flaeche": "Area in ha",
+      "spalier": "Trellis orientation",
+      "code": "Block identifier",
+      "laenge": "Length in m"
+    },
+    "typ": {
+      "eigen": "Own farm",
+      "nachbarbetrieb": "Neighbouring farm"
+    },
+    "leer": {
+      "parzellen": "No field plot created yet.",
+      "reihengruppen": "No row group created yet."
+    }
+  },
+  "dokumentKategorie": {
+    "spritzmittelprotokoll": "Spray record",
+    "esutd_nachweis": "ESUTD record",
+    "liefervertrag": "Supply contract",
+    "foerderdossier": "Subsidy dossier",
+    "zertifikat": "Certificate",
+    "sonstiges": "Other"
+  },
+  "dokumenteVerwaltung": {
+    "titel": "Add document",
+    "lead": "Metadata and optionally the file. Storage is private - files open through short-lived signed links only.",
+    "knopf": "Add document",
+    "dateiHinweis": "PDF or image, up to 16 MB. Without a file only the entry is created.",
+    "oeffnen": "Open",
+    "keineDatei": "no file",
+    "col": {
+      "datei": "File"
+    },
+    "feld": {
+      "name": "Name",
+      "kategorie": "Category",
+      "bezug": "Reference",
+      "stand": "As of",
+      "status": "Status",
+      "datei": "File"
+    }
+  },
+  "pflueckaufgabenVerwaltung": {
+    "ohneBrigade": "No brigade",
+    "platzhalterBild": "Placeholder image - no photo uploaded yet",
+    "neu": {
+      "titel": "New picking task",
+      "lead": "Row blocks under a waiting period are not offered - the database rejects them as well.",
+      "knopf": "Create task"
+    },
+    "menge": {
+      "knopf": "Report quantity and send to proof review"
+    },
+    "beleg": {
+      "knopf": "Upload photo proof"
+    },
+    "ablauf": {
+      "titel": "Task flow",
+      "lead": "Accept, pick, report the quantity, have the proof reviewed.",
+      "annehmen": "Accept task",
+      "starten": "Start picking"
+    },
+    "art": {
+      "schale": "Retail punnet",
+      "reihenblock": "Row block",
+      "steige": "Crate"
+    },
+    "feld": {
+      "block": "Row block",
+      "brigade": "Brigade",
+      "ohneBrigade": "no assignment",
+      "zielmenge": "Target quantity in kg",
+      "pfluecker": "Pickers",
+      "istMenge": "Actual quantity in kg",
+      "qualitaet": "Quality factor",
+      "art": "Proof type",
+      "datei": "Photo",
+      "hinweis": "Note",
+      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface"
+    }
+  },
+  "pflanzenschutzVerwaltung": {
+    "titel": "Record treatment",
+    "lead": "The waiting period comes from the product catalogue - the row block is locked automatically.",
+    "erfassen": "Record treatment",
+    "hinweis": "The lock is set by a database trigger and cannot be bypassed by changing the status. The release button appears only once the waiting period has elapsed.",
+    "feld": {
+      "block": "Row block",
+      "mittel": "Plant protection product",
+      "datum": "Treated on"
+    }
+  },
   "standortDemo": {
     "statsTitle": "Hierarchy at a glance",
     "statsLead": "Four levels below the farm: plantation, field plot, row group, row block.",
@@ -556,11 +849,31 @@
     "cockpitTitle": "Compliance cockpit",
     "cockpitLead": "Consents, retention periods, the audit log and data residency - under the 2026 Kazakh legal framework.",
     "items": {
-      "consent": { "title": "Consents", "state": "active", "text": "Purpose-bound consent per processing, with a retention period and a named controller." },
-      "retention": { "title": "Retention", "state": "active", "text": "Retention periods per data product, then automatic deletion or anonymisation." },
-      "audit": { "title": "Audit log", "state": "active", "text": "Every security-relevant action is logged - immutable and searchable per resource." },
-      "residency": { "title": "Data residency", "state": "open", "text": "Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location must be reviewed." },
-      "ai": { "title": "AI transparency", "state": "open", "text": "Law No. 230-VIII: a visible transparency notice and consent for the AI chat, emotion analysis prohibited." }
+      "consent": {
+        "title": "Consents",
+        "state": "active",
+        "text": "Purpose-bound consent per processing, with a retention period and a named controller."
+      },
+      "retention": {
+        "title": "Retention",
+        "state": "active",
+        "text": "Retention periods per data product, then automatic deletion or anonymisation."
+      },
+      "audit": {
+        "title": "Audit log",
+        "state": "active",
+        "text": "Every security-relevant action is logged - immutable and searchable per resource."
+      },
+      "residency": {
+        "title": "Data residency",
+        "state": "open",
+        "text": "Digital Code No. 255-VIII restricts storage of certain data products outside Kazakhstan. The hosting location must be reviewed."
+      },
+      "ai": {
+        "title": "AI transparency",
+        "state": "open",
+        "text": "Law No. 230-VIII: a visible transparency notice and consent for the AI chat, emotion analysis prohibited."
+      }
     },
     "integrationTitle": "State integrations",
     "integrationLead": "One connector per target system with status feedback. Accounting stays with a solution established in the country.",

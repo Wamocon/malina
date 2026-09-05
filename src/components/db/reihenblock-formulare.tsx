@@ -1,0 +1,139 @@
+"use client";
+
+import { useActionState } from "react";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { ShieldCheck, Sprout } from "lucide-react";
+import {
+  behandlungErfassen,
+  sperreFreigeben,
+  statusSetzen,
+} from "@/lib/actions/reihenbloecke";
+import { leer } from "@/lib/actions/status";
+import {
+  AktionsMeldung,
+  Auswahl,
+  Feld,
+  FormularKarte,
+  SubmitKnopf,
+} from "@/components/db/formular-kit";
+import { reihenblockStatus } from "@/lib/domain/reihenbloecke";
+import type { AuswahlOption } from "@/components/db/standort-formulare";
+
+function PfadFeld() {
+  const pfad = usePathname();
+  return <input type="hidden" name="pfad" value={pfad} />;
+}
+
+// Statuswechsel direkt in der Tabellenzeile. Die Datenbank laesst den Wechsel
+// weg von "wartezeitgesperrt" nur zu, wenn keine Wartezeit mehr laeuft.
+export function StatusWechsel({
+  id,
+  code,
+  status,
+}: {
+  id: string;
+  code: string;
+  status: string;
+}) {
+  const [ergebnis, action] = useActionState(statusSetzen, leer);
+  const t = useTranslations("reihenblockStatus");
+  const a = useTranslations("aktionen");
+
+  return (
+    <form action={action} className="space-y-1">
+      <PfadFeld />
+      <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="code" value={code} />
+      <div className="flex items-center gap-1.5">
+        <select
+          name="status"
+          defaultValue={status}
+          aria-label={a("statusLabel")}
+          className="h-8 rounded-lg border border-border bg-background px-2 text-[11px] font-semibold text-foreground outline-none transition focus:border-primary"
+        >
+          {reihenblockStatus.map((wert) => (
+            <option key={wert} value={wert}>
+              {t(wert)}
+            </option>
+          ))}
+        </select>
+        <SubmitKnopf label={a("speichern")} variante="leise" />
+      </div>
+      <AktionsMeldung status={ergebnis} />
+    </form>
+  );
+}
+
+// Freigabe nach Ablauf der Wartezeit - ruft die Datenbankfunktion
+// public.reihenblock_freigeben() auf.
+export function FreigabeKnopf({ id }: { id: string }) {
+  const [ergebnis, action] = useActionState(sperreFreigeben, leer);
+  const a = useTranslations("aktionen");
+
+  return (
+    <form action={action} className="space-y-1">
+      <PfadFeld />
+      <input type="hidden" name="id" value={id} />
+      <button
+        type="submit"
+        className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-success px-2.5 text-[11px] font-bold text-white transition hover:brightness-110"
+      >
+        <ShieldCheck className="h-3.5 w-3.5" />
+        {a("freigeben")}
+      </button>
+      <AktionsMeldung status={ergebnis} />
+    </form>
+  );
+}
+
+// Neue Pflanzenschutzbehandlung: sperrt den Block ueber den Datenbank-Trigger
+// automatisch bis zum Ablauf der mittelspezifischen Wartezeit.
+export function BehandlungFormular({
+  bloecke,
+  mittel,
+  heute,
+}: {
+  bloecke: AuswahlOption[];
+  mittel: AuswahlOption[];
+  heute: string;
+}) {
+  const [ergebnis, action] = useActionState(behandlungErfassen, leer);
+  const t = useTranslations("pflanzenschutzVerwaltung");
+
+  return (
+    <FormularKarte titel={t("titel")} beschreibung={t("lead")}>
+      <form action={action} className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
+        <PfadFeld />
+        <Auswahl
+          label={t("feld.block")}
+          name="reihenblock_id"
+          options={bloecke}
+          required
+        />
+        <Auswahl
+          label={t("feld.mittel")}
+          name="psm_mittel_id"
+          options={mittel}
+          required
+        />
+        <Feld
+          label={t("feld.datum")}
+          name="behandelt_am"
+          type="date"
+          defaultValue={heute}
+        />
+        <div className="flex items-end">
+          <SubmitKnopf label={t("erfassen")} />
+        </div>
+        <div className="sm:col-span-2 lg:col-span-4">
+          <AktionsMeldung status={ergebnis} />
+          <p className="mt-2 flex items-start gap-1.5 text-[11px] leading-4 text-muted-foreground">
+            <Sprout className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+            {t("hinweis")}
+          </p>
+        </div>
+      </form>
+    </FormularKarte>
+  );
+}

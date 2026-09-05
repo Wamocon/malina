@@ -7,9 +7,11 @@ export type ZoneKey = "feld" | "hof" | "buero" | "markt";
 export type Klassifikation = "uebernehmen" | "anpassen" | "neu-bauen";
 
 // Reifegrad im Prototyp:
-//  - "demo": Hauptfunktion, im Prototyp als bedienbare Mock-Oberflaeche gebaut
+//  - "angebunden": Hauptfunktion, an die Datenbank angebunden, mit echten
+//    Schreibvorgaengen unter RLS (Meilenstein B)
+//  - "demo": Hauptfunktion, als bedienbare Mock-Oberflaeche gebaut
 //  - "in-entwicklung": Unterfunktion, sichtbarer Menuepunkt mit Status-Badge
-export type Reifegrad = "demo" | "in-entwicklung";
+export type Reifegrad = "angebunden" | "demo" | "in-entwicklung";
 
 export interface ModuleDef {
   key: string;
@@ -44,7 +46,7 @@ export const modules: ModuleDef[] = [
     icon: "map",
     resource: "standort",
     klassifikation: "anpassen",
-    reifegrad: "demo",
+    reifegrad: "angebunden",
   },
   {
     key: "reihenbloecke",
@@ -53,7 +55,7 @@ export const modules: ModuleDef[] = [
     icon: "grid-3x3",
     resource: "reihenbloecke",
     klassifikation: "anpassen",
-    reifegrad: "demo",
+    reifegrad: "angebunden",
   },
   {
     key: "pflueckaufgaben",
@@ -62,7 +64,7 @@ export const modules: ModuleDef[] = [
     icon: "clipboard-check",
     resource: "pflueckaufgaben",
     klassifikation: "uebernehmen",
-    reifegrad: "demo",
+    reifegrad: "angebunden",
   },
   {
     key: "pflanzenschutz",
@@ -174,7 +176,7 @@ export const modules: ModuleDef[] = [
     icon: "folder-lock",
     resource: "dokumente",
     klassifikation: "uebernehmen",
-    reifegrad: "demo",
+    reifegrad: "angebunden",
   },
   {
     key: "compliance",

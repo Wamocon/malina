@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 288" role="img" aria-label="Platzhalter Reihenblock am Spalier">
+  <defs>
+    <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a0a14"/>
+      <stop offset="1" stop-color="#183018"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="288" fill="url(#himmel)"/>
+  <g stroke="#ffffff" stroke-opacity="0.06">
+    <path d="M0 72h640M0 144h640M0 216h640M160 0v288M320 0v288M480 0v288"/>
+  </g>
+  <!-- Spalierreihe: Pfosten, Draehte, Ruten -->
+  <g stroke="#f7e2e8" stroke-opacity="0.35" stroke-width="3">
+    <path d="M0 118h640M0 164h640"/>
+  </g>
+  <g stroke="#f7e2e8" stroke-opacity="0.55" stroke-width="6" stroke-linecap="round">
+    <path d="M96 82v152M320 72v162M544 82v152"/>
+  </g>
+  <g fill="#4f7c3a" fill-opacity="0.85">
+    <path d="M60 234c0-50 26-92 60-92s60 42 60 92z"/>
+    <path d="M260 234c0-56 28-102 62-102s62 46 62 102z"/>
+    <path d="M470 234c0-50 26-92 60-92s60 42 60 92z"/>
+  </g>
+  <g fill="#b11742">
+    <circle cx="112" cy="186" r="9"/><circle cx="142" cy="208" r="8"/>
+    <circle cx="300" cy="178" r="10"/><circle cx="336" cy="202" r="9"/>
+    <circle cx="512" cy="188" r="9"/><circle cx="546" cy="210" r="8"/>
+  </g>
+  <rect x="0" y="234" width="640" height="54" fill="#2f1b12" fill-opacity="0.8"/>
+</svg>

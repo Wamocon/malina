@@ -111,6 +111,262 @@ function check(name, ok, detail = "") {
   }
 }
 
+// --- 4. Auth: Anmeldung und Profilrolle ------------------------------------
+// Voraussetzung: `npm run db:seed-auth` hat die sechs Demo-Konten angelegt.
+async function anmelden(email) {
+  const client = createClient(url, anonKey, { auth: { persistSession: false } });
+  const { error } = await client.auth.signInWithPassword({
+    email,
+    password: "MalinaDemo2026!",
+  });
+  if (error) return { client: null, fehler: error.message };
+  return { client, fehler: null };
+}
+
+const { client: leitung, fehler: leitungFehler } = await anmelden("leitung@malina.demo");
+const { client: brigade, fehler: brigadeFehler } = await anmelden("brigade@malina.demo");
+
+check("Auth: Betriebsleitung meldet sich an", !!leitung, leitungFehler ?? "");
+check("Auth: Brigade meldet sich an", !!brigade, brigadeFehler ?? "");
+
+if (leitung && brigade) {
+  const {
+    data: { user: leitungUser },
+  } = await leitung.auth.getUser();
+  const { data: profil } = await leitung
+    .from("profiles")
+    .select("full_name, role")
+    .eq("auth_user_id", leitungUser.id)
+    .maybeSingle();
+  check(
+    "Auth: Profil traegt die Rolle betriebsleitung",
+    profil?.role === "betriebsleitung",
+    `Rolle: ${profil?.role}`,
+  );
+
+  // --- 5. RLS-Schreibrechte je Rolle ---------------------------------------
+  const { data: block } = await admin
+    .from("reihenbloecke")
+    .select("id, code, status")
+    .neq("status", "wartezeitgesperrt")
+    .limit(1)
+    .single();
+
+  const { data: brigadeUpdate, error: brigadeUpdateFehler } = await brigade
+    .from("reihenbloecke")
+    .update({ status: "ruhend" })
+    .eq("id", block.id)
+    .select("id");
+  check(
+    "RLS: Brigade darf den Reihenblockstatus nicht aendern",
+    !brigadeUpdateFehler && (brigadeUpdate?.length ?? 0) === 0,
+    brigadeUpdateFehler?.message ?? `geaenderte Zeilen: ${brigadeUpdate?.length}`,
+  );
+
+  const zielStatus = block.status === "erntereif" ? "bepflanzt" : "erntereif";
+  const { data: leitungUpdate, error: leitungUpdateFehler } = await leitung
+    .from("reihenbloecke")
+    .update({ status: zielStatus })
+    .eq("id", block.id)
+    .select("id, status");
+  check(
+    "RLS: Betriebsleitung darf den Reihenblockstatus aendern",
+    !leitungUpdateFehler && leitungUpdate?.[0]?.status === zielStatus,
+    leitungUpdateFehler?.message ?? "",
+  );
+  await admin.from("reihenbloecke").update({ status: block.status }).eq("id", block.id);
+
+  const { data: mittel } = await admin
+    .from("psm_mittel")
+    .select("id, wartezeit_tage")
+    .limit(1)
+    .single();
+
+  const { error: brigadeBehandlungFehler } = await brigade
+    .from("pflanzenschutz_behandlungen")
+    .insert({
+      reihenblock_id: block.id,
+      psm_mittel_id: mittel.id,
+      behandelt_am: new Date().toISOString().slice(0, 10),
+      wartezeit_tage: mittel.wartezeit_tage,
+    });
+  check(
+    "RLS: Brigade darf keine Behandlung erfassen",
+    brigadeBehandlungFehler?.code === "42501",
+    brigadeBehandlungFehler?.code ?? "kein Fehler",
+  );
+
+  // --- 6. Sperrlogik in der Datenbank --------------------------------------
+  const { data: behandlung, error: behandlungFehler } = await leitung
+    .from("pflanzenschutz_behandlungen")
+    .insert({
+      reihenblock_id: block.id,
+      psm_mittel_id: mittel.id,
+      behandelt_am: new Date().toISOString().slice(0, 10),
+      wartezeit_tage: mittel.wartezeit_tage,
+    })
+    .select("id, freigabe_am")
+    .single();
+  check(
+    "Sperre: Betriebsleitung erfasst eine Behandlung",
+    !behandlungFehler && !!behandlung?.freigabe_am,
+    behandlungFehler?.message ?? "",
+  );
+
+  const { error: entsperrFehler } = await leitung
+    .from("reihenbloecke")
+    .update({ status: "erntereif" })
+    .eq("id", block.id)
+    .select("id");
+  check(
+    "Sperre: vorzeitiger Statuswechsel wird abgelehnt",
+    entsperrFehler?.code === "23514",
+    entsperrFehler?.code ?? "kein Fehler",
+  );
+
+  const { error: aufgabeFehler } = await leitung.from("pflueckaufgaben").insert({
+    code: `__it_${Date.now()}`,
+    reihenblock_id: block.id,
+    zielmenge_kg: 10,
+  });
+  check(
+    "Sperre: keine Pflueckaufgabe auf gesperrtem Reihenblock",
+    aufgabeFehler?.code === "23514",
+    aufgabeFehler?.code ?? "kein Fehler",
+  );
+
+  const { error: rpcFehler } = await leitung.rpc("reihenblock_freigeben", {
+    p_block: block.id,
+    p_status: "erntereif",
+  });
+  check(
+    "Sperre: Freigabe vor Ablauf der Wartezeit wird abgelehnt",
+    rpcFehler?.code === "23514",
+    rpcFehler?.code ?? "kein Fehler",
+  );
+
+  // Wartezeit rueckdatieren, damit die regulaere Freigabe pruefbar wird.
+  await admin
+    .from("pflanzenschutz_behandlungen")
+    .update({ behandelt_am: "2026-01-01" })
+    .eq("id", behandlung.id);
+
+  const { error: freigabeFehler } = await leitung.rpc("reihenblock_freigeben", {
+    p_block: block.id,
+    p_status: "erntereif",
+  });
+  const { data: nachFreigabe } = await admin
+    .from("reihenbloecke")
+    .select("status")
+    .eq("id", block.id)
+    .single();
+  check(
+    "Sperre: Freigabe nach Ablauf der Wartezeit setzt den Status zurueck",
+    !freigabeFehler && nachFreigabe?.status === "erntereif",
+    freigabeFehler?.message ?? `Status: ${nachFreigabe?.status}`,
+  );
+
+  // --- 7. Haertung nach dem Sicherheitsaudit vom 05.09.2026 ---------------
+  // Jeder dieser Faelle war vor der Migration 20260905160000_haerten.sql offen.
+
+  const { data: personal } = await anon.from("pfluecker").select("name, ausweis");
+  check(
+    "Haertung: anon liest keine Pflueckernamen",
+    (personal?.length ?? 0) === 0,
+    `sichtbare Zeilen: ${personal?.length}`,
+  );
+
+  const { data: nachweise } = await anon.from("dokumente").select("name");
+  check(
+    "Haertung: anon liest keine Dokumente",
+    (nachweise?.length ?? 0) === 0,
+    `sichtbare Zeilen: ${nachweise?.length}`,
+  );
+
+  const { data: aufgabe } = await admin
+    .from("pflueckaufgaben")
+    .select("id, code, status, qualitaetsfaktor")
+    .eq("status", "beleg_pruefung")
+    .limit(1)
+    .maybeSingle();
+
+  if (aufgabe) {
+    const { error: abschlussFehler } = await brigade
+      .from("pflueckaufgaben")
+      .update({ status: "abgeschlossen" })
+      .eq("id", aufgabe.id);
+    check(
+      "Haertung: Brigade schliesst die eigene Aufgabe nicht ab",
+      !!abschlussFehler,
+      abschlussFehler?.code ?? "kein Fehler",
+    );
+
+    const { error: faktorFehler } = await brigade
+      .from("pflueckaufgaben")
+      .update({ qualitaetsfaktor: 1.5 })
+      .eq("id", aufgabe.id);
+    check(
+      "Haertung: Brigade setzt keinen Qualitaetsfaktor",
+      !!faktorFehler,
+      faktorFehler?.code ?? "kein Fehler",
+    );
+  }
+
+  // Nachtraeglich gespritzt: die laufende Aufgabe darf nicht weiterlaufen.
+  const { data: laufend } = await admin
+    .from("pflueckaufgaben")
+    .select("id, reihenblock_id, ist_menge_kg, status")
+    .neq("status", "abgeschlossen")
+    .limit(1)
+    .maybeSingle();
+
+  if (laufend) {
+    const { data: sperrBehandlung } = await admin
+      .from("pflanzenschutz_behandlungen")
+      .insert({
+        reihenblock_id: laufend.reihenblock_id,
+        psm_mittel_id: mittel.id,
+        behandelt_am: new Date().toISOString().slice(0, 10),
+        wartezeit_tage: mittel.wartezeit_tage,
+      })
+      .select("id")
+      .single();
+
+    const { error: weiterFehler } = await leitung
+      .from("pflueckaufgaben")
+      .update({ ist_menge_kg: Number(laufend.ist_menge_kg) + 5 })
+      .eq("id", laufend.id);
+    check(
+      "Haertung: laufende Aufgabe stoppt bei nachtraeglicher Behandlung",
+      weiterFehler?.code === "23514",
+      weiterFehler?.code ?? "kein Fehler",
+    );
+
+    if (sperrBehandlung?.id) {
+      await admin.from("pflanzenschutz_behandlungen").delete().eq("id", sperrBehandlung.id);
+      await admin
+        .from("reihenbloecke")
+        .update({ status: "erntereif" })
+        .eq("id", laufend.reihenblock_id);
+    }
+  }
+
+  const { data: gefaelscht } = await leitung
+    .from("audit_events")
+    .insert({ actor: "Jemand ganz anderes", aktion: "__it_test", ressource: "test" })
+    .select("actor")
+    .maybeSingle();
+  check(
+    "Haertung: Audit-Urheber wird gesetzt, nicht uebernommen",
+    !!gefaelscht && gefaelscht.actor !== "Jemand ganz anderes",
+    `actor: ${gefaelscht?.actor}`,
+  );
+
+  // Cleanup: Testbehandlung entfernen, Ursprungsstatus wiederherstellen.
+  await admin.from("pflanzenschutz_behandlungen").delete().eq("id", behandlung.id);
+  await admin.from("reihenbloecke").update({ status: block.status }).eq("id", block.id);
+}
+
 console.log("");
 if (failures > 0) {
   console.error(`${failures} Test(s) fehlgeschlagen.`);

@@ -379,7 +379,7 @@
       <div class="cover-sub">Betriebssteuerung f&uuml;r einen Himbeerbetrieb im Umland Almaty &ndash; Blaupause auf Basis des 1&Ccedil;at&#305;-ERP-&Ouml;kosystems</div>
       <div class="cover-meta">
         <div><div class="meta-label">Version</div><div class="meta-value">0.1.0</div></div>
-        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein A)</span></div></div>
+        <div><div class="meta-label">Status</div><div class="meta-value"><span class="badge badge-primary">Prototyp (Meilenstein B)</span></div></div>
         <div><div class="meta-label">Sprachen</div><div class="meta-value">DE &middot; EN &middot; TR &middot; KK &middot; RU</div></div>
         <div><div class="meta-label">Datum</div><div class="meta-value">September 2026</div></div>
       </div>
@@ -404,10 +404,14 @@
       <div class="warn-box">
         <div class="warn-box-title">Prototyp-Hinweis</div>
         <p>
-          Dieser Stand ist ein interner Proof-of-Concept. Hauptfunktionen sind als bedienbare
-          Demo-Oberfl&auml;che gebaut, Unterfunktionen als sichtbare Men&uuml;punkte mit Status
-          &bdquo;in Entwicklung&ldquo;. Es gibt keine Datenbank, keine Auth und keine echte
-          Datenverarbeitung. Alle angezeigten Werte sind Platzhalter.
+          Dieser Stand ist ein interner Proof-of-Concept. Mit Meilenstein B sind die
+          Hauptfunktionen an die Datenbank angebunden: echte Anmeldung, Rollenrechte
+          &uuml;ber Row Level Security, Standortverwaltung, Reihenblock-Sperre,
+          Pfl&uuml;ckaufgabe mit Fotobeleg und Dokumentenablage. Unterfunktionen bleiben
+          sichtbare Men&uuml;punkte mit Status &bdquo;in Entwicklung&ldquo;. Die Kennzahlenwerte
+          sind weiterhin Platzhalter &ndash; die Berechnung folgt mit den Erntedaten der
+          ersten gemessenen Saison. Ohne Supabase-Umgebung l&auml;uft der Prototyp
+          unver&auml;ndert im Demo-Modus mit Beispieldaten.
         </p>
       </div>
       <div class="feature-grid">
@@ -455,15 +459,15 @@
       <p>
         Gegliedert wie die Zielarchitektur im Pitch-Dossier: Feld, Hof, B&uuml;ro, Markt.
         Aufruf im Dashboard &uuml;ber die Seitenleiste. Sichtbarkeit je Modul richtet sich
-        nach der aktiven Demo-Rolle (RBAC).
+        nach der Rolle des angemeldeten Kontos (RBAC).
       </p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Zone</th><th>Modul</th><th>Reifegrad</th><th>Klassifikation</th></tr></thead>
           <tbody>
-            <tr><td rowspan="6">Feld</td><td>Standort-Hierarchie</td><td class="yes">Demo</td><td>Anpassen</td></tr>
-            <tr><td>Reihenbl&ouml;cke und Status</td><td class="yes">Demo</td><td>Anpassen</td></tr>
-            <tr><td>Pfl&uuml;ckaufgaben mit Fotobeleg</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td rowspan="6">Feld</td><td>Standort-Hierarchie</td><td class="yes">DB angebunden</td><td>Anpassen</td></tr>
+            <tr><td>Reihenbl&ouml;cke und Status</td><td class="yes">DB angebunden</td><td>Anpassen</td></tr>
+            <tr><td>Pfl&uuml;ckaufgaben mit Fotobeleg</td><td class="yes">DB angebunden</td><td>&Uuml;bernehmen</td></tr>
             <tr><td>Pflanzenschutz und Wartezeit</td><td class="yes">Demo</td><td>Anpassen</td></tr>
             <tr><td>Rotationsplan / Pfl&uuml;ckplan</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
             <tr><td>Wetter und Temperatursumme</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
@@ -475,7 +479,7 @@
             <tr><td>Deckungsbeitrag und Finanzen</td><td class="yes">Demo</td><td>Anpassen</td></tr>
             <tr><td>Pfl&uuml;ckerstamm und Brigaden</td><td class="yes">Demo</td><td>Anpassen</td></tr>
             <tr><td>Qualit&auml;tsfaktor-Lohn</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
-            <tr><td>Dokumentenverwaltung</td><td class="yes">Demo</td><td>&Uuml;bernehmen</td></tr>
+            <tr><td>Dokumentenverwaltung</td><td class="yes">DB angebunden</td><td>&Uuml;bernehmen</td></tr>
             <tr><td>Compliance-Cockpit</td><td class="yes">Demo</td><td>Anpassen</td></tr>
             <tr><td>Staatliche Integrationen</td><td class="no">in Entwicklung</td><td>Neu bauen</td></tr>
             <tr><td>F&ouml;rdermitteldossier</td><td class="no">in Entwicklung</td><td>Anpassen</td></tr>
@@ -494,7 +498,8 @@
         <table>
           <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
           <tbody>
-            <tr><td><strong>Demo</strong></td><td>Hauptfunktion, im Prototyp als bedienbare Mock-Oberfl&auml;che gebaut (ohne echte Persistenz).</td></tr>
+            <tr><td><strong>DB angebunden</strong></td><td>Hauptfunktion mit echter Persistenz: liest und schreibt in die Datenbank, Schreibvorgänge sind &uuml;ber Row Level Security an die Rolle gebunden und werden im Audit-Protokoll festgehalten.</td></tr>
+            <tr><td><strong>Demo</strong></td><td>Hauptfunktion, als bedienbare Oberfl&auml;che mit Beispieldaten gebaut (noch ohne Persistenz).</td></tr>
             <tr><td><strong>in Entwicklung</strong></td><td>Unterfunktion, sichtbarer Men&uuml;punkt mit Status-Badge, jedoch ohne vollst&auml;ndige Logik. Drei Module haben einen zus&auml;tzlichen UI-Mock (K&uuml;hlketten-Uhr, QR-Steigen, KI-Chat).</td></tr>
             <tr><td><strong>&Uuml;bernehmen</strong></td><td>Code und Architektur aus 1&Ccedil;at&#305; bleiben, nur die Beschriftung &auml;ndert sich.</td></tr>
             <tr><td><strong>Anpassen</strong></td><td>Das Muster bleibt, Datenmodell und Logik werden umgebaut.</td></tr>
@@ -509,23 +514,37 @@
       <h2><span class="num">03</span> Erste Schritte</h2>
 
       <h3 id="tut-konto">3.1 Prototyp starten</h3>
+      <p><strong>Ohne Datenbank (reine Demo):</strong></p>
       <ol>
         <li><code>npm install</code> im Projektverzeichnis ausf&uuml;hren</li>
         <li><code>npm run dev</code> &ndash; Startet den Dev-Server (Turbopack)</li>
         <li><code>http://localhost:3000</code> &ouml;ffnen &ndash; leitet automatisch auf <code>/de</code> weiter</li>
         <li>&Uuml;ber &bdquo;Zum Portal&ldquo; oder <code>/de/dashboard</code> ins Dashboard wechseln</li>
       </ol>
+      <p><strong>Mit Datenbank (Meilenstein B):</strong></p>
+      <ol>
+        <li><code>supabase start</code> &ndash; lokale Supabase-Instanz (ben&ouml;tigt Docker)</li>
+        <li><code>npm run db:reset</code> &ndash; Migrationen, Seed-Daten und die sechs Demo-Benutzer</li>
+        <li><code>npm run dev</code>, dann <code>/de/login</code> &ouml;ffnen</li>
+      </ol>
       <div class="info-box">
-        <div class="info-box-title">Keine Zugangsdaten n&ouml;tig</div>
-        <p>Der Prototyp hat keine Anmeldung. Statt einer echten Auth gibt es oben rechts eine Demo-Rollenauswahl.</p>
+        <div class="info-box-title">Demo-Zug&auml;nge</div>
+        <p>
+          Je Rolle ein Konto, Passwort f&uuml;r alle <code>MalinaDemo2026!</code>:
+          <code>admin@malina.demo</code>, <code>leitung@malina.demo</code>,
+          <code>buchhaltung@malina.demo</code>, <code>brigade@malina.demo</code>,
+          <code>erzeuger@malina.demo</code>, <code>kunde@malina.demo</code>.
+          Ohne Supabase-Umgebung entf&auml;llt die Anmeldung und der Prototyp l&auml;uft
+          mit Beispieldaten &ndash; jede Ansicht zeigt oben rechts, welche Quelle sie liest.
+        </p>
       </div>
 
-      <h3 id="tut-start">3.2 Demo-Rolle wechseln</h3>
+      <h3 id="tut-start">3.2 Rolle wechseln</h3>
       <ol>
-        <li>Im Dashboard oben rechts das Rollen-Auswahlfeld &ouml;ffnen (Symbol &bdquo;Person&ldquo;)</li>
-        <li>Eine der sechs Kernrollen w&auml;hlen, z. B. &bdquo;B2B-Kunde&ldquo;</li>
-        <li>Die Seitenleiste zeigt jetzt nur noch die f&uuml;r diese Rolle freigegebenen Module &ndash; dieselbe RBAC-Engine wie in 1&Ccedil;at&#305;</li>
-        <li>Ruft man ein gesperrtes Modul direkt auf, erscheint ein Zugriffs-Hinweis</li>
+        <li>Die wirksame Rolle ist die Rolle des angemeldeten Kontos &ndash; sie steht in der Seitenleiste und in der Kopfzeile</li>
+        <li>Zum Vergleich mit einer anderen Rolle abmelden und mit dem passenden Demo-Konto neu anmelden</li>
+        <li>Die Administration hat zus&auml;tzlich das Auswahlfeld &bdquo;Ansicht als&ldquo;: es &auml;ndert nur die Darstellung, die Schreibrechte richten sich weiter nach dem Profil</li>
+        <li>Die Seitenleiste zeigt nur die f&uuml;r die Rolle freigegebenen Module; beim direkten Aufruf eines gesperrten Moduls erscheint ein Zugriffs-Hinweis. Dieselbe Rolle entscheidet in der Datenbank &uuml;ber Lese- und Schreibrechte (Row Level Security)</li>
       </ol>
 
       <h3 id="tut-upgrade">3.3 Sprache umschalten</h3>
@@ -540,20 +559,31 @@
     <section id="howto">
       <h2><span class="num">04</span> How-to Guides</h2>
 
-      <h3 id="ht-profil">4.1 Reihenblock-Status pr&uuml;fen (Wartezeitsperre)</h3>
+      <h3 id="ht-profil">4.1 Wartezeitsperre ausl&ouml;sen und aufheben</h3>
       <ol>
-        <li><code>Dashboard &rarr; Feld &rarr; Reihenbl&ouml;cke und Status</code> &ouml;ffnen</li>
-        <li>Statusverteilung oben zeigt f&uuml;r jede Kachel den entsprechenden 1&Ccedil;at&#305;-Unit-Status (occupied, vacant, reserved, maintenance, blocked)</li>
-        <li>Auf die Kachel <strong>&bdquo;wartezeitgesperrt&ldquo;</strong> klicken &ndash; filtert die Tabelle</li>
-        <li>Spalte &bdquo;Sperre&ldquo; zeigt Mittel, Behandlungsdatum, Wartezeit und Freigabedatum. Kein Pfl&uuml;cken, keine Aufgabe, keine Steige aus diesem Block bis zur Freigabe.</li>
+        <li>Als <code>leitung@malina.demo</code> anmelden, <code>Dashboard &rarr; Feld &rarr; Reihenbl&ouml;cke und Status</code> &ouml;ffnen</li>
+        <li>Unten <strong>Behandlung erfassen</strong>: Reihenblock und Pflanzenschutzmittel w&auml;hlen. Die Wartezeit kommt aus dem Mittelkatalog</li>
+        <li>Der Block steht sofort auf <strong>wartezeitgesperrt</strong>, die Spalte &bdquo;Sperre&ldquo; zeigt Mittel, Behandlungsdatum, Wartezeit, Freigabedatum und die Resttage</li>
+        <li>Ein Statuswechsel ist jetzt nicht mehr m&ouml;glich &ndash; die Regel liegt als Trigger in der Datenbank und greift auch bei direktem Datenbankzugriff</li>
+        <li>Ist die Wartezeit abgelaufen, erscheint die Schaltfl&auml;che <strong>Freigeben</strong>; sie ruft die Datenbankfunktion <code>reihenblock_freigeben()</code> auf und quittiert zugleich die Behandlung</li>
+        <li>Auf die Statuskacheln klicken filtert die Tabelle; der gefilterte Stand ist als Link teilbar</li>
       </ol>
 
       <h3 id="ht-loeschen">4.2 Pfl&uuml;ckaufgabe mit Fotobeleg</h3>
       <ol>
         <li><code>Dashboard &rarr; Feld &rarr; Pfl&uuml;ckaufgaben mit Fotobeleg</code> &ouml;ffnen</li>
+        <li>Unten <strong>Neue Pflückaufgabe</strong> anlegen &ndash; wartezeitgesperrte Bl&ouml;cke stehen nicht zur Auswahl und werden von der Datenbank zus&auml;tzlich abgewiesen</li>
         <li>Links eine Aufgabe je Brigade und Reihenblock w&auml;hlen; Fortschritt ist Istmenge gegen Zielmenge</li>
-        <li>Rechts erscheinen die Fotobelege (Verkaufsschale, Reihenblock, Steige) mit Zeitstempel</li>
-        <li>Steht die Aufgabe auf &bdquo;Belegpr&uuml;fung&ldquo;, erscheinen die Aktionen <strong>Freigeben</strong> oder <strong>Nacharbeit</strong> (im Prototyp ohne Persistenz)</li>
+        <li>Als Brigade die Aufgabe annehmen, das Pfl&uuml;cken starten und rechts einen <strong>Fotobeleg</strong> hochladen (auf dem Telefon &ouml;ffnet sich direkt die Kamera). Die Datei liegt in einem privaten Storage-Bucket und wird nur &uuml;ber kurzlebige signierte Links angezeigt</li>
+        <li><strong>Menge melden</strong> setzt die Aufgabe auf Belegpr&uuml;fung</li>
+        <li>Betriebsleitung oder Administration pr&uuml;fen den Beleg, tragen den Qualit&auml;tsfaktor ein und geben die Aufgabe frei</li>
+      </ol>
+
+      <h3 id="ht-dokumente">4.3 Dokument aufnehmen</h3>
+      <ol>
+        <li>Als B&uuml;rorolle <code>Dashboard &rarr; B&uuml;ro &rarr; Dokumentenverwaltung</code> &ouml;ffnen</li>
+        <li>Unter <strong>Dokument aufnehmen</strong> Bezeichnung, Kategorie, Bezug und Stand erfassen; die Datei (PDF oder Bild) ist optional</li>
+        <li>Hinterlegte Dateien &ouml;ffnen sich &uuml;ber die Spalte &bdquo;Datei&ldquo; per signiertem Link &ndash; kein &ouml;ffentlicher Direktzugriff</li>
       </ol>
     </section>
 
@@ -568,9 +598,10 @@
           <tbody>
             <tr><td><code>/</code></td><td>Weiterleitung auf <code>/de</code> (Locale-Praefix erzwungen)</td><td>Alle</td></tr>
             <tr><td><code>/[locale]</code></td><td>&Ouml;ffentliche Landingpage: Hero mit dynamischem Gitternetz, &bdquo;Warum die Himbeere anders ist&ldquo;, Preisspread, Nachweiskette, vier Hebel, vier Bereiche, 14 KPIs, Compliance. Rein produktbezogen, keine 1&Ccedil;at&#305;-Nennung.</td><td>Alle</td></tr>
-            <tr><td><code>/[locale]/dashboard</code></td><td>Betriebs&uuml;bersicht: 14 KPI-Kacheln, vier Zonen, Meilensteine</td><td>Demo-Rolle</td></tr>
+            <tr><td><code>/[locale]/login</code></td><td>Anmeldung; im Demo-Modus stattdessen Hinweis und direkter Weg ins Dashboard</td><td>Alle</td></tr>
+            <tr><td><code>/[locale]/dashboard</code></td><td>Betriebs&uuml;bersicht: 14 KPI-Kacheln aus <code>kpi_baseline</code>, vier Zonen, Meilensteine</td><td>Anmeldung</td></tr>
             <tr><td><code>/[locale]/dashboard/[zone]</code></td><td>Zonen&uuml;bersicht (feld, hof, buero, markt) mit den Modulen der Zone</td><td>RBAC</td></tr>
-            <tr><td><code>/[locale]/dashboard/[zone]/[modul]</code></td><td>Einzelmodul &ndash; Demo-Oberfl&auml;che oder Platzhalter &bdquo;in Entwicklung&ldquo;</td><td>RBAC</td></tr>
+            <tr><td><code>/[locale]/dashboard/[zone]/[modul]</code></td><td>Einzelmodul &ndash; datenbankgest&uuml;tzte Ansicht, Demo-Oberfl&auml;che oder Platzhalter &bdquo;in Entwicklung&ldquo;</td><td>RBAC + RLS</td></tr>
             <tr><td><code>/[locale]/impressum</code></td><td>Impressum (WAMOCON GmbH)</td><td>Alle</td></tr>
             <tr><td><code>/[locale]/datenschutz</code></td><td>Datenschutz inkl. Hinweis zur Datenresidenz</td><td>Alle</td></tr>
           </tbody>
@@ -585,9 +616,24 @@
         aus 1&Ccedil;at&#305; (guest, service_provider, child_owner, child_tenant, child_guest)
         sind wie in der Analyse gefordert entfernt.
       </p>
+      <p>
+        Mit Meilenstein B h&auml;ngt an jeder Rolle eine echte Identit&auml;t: Supabase Auth legt
+        beim Anlegen eines Benutzers &uuml;ber den Trigger <code>handle_new_auth_user()</code> das
+        Profil an, die Profilrolle beantwortet in der Datenbank <code>current_app_role()</code>
+        und damit jede RLS-Policy. Die Anwendung pr&uuml;ft zus&auml;tzlich vor jedem
+        Schreibvorgang &uuml;ber <code>requirePermission()</code> &ndash; zwei unabh&auml;ngige
+        Verteidigungslinien.
+      </p>
       <div class="info-box">
-        <div class="info-box-title">Offener Punkt</div>
-        <p>RLS-Policies sind an die heutigen 1&Ccedil;at&#305;-Rollen gebunden und m&uuml;ssen f&uuml;r jede neue Ressource neu geschrieben, nicht nur umbenannt werden (siehe Kapitel 08).</p>
+        <div class="info-box-title">Schreibrechte je Ressource</div>
+        <p>
+          Standort-Hierarchie, Sortenkatalog, Pflanzenschutz und Personal: Administration und
+          Betriebsleitung. Pfl&uuml;ckaufgaben, Fotobelege und Chargen zus&auml;tzlich die Brigade.
+          Dokumente: Administration, Betriebsleitung und Buchhaltung. Das Audit-Protokoll ist
+          f&uuml;r alle Angemeldeten schreibbar, aber weder &auml;nder- noch l&ouml;schbar.
+          Gepr&uuml;ft wird das nicht nur im Test, sondern in <code>npm run db:test</code>
+          f&uuml;r jede Rolle einzeln.
+        </p>
       </div>
     </section>
 
@@ -605,9 +651,12 @@
             <tr><td>Styling</td><td>Tailwind CSS v4</td><td>Design-Tokens in <code>src/app/globals.css</code>, Hell/Dunkel</td></tr>
             <tr><td>i18n</td><td>next-intl v4</td><td>F&uuml;nf Locales (de/en/tr/kk/ru), Fallback auf Deutsch per Deep-Merge</td></tr>
             <tr><td>Icons</td><td>lucide-react</td><td>Kuratierte Icon-Registry (<code>src/components/icon.tsx</code>)</td></tr>
-            <tr><td>Bilder</td><td>next/image + Unsplash</td><td>Lizenzfreie Platzhalter, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
-            <tr><td>Datenbank</td><td>Supabase (PostgreSQL, RLS), lokal via Docker</td><td>39 Tabellen, Migrationen in <code>supabase/migrations/</code>. UI nutzt noch Mock-Daten.</td></tr>
-            <tr><td>UI-State</td><td><code>localStorage</code></td><td>Theme und Demo-Rolle, nur lokal im Browser</td></tr>
+            <tr><td>Bilder</td><td>next/image, eigene SVG-Platzhalter</td><td>Belegplatzhalter unter <code>public/belege/</code>, sp&auml;ter 1:1 durch Betriebsmaterial ersetzt</td></tr>
+            <tr><td>Datenbank</td><td>Supabase (PostgreSQL, RLS), lokal via Docker</td><td>39 Tabellen, Migrationen in <code>supabase/migrations/</code></td></tr>
+            <tr><td>Auth</td><td>Supabase Auth, <code>@supabase/ssr</code></td><td>Session-Cookies, Auffrischung und Routenschutz in <code>src/proxy.ts</code></td></tr>
+            <tr><td>Dateien</td><td>Supabase Storage</td><td>Private Buckets <code>belege</code> und <code>dokumente</code>, Auslieferung nur &uuml;ber signierte Links</td></tr>
+            <tr><td>Schreibvorgänge</td><td>Server Actions</td><td><code>src/lib/actions/</code>, jeweils RBAC-gepr&uuml;ft und mit Audit-Eintrag</td></tr>
+            <tr><td>UI-State</td><td><code>localStorage</code></td><td>Theme und Rollenansicht, nur lokal im Browser</td></tr>
           </tbody>
         </table>
       </div>
@@ -615,14 +664,19 @@
         <div class="info-box-title">Datenbankschema</div>
         <p>
           Das vollst&auml;ndige Schema (Standort-Hierarchie, Ernte, Kühlkette, Finanzen, Compliance,
-          Integrationen) liegt als zwei Supabase-Migrationen vor: <code>..._initial_schema.sql</code>
-          (39 Tabellen, Enums, Trigger) und <code>..._rls_policies.sql</code> (RLS auf allen Tabellen).
-          Seed-Daten in <code>supabase/seed.sql</code>. Die 1&Ccedil;at&#305;-Muster sind erhalten:
+          Integrationen) liegt als Supabase-Migrationen vor: <code>..._initial_schema.sql</code>
+          (39 Tabellen, Enums, Trigger), <code>..._rls_policies.sql</code> (Lesezugriff),
+          <code>..._auth_und_schreibrechte.sql</code> (Profil-Trigger, Schreib-Policies je Rolle,
+          Sperrlogik, <code>reihenblock_freigeben()</code>), <code>..._storage_belege.sql</code>
+          (private Buckets) und <code>..._pflueckaufgabe_sperre.sql</code>.
+          Seed-Daten in <code>supabase/seed.sql</code>, Demo-Benutzer &uuml;ber
+          <code>supabase/seed-auth.mjs</code>. Die 1&Ccedil;at&#305;-Muster sind erhalten:
           der <code>reihenbloecke</code>-Zustandsautomat (<code>blocked</code> &rarr; <code>wartezeitgesperrt</code>),
           die Unveraenderlichkeit von <code>finance_ledger_entries</code> (append-only Trigger) und die
-          <code>integration_outbox</code> als Bruecke zu ЭСФ / ЕСУТД. Die Prototyp-Oberfl&auml;chen
-          lesen noch aus <code>src/lib/domain/</code>; die Anbindung an die DB folgt mit Meilenstein B
-          (echte Auth, rollenabhaengige Schreib-Policies).
+          <code>integration_outbox</code> als Bruecke zu ЭСФ / ЕСУТД. Angebunden sind die
+          Module Standort-Hierarchie, Reihenbl&ouml;cke und Status, Pfl&uuml;ckaufgaben mit
+          Fotobeleg, Dokumentenverwaltung sowie die KPI-Kacheln; die &uuml;brigen Module lesen
+          weiterhin aus <code>src/lib/domain/</code>.
         </p>
       </div>
       <div class="info-box">
@@ -658,14 +712,14 @@
           <thead><tr><th>Meilenstein</th><th>Termin</th><th>Inhalt</th></tr></thead>
           <tbody>
             <tr>
-              <td><strong>A &ndash; Prototyp</strong> <span class="badge badge-primary">dieser Stand</span></td>
+              <td><strong>A &ndash; Prototyp</strong> <span class="badge badge-success">erledigt</span></td>
               <td>bis 06.09.2026</td>
               <td>Himbeer-Design-Tokens, Landingpage mit Platzhaltern und Sprachumschalter, Dashboard-Ger&uuml;st mit vier Zonen, Kern-Workflows (Reihenblock-&Uuml;bersicht, Pfl&uuml;ckaufgabe mit Fotobeleg).</td>
             </tr>
             <tr>
-              <td><strong>B &ndash; Grundger&uuml;st</strong></td>
+              <td><strong>B &ndash; Grundger&uuml;st</strong> <span class="badge badge-primary">dieser Stand</span></td>
               <td>sp&auml;testens 19.09.2026</td>
-              <td>Hauptfunktionen echt funktionsf&auml;hig (RBAC, Standort-Hierarchie mit Verwaltung, Reihenblock-Statusverwaltung, Pfl&uuml;ckaufgaben, Dokumente, KPI-Kacheln). Unterfunktionen als Men&uuml;punkt mit Status &bdquo;in Entwicklung&ldquo;.</td>
+              <td>Hauptfunktionen echt funktionsf&auml;hig: Anmeldung und RBAC mit Row Level Security, Standort-Hierarchie mit Verwaltungsoberfl&auml;che, Reihenblock-Statusverwaltung inklusive Wartezeitsperre, Pfl&uuml;ckaufgaben mit Fotobeleg im privaten Storage, Dokumentenverwaltung, KPI-Kacheln aus <code>kpi_baseline</code>. Unterfunktionen bleiben Men&uuml;punkt mit Status &bdquo;in Entwicklung&ldquo;.</td>
             </tr>
           </tbody>
         </table>

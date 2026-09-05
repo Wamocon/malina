@@ -10,12 +10,17 @@ import {
 } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronDown, UserCog } from "lucide-react";
+import { StatusPill } from "@/components/ui/kit";
 import { roles, type Role } from "@/lib/rbac";
 
-// Der Prototyp hat keine Auth. Stattdessen eine Demo-Personaumschaltung: die
-// gewaehlte Rolle steuert (via RBAC) die sichtbare Navigation und einige
-// Panels - so laesst sich die uebernommene RBAC-Engine vorfuehren.
-// localStorage ist die Quelle der Wahrheit, damit kein setState-im-Effect noetig ist.
+// Zwei Betriebsarten (siehe src/lib/supabase/config.ts):
+//
+//   Demo-Modus  - keine Anmeldung. Die Rolle kommt aus localStorage und laesst
+//                 sich frei umschalten, damit die RBAC-Engine vorfuehrbar ist.
+//   DB-Modus    - echte Anmeldung. Die wirksame Rolle ist die Profilrolle; nur
+//                 Admins duerfen zusaetzlich "Ansicht als" umschalten. Das
+//                 wirkt ausschliesslich auf die Darstellung - serverseitig
+//                 entscheidet weiterhin RLS anhand der echten Profilrolle.
 const STORAGE_KEY = "malina-persona";
 const listeners = new Set<() => void>();
 
@@ -24,7 +29,7 @@ function subscribe(callback: () => void) {
   return () => listeners.delete(callback);
 }
 
-function readRole(): Role {
+function readRole(fallback: Role): Role {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && (roles as readonly string[]).includes(stored)) {
@@ -33,16 +38,51 @@ function readRole(): Role {
   } catch {
     // ignore
   }
-  return "admin";
+  return fallback;
 }
 
-const PersonaContext = createContext<{
+interface PersonaWert {
+  /** Rolle, die die Oberflaeche gerade zeigt. */
   role: Role;
+  /** Rolle laut Profil bzw. Demo-Standard - Basis der RLS-Pruefung. */
+  echteRolle: Role;
+  name: string | null;
+  email: string | null;
+  darfWechseln: boolean;
+  demoModus: boolean;
   setRole: (role: Role) => void;
-}>({ role: "admin", setRole: () => {} });
+}
 
-export function PersonaProvider({ children }: { children: ReactNode }) {
-  const role = useSyncExternalStore(subscribe, readRole, () => "admin" as Role);
+const PersonaContext = createContext<PersonaWert>({
+  role: "admin",
+  echteRolle: "admin",
+  name: null,
+  email: null,
+  darfWechseln: true,
+  demoModus: true,
+  setRole: () => {},
+});
+
+export function PersonaProvider({
+  children,
+  echteRolle = "admin",
+  name = null,
+  email = null,
+  demoModus = true,
+}: {
+  children: ReactNode;
+  echteRolle?: Role;
+  name?: string | null;
+  email?: string | null;
+  demoModus?: boolean;
+}) {
+  const darfWechseln = demoModus || echteRolle === "admin";
+  const gespeichert = useSyncExternalStore(
+    subscribe,
+    () => readRole(echteRolle),
+    () => echteRolle,
+  );
+  const role = darfWechseln ? gespeichert : echteRolle;
 
   const setRole = useCallback((next: Role) => {
     try {
@@ -53,7 +93,11 @@ export function PersonaProvider({ children }: { children: ReactNode }) {
     listeners.forEach((listener) => listener());
   }, []);
 
-  const value = useMemo(() => ({ role, setRole }), [role, setRole]);
+  const value = useMemo(
+    () => ({ role, echteRolle, name, email, darfWechseln, demoModus, setRole }),
+    [role, echteRolle, name, email, darfWechseln, demoModus, setRole],
+  );
+
   return (
     <PersonaContext.Provider value={value}>{children}</PersonaContext.Provider>
   );
@@ -64,19 +108,29 @@ export function usePersona() {
 }
 
 export function PersonaSwitcher({ className }: { className?: string }) {
-  const { role, setRole } = usePersona();
+  const { role, setRole, darfWechseln, demoModus } = usePersona();
   const t = useTranslations("roles");
+
+  if (!darfWechseln) {
+    return (
+      <StatusPill tone="info" className={className}>
+        {t(role)}
+      </StatusPill>
+    );
+  }
+
+  const hinweis = demoModus ? t("switcherHint") : t("viewAsHint");
 
   return (
     <label
       className={`relative inline-flex items-center ${className ?? ""}`}
-      title={t("switcherHint")}
+      title={hinweis}
     >
       <UserCog className="pointer-events-none absolute left-2 h-3.5 w-3.5 text-muted-foreground" />
       <select
         value={role}
         onChange={(event) => setRole(event.target.value as Role)}
-        aria-label={t("switcherHint")}
+        aria-label={hinweis}
         className="h-9 w-[190px] appearance-none rounded-lg border border-border bg-card pl-7 pr-7 text-xs font-semibold text-foreground shadow-sm transition-colors hover:border-primary focus:border-primary focus:outline-none"
       >
         {roles.map((r) => (

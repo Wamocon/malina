@@ -1,0 +1,38 @@
+import type { ReactNode } from "react";
+import { StandortAnsicht } from "@/components/db/standort-ansicht";
+import { ReihenbloeckeAnsicht } from "@/components/db/reihenbloecke-ansicht";
+import { PflueckaufgabenAnsicht } from "@/components/db/pflueckaufgaben-ansicht";
+import { DokumenteAnsicht } from "@/components/db/dokumente-ansicht";
+import type { ModuleDef } from "@/lib/modules";
+
+// Module, die in Meilenstein B an der Datenbank haengen. Sie werden als Server
+// Component gerendert (Daten + Server Actions).
+//
+// Diese Ansichten gelten in beiden Betriebsarten: ohne Supabase-Umgebung liefert
+// die Datenschicht (src/lib/data/) die Beispieldaten und die Schreibformulare
+// entfallen mangels Anmeldung. So gibt es nur einen Oberflaechen-Pfad statt
+// zweier, die auseinanderlaufen koennen.
+//
+// Alles, was hier nicht gelistet ist, bleibt bei der Demo-Ansicht aus
+// src/components/demo/registry.tsx.
+export function serverModulAnsicht(
+  module: ModuleDef,
+  kontext: { pfad: string; suche: Record<string, string | undefined> },
+): ReactNode | null {
+  switch (module.key) {
+    case "standort":
+      return <StandortAnsicht />;
+    case "reihenbloecke":
+      return (
+        <ReihenbloeckeAnsicht pfad={kontext.pfad} statusFilter={kontext.suche.status} />
+      );
+    case "pflueckaufgaben":
+      return (
+        <PflueckaufgabenAnsicht pfad={kontext.pfad} auswahl={kontext.suche.aufgabe} />
+      );
+    case "dokumente":
+      return <DokumenteAnsicht />;
+    default:
+      return null;
+  }
+}

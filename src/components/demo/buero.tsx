@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Check, Minus } from "lucide-react";
 import { Card, DataTable, Section, StatusPill } from "@/components/ui/kit";
 import { hasPermission, roleDefinitions, type Resource } from "@/lib/rbac";
-import { dokumente, pfluecker, brigaden, integrationen } from "@/lib/domain/betrieb-data";
+import { pfluecker, brigaden, integrationen } from "@/lib/domain/betrieb-data";
 
 export function RollenDemo() {
   const t = useTranslations("rollenDemo");
@@ -152,31 +152,6 @@ export function PersonalDemo() {
               </td>
               <td className="px-3 py-2.5 text-muted-foreground">{p.schnitt7dKg} kg / 7 {t("days")}</td>
               <td className="px-3 py-2.5 font-semibold text-foreground">{p.qualitaetsfaktor.toFixed(2)}</td>
-            </tr>
-          ))}
-        </DataTable>
-      </Section>
-      <Card className="bg-muted/30 text-xs leading-5 text-muted-foreground">{t("note")}</Card>
-    </div>
-  );
-}
-
-export function DokumenteDemo() {
-  const t = useTranslations("dokumenteDemo");
-  const tone = { gueltig: "success", prueflauf: "warning", abgelaufen: "danger" } as const;
-  return (
-    <div className="space-y-6">
-      <Section title={t("listTitle")} description={t("listLead")}>
-        <DataTable head={[t("col.name"), t("col.kategorie"), t("col.bezug"), t("col.stand"), t("col.status")]}>
-          {dokumente.map((doc) => (
-            <tr key={doc.id}>
-              <td className="px-3 py-2.5 font-semibold text-foreground">{doc.name}</td>
-              <td className="px-3 py-2.5 text-muted-foreground">{doc.kategorie}</td>
-              <td className="px-3 py-2.5 text-muted-foreground">{doc.bezug}</td>
-              <td className="px-3 py-2.5 text-muted-foreground">{doc.stand}</td>
-              <td className="px-3 py-2.5">
-                <StatusPill tone={tone[doc.status]}>{t(`status.${doc.status}`)}</StatusPill>
-              </td>
             </tr>
           ))}
         </DataTable>

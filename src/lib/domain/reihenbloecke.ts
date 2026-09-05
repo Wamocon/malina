@@ -2,12 +2,16 @@
 // Status. Der Pflückplan zeigt einen wartezeitgesperrten Block schlicht nicht
 // an - das ist der am einfachsten prüfbare Nutzen des gesamten Systems.
 
-export type ReihenblockStatus =
-  | "bepflanzt" // trägt, in normaler Pflege
-  | "erntereif" // für die nächste Rotation eingeplant
-  | "ruhend" // abgetragen / Winterruhe
-  | "rueckschnitt" // Ruten-/Formschnitt läuft
-  | "wartezeitgesperrt"; // Ernte gesperrt bis Ablauf der Wartezeit
+// Reihenfolge wie im Datenbank-Enum public.reihenblock_status.
+export const reihenblockStatus = [
+  "bepflanzt", // trägt, in normaler Pflege
+  "erntereif", // für die nächste Rotation eingeplant
+  "ruhend", // abgetragen / Winterruhe
+  "rueckschnitt", // Ruten-/Formschnitt läuft
+  "wartezeitgesperrt", // Ernte gesperrt bis Ablauf der Wartezeit
+] as const;
+
+export type ReihenblockStatus = (typeof reihenblockStatus)[number];
 
 export interface Reihenblock {
   id: string;
