@@ -11,6 +11,7 @@ import {
   MengeFormular,
 } from "@/components/db/pflueckaufgaben-formulare";
 import { NachweiskettenKarte } from "@/components/db/nachweiskette-ansicht";
+import { FaelligkeitAnzeige } from "@/components/db/faelligkeit-anzeige";
 import { ladeBrigaden, ladePflueckaufgaben } from "@/lib/data/pflueckaufgaben";
 import { ladeNachweiskette, ladePfluecker } from "@/lib/data/nachweiskette";
 import { ladeReihenbloecke } from "@/lib/data/reihenbloecke";
@@ -103,9 +104,14 @@ export async function PflueckaufgabenAnsicht({
                     <span className="font-mono text-xs font-semibold text-foreground">
                       {aufgabe.code}
                     </span>
-                    <StatusPill tone={aufgabenStatusMeta[aufgabe.status].tone as Tone}>
-                      {st(aufgabe.status)}
-                    </StatusPill>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {aufgabe.status !== "abgeschlossen" ? (
+                        <FaelligkeitAnzeige faelligkeit={aufgabe.faelligkeit} />
+                      ) : null}
+                      <StatusPill tone={aufgabenStatusMeta[aufgabe.status].tone as Tone}>
+                        {st(aufgabe.status)}
+                      </StatusPill>
+                    </div>
                   </div>
                   <p className="mt-1 text-sm font-semibold text-card-foreground">
                     {aufgabe.brigade || v("ohneBrigade")} · {t("block")}{" "}
@@ -201,12 +207,19 @@ export async function PflueckaufgabenAnsicht({
 
           {gewaehlt && darfBearbeiten ? (
             <Card>
-              <p className="text-sm font-black text-card-foreground">
-                {v("ablauf.titel")}
-              </p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                {v("ablauf.lead")}
-              </p>
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <p className="text-sm font-black text-card-foreground">
+                    {v("ablauf.titel")}
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    {v("ablauf.lead")}
+                  </p>
+                </div>
+                {gewaehlt.status !== "abgeschlossen" ? (
+                  <FaelligkeitAnzeige faelligkeit={gewaehlt.faelligkeit} />
+                ) : null}
+              </div>
               <div className="mt-3 space-y-3">
                 {gewaehlt.status === "offen" ? (
                   <AufgabeStatusFormular

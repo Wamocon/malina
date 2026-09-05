@@ -1018,5 +1018,14 @@
     "lead": "Деректер қазір қолжетімді емес. Әрекет орындалмады, ештеңе жоғалмады.",
     "kennung": "Қате коды",
     "erneut": "Қайталау"
+  },
+  "faelligkeit": {
+    "faellig": "Мерзімі {dauer} кейін",
+    "ueberfaellig": "Мерзімі {dauer} бұрын өтті",
+    "einheit": {
+      "minuten": "{anzahl, plural, other {# минут}}",
+      "stunden": "{anzahl, plural, other {# сағат}}",
+      "tage": "{anzahl, plural, other {# күн}}"
+    }
   }
 }

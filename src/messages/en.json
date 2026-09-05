@@ -1018,5 +1018,14 @@
     "lead": "The data is currently unreachable. Nothing was executed and nothing was lost.",
     "kennung": "Error reference",
     "erneut": "Try again"
+  },
+  "faelligkeit": {
+    "faellig": "Due in {dauer}",
+    "ueberfaellig": "Overdue by {dauer}",
+    "einheit": {
+      "minuten": "{anzahl, plural, one {a minute} other {# minutes}}",
+      "stunden": "{anzahl, plural, one {an hour} other {# hours}}",
+      "tage": "{anzahl, plural, one {a day} other {# days}}"
+    }
   }
 }

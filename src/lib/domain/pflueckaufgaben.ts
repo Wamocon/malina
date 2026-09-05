@@ -44,6 +44,14 @@ const feld = "/belege/reihenblock.svg";
 const schale = "/belege/schale.svg";
 const ernte = "/belege/steige.svg";
 
+// Relativ zu "jetzt" berechnet, damit die Faelligkeitsanzeige auch im
+// Demo-Modus ohne Datenbank lebendig wirkt statt "seit 3 Tagen ueberfaellig"
+// zu zeigen - dieselbe Ueberlegung wie in supabase/seed.sql. Wird einmal beim
+// Laden dieses Moduls (Serverstart bzw. erster Aufruf) berechnet.
+function inMinuten(minuten: number): string {
+  return new Date(Date.now() + minuten * 60_000).toISOString();
+}
+
 export const pflueckaufgaben: Pflueckaufgabe[] = [
   {
     id: "PA-2026-0912-01",
@@ -52,7 +60,7 @@ export const pflueckaufgaben: Pflueckaufgabe[] = [
     brigade: "Brigade Nord",
     pflueckerAnzahl: 6,
     status: "beleg_pruefung",
-    faelligkeit: "2026-09-02T11:00:00+06:00",
+    faelligkeit: inMinuten(-12), // knapp abgegeben, jetzt in Pruefung
     zielmengeKg: 48,
     istMengeKg: 51.4,
     qualitaetsfaktor: 1.08,
@@ -68,7 +76,7 @@ export const pflueckaufgaben: Pflueckaufgabe[] = [
     brigade: "Brigade Ost",
     pflueckerAnzahl: 4,
     status: "in_arbeit",
-    faelligkeit: "2026-09-02T12:30:00+06:00",
+    faelligkeit: inMinuten(55), // laeuft, Frist rueckt naeher
     zielmengeKg: 30,
     istMengeKg: 17.9,
     qualitaetsfaktor: null,
@@ -83,7 +91,7 @@ export const pflueckaufgaben: Pflueckaufgabe[] = [
     brigade: "Brigade Nachbarbetrieb",
     pflueckerAnzahl: 5,
     status: "angenommen",
-    faelligkeit: "2026-09-02T14:00:00+06:00",
+    faelligkeit: inMinuten(190), // 3 Std. 10 Min. Vorlauf
     zielmengeKg: 26,
     istMengeKg: 0,
     qualitaetsfaktor: null,
@@ -112,7 +120,7 @@ export const pflueckaufgaben: Pflueckaufgabe[] = [
     brigade: "Brigade Ost",
     pflueckerAnzahl: 4,
     status: "offen",
-    faelligkeit: "2026-09-02T15:30:00+06:00",
+    faelligkeit: inMinuten(-18), // noch nicht angenommen, bereits ueberfaellig
     zielmengeKg: 28,
     istMengeKg: 0,
     qualitaetsfaktor: null,

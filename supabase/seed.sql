@@ -159,11 +159,25 @@ on conflict (code) do nothing;
 -- --- Pflueckaufgaben ----------------------------------------------------
 -- ausschuss_kg spiegelt den Wert, der bereits an der zugehoerigen Charge
 -- steht - beide Seiten sollen dieselbe Zahl zeigen, nicht zwei verschiedene.
+--
+-- Die Faelligkeit der noch offenen Aufgaben (alles ausser "abgeschlossen")
+-- ist relativ zum Seed-Zeitpunkt gesetzt, nicht auf ein festes Datum im
+-- September. Sonst zeigt die Faelligkeitsanzeige in jeder Vorfuehrung "seit
+-- 3 Tagen ueberfaellig" statt eines Wertes, dem man beim Naeherkommen
+-- tatsaechlich zusehen kann - ein `npm run db:reset` kurz vor dem Termin
+-- macht die Anzeige wieder frisch.
 insert into public.pflueckaufgaben
   (code, reihenblock_id, charge_id, brigade_id, sorte_id, status, faelligkeit,
    zielmenge_kg, ist_menge_kg, ausschuss_kg, pfluecker_anzahl, qualitaetsfaktor)
 select v.code, rb.id, ch.id, br.id, s.id, v.status::public.pflueckaufgabe_status,
-       v.faellig::timestamptz, v.ziel, v.ist, v.ausschuss, v.anzahl, v.qf
+       case v.code
+         when 'PA-2026-0912-01' then now() - interval '12 minutes'  -- knapp abgegeben, jetzt in Pruefung
+         when 'PA-2026-0912-02' then now() + interval '55 minutes'  -- laeuft, Frist rueckt naeher
+         when 'PA-2026-0912-03' then now() + interval '3 hours 10 minutes'
+         when 'PA-2026-0912-05' then now() - interval '18 minutes'  -- noch nicht angenommen, bereits ueberfaellig
+         else v.faellig::timestamptz
+       end,
+       v.ziel, v.ist, v.ausschuss, v.anzahl, v.qf
 from (values
   ('PA-2026-0912-01','T-N-A-01','CH-0902-14','Brigade Nord','Polka','beleg_pruefung','2026-09-02T11:00:00+06',48,51.4,4.2,6,1.08),
   ('PA-2026-0912-02','T-O-A-01','CH-0902-15','Brigade Ost','Polana','in_arbeit','2026-09-02T12:30:00+06',30,17.9,0,4,null),
