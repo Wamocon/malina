@@ -8,13 +8,32 @@ import { usePersona } from "@/components/dashboard/persona";
 import { Card, PageHeader, Section, StatusPill } from "@/components/ui/kit";
 import { hasPermission } from "@/lib/rbac";
 import { modulesForZone, zones } from "@/lib/modules";
-import type { Kpi, KpiTrend } from "@/lib/domain/kpis";
+import {
+  herkunftZaehlen,
+  type Datenherkunft,
+  type Kpi,
+  type KpiTrend,
+} from "@/lib/domain/kpis";
 import type { Datenquelle } from "@/lib/supabase/config";
 
 const trendIcon: Record<KpiTrend, typeof ArrowUpRight> = {
   up: ArrowUpRight,
   down: ArrowDownRight,
   flat: Minus,
+};
+
+// Messbarkeit der Kennzahl - entscheidend fuer die Baseline-Unterschrift am
+// 01.10.2026: was heute nicht erhoben wird, laesst sich auch nicht zusagen.
+const herkunftFarbe: Record<Datenherkunft, string> = {
+  berechenbar: "text-success",
+  "erfassung-fehlt": "text-warning",
+  "tabelle-fehlt": "text-muted-foreground",
+};
+
+const herkunftPunkt: Record<Datenherkunft, string> = {
+  berechenbar: "bg-success",
+  "erfassung-fehlt": "bg-warning",
+  "tabelle-fehlt": "bg-muted-foreground/50",
 };
 
 export function DashboardHome({
@@ -30,6 +49,8 @@ export function DashboardHome({
   const kpiT = useTranslations("kpis");
   const roleT = useTranslations("roles");
   const quelleT = useTranslations("dashboard.dataSource");
+  const herkunftT = useTranslations("kpiHerkunft");
+  const herkunft = herkunftZaehlen(kpis);
 
   return (
     <div className="space-y-8">
@@ -43,7 +64,11 @@ export function DashboardHome({
 
       <Section
         title={t("home.kpiTitle")}
-        description={t("home.kpiDescription")}
+        description={`${t("home.kpiDescription")} ${t("home.kpiSummary", {
+          berechenbar: herkunft.berechenbar,
+          erfassung: herkunft["erfassung-fehlt"],
+          tabelle: herkunft["tabelle-fehlt"],
+        })}`}
         action={
           <div className="flex flex-wrap items-center gap-1.5">
             <StatusPill tone={quelle === "db" ? "success" : "warning"}>
@@ -78,6 +103,20 @@ export function DashboardHome({
                 </p>
                 <p className="mt-2 text-[10px] uppercase tracking-wide text-muted-foreground">
                   {t("home.target")}: {kpi.ziel}
+                </p>
+                <p
+                  title={kpi.braucht}
+                  className={`mt-2 flex items-start gap-1 border-t border-border pt-1.5 text-[10px] leading-3 ${
+                    herkunftFarbe[kpi.datenherkunft]
+                  }`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full ${
+                      herkunftPunkt[kpi.datenherkunft]
+                    }`}
+                  />
+                  {herkunftT(kpi.datenherkunft)}
                 </p>
               </Card>
             );

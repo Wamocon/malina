@@ -19,7 +19,8 @@
     "zones": "Dört bölge",
     "proof": "Belgelenebilirlik",
     "kpis": "Göstergeler",
-    "compliance": "Uyum"
+    "compliance": "Uyum",
+    "activeRole": "Oturum açan"
   },
   "hero": {
     "badge": "Ahududu plantasyonu için işletme yönetimi · Almatı çevresi",
@@ -38,19 +39,23 @@
   "zones": {
     "feld": {
       "name": "Tarla",
-      "tagline": "Yetiştirme, hasat, bitki koruma"
+      "tagline": "Yetiştirme, hasat, bitki koruma",
+      "description": "Konum modeli, bekleme süresi kilidi dahil sıra bloğu durumu, fotoğraf kanıtlı toplama görevleri, rotasyon planı ve hava durumu bağlantısı."
     },
     "hof": {
       "name": "Avlu",
-      "tagline": "Soğuk zincir, lojistik"
+      "tagline": "Soğuk zincir, lojistik",
+      "description": "60 dakikalık göstergeyle ön soğutma, sıcaklık kaydediciler, toplama turları, QR kasa kimliği ve elektronik irsaliye."
     },
     "buero": {
       "name": "Ofis",
-      "tagline": "Finans, personel, uyum"
+      "tagline": "Finans, personel, uyum",
+      "description": "Roller ve yetkiler, sıra bloğu ve hasat günü başına katkı payı, kalite katsayılı ücret, doküman yönetimi, uyum paneli ve zorunlu devlet entegrasyonları."
     },
     "markt": {
       "name": "Pazar",
-      "tagline": "Satış, yapay zeka, kamu"
+      "tagline": "Satış, yapay zeka, kamu",
+      "description": "Çeşit ve kota kataloğu, ön siparişli B2B portalı, güvenli veri tabanına dayalı yapay zekâ sohbeti, komşu işletmeler için toplulaştırma platformu ve çok dilli eğitimler."
     }
   },
   "footer": {
@@ -60,7 +65,8 @@
     "imprint": "Künye",
     "privacy": "Gizlilik",
     "copyright": "© {year} WAMOCON GmbH",
-    "madeBy": "Almanya'da geliştirildi"
+    "madeBy": "Almanya'da geliştirildi",
+    "blurb": "Malina, Rusça ahududu demek. Almatı çevresindeki bir ahududu işletmesi için yönetim sistemi - hasat akışından soğuk zincire ve her teslimatın kanıtına kadar."
   },
   "dashboard": {
     "searchPlaceholder": "Sıra bloğu, parti, toplayıcı, belge ara ...",
@@ -91,8 +97,28 @@
         "workflows": "Örnek ana süreçler: sıra bloğu genel bakışı ve fotoğraf kanıtlı toplama görevi"
       },
       "milestoneBName": "Kilometre taşı B - gerçek ana işlevli iskelet",
-      "milestoneBDue": "en geç 19.09.2026"
-    }
+      "milestoneBDue": "en geç 19.09.2026",
+      "dbCount": "{count} bağlı",
+      "milestoneBItems": {
+        "rbac": "Altı temel rol ve yetki matrisiyle roller ve yetkiler",
+        "hierarchy": "Konum hiyerarşisi: işletme, plantasyon, tarla parseli, sıra grubu, sıra bloğu - yönetim ekranıyla birlikte",
+        "status": "Bitki koruma işleminden sonraki kilit durumu dahil sıra bloğu durum yönetimi",
+        "tasks": "Ekip ve sıra bloğu bazında, satış kabının fotoğraf kanıtıyla toplama görevleri",
+        "docs": "İlaçlama tutanakları, sözleşmeler ve ЕСУТД kanıtları için doküman yönetimi",
+        "i18n": "Beş dilde çok dilli arayüz",
+        "kpi": "14 başlangıç göstergesinin kart olarak yer aldığı panel iskeleti"
+      },
+      "milestoneBNote": "Tüm ana işlevler veri tabanına bağlı: oturum açma, Row Level Security ile rol yetkileri, konum yönetimi, sıra bloğu kilidi, fotoğraf kanıtlı toplama görevi ve doküman arşivi. Alt işlevler planlandığı gibi durum etiketli menü girdileri olarak kalır.",
+      "kpiSummary": "{berechenbar} bugün ölçülebilir · {erfassung} kayıt eksik · {tabelle} işlev eksik"
+    },
+    "dataSource": {
+      "db": "Canlı veri",
+      "demo": "Örnek veri",
+      "dbHint": "Supabase veri tabanına bağlı, rolünüzün RLS yetkileriyle okunuyor.",
+      "demoHint": "Veri tabanı bağlantısı yok - görünüm yerleşik örnek verileri gösteriyor."
+    },
+    "rbacHintLabel": "Roller",
+    "rbacHint": "Hangi modüllerin görüneceği, oturum açan hesabın rolüne bağlıdır. Yönetimden tarladaki ekibe kadar altı temel rol - aynı rol veri tabanında okuma ve yazma yetkilerini de belirler."
   },
   "roles": {
     "switcherHint": "Demo rolünü değiştir - görünen navigasyonu belirler",
@@ -109,7 +135,8 @@
       "brigade": "Toplama görevlerini kabul eder, tarlada miktar ve fotoğraf kanıtını kaydeder, rotasyonu ve bekleme kilitlerini görür.",
       "erzeuger": "Alımdaki komşu işletme. Kendi sıra bloklarını, partilerini, hesaplarını ve sözleşmelerini görür.",
       "kunde": "Kontenjanlar, ön sipariş, fiyat listeleri, yapay zeka sohbeti ve paylaşılan belgeler."
-    }
+    },
+    "viewAsHint": "Rol olarak görüntüle - yalnızca görünümü değiştirir, yazma yetkileri profilinize göre belirlenmeye devam eder"
   },
   "klassifikation": {
     "uebernehmen": "Devral",
@@ -118,7 +145,8 @@
   },
   "reifegrad": {
     "demo": "Demo çalışıyor",
-    "in-entwicklung": "Geliştirmede"
+    "in-entwicklung": "Geliştirmede",
+    "angebunden": "Veri tabanına bağlı"
   },
   "moduleMeta": {
     "inDevelopmentTitle": "Alt işlev - geliştirmede",
@@ -129,7 +157,7 @@
   },
   "accessDenied": {
     "title": "{role} rolünün bu modüle erişimi yok.",
-    "hint": "Erişimi görmek için sağ üstten demo rolünü değiştirin.",
+    "hint": "Bu modüller başka rollere ayrılmıştır. Erişime ihtiyacınız varsa yönetimle iletişime geçin.",
     "back": "Genel bakışa"
   },
   "resourceLabels": {
@@ -174,7 +202,9 @@
       "schale": "Satış kasesi",
       "reihenblock": "Sıra bloğu",
       "steige": "Kasa"
-    }
+    },
+    "proofLead": "Satış kabının, sıra bloğunun ve kasanın örnek fotoğrafları doğrudan görevde.",
+    "note": "Satışa hazır kap, toplayıcının elinde oluşur. Kabın fotoğraf kanıtı göreve bağlıdır ve kalite katsayısına yansır."
   },
   "standortDemo": {
     "statsTitle": "Hiyerarşi genel bakışı",
@@ -191,7 +221,9 @@
       "eigen": "Kendi işletmesi",
       "nachbarbetrieb": "Komşu işletme"
     },
-    "blocksShort": "blok"
+    "blocksShort": "blok",
+    "statsLead": "İşletmenin altında dört seviye: plantasyon, tarla parseli, sıra grubu, sıra bloğu.",
+    "note": "Teller boyunca sıra ve blokların tekil kimliğini taşıyan tarla haritası; rotasyon planının, hasat kaydının ve katkı payının temelidir."
   },
   "pflanzenschutzDemo": {
     "ruleTitle": "Sert hukuki kural",
@@ -207,13 +239,18 @@
       "status": "Durum"
     },
     "days": "gün",
-    "locked": "kilitli"
+    "locked": "kilitli",
+    "note": "Her blok iki üç günde bir toplandığı, bitkilerin ise ilaçlanmaya devam etmesi gerektiği için bir blok bekleme süresi içinde yanlışlıkla hasat edilebilir. Otomatik kilit tam olarak bunu engeller."
   },
   "rollenDemo": {
     "rolesTitle": "Altı çekirdek rol",
     "scope": "Alan",
     "matrixTitle": "Yetki matrisi (kesit, görüntüleme eylemi)",
-    "resource": "Kaynak"
+    "resource": "Kaynak",
+    "rolesLead": "Yönetim, işletme müdürlüğü, muhasebe, tarladaki ekip, üretici ve B2B müşterisi. Her rol yalnızca ihtiyaç duyduğu modülleri görür.",
+    "matrixLead": "Roller çarpı kaynaklar - yeni rollerin mantığa dokunmadan eklenmesini sağlayan açık bir veri yapısı.",
+    "matrixNote": "Tüm kaynaklar ve eylemler için eksiksiz matris. Veri tabanı düzeyindeki erişim kuralları her kaynak için ayrı yazılır.",
+    "note": "Kimlikler ve roller dört alanın tamamını keser - kayıt tutma, şifreleme ve çok faktörlü kimlik doğrulamayla birlikte."
   },
   "finanzenDemo": {
     "dbTitle": "Sıra bloğu ve hasat günü başına katkı payı",
@@ -224,7 +261,9 @@
       "erloes": "Gelir",
       "kosten": "Maliyet",
       "db": "Katkı payı"
-    }
+    },
+    "dbLead": "Maliyet nesneleri: sıra bloğu, çeşit, hasat günü. Gelir ve giderler parti bazında işlenir, kayıtlar değiştirilemez.",
+    "note": "Kilogram başına katkı payı temel yönetim ölçüsüdür. Yıl sonunda değil, sıra bloğu, çeşit ve hasat günü bazında oluşur."
   },
   "personalDemo": {
     "brigadenTitle": "Ekipler",
@@ -243,7 +282,10 @@
       "erfasst": "kaydedildi",
       "offen": "açık"
     },
-    "days": "gün"
+    "days": "gün",
+    "brigadenLead": "Tüm hasat dönemi için vardiyalı ve yedek listeli ekip planlaması.",
+    "pflueckerLead": "Toplayıcı kartı, her sözleşme için ЕСУТД kaydı, kişi bazında verim ve kalite katsayısı içeren personel kaydı.",
+    "note": "Çekirdek kadroyu tutmak, yeni işçi bulmaktan önemlidir: sezon ortasındaki her yeniden eğitim miktara ve kaliteye mal olur."
   },
   "dokumenteDemo": {
     "listTitle": "Belgeler",
@@ -259,7 +301,8 @@
       "gueltig": "geçerli",
       "prueflauf": "incelemede",
       "abgelaufen": "süresi dolmuş"
-    }
+    },
+    "note": "Her doküman bir sıra bloğu veya partiyle ilişkilidir. Parti başına kalıntı kanıtı böylece ticaret ve resmî makamlar için tek tuşla hazırdır."
   },
   "sortenkatalogDemo": {
     "catalogTitle": "Çeşitler ve kontenjanlar",
@@ -269,7 +312,9 @@
     },
     "window": "Hasat penceresi",
     "shale": "Kase",
-    "contingent": "Kontenjan ayrıldı"
+    "contingent": "Kontenjan ayrıldı",
+    "catalogLead": "Çeşit, hasat penceresi, kap ağırlığı, ayrılmış kota ve fiyat tek yerde.",
+    "note": "Yazlık çeşitler temmuzda, yıl içinde iki kez verenler ağustostan ilk dona kadar ürün verir. Çeşit yelpazesi bütün personel modelini belirler."
   },
   "schulungenDemo": {
     "libraryTitle": "Video kütüphanesi",
@@ -278,7 +323,9 @@
       "thema": "Konu",
       "dauer": "Süre",
       "sprachen": "Diller"
-    }
+    },
+    "libraryLead": "Mevsimlik işçiler için telefonda çok dilli, görsele dayalı kısa oryantasyon.",
+    "note": "Telefonda adım adım kontrol listesi biçiminde kısa oryantasyon, çok dilli, metin yerine görsellerle - her temel süreç için kısa bir video."
   },
   "kuehlketteMock": {
     "clockTitle": "Parti saati (taslak)",
@@ -289,7 +336,8 @@
   "qrSteigenMock": {
     "scanTitle": "Çıkış noktasında tarama (taslak)",
     "simulateScan": "Taramayı benzet",
-    "registered": "kaydedildi"
+    "registered": "kaydedildi",
+    "scanLead": "Her kasada QR etiketi, teslimde okutma. Miktar, sıra bloğu, saat ve kişi tek işlemde - burada gerçek sunucu doğrulaması olmadan."
   },
   "kiAssistentMock": {
     "chatTitle": "Retrieval sohbeti (yer tutucu)",
@@ -316,5 +364,597 @@
     "privacyScopeText": "Prototip kişisel veri işlemez. Analiz amaçlı çerez konmaz. Tema seçimi (açık/koyu) ve demo rolü yalnızca tarayıcıda yerel olarak saklanır.",
     "residencyTitle": "Veri yerleşimi (planlanan işletim)",
     "residencyText": "Sonraki gerçek işletim için Kazak Dijital Kod No. 255-VIII bazı veri ürünlerinin Kazakistan dışında saklanmasını sınırlar. QR, çevrimdışı senkron ve yapay zeka mimarisi için barındırma yeri üretime geçmeden önce hukuken kontrol edilir."
+  },
+  "meta": {
+    "title": "Malina - ahududu plantasyonu için işletme yönetimi",
+    "description": "Malina, Almatı çevresindeki bir ahududu işletmesinin yönetim sistemidir: hasat akışı, 60 dakikalık eşiği olan soğuk zincir, tarlada kasa kimliği, hasat günü başına katkı payı ve her teslimat için kesintisiz kanıt zinciri."
+  },
+  "landing": {
+    "openZone": "Alanı aç",
+    "berryEyebrow": "Ahududu neden farklı",
+    "berryTitle": "Taze ürün yelpazesinin en hassas meyvesi",
+    "berryLead": "Koruyucu bir kabuğu yok, içi boş ve kurşuni küfe son derece yatkın. Yazılım tek başına tek bir meyveyi kurtarmaz - ama fiyatın bağlı olduğu o saati, rotasyonu ve kanıtları tam olarak yönetir.",
+    "berryPoints": {
+      "schale": {
+        "title": "Koruyucu kabuk yok",
+        "text": "Soğutulmayan ahududu yaklaşık bir gün sonra satılabilir olmaktan çıkar. Düzgün ön soğutulduğunda iki üç gün, çok iyi koşullarda beş güne kadar dayanır."
+      },
+      "kuehlung": {
+        "title": "Soğutmaya 60 dakika",
+        "text": "Toplama ile soğutma arasında 60 dakikadan fazla geçmemelidir. Bu sınır aşılırsa sonraki her önlem etkisizdir."
+      },
+      "umpacken": {
+        "title": "Doğrudan satış kabına toplama",
+        "text": "Satışa hazır kap, toplayıcının elinde oluşur. Her aktarma veya yeniden ayıklama ürünü bozar."
+      },
+      "feld": {
+        "title": "Kalite tarlada belirlenir",
+        "text": "Kalite kararını toplayıcı verir. Bu karar merkezi bir ayıklama istasyonunda değil, orada kaydedilmeli ve ölçülmelidir."
+      },
+      "rhythmus": {
+        "title": "Zirve değil, bant",
+        "text": "Yıl içinde iki kez ürün veren çeşitler ağustostan ilk dona kadar ürün verir. Her sıra bloğu üç ila sekiz hafta boyunca iki üç günde bir toplanır."
+      },
+      "schaden": {
+        "title": "Tek meyve bütün kabı değersizleştirir",
+        "text": "Akan veya zedelenmiş tek bir meyve bütün kabı satılamaz hale getirir. Bu yüzden salt parça başı ücret değer yok eder."
+      }
+    },
+    "berryQuote": "Bir zirveyi çok elle atlatırsınız. Altı haftalık bir bandı ancak bir planla atlatırsınız.",
+    "spreadEyebrow": "Fiyat farkı işin ta kendisi",
+    "spreadTitle": "Dökme ürün ile premium arasında 2,3 kat fark var",
+    "spreadLead": "Almatı pazarı tarladan dökme taze ürüne kilogram başına yaklaşık 1.500 tenge, aynı gün toplanıp doğrudan pazarlanan ürüne ise 3.500 tengeye kadar ödüyor. Bu fark tarlada oluşmuyor.",
+    "spreadTiers": {
+      "lose": {
+        "label": "Tarladan dökme taze ürün",
+        "price": "1.500 – 1.600 ₸/kg",
+        "note": "Tarladan ve ilanlar üzerinden satış. Fiyatta rekabet edilemez."
+      },
+      "schale": {
+        "label": "Kaplı ürün, tünel veya sera",
+        "price": "≈ 2.000 ₸/kg",
+        "note": "Polka ve Babje leto çeşitleri. Farkı meyve değil, kap yaratır."
+      },
+      "premium": {
+        "label": "Premium, aynı gün toplanmış",
+        "price": "3.500 ₸/kg'a kadar",
+        "note": "Doğrudan pazarlanır. Tazelik, istikrar ve kanıtlanabilirlik katma değerin tamamıdır."
+      }
+    },
+    "spreadFactor": "≈ 4 – 5 milyon ₸",
+    "spreadFactorText": "Hacmin yüzde 10 puanının üst fiyat segmentine kayması sezon başına bu kadar ek gelir getirir - üç hektarda. Kaldıraç soğutma süresi, kap kalitesi, teslimat güvenilirliği ve kanıtlanabilirliktir.",
+    "proofEyebrow": "Kanıtlanabilirlik",
+    "proofTitle": "Her teslimat için kesintisiz kanıt zinciri",
+    "proofLead": "Her teslimatı sıra bloğuna, soğutma süresine ve kişiye kadar izleyebilen tek işletme, ticaretin diğerlerini ölçtüğü standart haline gelir.",
+    "proofSteps": {
+      "kuehlkurve": {
+        "title": "Soğutma eğrisi",
+        "text": "Toplamadan ön soğutmaya kadar süre ve sıcaklık, sert 60 dakika sınırı, müşteriye kadar sıcaklık kaydedici."
+      },
+      "charge": {
+        "title": "Parti",
+        "text": "Her kasa tarlada verilen bir kimlik taşır ve tam olarak bir partiye aittir - kasadan faturaya kadar."
+      },
+      "herkunftsblock": {
+        "title": "Köken bloğu",
+        "text": "Her parti için maliyet nesnesi ve köken bilgisi olarak sıra bloğu, çeşit ve hasat günü."
+      },
+      "pfluecker": {
+        "title": "Toplayıcı",
+        "text": "Miktar, sıra bloğu, saat ve kişi, kasa teslim edilirken tek bir okutmayla kaydedilir."
+      },
+      "behandlung": {
+        "title": "İşlem kanıtı",
+        "text": "Her bitki koruma işlemi, bekleme süresi dolana kadar sıra bloğunu otomatik olarak kilitler. Parti başına kalıntı kanıtı tek tuşla hazır."
+      }
+    },
+    "proofClosing": "Bir şikâyette ürünün hangi bloktan, kimden ve hangi soğutma süresiyle geldiği saniyeler içinde belirlenebilir.",
+    "leversEyebrow": "Pazar liderliğine giden yol",
+    "leversTitle": "Malina'nın beslediği dört kaldıraç",
+    "leversLead": "Her kaldıraç kendi başına durur ama birbirinin üzerine kurulur. Birincisi olmadan diğer üçü etkisizdir.",
+    "leverItems": {
+      "stunde": {
+        "title": "Toplamadan sonraki saat",
+        "text": "Sabit toplama turları, 0-1 dereceye ön soğutma, 60 dakika eşikli süre ölçümü. Fiyat farkı satış görüşmesinde değil, tarladaki ilk saatte kaybolur."
+      },
+      "herbstfenster": {
+        "title": "Sonbahar penceresi",
+        "text": "İki kez ürün veren çeşitlerde asıl verim sonbahardadır ve bölgesel arz o dönemde zayıftır. Rotasyon planı toplama disiplinini altı hafta boyunca korur - atlanan tek bir tur bloğu o döngü için yok eder."
+      },
+      "zugang": {
+        "title": "Erişim avantajı olarak kanıtlanabilirlik",
+        "text": "Büyük zincirler yalnızca kanıt sunabilen tedarikçileri kabul eder. Kasadan faturaya kadar zinciri eksiksiz gösteren, bu alıcılar için ilk kez ulaşılabilir hale gelir. Düzenleme yükü avantaja dönüşür."
+      },
+      "aggregation": {
+        "title": "Arazi satın almak yerine toplulaştırma",
+        "text": "Kendi hasadı ve komşu işletmelerden alım tek bir marka, tek bir kalite sınıfı ve tam izlenebilirlik altında - işletme başına ayrı parti takibiyle. Arazi almadan büyüme."
+      }
+    },
+    "zonesEyebrow": "Dört alan, tek işletme",
+    "zonesTitle": "Tarla, avlu, ofis, pazar",
+    "zonesLead": "Sıra bloğu haritasından B2B portalına, soğuk zincir sayacından hasat günü katkı payına kadar. Tüm alanlar aynı partiye ve aynı rol yönetimine erişir.",
+    "kpiEyebrow": "01.10.2026 başlangıç değerleri",
+    "kpiTitle": "Müşterinin imzaladığı 14 gösterge",
+    "kpiLead": "Analiz haftasında ölçülür ve başlangıç değeri olarak birlikte imzalanır. İmzalanmış başlangıç değerleri olmadan sonradan başarı kanıtı olmaz.",
+    "kpiFootnote": "Prototip: yer tutucu değerler. Gerçek hesaplama, tam olarak ölçülen ilk sezonun hasat verileriyle gelir.",
+    "complianceEyebrow": "Kazakistan 2026",
+    "complianceTitle": "Düzenleme yükü erişim avantajına dönüşüyor",
+    "complianceLead": "Kazakistan 2026'da dijital alanın hukuki çerçevesini arka arkaya yeniden kurdu. Bu yükümlülükleri eksiksiz yerine getiren bir işletme için yük, organize ticarete giriş biletine dönüşür.",
+    "complianceItems": {
+      "steuer": {
+        "title": "2026 Vergi Kanunu",
+        "text": "KDV yüzde 16, kayıt eşiği 43,25 milyon tenge. Büyüyen bir işletme vergi yükümlülüğüne girer - temiz bir belge zinciri olmadan bu bir risktir."
+      },
+      "warenbegleit": {
+        "title": "Elektronik sevk irsaliyesi",
+        "text": "01.01.2026'dan bu yana her teslimat ЭСФ sistemi üzerinden elektronik olarak belgelenir. Sevk irsaliyesi temel mal ve muhasebe belgesidir, kâğıt yalnızca arıza halinde kullanılır."
+      },
+      "ki": {
+        "title": "230-VIII sayılı Yapay Zekâ Kanunu",
+        "text": "Yapay zekâ sohbetinin görünür bir şeffaflık bildirimine, amaca bağlı onaya, kayıt tutmaya ve bir insana devretmeye ihtiyacı vardır. Duygu analizi yasaktır."
+      },
+      "digitalkodex": {
+        "title": "255-VIII sayılı Dijital Kanun",
+        "text": "Belirli veri türlerinin Kazakistan dışında saklanmasını sınırlar. Barındırma yeri, canlıya alınmadan önce hukuken incelenir."
+      },
+      "datenschutz": {
+        "title": "Sıkılaştırılmış veri koruma hukuku",
+        "text": "24.08.2026'dan beri: amaca bağlı onay, saklama süreleri, atanmış sorumlular, şifreleme, çok faktörlü kimlik doğrulama, yıllık zorunlu eğitim."
+      },
+      "esutd": {
+        "title": "ЕСУТД'de iş sözleşmesi kaydı",
+        "text": "Her mevsimlik sözleşmenin kurulması, değiştirilmesi ve sona ermesi tek sistemde kaydedilir. Mevsimlik işçilerde bu bugün çoğu zaman yerine getirilmiyor - 2.000 MRP'ye kadar risk."
+      }
+    },
+    "complianceClosing": "Kendi tedarik zinciri olan büyük zincirler yalnızca kanıt sunabilen tedarikçileri kabul eder. Burada uyum bir formalite değil, giriş biletidir.",
+    "ctaTitle": "Kavram slaytları yerine elle tutulur bir sistem",
+    "ctaLead": "Prototip ilk aşamanın yapısını ve görünümünü gösterir: bekleme süresi kilidiyle sıra bloğu yönetimi, fotoğraf kanıtlı toplama görevleri, soğuk zincir sayacı ve hasat günü katkı payı.",
+    "ctaButton": "Panele git"
+  },
+  "auth": {
+    "title": "Oturum aç",
+    "lead": "Malina - ahududu işletmesi için ERP ekosistemi",
+    "email": "E-posta",
+    "password": "Parola",
+    "submit": "Oturum aç",
+    "submitting": "Oturum açılıyor ...",
+    "error": {
+      "ungueltig": "E-posta veya parola doğru değil.",
+      "unbekannt": "Oturum açılamadı. Lütfen daha sonra tekrar deneyin.",
+      "eingabe": "Lütfen e-posta ve parolayı doldurun."
+    },
+    "demoTitle": "Demo erişimleri",
+    "demoLead": "Her rol için bir hesap - yetki mantığı böyle gösterilebilir.",
+    "demoPassword": "Tüm hesaplar için parola:",
+    "backToSite": "Başlangıç sayfasına dön",
+    "demoModeTitle": "Veri tabanı olmadan demo modu",
+    "demoModeLead": "Tanımlı bir Supabase ortamı yok. Panel örnek verilerle çalışır, rol serbestçe değiştirilebilir.",
+    "toDashboard": "Panele git",
+    "signOut": "Oturumu kapat"
+  },
+  "kpis": {
+    "verlustquote": {
+      "label": "Toplamadan müşteriye kadar kayıp oranı"
+    },
+    "vermarktungsfaehig": {
+      "label": "Satılabilir kap oranı"
+    },
+    "zeitBisVorkuehlung": {
+      "label": "Toplamadan ön soğutmaya kadar süre"
+    },
+    "zeitBisKunde": {
+      "label": "Toplamadan müşteriye kadar süre"
+    },
+    "pflueckleistung": {
+      "label": "Kişi başına saatlik toplama verimi"
+    },
+    "pflueckStreuung": {
+      "label": "Toplama veriminde dağılım (en iyiden en zayıfa)"
+    },
+    "pflueckintervall": {
+      "label": "Sıra bloğu başına tutturulan toplama aralığı"
+    },
+    "behandlungenWartezeit": {
+      "label": "Bekleme süresine uyulan işlemler"
+    },
+    "reklamationsquote": {
+      "label": "Şikâyet oranı"
+    },
+    "liefertreue": {
+      "label": "Teslimat güvenilirliği (zamanında ve eksiksiz)"
+    },
+    "belegteVerkaeufe": {
+      "label": "Belgelenmiş satış oranı (ЭСФ ve sevk irsaliyesi)"
+    },
+    "deckungsbeitrag": {
+      "label": "Kilogram başına katkı payı"
+    },
+    "esutdAbdeckung": {
+      "label": "Mevsimlik işçilerin ЕСУТД kapsamı"
+    },
+    "websiteAnfragen": {
+      "label": "Ayda web sitesi üzerinden gelen talep"
+    }
+  },
+  "modules": {
+    "standort": {
+      "title": "Konum hiyerarşisi",
+      "description": "İşletme, plantasyon, tarla parseli, sıra grubu, sıra bloğu - teller boyunca sıra ve blokların tekil kimliğini taşıyan dijital tarla haritası.",
+      "summary": "Telli terbiye üzerindeki sıra bloklarıyla tarla haritası: her blok için çeşit, dikim yılı, sürgün tipi ve tel yönü.",
+      "todo": "Parsel ve sıra gruplarını oluşturup taşımak için yönetim ekranı, tarla geometrisi düzenleyicisi."
+    },
+    "reihenbloecke": {
+      "title": "Sıra blokları ve durumlar",
+      "description": "Her sıra bloğunun tek bir durumu vardır: dikili, hasada hazır, dinlenmede, budama veya bekleme süresi kilitli. Kilitli bir blok toplama planında hiç görünmemelidir.",
+      "summary": "Her sıra bloğu için durum makinesi. Koşul yerine gelene kadar hasadı kilitler - burada bekleme süresi dolana kadar.",
+      "todo": "Gerekçe zorunlu durum değişikliği, kaynak bazında ayrıntılı erişim kuralları, her sıra bloğu için geçmiş."
+    },
+    "pflueckaufgaben": {
+      "title": "Fotoğraf kanıtlı toplama görevleri",
+      "description": "Ekip ve sıra bloğu bazında toplama görevi: hedef ve gerçekleşen miktar, kalite katsayısı ve satış kabının fotoğraf kanıtı doğrudan görevde.",
+      "summary": "Ekip ve sıra bloğu bazında görev, kabın fotoğraf kanıtı, miktar ve kalite katsayısı görevin üzerinde.",
+      "todo": "Tarlada çevrimdışı kayıt, onay ve düzeltmeli kanıt incelemesi, kalite katsayılı ücrete bağlama."
+    },
+    "pflanzenschutz": {
+      "title": "Bitki koruma ve bekleme süresi",
+      "description": "Her işlem ilaç, miktar, blok, tarih ve uygulayan kişiyle kaydedilir ve sıra bloğunu yasal bekleme süresi dolana kadar otomatik kilitler.",
+      "summary": "Blok bazında işlem kaydı ve otomatik hasat kilidi. İhlal, hukuki ve gıda güvenliği riskidir.",
+      "todo": "Bekleme süreli ilaç veri tabanı, süre dolduğunda otomatik açma, tutanak yükleme zorunluluğu, parti başına kalıntı kanıtı."
+    },
+    "rotationsplan": {
+      "title": "Rotasyon / toplama planı",
+      "description": "Tüm sonbahar hasadı boyunca her sıra bloğu için iki üç günlük aralıklı, dönen toplama planı. Atlanan tek bir tur bloğu o döngü için yok eder.",
+      "summary": "İlk inşa edilecek işlev. Planlama sorunu tahmin değil, altı hafta boyunca rotasyondur.",
+      "todo": "Sıra bloğu bazında aralık motoru, ekip ataması, bekleme kilitleriyle çakışma denetimi, takvim dışa aktarımı (.ics)."
+    },
+    "wetter": {
+      "title": "Hava durumu ve sıcaklık toplamı",
+      "description": "Miktar tahmini için sıcaklık toplamı hesaplayan hava durumu API bağlantısı. Birinci aşamada bilinçli olarak makine öğrenmesi yok - açıklanabilir bir sezgisel yöntem yeterli.",
+      "summary": "Parsel bazında sıcaklık toplamı olan basit bir hava durumu arayüzü. Açıklanabilir, denetlenebilir ve bir sezon içinde doğrulanabilir.",
+      "todo": "Meteoroloji istasyonu veya API bağlantısı, parsel bazında sıcaklık toplamı, kayan olgunlaşma pencerelerine dair uyarı."
+    },
+    "kuehlkette": {
+      "title": "Soğuk zincir sayacı",
+      "description": "Toplamadan ön soğutmaya kadar sert 60 dakika eşikli süre ölçümü, sıcaklık kaydediciler, hedef sıcaklık 0-1 derece. İşletmedeki en yüksek öncelik.",
+      "summary": "Bütün fiyat farkının bağlı olduğu yapı taşı. 60 dakikanın üzerinde ürün ertesi gün yalnızca sanayilik olur.",
+      "todo": "Sıcaklık kaydedici entegrasyonu, toplama anından itibaren parti sayacı, eşik aşımında alarm, gösterge hesabı."
+    },
+    "logistik": {
+      "title": "Toplama turları ve güzergâh planlama",
+      "description": "Dolu kasalar güneşte kalmasın diye tarlada sabit toplama turları, ayrıca müşterilerin teslimat pencerelerine göre güzergâh planlama.",
+      "summary": "Tarlada toplama turları, araç bazında güzergâh listesi, sıcaklık ve miktar karşılaştırmalı teslim tutanağı.",
+      "todo": "Araç bazında güzergâh listesi, zaman pencereleri, sıcaklık ve miktar karşılaştırmalı teslim tutanağı."
+    },
+    "qr_steigen": {
+      "title": "QR kasa kimliği",
+      "description": "Kasadaki QR etiketi ekibin dağıtım noktasında verilir. Teslimde toplayıcı kartı okutulur - miktar, sıra bloğu, saat ve kişi tek işlemde. Prototipte arayüz taklidi.",
+      "summary": "Kimlik tartıda değil, tarlada verilir. Tek okutma miktarı, bloğu, zamanı ve kişiyi kaydeder.",
+      "todo": "Kasa başına etiket baskısı, dağıtım noktasında sunucu doğrulamalı okutma, kasanın partiye ve göreve bağlanması."
+    },
+    "esf": {
+      "title": "Elektronik irsaliye (ЭСФ)",
+      "description": "Sevk irsaliyesi zorunluluğuna uygun elektronik irsaliye. Devletin ЭСФ sistemine bağlı, kendi muhasebesi yok.",
+      "summary": "Partiden irsaliyeye belge zinciri, devlet sisteminden durum bildirimi. Zorunlu entegrasyon.",
+      "todo": "ЭСФ bilgi sistemine bağlantı, parti - irsaliye belge zinciri, durum bildirimi ve yeniden gönderim."
+    },
+    "rollen": {
+      "title": "Roller ve yetkiler",
+      "description": "Yönetimden işletme müdürlüğüne, muhasebeden tarladaki ekibe, üreticiye ve B2B müşterisine kadar altı temel rol - kaynaklar ve eylemler üzerinden bir yetki matrisiyle.",
+      "summary": "Roller, kaynak çarpı eylem şeklinde açık bir veri yapısı olarak. Yeni roller mantığa dokunmadan eklenir.",
+      "todo": "Kullanıcı yönetimi, rol atama, kaynak bazında ayrıntılı erişim kuralları."
+    },
+    "finanzen": {
+      "title": "Katkı payı ve finans",
+      "description": "Sıra bloğu bazında maliyet yerleri, çeşit ve müşteri bazında maliyet nesneleri. Kilogram, sıra bloğu, çeşit ve hasat günü başına katkı payı - kayıtlar değiştirilemez.",
+      "summary": "Sıra bloğu, çeşit ve hasat günü başına katkı payı. Kayıtlar değiştirilemez (yalnızca ekleme).",
+      "todo": "Hasat günü bazında maliyet türleri, B2B ödeme mutabakatı, çeşit bazında katkı payı projeksiyonu."
+    },
+    "personal": {
+      "title": "Toplayıcı kadrosu ve ekipler",
+      "description": "Toplayıcı kartı, ekip ataması ve sezon boyunca kişi başına verim ve kalite katsayısı içeren personel kaydı - prim, ek eğitim ve gelecek yılın seçimi için temel.",
+      "summary": "Personel kaydı, ekip ve toplayıcı kartı, sezon boyunca kişi başına verim ve kalite profili.",
+      "todo": "Her sözleşme için ЕСУТД kaydı, ekip planlaması, ücret hesabının temeli olarak verim geçmişi."
+    },
+    "lohn": {
+      "title": "Kalite katsayılı ücret",
+      "description": "Temel ücret, miktar bileşeni ve kalite katsayısından oluşan karma model. Salt parça başı ücret miktara baskı yapar, meyveyi ezer ve ahudududa değer yok eder.",
+      "summary": "Temel ücret artı miktar artı kalite katsayısı. Kalite katsayısı bir seçenek değil, ön koşuldur.",
+      "todo": "Ücret formülü düzenleyicisi, kanıt incelemesinden gelen kalite katsayısı, dönem bazlı hesap çalışması, avans hesabı."
+    },
+    "dokumente": {
+      "title": "Doküman yönetimi",
+      "description": "İlaçlama tutanakları, ЕСУТД kanıtları, teslimat ve çerçeve sözleşmeleri, destek dosyaları ve sertifikalar için korumalı arşiv - sıra bloğu ve partiyle ilişkilendirilmiş.",
+      "summary": "Sıra bloğu ve partiyle ilişkili, kategorili ve korumalı doküman arşivi.",
+      "todo": "Sürümleme, geçerlilik ve hatırlatma mantığı, sıra bloğu ve partiyle ilişkilendirme."
+    },
+    "compliance": {
+      "title": "Uyum paneli",
+      "description": "Onaylar, saklama süreleri, denetim kaydı ve veri yerleşimi genel görünümü - 2026 Kazakistan çerçevesinin hukuki atıflarıyla.",
+      "summary": "Onaylar, saklama, denetim kaydı ve veri yerleşimi tek yerde, Kazakistan hukukuna göre.",
+      "todo": "Vergi Kanunu, Yapay Zekâ Kanunu, Dijital Kanun atıfları, veri türü bazında saklama kuralları, barındırma yeri incelemesi."
+    },
+    "integrationen": {
+      "title": "Devlet entegrasyonları",
+      "description": "ЭСФ, sanal stok, ЕСУТД ve gosagro.kz ile qoldau.kz destek portallarına bağlayıcılar. Muhasebe, ülkede yerleşik bir çözümde kalır.",
+      "summary": "Her hedef sistem için durum bildirimli ve yeniden denemeli bir bağlayıcı. Muhasebeyi kendimiz yazmıyoruz.",
+      "todo": "Sistem bazında bağlayıcılar, test ortamı erişimleri, hata ve yeniden deneme mantığı, kuyruk izleme."
+    },
+    "foerdermittel": {
+      "title": "Destek dosyası",
+      "description": "Kazakistan destek portalları için başvuru şablonları, kanıt listeleri ve süre takibi - başvuru yeterliliği, günlük muhasebenin yan ürünü olarak.",
+      "summary": "Program bazında başvuru şablonları ve kanıt kontrol listeleri, süre takibi ve karar arşivi.",
+      "todo": "Başvuru şablonları, kanıt kontrol listeleri, süre takibi, karar arşivi."
+    },
+    "sortenkatalog": {
+      "title": "Çeşit ve kota kataloğu",
+      "description": "Çeşit, hasat penceresi (yazlık veya yıl içinde iki kez veren), kap ağırlığı, kota ve fiyat listesinden oluşan katalog - ön sipariş ve B2B portalının temeli.",
+      "summary": "Çeşit, hasat penceresi, kap ağırlığı, kota ve fiyat tek yerde.",
+      "todo": "Rezervasyon mantıklı kota kaydı, fiyat listesi sürümleri, müşteri ataması."
+    },
+    "b2b_portal": {
+      "title": "B2B portalı",
+      "description": "Sürekli müşteriler için portal: kotalar, önceden ön sipariş, müşteri grubuna göre fiyat listesi, teslimat durumu, fatura geçmişi ve şikâyet bildirimi.",
+      "summary": "Sürekli müşteriler için kotalar, ön sipariş, müşteri grubuna göre fiyat listesi, teslimat durumu ve fatura geçmişi.",
+      "todo": "Müşteri hesapları, kota ön siparişi, teslimat tarihi rezervasyonu, fatura ve ödeme durumu."
+    },
+    "preislisten": {
+      "title": "Fiyat listeleri",
+      "description": "Müşteri grubuna göre kademeli fiyatlar ve geçerlilik dönemi olan sürümlenmiş fiyat listeleri.",
+      "summary": "Müşteri ve döneme göre fiyat kademeleri, sürümlü ve geçerlilik tarihli.",
+      "todo": "Sürümlenmiş fiyat listeleri, kademeli fiyatlar, geçerlilik dönemleri, müşteri ataması."
+    },
+    "ki_assistent": {
+      "title": "Yapay zekâ asistanı",
+      "description": "Standart soruları yanıtlayan ve stok durumunu sistemden çeken sohbet - yalnızca onaylı kaynaklardan, her yanıt kayda geçer, tereddütte insana devreder. Prototipte yer tutucu bir sohbet penceresi.",
+      "summary": "Yalnızca onaylı kaynaklardan yanıtlar, her yanıtı kaydeder, tereddütte insana devreder.",
+      "todo": "Bilgi tabanı: çeşit kataloğu ve müşteri soruları, rol bazlı erişim kapısı, Yapay Zekâ Kanunu gereği şeffaflık bildirimi, devretme yolu."
+    },
+    "aggregator": {
+      "title": "Toplulaştırma / komşu işletmeler",
+      "description": "Komşu işletmelerin bağlanması: alınan miktar fatura kalemine dönüşür, her alım partisi ayrı yürütülür ve teslim eden işletmeye kadar izlenebilir kalır.",
+      "summary": "Komşu işletme kaydı, ayrı partiyle alım kaydı, ayrı köken takibi, mutabakat.",
+      "todo": "Komşu işletme kaydı, ayrı partiyle alım kaydı, mutabakat ve ödeme."
+    },
+    "schulungen": {
+      "title": "Eğitim videoları",
+      "description": "Mevsimlik işçiler için telefonda çok dilli, görsele dayalı kısa oryantasyon - her temel süreç için bir video, metin yerine görsellerle.",
+      "summary": "Her temel süreç için kısa, görsele dayalı videolar, çok dilli, kişi bazında ilerleme takibiyle.",
+      "todo": "Temel süreç bazında video içerikleri, Kazakça ve Rusça dil sürümleri, kişi bazında ilerleme takibi."
+    }
+  },
+  "reihenblockStatusHint": {
+    "bepflanzt": "ürün veriyor, normal bakımda",
+    "erntereif": "bir sonraki rotasyona alındı",
+    "ruhend": "hasadı bitti, kış dinlenmesi",
+    "rueckschnitt": "sürgün ve şekil budaması sürüyor",
+    "wartezeitgesperrt": "bekleme süresi dolana kadar hasat kilitli"
+  },
+  "reihenbloeckeDemo": {
+    "distributionTitle": "Durum dağılımı",
+    "distributionLead": "Her sıra bloğunun tam olarak bir durumu vardır. Tıklamak alttaki tabloyu süzer.",
+    "lockTitle": "Bekleme süresi kilidi",
+    "lockLead": "Bitki koruma işleminden sonra sıra bloğundaki hasat, bekleme süresi dolana kadar yasal olarak kilitlidir. Bu bloktan ne toplama, ne görev, ne kasa - toplama planı onu hiç göstermez.",
+    "tableTitle": "Sıra blokları",
+    "tableLeadAll": "Tüm plantasyonlardaki bütün sıra blokları.",
+    "tableLeadFiltered": "Seçilen duruma göre süzüldü.",
+    "col": {
+      "id": "Sıra bloğu",
+      "parzelle": "Parsel / grup",
+      "sorte": "Çeşit",
+      "status": "Durum",
+      "letzteErnte": "Son hasat",
+      "sperre": "Kilit"
+    },
+    "freeAt": "Serbest",
+    "days": "gün",
+    "note": "Bekleme süresi kilitli blok, sistemin en kolay denetlenen faydasıdır: toplama planının onu göstermeye hakkı yoktur."
+  },
+  "aktionen": {
+    "anlegen": "Oluştur",
+    "speichern": "Kaydet",
+    "freigeben": "Serbest bırak",
+    "laeuft": "...",
+    "spalte": "İşlem",
+    "statusLabel": "Durum seç",
+    "faellig": "bekleme süresi doldu",
+    "resttage": "{tage} gün kaldı",
+    "gesperrtHinweis": "Serbest bırakma ancak bekleme süresi dolduktan sonra",
+    "ok": {
+      "plantage": "\"{wert}\" plantasyonu oluşturuldu.",
+      "parzelle": "\"{wert}\" tarla parseli oluşturuldu.",
+      "reihengruppe": "\"{wert}\" sıra grubu oluşturuldu.",
+      "reihenblock": "{wert} sıra bloğu oluşturuldu.",
+      "status": "{wert} durumu kaydedildi.",
+      "behandlung": "İşlem kaydedildi - blok {wert} tarihine kadar kilitli.",
+      "freigabe": "{wert} sıra bloğu serbest bırakıldı.",
+      "aufgabe": "{wert} toplama görevi oluşturuldu.",
+      "aufgabeStatus": "{wert} görevi güncellendi.",
+      "menge": "{wert} için miktar bildirildi - kanıt inceleniyor.",
+      "beleg": "Fotoğraf kanıtı yüklendi.",
+      "dokument": "\"{wert}\" dokümanı kaydedildi."
+    },
+    "fehler": {
+      "eingabe": "Lütfen tüm zorunlu alanları doldurun.",
+      "gesperrt": "{wert} sıra bloğu bekleme süresi nedeniyle kilitli - toplama görevi oluşturulamaz.",
+      "keineDatei": "Lütfen bir görsel dosyası seçin.",
+      "zuGross": "Dosya 8 MB'tan büyük.",
+      "upload": "Fotoğraf kaydedilemedi.",
+      "berechtigung": "Rolünüz bu işlemi yapamaz.",
+      "angemeldet": "Oturum süresi doldu. Lütfen yeniden oturum açın.",
+      "doppelt": "Bu tanımla bir kayıt zaten var.",
+      "bezug": "Seçilen ilişkili kayıt bulunmuyor.",
+      "regel": "Mümkün değil: bekleme süresi henüz dolmadı.",
+      "unbekannt": "İşlem başarısız. Ayrıntılar sunucu kaydında."
+    }
+  },
+  "standortVerwaltung": {
+    "titel": "Konumları yönet",
+    "lead": "Yeni seviyeler oluşturun. Her işlem veri tabanındaki rol yetkileriyle denetlenir ve denetim kaydına yazılır.",
+    "keinRecht": "Rolünüz konum yapısını okuyabilir ama düzenleyemez. Oluşturma ve değiştirme yönetim ile işletme müdürlüğüne aittir.",
+    "plantage": {
+      "titel": "Plantasyon",
+      "lead": "Kendi alanı veya bağlı komşu işletme."
+    },
+    "parzelle": {
+      "titel": "Tarla parseli",
+      "lead": "Bir plantasyon içindeki alan, genellikle tek çeşide ayrılmış."
+    },
+    "reihengruppe": {
+      "titel": "Sıra grubu",
+      "lead": "Bir parselin ortak yönlü telli sıraları."
+    },
+    "reihenblock": {
+      "titel": "Sıra bloğu",
+      "lead": "Tarla haritasının en küçük birimi - hasat ve kilidin temeli."
+    },
+    "feld": {
+      "name": "Ad",
+      "ort": "Yer",
+      "typ": "Tür",
+      "plantage": "Plantasyon",
+      "parzelle": "Tarla parseli",
+      "reihengruppe": "Sıra grubu",
+      "sorte": "Çeşit",
+      "ohneSorte": "çeşit atanmamış",
+      "flaeche": "Alan, ha",
+      "spalier": "Tel yönü",
+      "code": "Blok tanımı",
+      "laenge": "Uzunluk, m"
+    },
+    "typ": {
+      "eigen": "Kendi işletmesi",
+      "nachbarbetrieb": "Komşu işletme"
+    },
+    "leer": {
+      "parzellen": "Henüz tarla parseli oluşturulmadı.",
+      "reihengruppen": "Henüz sıra grubu oluşturulmadı."
+    }
+  },
+  "dokumentKategorie": {
+    "spritzmittelprotokoll": "İlaçlama tutanağı",
+    "esutd_nachweis": "ЕСУТД kanıtı",
+    "liefervertrag": "Teslimat sözleşmesi",
+    "foerderdossier": "Destek dosyası",
+    "zertifikat": "Sertifika",
+    "sonstiges": "Diğer"
+  },
+  "dokumenteVerwaltung": {
+    "titel": "Doküman ekle",
+    "lead": "Üst veriler ve isteğe bağlı dosya. Arşiv kapalıdır - dosyalar yalnızca kısa ömürlü imzalı bağlantılarla açılır.",
+    "knopf": "Doküman ekle",
+    "dateiHinweis": "PDF veya görsel, 16 MB'a kadar. Dosya olmadan yalnızca kayıt oluşur.",
+    "oeffnen": "Aç",
+    "keineDatei": "dosya yok",
+    "col": {
+      "datei": "Dosya"
+    },
+    "feld": {
+      "name": "Ad",
+      "kategorie": "Kategori",
+      "bezug": "İlgi",
+      "stand": "Tarih",
+      "status": "Durum",
+      "datei": "Dosya"
+    }
+  },
+  "pflueckaufgabenVerwaltung": {
+    "ohneBrigade": "Ekipsiz",
+    "platzhalterBild": "Yer tutucu görsel - henüz fotoğraf yüklenmedi",
+    "neu": {
+      "titel": "Yeni toplama görevi",
+      "lead": "Bekleme süresi kilitli sıra blokları seçime çıkmaz - veri tabanı bunları ayrıca reddeder.",
+      "knopf": "Görev oluştur"
+    },
+    "menge": {
+      "knopf": "Miktarı bildir ve kanıt incelemesine gönder"
+    },
+    "beleg": {
+      "knopf": "Fotoğraf kanıtı yükle"
+    },
+    "ablauf": {
+      "titel": "Görevin akışı",
+      "lead": "Kabul et, topla, miktarı bildir, kanıtı incelet.",
+      "annehmen": "Görevi kabul et",
+      "starten": "Toplamayı başlat"
+    },
+    "art": {
+      "schale": "Satış kabı",
+      "reihenblock": "Sıra bloğu",
+      "steige": "Kasa"
+    },
+    "feld": {
+      "block": "Sıra bloğu",
+      "brigade": "Ekip",
+      "ohneBrigade": "atama yok",
+      "zielmenge": "Hedef miktar, kg",
+      "pfluecker": "Toplayıcı",
+      "istMenge": "Gerçekleşen miktar, kg",
+      "qualitaet": "Kalite katsayısı",
+      "art": "Kanıt türü",
+      "datei": "Fotoğraf",
+      "hinweis": "Not",
+      "hinweisBeispiel": "Satış kabı 125 g, kapalı meyve yüzeyi"
+    }
+  },
+  "pflanzenschutzVerwaltung": {
+    "titel": "İşlem kaydet",
+    "lead": "Bekleme süresi ilaç kataloğundan gelir - sıra bloğu otomatik olarak kilitlenir.",
+    "erfassen": "İşlem kaydet",
+    "hinweis": "Kilidi bir veri tabanı tetikleyicisi koyar ve durum değiştirerek aşılamaz. Serbest bırakma düğmesi ancak bekleme süresi dolduktan sonra görünür.",
+    "feld": {
+      "block": "Sıra bloğu",
+      "mittel": "Bitki koruma ilacı",
+      "datum": "İşlem tarihi"
+    }
+  },
+  "complianceDemo": {
+    "cockpitTitle": "Uyum paneli",
+    "cockpitLead": "Onaylar, saklama süreleri, denetim kaydı ve veri yerleşimi - 2026 Kazakistan hukuk çerçevesine göre.",
+    "items": {
+      "consent": {
+        "title": "Onaylar",
+        "state": "etkin",
+        "text": "Her işleme için amaca bağlı onay, saklama süresi ve atanmış sorumluyla."
+      },
+      "retention": {
+        "title": "Saklama",
+        "state": "etkin",
+        "text": "Veri türü bazında saklama süreleri, ardından otomatik silme veya anonimleştirme."
+      },
+      "audit": {
+        "title": "Denetim kaydı",
+        "state": "etkin",
+        "text": "Güvenlik açısından önemli her işlem kaydedilir - değiştirilemez ve kaynak bazında aranabilir."
+      },
+      "residency": {
+        "title": "Veri yerleşimi",
+        "state": "açık",
+        "text": "255-VIII sayılı Dijital Kanun, belirli veri türlerinin Kazakistan dışında saklanmasını sınırlar. Barındırma yeri incelenmelidir."
+      },
+      "ai": {
+        "title": "Yapay zekâ şeffaflığı",
+        "state": "açık",
+        "text": "230-VIII sayılı Kanun: yapay zekâ sohbeti için görünür şeffaflık bildirimi ve onay, duygu analizi yasak."
+      }
+    },
+    "integrationTitle": "Devlet entegrasyonları",
+    "integrationLead": "Her hedef sistem için durum bildirimli bir bağlayıcı. Muhasebe, ülkede yerleşik bir çözümde kalır.",
+    "col": {
+      "name": "Entegrasyon",
+      "system": "Hedef sistem",
+      "status": "Durum",
+      "queue": "Kuyruk"
+    },
+    "intStatus": {
+      "verbunden": "bağlı",
+      "sandbox": "test ortamı",
+      "geplant": "planlandı"
+    },
+    "note": "Para cezaları 2.000 MRP'ye kadar çıkar - yaklaşık 16.200 avro. Bu işletmenin yıllık cirosuna göre varlığını tehdit eden bir büyüklük."
+  },
+  "kpiHerkunft": {
+    "berechenbar": "bugün ölçülebilir",
+    "erfassung-fehlt": "kayıt eksik",
+    "tabelle-fehlt": "işlev eksik"
   }
 }
