@@ -206,7 +206,7 @@
   },
   "footer": {
     "blurb": "Malina, russisch für Himbeere. Betriebssteuerung für einen Himbeerbetrieb im Umland Almaty - von der Erntestrecke über die Kühlkette bis zum Nachweis jeder Lieferung.",
-    "prototypeNote": "Interner Proof-of-Concept. Kein vertraglich zugesicherter Leistungsumfang. Bildmaterial sind Platzhalter aus lizenzfreien Quellen.",
+    "prototypeNote": "Interner Proof-of-Concept. Kein vertraglich zugesicherter Leistungsumfang. Betriebsfotos zeigen die reale Anlage im Umland Almaty, übriges Bildmaterial sind Platzhalter aus lizenzfreien Quellen.",
     "productHeading": "Produkt",
     "legalHeading": "Rechtliches",
     "imprint": "Impressum",
@@ -1027,5 +1027,43 @@
       "stunden": "{anzahl, plural, one {einer Stunde} other {# Stunden}}",
       "tage": "{anzahl, plural, one {einem Tag} other {# Tagen}}"
     }
+  },
+  "farmReality": {
+    "eyebrow": "Der Betrieb, nicht das Bildarchiv",
+    "title": "Echte Aufnahmen statt Stockfotos",
+    "lead": "Diese Bilder zeigen die Anlage im Umland Almaty vor der Digitalisierung - einschließlich dessen, was daran noch nicht stimmt. Ein Auftritt, der nur das Gelungene zeigt, liest sich für einen Einkäufer als Werbung; einer, der den offenen Punkt selbst benennt, als Bestandsaufnahme.",
+    "bandCaption": "Die Anlage, Blick nach Süden auf den Zailiyskiy Alatau",
+    "photo1Title": "Sorte Polka",
+    "photo1Text": "Remontierend, trägt am einjährigen Trieb. Reife und grüne Früchte hängen gleichzeitig - deshalb wird alle zwei bis drei Tage gepflückt.",
+    "photo2Title": "Die Ernte",
+    "photo2Text": "Vom Pflücken bis in den Kühlraum vergehen 5 bis 15 Minuten. Diese Zahl ist gut und muss nicht verbessert werden.",
+    "photo3Title": "Der offene Punkt",
+    "photo3Text": "Dieselbe Ware im Lager, lose geschüttet bei rund +16 °C statt nahe 0 °C. Himbeeren tragen kein Eigengewicht: Was unter den obersten Zentimetern liegt, wird gedrückt - und bei dieser Temperatur reift es weiter."
+  },
+  "existingAssets": {
+    "eyebrow": "Kein Neuanfang auf leerer Fläche",
+    "title": "Hier wird nicht bei null angefangen",
+    "lead": "Der Betrieb hat Technik, Bewässerung und ein eigenes Erzeugnis. Was fehlt, ist nicht Ausrüstung, sondern der Nachweis darüber, was wann wohin gegangen ist.",
+    "asset1Title": "Traktor",
+    "asset1Text": "Eigene Zugmaschine für Pflege und Transport.",
+    "asset2Title": "Pflanzenschutz",
+    "asset2Text": "Eigene Spritztechnik. Jede Behandlung löst eine Wartezeit aus - das System sperrt den Block dafür automatisch.",
+    "asset3Title": "Bewässerung",
+    "asset3Text": "Wasserspeicher und Tanks auf der Fläche, dazu eine eigene Trafostation - Strom ist nicht von der Ortsleitung abhängig.",
+    "asset4Title": "Eigene Marke",
+    "asset4Text": "Himbeerkonfitüre unter eigenem Etikett, zweisprachig. Damit hat die zweite Wahl bereits einen Weg - genau das, was ein Qualitätsmaßstab voraussetzt."
+  },
+  "qualityStandard": {
+    "eyebrow": "Derselbe Maßstab wie im System",
+    "title": "Der Maßstab steht hier, nicht im Prospekt",
+    "lead": "Wer für den Betrieb pflückt oder von ihm kauft, sieht denselben Maßstab, der im System gilt - dieselben Zeichnungen wie auf dem Telefon des Erntehelfers. Fachliche Grundlage ist die UNECE-Norm FFV-32 für Himbeeren.",
+    "q1Title": "Vermarktungsfähig",
+    "q1Text": "Durchgehend ausgefärbt, innen hohl, die Steinfrüchtchen halten zusammen. Der Blütenboden bleibt am Strauch.",
+    "q2Title": "Zu früh gepflückt",
+    "q2Text": "Der weiße Blütenboden steckt noch in der Beere. Sie wurde mit Kraft gelöst statt abgenommen und verliert im Transport Saft.",
+    "q3Title": "Ausschuss",
+    "q3Text": "Grauer Belag, auch nur an einer Stelle. Bleibt im Feld: In der geschlossenen Schale befällt er über Nacht die ganze Lage.",
+    "trayTitle": "Der teuerste Fehler ist eine Höhe",
+    "trayText": "Von oben sieht die überfüllte Schale am besten aus: voll, dicht, kein Spalt. Der Deckel drückt jedoch auf die obere Lage, und die untere trägt das Gewicht. Himbeeren tragen kein Eigengewicht - im Laden ist die unterste Lage Saft. Sichtbar wird das nur von der Seite."
   }
 }
