@@ -374,7 +374,7 @@ insert into public.kpi_baseline (key, name, zone, ziel, baseline_wert, gut_richt
   ('reklamationsquote',     'Reklamationsquote',                                    'markt', '< 2 %',      '3,2 %',    'down', null),
   ('liefertreue',           'Liefertreue (puenktlich und vollstaendig)',            'markt', '> 97 %',     '91 %',     'up',   null),
   ('belegteVerkaeufe',      'Anteil belegter Verkaeufe (ESF und Warenbegleitschein)','buero','100 %',      '71 %',     'up',   null),
-  ('deckungsbeitrag',       'Deckungsbeitrag je kg',                                'buero', '> 700 T/kg', '640 T/kg', 'up',   null),
+  ('deckungsbeitrag',       'Deckungsbeitrag je kg',                                'buero', '> 700 ₸/kg', '640 ₸/kg', 'up',   null),
   ('esutdAbdeckung',        'Abdeckung der Saisonkraefte in ESUTD',                 'buero', '100 %',      '64 %',     'up',   null),
   ('websiteAnfragen',       'Anfragen ueber die Website je Monat',                  'markt', 'Ausgangswert','12',      'up',   null)
   on conflict (key) do nothing;

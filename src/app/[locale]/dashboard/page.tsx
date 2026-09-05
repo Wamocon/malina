@@ -1,162 +1,17 @@
-"use client";
+import { setRequestLocale } from "next-intl/server";
+import { DashboardHome } from "@/components/dashboard/home";
+import { ladeKpis } from "@/lib/data/kpis";
 
-import { useTranslations } from "next-intl";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Minus } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { Icon } from "@/components/icon";
-import { usePersona } from "@/components/dashboard/persona";
-import { Card, PageHeader, Section, StatusPill } from "@/components/ui/kit";
-import { hasPermission } from "@/lib/rbac";
-import { modulesForZone, zones } from "@/lib/modules";
-import { kpis, type KpiTrend } from "@/lib/domain/kpis";
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-const trendIcon: Record<KpiTrend, typeof ArrowUpRight> = {
-  up: ArrowUpRight,
-  down: ArrowDownRight,
-  flat: Minus,
-};
+  // Die Baseline-Kennzahlen kommen aus public.kpi_baseline (Meilenstein B).
+  const { kpis, quelle } = await ladeKpis();
 
-export default function DashboardHome() {
-  const { role } = usePersona();
-  const t = useTranslations("dashboard");
-  const zoneT = useTranslations("zones");
-  const kpiT = useTranslations("kpis");
-  const roleT = useTranslations("roles");
-
-  return (
-    <div className="space-y-8">
-      <PageHeader
-        eyebrow={t("home.eyebrow")}
-        title={t("home.title")}
-        description={t("home.description")}
-      >
-        <StatusPill tone="info">{roleT(role)}</StatusPill>
-      </PageHeader>
-
-      <Section
-        title={t("home.kpiTitle")}
-        description={t("home.kpiDescription")}
-        action={<StatusPill tone="warning">{t("home.placeholderBadge")}</StatusPill>}
-      >
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-          {kpis.map((kpi) => {
-            const TrendCmp = trendIcon[kpi.trend];
-            const positive =
-              (kpi.trend === "up" && kpi.gutRichtung === "up") ||
-              (kpi.trend === "down" && kpi.gutRichtung === "down");
-            return (
-              <Card key={kpi.key} className="p-3">
-                <div className="flex items-start justify-between gap-1">
-                  <p className="text-lg font-black text-foreground">{kpi.wert}</p>
-                  <TrendCmp
-                    className={`h-4 w-4 shrink-0 ${
-                      kpi.trend === "flat"
-                        ? "text-muted-foreground"
-                        : positive
-                          ? "text-success"
-                          : "text-destructive"
-                    }`}
-                  />
-                </div>
-                <p className="mt-1 text-[11px] font-medium leading-4 text-muted-foreground">
-                  {kpiT(`${kpi.key}.label`)}
-                </p>
-                <p className="mt-2 text-[10px] uppercase tracking-wide text-muted-foreground">
-                  {t("home.target")}: {kpi.ziel}
-                </p>
-              </Card>
-            );
-          })}
-        </div>
-      </Section>
-
-      <Section title={t("home.zonesTitle")} description={t("home.zonesDescription")}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {zones.map((zone) => {
-            const items = modulesForZone(zone.key);
-            const visible = items.filter((m) =>
-              hasPermission(role, m.resource, "view"),
-            );
-            const demo = visible.filter((m) => m.reifegrad === "demo").length;
-            const wip = visible.filter(
-              (m) => m.reifegrad === "in-entwicklung",
-            ).length;
-            return (
-              <Link
-                key={zone.key}
-                href={`/dashboard/${zone.key}`}
-                className="group rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40"
-              >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Icon name={zone.icon} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-3 text-base font-black text-card-foreground">
-                  {zoneT(`${zone.key}.name`)}
-                </h3>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  {zoneT(`${zone.key}.tagline`)}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  <StatusPill tone="success">
-                    {t("home.demoCount", { count: demo })}
-                  </StatusPill>
-                  {wip > 0 ? (
-                    <StatusPill tone="warning">
-                      {t("home.wipCount", { count: wip })}
-                    </StatusPill>
-                  ) : null}
-                </div>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary">
-                  {t("home.openZone")}
-                  <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-      </Section>
-
-      <Section
-        title={t("home.milestoneTitle")}
-        description={t("home.milestoneDescription")}
-      >
-        <div className="grid gap-4 lg:grid-cols-2">
-          <Card>
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-black text-card-foreground">
-                {t("home.milestoneAName")}
-              </p>
-              <StatusPill tone="success">{t("home.milestoneADue")}</StatusPill>
-            </div>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              {["tokens", "landing", "zones", "workflows"].map((k) => (
-                <li key={k} className="flex gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-success" />
-                  {t(`home.milestoneAItems.${k}`)}
-                </li>
-              ))}
-            </ul>
-          </Card>
-          <Card>
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-black text-card-foreground">
-                {t("home.milestoneBName")}
-              </p>
-              <StatusPill tone="warning">{t("home.milestoneBDue")}</StatusPill>
-            </div>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              {["rbac", "hierarchy", "status", "tasks", "docs", "i18n", "kpi"].map(
-                (k) => (
-                  <li key={k} className="flex gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                    {t(`home.milestoneBItems.${k}`)}
-                  </li>
-                ),
-              )}
-            </ul>
-          </Card>
-        </div>
-      </Section>
-    </div>
-  );
+  return <DashboardHome kpis={kpis} quelle={quelle} />;
 }

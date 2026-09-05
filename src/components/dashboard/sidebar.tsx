@@ -20,7 +20,7 @@ function useIsActive() {
 }
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
-  const { role } = usePersona();
+  const { role, demoModus } = usePersona();
   const nav = useTranslations("nav");
   const zoneT = useTranslations("zones");
   const moduleT = useTranslations("modules");
@@ -47,7 +47,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
 
       <div className="mt-5 rounded-xl border border-sidebar-border bg-sidebar-accent/70 p-3">
         <p className="text-[10px] font-semibold uppercase text-muted-foreground">
-          {nav("activePersona")}
+          {nav(demoModus ? "activePersona" : "activeRole")}
         </p>
         <p className="mt-1 truncate text-sm font-black text-card-foreground">
           {roleT(role)}

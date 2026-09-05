@@ -3,12 +3,16 @@
 // "Aufgabe-mit-Fotobeleg-Maschine". Hier direkt als Pflueckaufgabe je Brigade
 // und Reihenblock genutzt.
 
-export type AufgabenStatus =
-  | "offen"
-  | "angenommen"
-  | "in_arbeit"
-  | "beleg_pruefung"
-  | "abgeschlossen";
+// Reihenfolge wie im Datenbank-Enum public.pflueckaufgabe_status.
+export const aufgabenStatus = [
+  "offen",
+  "angenommen",
+  "in_arbeit",
+  "beleg_pruefung",
+  "abgeschlossen",
+] as const;
+
+export type AufgabenStatus = (typeof aufgabenStatus)[number];
 
 export interface MediaBeleg {
   id: string;
@@ -33,14 +37,12 @@ export interface Pflueckaufgabe {
   qualitaetsfaktor: number | null;
 }
 
-// Platzhalterbilder zum Thema Himbeerplantage (Analyse Kapitel 8) - lizenzfrei
-// von Unsplash, werden 1:1 durch echtes Betriebsmaterial aus Kasachstan ersetzt.
-const feld =
-  "https://images.unsplash.com/photo-1571680322279-a226e6a4cc2a?auto=format&fit=crop&w=640&q=60";
-const schale =
-  "https://images.unsplash.com/photo-1577069861033-55d04cec4ef5?auto=format&fit=crop&w=640&q=60";
-const ernte =
-  "https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?auto=format&fit=crop&w=640&q=60";
+// Platzhaltergrafiken je Belegart (Analyse Kapitel 8). Eigene SVGs statt
+// Stockfotos - als Platzhalter erkennbar und ohne Netzzugriff nutzbar. Sie
+// werden 1:1 durch echtes Betriebsmaterial aus Kasachstan ersetzt.
+const feld = "/belege/reihenblock.svg";
+const schale = "/belege/schale.svg";
+const ernte = "/belege/steige.svg";
 
 export const pflueckaufgaben: Pflueckaufgabe[] = [
   {
@@ -120,11 +122,11 @@ export const pflueckaufgaben: Pflueckaufgabe[] = [
 
 export const aufgabenStatusMeta: Record<
   AufgabenStatus,
-  { catiStatus: string; tone: "neutral" | "info" | "warning" | "success" }
+  { tone: "neutral" | "info" | "warning" | "success" }
 > = {
-  offen: { catiStatus: "draft", tone: "neutral" },
-  angenommen: { catiStatus: "assigned", tone: "info" },
-  in_arbeit: { catiStatus: "in_progress", tone: "info" },
-  beleg_pruefung: { catiStatus: "waiting_approval", tone: "warning" },
-  abgeschlossen: { catiStatus: "closed", tone: "success" },
+  offen: { tone: "neutral" },
+  angenommen: { tone: "info" },
+  in_arbeit: { tone: "info" },
+  beleg_pruefung: { tone: "warning" },
+  abgeschlossen: { tone: "success" },
 };

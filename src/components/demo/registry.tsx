@@ -3,12 +3,9 @@
 import type { ComponentType } from "react";
 import type { ModuleDef } from "@/lib/modules";
 import { ModulePlaceholder } from "@/components/dashboard/module-meta";
-import { ReihenbloeckeDemo } from "@/components/demo/reihenbloecke";
-import { PflueckaufgabenDemo } from "@/components/demo/pflueckaufgaben";
-import { StandortDemo, PflanzenschutzDemo } from "@/components/demo/feld-extra";
+import { PflanzenschutzDemo } from "@/components/demo/feld-extra";
 import {
   ComplianceDemo,
-  DokumenteDemo,
   FinanzenDemo,
   PersonalDemo,
   RollenDemo,
@@ -27,15 +24,13 @@ const plain = (Cmp: ComponentType): ModuleView =>
     return <Cmp />;
   };
 
+// Standort, Reihenbloecke, Pflueckaufgaben und Dokumente laufen ueber die
+// serverseitigen Ansichten in src/components/db/ - auch im Demo-Modus.
 const registry: Record<string, ModuleView> = {
-  standort: plain(StandortDemo),
-  reihenbloecke: plain(ReihenbloeckeDemo),
-  pflueckaufgaben: plain(PflueckaufgabenDemo),
   pflanzenschutz: plain(PflanzenschutzDemo),
   rollen: plain(RollenDemo),
   finanzen: plain(FinanzenDemo),
   personal: plain(PersonalDemo),
-  dokumente: plain(DokumenteDemo),
   compliance: plain(ComplianceDemo),
   sortenkatalog: plain(SortenkatalogDemo),
   schulungen: plain(SchulungenDemo),

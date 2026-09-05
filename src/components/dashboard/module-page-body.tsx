@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Lock } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -13,7 +14,17 @@ import { usePersona } from "@/components/dashboard/persona";
 import { hasPermission } from "@/lib/rbac";
 import type { ModuleDef } from "@/lib/modules";
 
-export function ModulePageBody({ module }: { module: ModuleDef }) {
+export function ModulePageBody({
+  module,
+  children,
+}: {
+  module: ModuleDef;
+  /**
+   * Serverseitig gerenderte Ansicht des Moduls (Meilenstein B, datenbank-
+   * gestuetzt). Fehlt sie, greift die Client-Demo-Ansicht aus der Registry.
+   */
+  children?: ReactNode;
+}) {
   const { role } = usePersona();
   const t = useTranslations("modules");
   const zoneT = useTranslations("zones");
@@ -34,7 +45,7 @@ export function ModulePageBody({ module }: { module: ModuleDef }) {
       </PageHeader>
 
       {allowed ? (
-        <ModuleView module={module} />
+        (children ?? <ModuleView module={module} />)
       ) : (
         <div className="rounded-2xl border border-border bg-card p-8 text-center">
           <Lock className="mx-auto h-6 w-6 text-muted-foreground" />

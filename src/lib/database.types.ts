@@ -1689,6 +1689,33 @@ export type Database = {
         Returns: Database["public"]["Enums"]["app_role"]
       }
       has_office_access: { Args: never; Returns: boolean }
+      has_role: {
+        Args: { erlaubt: Database["public"]["Enums"]["app_role"][] }
+        Returns: boolean
+      }
+      reihenblock_freigeben: {
+        Args: {
+          p_block: string
+          p_status?: Database["public"]["Enums"]["reihenblock_status"]
+        }
+        Returns: {
+          code: string
+          created_at: string
+          id: string
+          laenge_m: number | null
+          letzte_ernte: string | null
+          reihengruppe_id: string
+          sorte_id: string | null
+          status: Database["public"]["Enums"]["reihenblock_status"]
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "reihenbloecke"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
       app_role:

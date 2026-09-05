@@ -16,6 +16,7 @@
   "nav": {
     "platformSubtitle": "Betriebssteuerung Himbeerplantage",
     "activePersona": "Aktive Rolle (Demo)",
+    "activeRole": "Angemeldet als",
     "overview": "Übersicht",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
@@ -138,23 +139,51 @@
     "copyright": "© {year} WAMOCON GmbH",
     "madeBy": "Entwickelt in Deutschland"
   },
+  "auth": {
+    "title": "Anmeldung",
+    "lead": "Malina - ERP-Ökosystem für den Himbeerbetrieb",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "submitting": "Anmeldung läuft ...",
+    "error": {
+      "ungueltig": "E-Mail oder Passwort stimmt nicht.",
+      "unbekannt": "Anmeldung fehlgeschlagen. Bitte später erneut versuchen.",
+      "eingabe": "Bitte E-Mail und Passwort ausfüllen."
+    },
+    "demoTitle": "Demo-Zugänge",
+    "demoLead": "Ein Konto je Rolle - so lässt sich die Rechtelogik vorführen.",
+    "demoPassword": "Passwort für alle Konten:",
+    "backToSite": "Zurück zur Startseite",
+    "demoModeTitle": "Demo-Modus ohne Datenbank",
+    "demoModeLead": "Es ist keine Supabase-Umgebung hinterlegt. Das Dashboard läuft mit Beispieldaten, die Rolle lässt sich frei umschalten.",
+    "toDashboard": "Zum Dashboard",
+    "signOut": "Abmelden"
+  },
   "dashboard": {
     "searchPlaceholder": "Reihenblock, Charge, Pflücker, Dokument suchen ...",
     "notifications": "Benachrichtigungen",
     "open": "Öffnen",
     "zoneEmpty": "Für die aktive Rolle ist in dieser Zone kein Modul freigegeben.",
+    "dataSource": {
+      "db": "Live-Daten",
+      "demo": "Beispieldaten",
+      "dbHint": "Angebunden an die Supabase-Datenbank, gelesen unter den RLS-Rechten Ihrer Rolle.",
+      "demoHint": "Ohne Datenbankverbindung - die Ansicht zeigt die hinterlegten Beispieldaten."
+    },
     "rbacHintLabel": "Rollen",
-    "rbacHint": "Welche Module sichtbar sind, hängt von der oben gewählten Demo-Rolle ab. Sechs Kernrollen von der Administration bis zur Brigade im Feld.",
+    "rbacHint": "Welche Module sichtbar sind, hängt von der Rolle des angemeldeten Kontos ab. Sechs Kernrollen von der Administration bis zur Brigade im Feld - dieselbe Rolle entscheidet auch in der Datenbank über Lese- und Schreibrechte.",
     "home": {
       "eyebrow": "Betriebssteuerung",
       "title": "Betriebsübersicht Malina",
-      "description": "Aggregator Umland Almaty. Der Prototyp zeigt Struktur und Optik der ersten Ausbaustufe - Hauptfunktionen als bedienbare Demo, Unterfunktionen als sichtbare Menüpunkte mit Status.",
+      "description": "Aggregator Umland Almaty. Die Hauptfunktionen laufen gegen die Datenbank - mit Anmeldung, Rollenrechten und echten Schreibvorgängen. Unterfunktionen bleiben sichtbare Menüpunkte mit Status.",
       "kpiTitle": "14 Baseline-Kennzahlen",
       "kpiDescription": "Werden am 01.10.2026 mit dem Kunden als Baseline unterschrieben.",
       "placeholderBadge": "Platzhalterwerte",
       "target": "Ziel",
       "zonesTitle": "Die vier Zonen",
       "zonesDescription": "Navigationsstruktur des Dashboards, gegliedert wie die Zielarchitektur.",
+      "dbCount": "{count} angebunden",
       "demoCount": "{count} Demo",
       "wipCount": "{count} in Entwicklung",
       "openZone": "Zone öffnen",
@@ -178,11 +207,13 @@
         "docs": "Dokumentenverwaltung für Spritzprotokolle, Verträge und ЕСУТД-Nachweise",
         "i18n": "Mehrsprachige Oberfläche in fünf Sprachen",
         "kpi": "Dashboard-Grundgerüst mit den 14 Baseline-Kennzahlen als Kacheln"
-      }
+      },
+      "milestoneBNote": "Alle Hauptfunktionen sind an die Datenbank angebunden: Anmeldung, Rollenrechte über Row Level Security, Standortverwaltung, Reihenblock-Sperre, Pflückaufgabe mit Fotobeleg und Dokumentenablage. Die Unterfunktionen bleiben planmäßig sichtbare Menüpunkte mit Status."
     }
   },
   "roles": {
     "switcherHint": "Demo-Rolle wechseln - steuert die sichtbare Navigation",
+    "viewAsHint": "Ansicht als Rolle - ändert nur die Darstellung, die Schreibrechte richten sich weiter nach Ihrem Profil",
     "admin": "Administration",
     "betriebsleitung": "Betriebsleitung",
     "buchhaltung": "Buchhaltung",
@@ -204,6 +235,7 @@
     "neu-bauen": "Neu bauen"
   },
   "reifegrad": {
+    "angebunden": "Datenbank angebunden",
     "demo": "Demo bedienbar",
     "in-entwicklung": "In Entwicklung"
   },
@@ -453,6 +485,164 @@
       "steige": "Steige"
     },
     "note": "Die verkaufsfertige Schale entsteht in der Hand des Pflückers. Der Fotobeleg der Schale hängt an der Aufgabe und fließt in den Qualitätsfaktor ein."
+  },
+  "aktionen": {
+    "anlegen": "Anlegen",
+    "speichern": "Speichern",
+    "freigeben": "Freigeben",
+    "laeuft": "...",
+    "spalte": "Aktion",
+    "statusLabel": "Status wählen",
+    "faellig": "Wartezeit abgelaufen",
+    "resttage": "noch {tage} Tage",
+    "gesperrtHinweis": "Freigabe erst nach Ablauf der Wartezeit",
+    "ok": {
+      "plantage": "Plantage \"{wert}\" angelegt.",
+      "parzelle": "Feldparzelle \"{wert}\" angelegt.",
+      "reihengruppe": "Reihengruppe \"{wert}\" angelegt.",
+      "reihenblock": "Reihenblock {wert} angelegt.",
+      "status": "Status von {wert} gespeichert.",
+      "behandlung": "Behandlung erfasst - Block gesperrt bis {wert}.",
+      "freigabe": "Reihenblock {wert} freigegeben.",
+      "aufgabe": "Pflückaufgabe {wert} angelegt.",
+      "aufgabeStatus": "Aufgabe {wert} aktualisiert.",
+      "menge": "Menge für {wert} gemeldet - Beleg wird geprüft.",
+      "beleg": "Fotobeleg hochgeladen.",
+      "dokument": "Dokument \"{wert}\" aufgenommen."
+    },
+    "fehler": {
+      "eingabe": "Bitte alle Pflichtfelder ausfüllen.",
+      "gesperrt": "Reihenblock {wert} ist wartezeitgesperrt - keine Pflückaufgabe möglich.",
+      "keineDatei": "Bitte eine Bilddatei auswählen.",
+      "zuGross": "Die Datei ist größer als 8 MB.",
+      "upload": "Das Foto konnte nicht gespeichert werden.",
+      "berechtigung": "Ihre Rolle darf diesen Vorgang nicht ausführen.",
+      "angemeldet": "Sitzung abgelaufen. Bitte erneut anmelden.",
+      "doppelt": "Ein Eintrag mit dieser Kennung existiert bereits.",
+      "bezug": "Der gewählte Bezugsdatensatz existiert nicht.",
+      "regel": "Nicht möglich: Die Wartezeit ist noch nicht abgelaufen.",
+      "unbekannt": "Vorgang fehlgeschlagen. Details stehen im Server-Log."
+    }
+  },
+  "standortVerwaltung": {
+    "titel": "Standort verwalten",
+    "lead": "Neue Ebenen anlegen. Jeder Vorgang wird über die Rollenrechte in der Datenbank geprüft und im Audit-Protokoll festgehalten.",
+    "keinRecht": "Ihre Rolle darf die Standortstruktur lesen, aber nicht bearbeiten. Anlegen und Ändern sind der Administration und der Betriebsleitung vorbehalten.",
+    "plantage": {
+      "titel": "Plantage",
+      "lead": "Eigenfläche oder angeschlossener Nachbarbetrieb."
+    },
+    "parzelle": {
+      "titel": "Feldparzelle",
+      "lead": "Fläche innerhalb einer Plantage, meist einer Sorte zugeordnet."
+    },
+    "reihengruppe": {
+      "titel": "Reihengruppe",
+      "lead": "Spalierreihen einer Parzelle mit gemeinsamer Ausrichtung."
+    },
+    "reihenblock": {
+      "titel": "Reihenblock",
+      "lead": "Kleinste Einheit der Feldkarte - Basis für Ernte und Sperre."
+    },
+    "feld": {
+      "name": "Bezeichnung",
+      "ort": "Ort",
+      "typ": "Art",
+      "plantage": "Plantage",
+      "parzelle": "Feldparzelle",
+      "reihengruppe": "Reihengruppe",
+      "sorte": "Sorte",
+      "ohneSorte": "ohne Sortenzuordnung",
+      "flaeche": "Fläche in ha",
+      "spalier": "Spalierrichtung",
+      "code": "Blockkennung",
+      "laenge": "Länge in m"
+    },
+    "typ": {
+      "eigen": "Eigenbetrieb",
+      "nachbarbetrieb": "Nachbarbetrieb"
+    },
+    "leer": {
+      "parzellen": "Noch keine Feldparzelle angelegt.",
+      "reihengruppen": "Noch keine Reihengruppe angelegt."
+    }
+  },
+  "dokumentKategorie": {
+    "spritzmittelprotokoll": "Spritzmittelprotokoll",
+    "esutd_nachweis": "ЕСУТД-Nachweis",
+    "liefervertrag": "Liefervertrag",
+    "foerderdossier": "Fördermitteldossier",
+    "zertifikat": "Zertifikat",
+    "sonstiges": "Sonstiges"
+  },
+  "dokumenteVerwaltung": {
+    "titel": "Dokument aufnehmen",
+    "lead": "Metadaten und optional die Datei. Die Ablage ist privat - Dateien werden nur über kurzlebige signierte Links geöffnet.",
+    "knopf": "Dokument aufnehmen",
+    "dateiHinweis": "PDF oder Bild, bis 16 MB. Ohne Datei entsteht zunächst nur der Eintrag.",
+    "oeffnen": "Öffnen",
+    "keineDatei": "keine Datei",
+    "col": {
+      "datei": "Datei"
+    },
+    "feld": {
+      "name": "Bezeichnung",
+      "kategorie": "Kategorie",
+      "bezug": "Bezug",
+      "stand": "Stand",
+      "status": "Status",
+      "datei": "Datei"
+    }
+  },
+  "pflueckaufgabenVerwaltung": {
+    "ohneBrigade": "Ohne Brigade",
+    "platzhalterBild": "Platzhalterbild - noch kein Foto hochgeladen",
+    "neu": {
+      "titel": "Neue Pflückaufgabe",
+      "lead": "Wartezeitgesperrte Reihenblöcke stehen nicht zur Auswahl - die Datenbank weist sie zusätzlich ab.",
+      "knopf": "Aufgabe anlegen"
+    },
+    "menge": {
+      "knopf": "Menge melden und zur Belegprüfung geben"
+    },
+    "beleg": {
+      "knopf": "Fotobeleg hochladen"
+    },
+    "ablauf": {
+      "titel": "Ablauf der Aufgabe",
+      "lead": "Annehmen, pflücken, Menge melden, Beleg prüfen lassen.",
+      "annehmen": "Aufgabe annehmen",
+      "starten": "Pflücken starten"
+    },
+    "art": {
+      "schale": "Verkaufsschale",
+      "reihenblock": "Reihenblock",
+      "steige": "Steige"
+    },
+    "feld": {
+      "block": "Reihenblock",
+      "brigade": "Brigade",
+      "ohneBrigade": "ohne Zuordnung",
+      "zielmenge": "Zielmenge in kg",
+      "pfluecker": "Pflücker",
+      "istMenge": "Ist-Menge in kg",
+      "qualitaet": "Qualitätsfaktor",
+      "art": "Belegart",
+      "datei": "Foto",
+      "hinweis": "Hinweis",
+      "hinweisBeispiel": "Verkaufsschale 125 g, geschlossene Fruchtdecke"
+    }
+  },
+  "pflanzenschutzVerwaltung": {
+    "titel": "Behandlung erfassen",
+    "lead": "Die Wartezeit kommt aus dem Mittelkatalog - der Reihenblock wird automatisch gesperrt.",
+    "erfassen": "Behandlung erfassen",
+    "hinweis": "Die Sperre wird von einem Datenbank-Trigger gesetzt und lässt sich nicht per Statuswechsel umgehen. Erst nach Ablauf der Wartezeit erscheint die Schaltfläche zur Freigabe.",
+    "feld": {
+      "block": "Reihenblock",
+      "mittel": "Pflanzenschutzmittel",
+      "datum": "Behandelt am"
+    }
   },
   "standortDemo": {
     "statsTitle": "Hierarchie im Überblick",

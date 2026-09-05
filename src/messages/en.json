@@ -16,6 +16,7 @@
   "nav": {
     "platformSubtitle": "Raspberry plantation management",
     "activePersona": "Active role (demo)",
+    "activeRole": "Signed in as",
     "overview": "Overview",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -138,23 +139,51 @@
     "copyright": "© {year} WAMOCON GmbH",
     "madeBy": "Built in Germany"
   },
+  "auth": {
+    "title": "Sign in",
+    "lead": "Malina - ERP ecosystem for the raspberry farm",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in ...",
+    "error": {
+      "ungueltig": "Email or password is not correct.",
+      "unbekannt": "Sign-in failed. Please try again later.",
+      "eingabe": "Please fill in email and password."
+    },
+    "demoTitle": "Demo accounts",
+    "demoLead": "One account per role - so the permission logic can be demonstrated.",
+    "demoPassword": "Password for all accounts:",
+    "backToSite": "Back to the start page",
+    "demoModeTitle": "Demo mode without database",
+    "demoModeLead": "No Supabase environment is configured. The dashboard runs on sample data and the role can be switched freely.",
+    "toDashboard": "Go to dashboard",
+    "signOut": "Sign out"
+  },
   "dashboard": {
     "searchPlaceholder": "Search row block, batch, picker, document ...",
     "notifications": "Notifications",
     "open": "Open",
     "zoneEmpty": "No module in this zone is enabled for the active role.",
+    "dataSource": {
+      "db": "Live data",
+      "demo": "Sample data",
+      "dbHint": "Connected to the Supabase database, read under the RLS permissions of your role.",
+      "demoHint": "No database connection - the view shows the built-in sample data."
+    },
     "rbacHintLabel": "Roles",
-    "rbacHint": "Which modules are visible depends on the demo role selected above. Six core roles, from administration to the brigade in the field.",
+    "rbacHint": "Which modules are visible depends on the role of the signed-in account. Six core roles, from administration to the brigade in the field - the same role also governs read and write permissions in the database.",
     "home": {
       "eyebrow": "Farm management",
       "title": "Malina operations overview",
-      "description": "Aggregator, Almaty region. The prototype shows the structure and look of the first release - main functions as an operable demo, sub-functions as visible menu entries with a status.",
+      "description": "Aggregator, Almaty region. The main functions run against the database - with sign-in, role permissions and real write operations. Sub-functions remain visible menu entries with a status.",
       "kpiTitle": "14 baseline key figures",
       "kpiDescription": "To be signed off with the client as the baseline on 01 Oct 2026.",
       "placeholderBadge": "Placeholder values",
       "target": "Target",
       "zonesTitle": "The four zones",
       "zonesDescription": "The dashboard's navigation structure, organised like the target architecture.",
+      "dbCount": "{count} connected",
       "demoCount": "{count} demo",
       "wipCount": "{count} in development",
       "openZone": "Open zone",
@@ -178,11 +207,13 @@
         "docs": "Document management for spray records, contracts and ЕСУТД evidence",
         "i18n": "Multilingual interface in five languages",
         "kpi": "Dashboard skeleton with the 14 baseline key figures as tiles"
-      }
+      },
+      "milestoneBNote": "All main functions are connected to the database: sign-in, role permissions through row level security, location management, row block lock, picking task with photo proof and document storage. The sub-functions remain visible menu entries with a status, as planned."
     }
   },
   "roles": {
     "switcherHint": "Switch demo role - controls the visible navigation",
+    "viewAsHint": "View as role - changes the presentation only; write permissions still follow your profile",
     "admin": "Administration",
     "betriebsleitung": "Farm management",
     "buchhaltung": "Accounting",
@@ -204,6 +235,7 @@
     "neu-bauen": "Build new"
   },
   "reifegrad": {
+    "angebunden": "Database connected",
     "demo": "Demo operable",
     "in-entwicklung": "In development"
   },
@@ -453,6 +485,164 @@
       "steige": "Crate"
     },
     "note": "The retail-ready punnet is made in the picker's hand. The photo of the punnet stays on the task and feeds into the quality factor."
+  },
+  "aktionen": {
+    "anlegen": "Create",
+    "speichern": "Save",
+    "freigeben": "Release",
+    "laeuft": "...",
+    "spalte": "Action",
+    "statusLabel": "Select status",
+    "faellig": "waiting period elapsed",
+    "resttage": "{tage} days left",
+    "gesperrtHinweis": "Release only after the waiting period",
+    "ok": {
+      "plantage": "Plantation \"{wert}\" created.",
+      "parzelle": "Field plot \"{wert}\" created.",
+      "reihengruppe": "Row group \"{wert}\" created.",
+      "reihenblock": "Row block {wert} created.",
+      "status": "Status of {wert} saved.",
+      "behandlung": "Treatment recorded - block locked until {wert}.",
+      "freigabe": "Row block {wert} released.",
+      "aufgabe": "Picking task {wert} created.",
+      "aufgabeStatus": "Task {wert} updated.",
+      "menge": "Quantity reported for {wert} - proof is under review.",
+      "beleg": "Photo proof uploaded.",
+      "dokument": "Document \"{wert}\" added."
+    },
+    "fehler": {
+      "eingabe": "Please fill in all required fields.",
+      "gesperrt": "Row block {wert} is locked for the waiting period - no picking task possible.",
+      "keineDatei": "Please select an image file.",
+      "zuGross": "The file is larger than 8 MB.",
+      "upload": "The photo could not be stored.",
+      "berechtigung": "Your role is not allowed to perform this action.",
+      "angemeldet": "Session expired. Please sign in again.",
+      "doppelt": "An entry with this identifier already exists.",
+      "bezug": "The selected reference record does not exist.",
+      "regel": "Not possible: the waiting period has not elapsed yet.",
+      "unbekannt": "Action failed. Details are in the server log."
+    }
+  },
+  "standortVerwaltung": {
+    "titel": "Manage locations",
+    "lead": "Create new levels. Every action is checked against the role permissions in the database and recorded in the audit log.",
+    "keinRecht": "Your role may read the location structure but not edit it. Creating and changing is reserved for administration and farm management.",
+    "plantage": {
+      "titel": "Plantation",
+      "lead": "Own area or an affiliated neighbouring farm."
+    },
+    "parzelle": {
+      "titel": "Field plot",
+      "lead": "Area within a plantation, usually assigned to one variety."
+    },
+    "reihengruppe": {
+      "titel": "Row group",
+      "lead": "Trellis rows of a plot sharing one orientation."
+    },
+    "reihenblock": {
+      "titel": "Row block",
+      "lead": "Smallest unit of the field map - the basis for harvest and lock."
+    },
+    "feld": {
+      "name": "Name",
+      "ort": "Location",
+      "typ": "Type",
+      "plantage": "Plantation",
+      "parzelle": "Field plot",
+      "reihengruppe": "Row group",
+      "sorte": "Variety",
+      "ohneSorte": "no variety assigned",
+      "flaeche": "Area in ha",
+      "spalier": "Trellis orientation",
+      "code": "Block identifier",
+      "laenge": "Length in m"
+    },
+    "typ": {
+      "eigen": "Own farm",
+      "nachbarbetrieb": "Neighbouring farm"
+    },
+    "leer": {
+      "parzellen": "No field plot created yet.",
+      "reihengruppen": "No row group created yet."
+    }
+  },
+  "dokumentKategorie": {
+    "spritzmittelprotokoll": "Spray record",
+    "esutd_nachweis": "ESUTD record",
+    "liefervertrag": "Supply contract",
+    "foerderdossier": "Subsidy dossier",
+    "zertifikat": "Certificate",
+    "sonstiges": "Other"
+  },
+  "dokumenteVerwaltung": {
+    "titel": "Add document",
+    "lead": "Metadata and optionally the file. Storage is private - files open through short-lived signed links only.",
+    "knopf": "Add document",
+    "dateiHinweis": "PDF or image, up to 16 MB. Without a file only the entry is created.",
+    "oeffnen": "Open",
+    "keineDatei": "no file",
+    "col": {
+      "datei": "File"
+    },
+    "feld": {
+      "name": "Name",
+      "kategorie": "Category",
+      "bezug": "Reference",
+      "stand": "As of",
+      "status": "Status",
+      "datei": "File"
+    }
+  },
+  "pflueckaufgabenVerwaltung": {
+    "ohneBrigade": "No brigade",
+    "platzhalterBild": "Placeholder image - no photo uploaded yet",
+    "neu": {
+      "titel": "New picking task",
+      "lead": "Row blocks under a waiting period are not offered - the database rejects them as well.",
+      "knopf": "Create task"
+    },
+    "menge": {
+      "knopf": "Report quantity and send to proof review"
+    },
+    "beleg": {
+      "knopf": "Upload photo proof"
+    },
+    "ablauf": {
+      "titel": "Task flow",
+      "lead": "Accept, pick, report the quantity, have the proof reviewed.",
+      "annehmen": "Accept task",
+      "starten": "Start picking"
+    },
+    "art": {
+      "schale": "Retail punnet",
+      "reihenblock": "Row block",
+      "steige": "Crate"
+    },
+    "feld": {
+      "block": "Row block",
+      "brigade": "Brigade",
+      "ohneBrigade": "no assignment",
+      "zielmenge": "Target quantity in kg",
+      "pfluecker": "Pickers",
+      "istMenge": "Actual quantity in kg",
+      "qualitaet": "Quality factor",
+      "art": "Proof type",
+      "datei": "Photo",
+      "hinweis": "Note",
+      "hinweisBeispiel": "Retail punnet 125 g, closed fruit surface"
+    }
+  },
+  "pflanzenschutzVerwaltung": {
+    "titel": "Record treatment",
+    "lead": "The waiting period comes from the product catalogue - the row block is locked automatically.",
+    "erfassen": "Record treatment",
+    "hinweis": "The lock is set by a database trigger and cannot be bypassed by changing the status. The release button appears only once the waiting period has elapsed.",
+    "feld": {
+      "block": "Row block",
+      "mittel": "Plant protection product",
+      "datum": "Treated on"
+    }
   },
   "standortDemo": {
     "statsTitle": "Hierarchy at a glance",

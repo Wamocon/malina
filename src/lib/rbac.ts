@@ -137,6 +137,8 @@ export const rolePermissions: Record<Role, Permission[]> = {
     `reihenbloecke:approve`,
     ...crud("pflueckaufgaben"),
     `pflueckaufgaben:assign`,
+    // Belegpruefung und Abschluss einer Pflueckaufgabe (Meilenstein B).
+    `pflueckaufgaben:approve`,
     ...crud("pflanzenschutz"),
     ...crud("rotationsplan"),
     ...view("kuehlkette"),

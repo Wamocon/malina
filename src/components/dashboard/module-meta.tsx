@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Clock } from "lucide-react";
+import { Clock, Database } from "lucide-react";
 import type { Klassifikation, ModuleDef } from "@/lib/modules";
 import { StatusPill, type Tone } from "@/components/ui/kit";
 import { cn } from "@/lib/utils";
@@ -19,8 +19,16 @@ export function KlassifikationBadge({ value }: { value: Klassifikation }) {
 
 export function ReifegradBadge({ value }: { value: ModuleDef["reifegrad"] }) {
   const t = useTranslations("reifegrad");
+  if (value === "angebunden") {
+    return (
+      <StatusPill tone="success" className="gap-1">
+        <Database className="h-3 w-3" />
+        {t("angebunden")}
+      </StatusPill>
+    );
+  }
   if (value === "demo") {
-    return <StatusPill tone="success">{t("demo")}</StatusPill>;
+    return <StatusPill tone="info">{t("demo")}</StatusPill>;
   }
   return (
     <StatusPill tone="warning" className="gap-1">
